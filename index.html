@@ -6,20 +6,37 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <title>CleverTech TESTING</title>
+        
         <!--Include this link on every HTML page of the website!-->
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-        
         <!-- import Bootstrap CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <!-- Add icon library from Perfect Icons-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
       
+        <!--=== THINK: Will hard-coded values be an issue? ====-->
         <style type="text/css">            
             
             body {
                 padding-top: 50px; /*To offset space taken by the navbar*/
             }
+            
+                        
+            #hour_info {
+                font-size: 20px;
+                float: none;
+                margin: 0 auto;
+            }
+            
+            
+            .thumbnail {
+                border-width: thick;
+                border-color: #026937;
+                position: relative;
+                top: 25px;
+            }
+            
             
             /*Code from Perfect Icons BEGIN*/
             @font-face {
@@ -158,15 +175,10 @@
                 height: 130px;
                 width: 230px;
             }
-
-            
-            #hour_info {
-
-            }
             
             
             .carousel { 
-                max-height: 600px; 
+                max-height: 570px; 
                 overflow: hidden;
             }
             
@@ -179,7 +191,7 @@
             .carousel-caption {
                 /*color: #929497;*/
                 text-align: left;
-                font-size: 20px;
+                font-size: 25px;
                 /*text-shadow: 3px 3px #1d2023;*/
                 top: 0;
                 bottom: auto;
@@ -418,22 +430,26 @@
         
         
         <div id="about" class="container">
+            <!--CleverTech logo with subtitle-->
             <div style="padding:30px"><img id="ct_logo_subtitles" src="images/CT_with_subtitle.png"> </div>
             
-            <!-- 16:9 aspect ratio -->
+            <!-- VIDEO with 16:9 aspect ratio -->
             <div class="embed-responsive embed-responsive-16by9">
                 <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/QGKvYpL4DRU?ecver=2"></iframe>
             </div>
             
-            <div id="hour_info" class="container" style="padding:30px; font-size: 20px">
-                <p style="font-weight: bold">HOURS</p>
-                <p>MON. - FRI. 9AM - 7PM</p>
-                <p>SAT. - SUN. 10AM - 6PM</p>
-                <a href="#"><img src="images/phone_call.png"></a>
-            </div>              
+            <!--Store hours (could be better styled)-->
+            <div id="hour_info" class="thumbnail col-sm-6">
+                <p><strong>HOURS</strong></p>
+                <p>MON - FRI : 9AM - 7PM</p>
+                <p>SAT - SUN : 10AM - 6PM</p>
+                <a style="display:inline-block" href="#"><img src="images/phone_call.png"></a>
+                <!--Let this anchor tag have a display of inline-block so it doesn't extend across the thumbnail-->
+            </div>
+            
         </div>
-        
       
+        
         <footer id="soc_media">
             <ul class="soc">
                 <li><a class="soc-facebook" href="#"></a></li>
@@ -444,7 +460,7 @@
                 <li><a class="soc-yelp soc-icon-last" href="#"></a></li>
             </ul>
             
-            <p>CleverTech © ALL RIGHTS RESERVED.</p>
+            <p><strong>CleverTech © ALL RIGHTS RESERVED.</strong></p>
         </footer>
         
         
