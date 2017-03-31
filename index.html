@@ -18,7 +18,7 @@
         <style type="text/css">            
             
             body {
-                padding-top: 50px;
+                padding-top: 50px; /*To offset space taken by the navbar*/
             }
             
             /*Code from Perfect Icons BEGIN*/
@@ -31,7 +31,6 @@
                      url('socicon-v1.5/socicon.svg#icomoonregular') format('svg');
                 font-weight: normal;
                 font-style: normal;
-
             }
 
             @media screen and (-webkit-min-device-pixel-ratio:0) {
@@ -256,53 +255,41 @@
                 background-color: #026937;
                 color: white;
             }
-          
+
             
-            .jumbo_years_exp {
-                padding: 300px;
+            #years_exp_jumbo {
                 background-image: url("images/years_of_exp2.jpg");
-                background-size:cover;
-                background-repeat: no-repeat;
-                background-position: center;
-                text-align: center;
             }
-
-            .jumbo_free_diag {
-                padding: 300px;
+            
+            
+            #free_diag_jumbo {
                 background-image: url("images/free_diag.jpg");
-                background-size:cover;
-                background-repeat: no-repeat;
-                background-position: center;
-                text-align: center;
             }
             
-            .jumbo_repair {
-                padding: 300px;
+            
+            #repair_jumbo {
                 background-image: url("images/repair2.jpg");
-                background-size:cover;
-                background-repeat: no-repeat;
-                background-position: center;
-                text-align: center;
             }
             
-            .jumbo_comm {
-                padding: 300px;
+            
+            #comm_jumbo {
                 background-image: url("images/comm.jpg");
+            }
+            
+            
+            #your_clev_jumbo {
+                background-image: url("images/your_clev.jpg");
+            }
+            
+            
+            .jumbotron {
+                padding: 300px;
                 background-size:cover;
                 background-repeat: no-repeat;
                 background-position: center;
                 text-align: center;
             }
             
-            .jumbo_your_clev {
-                padding: 300px;
-                background-image: url("images/your_clev.jpg");
-                background-size:cover;
-                background-repeat: no-repeat;
-                background-position: center;
-                text-align: center;
-            }
-
             
             #app_name {
                 margin: 30px 0px;
@@ -374,54 +361,8 @@
         
         <div id="my_carousel" class="carousel slide carousel-fade" data-ride="carousel">
             <div class="carousel-inner" role="listbox">
-                <!--
-                     .jumbo_years_exp {
-                padding: 300px;
-                background-image: url("images/years_of_exp2.jpg");
-                background-size:cover;
-                background-repeat: no-repeat;
-                background-position: center;
-                text-align: center;
-            }
-
-            .jumbo_free_diag {
-                padding: 300px;
-                background-image: url("images/free_diag.jpg");
-                background-size:cover;
-                background-repeat: no-repeat;
-                background-position: center;
-                text-align: center;
-            }
-            
-            .jumbo_repair {
-                padding: 300px;
-                background-image: url("images/repair.jpg");
-                background-size:cover;
-                background-repeat: no-repeat;
-                background-position: center;
-                text-align: center;
-            }
-            
-            .jumbo_comm {
-                padding: 300px;
-                background-image: url("images/comm.jpg");
-                background-size:cover;
-                background-repeat: no-repeat;
-                background-position: center;
-                text-align: center;
-            }
-            
-            .jumbo_your_clev {
-                padding: 300px;
-                background-image: url("images/your_clev.jpg");
-                background-size:cover;
-                background-repeat: no-repeat;
-                background-position: center;
-                text-align: center;
-            }
-            -->
                 <div class="item active">
-                    <div class="jumbo_years_exp">
+                    <div id="years_exp_jumbo" class="jumbotron">
                         <div class="carousel-caption">
                             <h3>QUALIFIED TECHNICIANS WITH YEARS OF EXPERIENCE.</h3>
                             <p>Our highly trained professional staff include 5 star ratings in customer service.</p>
@@ -430,7 +371,7 @@
                 </div>
                 
                 <div class="item">
-                    <div class="jumbo_free_diag">
+                    <div id="free_diag_jumbo" class="jumbotron">
                         <div class="carousel-caption">
                             <h3>FREE DIAGNOSTIC</h3>
                             <p>CleverTech uses the best tools &amp; knowledge to create well formatted diagnostics for no cost. Now that's Clever!</p>
@@ -439,7 +380,7 @@
                 </div>
                 
                 <div class="item">
-                    <div class="jumbo_repair">
+                    <div id="repair_jumbo" class="jumbotron">
                         <div class="carousel-caption">
                             <h3>REPAIR</h3>
                             <p>We strive to have the ablity to repair any problem. Be it software or hardware repair, we'll have the answer.</p>
@@ -448,7 +389,7 @@
                 </div>
                 
                 <div class="item">
-                    <div class="jumbo_comm">
+                    <div id="comm_jumbo" class="jumbotron">
                         <div class="carousel-caption">
                             <h3>COMMUNICATION</h3>
                             <p>We love keeping our customers informed. Via text or phone calls, you'll be sure to be kept in the loop.</p>
@@ -457,7 +398,7 @@
                 </div>
                 
                 <div class="item">
-                    <div class="jumbo_your_clev">
+                    <div id="your_clev_jumbo" class="jumbotron">
                         <div class="carousel-caption">
                             <h3>YOUR CLEVER TECH</h3>
                             <p>CleverTech makes sure to assign the best technician available for your specific repair.</p>
