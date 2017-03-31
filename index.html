@@ -11,11 +11,169 @@
         
         <!-- import Bootstrap CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!-- Add icon library from Perfect Icons-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
       
-        <style type="text/css">
+        <style type="text/css">            
+            
+            body {
+                padding-top: 50px;
+            }
+            
+            /*Code from Perfect Icons BEGIN*/
+            @font-face {
+                font-family: 'si';
+                src: url('socicon-v1.5/socicon.eot');
+                src: url('socicon-v1.5/socicon.eot?#iefix') format('embedded-opentype'),
+                     url('socicon-v1.5/socicon.woff') format('woff'),
+                     url('socicon-v1.5/socicon.ttf') format('truetype'),
+                     url('socicon-v1.5/socicon.svg#icomoonregular') format('svg');
+                font-weight: normal;
+                font-style: normal;
+
+            }
+
+            @media screen and (-webkit-min-device-pixel-ratio:0) {
+                @font-face {
+                    font-family:si;
+                    src: url(socicon-v1.5/socicon.svg) format(svg);
+                }
+            }
+
+            .soc {
+                overflow:hidden;
+                margin:0; padding:0;
+                list-style:none;
+            }
+
+            .soc li {
+                display:inline-block;
+                *display:inline;
+                zoom:1;
+            }
+
+            .soc li a {
+                font-family:si!important;
+                font-style:normal;
+                font-weight:400;
+                -webkit-font-smoothing:antialiased;
+                -moz-osx-font-smoothing:grayscale;
+                -webkit-box-sizing:border-box;
+                -moz-box-sizing:border-box;
+                -ms-box-sizing:border-box;
+                -o-box-sizing:border-box;
+                box-sizing:border-box;
+
+                -o-transition:.1s;
+                -ms-transition:.1s;
+                -moz-transition:.1s;
+                -webkit-transition:.1s;
+                transition:.1s;
+                -webkit-transition-property: transform;
+                transition-property: transform;
+                -webkit-transform: translateZ(0);
+                transform: translateZ(0);
+
+                overflow:hidden;
+                text-decoration:none;
+                text-align:center;
+                display:block;
+                position: relative;
+                z-index: 1;
+                width: 40px;
+                height: 40px;
+                line-height: 40px;
+                font-size: 22px;
+                -webkit-border-radius: 82px;
+                -moz-border-radius: 82px;
+                border-radius: 82px;
+                margin-right: 10px;
+                color: #ffffff;
+                background-color: none;
+            }
+
+            .soc-icon-last{
+                margin:0 !important;
+            }
+
+            .soc-facebook {
+                background-color: #3e5b98;
+            }
+            .soc-facebook:before {
+                content:'\e041';
+            }
+            .soc-instagram {
+                background-color: #405de6;
+            }
+            .soc-instagram:before {
+                content:'\e057';
+            }
+            .soc-tumblr {
+                background-color: #45556c;
+            }
+            .soc-tumblr:before {
+                content:'\e059';
+            }
+            .soc-twitter {
+                background-color: #4da7de;
+            }
+            .soc-twitter:before {
+                content:'\e040';
+            }
+            .soc-youtube {
+                background-color: #e02a20;
+            }
+            .soc-youtube:before {
+                content:'\e051';
+            }
+            .soc-yelp {
+                background-color: #c83218;
+            }
+            .soc-yelp:before {
+                content:'\e047';
+            }
+
+            .soc-facebook:hover {
+                background-color: #526fac;
+            }
+            .soc-instagram:hover {
+                background-color: #5471fa;
+            }
+            .soc-tumblr:hover {
+                background-color: #596980;
+            }
+            .soc-twitter:hover {
+                background-color: #61bbf2;
+            }
+            .soc-youtube:hover {
+                background-color: #f43e34;
+            }
+            .soc-yelp:hover {
+                background-color: #dc462c;
+            }
+            /*Code from Perfect Icons END*/
+            
+            
+            #ct_logo_subtitles {
+                height: 130px;
+                width: 230px;
+            }
+
+            
+            #hour_info {
+
+            }
+            
+            
             .carousel { 
                 max-height: 600px; 
                 overflow: hidden;
+            }
+            
+            
+            h3 {
+                text-shadow: 3px 3px #1d2023;
             }
             
             
@@ -23,7 +181,9 @@
                 /*color: #929497;*/
                 text-align: left;
                 font-size: 20px;
-                text-shadow: 2px 2px #1d2023;
+                /*text-shadow: 3px 3px #1d2023;*/
+                top: 0;
+                bottom: auto;
             }
             
             
@@ -66,13 +226,13 @@
                 height: 100%;
             }
             .item:nth-child(1) {
-                background: silver;
+                /*background: silver;*/
             }
             .item:nth-child(2) {
-                background: red;
+                /*background: red;*/
             }
             .item:nth-child(3) {
-                background: orange;
+                /*background: orange;*/
             }
             /* From http://www.bootply.com/fcH0q8HWt7 END*/
             
@@ -98,9 +258,45 @@
             }
           
             
-            .jumbotron {
+            .jumbo_years_exp {
                 padding: 300px;
-                background-image: url("images/ct_icon.png");
+                background-image: url("images/years_of_exp2.jpg");
+                background-size:cover;
+                background-repeat: no-repeat;
+                background-position: center;
+                text-align: center;
+            }
+
+            .jumbo_free_diag {
+                padding: 300px;
+                background-image: url("images/free_diag.jpg");
+                background-size:cover;
+                background-repeat: no-repeat;
+                background-position: center;
+                text-align: center;
+            }
+            
+            .jumbo_repair {
+                padding: 300px;
+                background-image: url("images/repair2.jpg");
+                background-size:cover;
+                background-repeat: no-repeat;
+                background-position: center;
+                text-align: center;
+            }
+            
+            .jumbo_comm {
+                padding: 300px;
+                background-image: url("images/comm.jpg");
+                background-size:cover;
+                background-repeat: no-repeat;
+                background-position: center;
+                text-align: center;
+            }
+            
+            .jumbo_your_clev {
+                padding: 300px;
+                background-image: url("images/your_clev.jpg");
                 background-size:cover;
                 background-repeat: no-repeat;
                 background-position: center;
@@ -178,9 +374,63 @@
         
         <div id="my_carousel" class="carousel slide carousel-fade" data-ride="carousel">
             <div class="carousel-inner" role="listbox">
-                
+                <!--
+                     .jumbo_years_exp {
+                padding: 300px;
+                background-image: url("images/years_of_exp2.jpg");
+                background-size:cover;
+                background-repeat: no-repeat;
+                background-position: center;
+                text-align: center;
+            }
+
+            .jumbo_free_diag {
+                padding: 300px;
+                background-image: url("images/free_diag.jpg");
+                background-size:cover;
+                background-repeat: no-repeat;
+                background-position: center;
+                text-align: center;
+            }
+            
+            .jumbo_repair {
+                padding: 300px;
+                background-image: url("images/repair.jpg");
+                background-size:cover;
+                background-repeat: no-repeat;
+                background-position: center;
+                text-align: center;
+            }
+            
+            .jumbo_comm {
+                padding: 300px;
+                background-image: url("images/comm.jpg");
+                background-size:cover;
+                background-repeat: no-repeat;
+                background-position: center;
+                text-align: center;
+            }
+            
+            .jumbo_your_clev {
+                padding: 300px;
+                background-image: url("images/your_clev.jpg");
+                background-size:cover;
+                background-repeat: no-repeat;
+                background-position: center;
+                text-align: center;
+            }
+            -->
                 <div class="item active">
-                    <div class="jumbotron">
+                    <div class="jumbo_years_exp">
+                        <div class="carousel-caption">
+                            <h3>QUALIFIED TECHNICIANS WITH YEARS OF EXPERIENCE.</h3>
+                            <p>Our highly trained professional staff include 5 star ratings in customer service.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="item">
+                    <div class="jumbo_free_diag">
                         <div class="carousel-caption">
                             <h3>FREE DIAGNOSTIC</h3>
                             <p>CleverTech uses the best tools &amp; knowledge to create well formatted diagnostics for no cost. Now that's Clever!</p>
@@ -189,7 +439,7 @@
                 </div>
                 
                 <div class="item">
-                    <div class="jumbotron">
+                    <div class="jumbo_repair">
                         <div class="carousel-caption">
                             <h3>REPAIR</h3>
                             <p>We strive to have the ablity to repair any problem. Be it software or hardware repair, we'll have the answer.</p>
@@ -198,7 +448,7 @@
                 </div>
                 
                 <div class="item">
-                    <div class="jumbotron">
+                    <div class="jumbo_comm">
                         <div class="carousel-caption">
                             <h3>COMMUNICATION</h3>
                             <p>We love keeping our customers informed. Via text or phone calls, you'll be sure to be kept in the loop.</p>
@@ -207,7 +457,7 @@
                 </div>
                 
                 <div class="item">
-                    <div class="jumbotron">
+                    <div class="jumbo_your_clev">
                         <div class="carousel-caption">
                             <h3>YOUR CLEVER TECH</h3>
                             <p>CleverTech makes sure to assign the best technician available for your specific repair.</p>
@@ -225,26 +475,35 @@
             </a>
         </div>
         
-        <!-- PUT VIDEO SOMEWHERE IN HERE!!! And also social media links?-->
+        
         <div id="about" class="container">
-            <h1>PUT ALL THE LINK CONTENTS HERE? HOW ABOUT VIDEO? </h1>
+            <div style="padding:30px"><img id="ct_logo_subtitles" src="images/CT_with_subtitle.png"> </div>
             
-            <!--
-            <div id="video" class="embed-responsive embed-responsive-4by3">
-                <iframe src="https://www.youtube.com/embed/QGKvYpL4DRU?ecver=2" width="640" height="360" frameborder="0" style="position:absolute;width:100%;height:100%;left:0" allowfullscreen></iframe>            
+            <!-- 16:9 aspect ratio -->
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/QGKvYpL4DRU?ecver=2"></iframe>
             </div>
-            -->
-            <!--
-            <div style="position:relative;height:0;padding-bottom:56.25%">
-                <iframe src="https://www.youtube.com/embed/QGKvYpL4DRU?ecver=2" width="640" height="360" frameborder="0" style="position:absolute;width:100%;height:100%;left:0" allowfullscreen></iframe>
-            </div>
-            -->
+            
+            <div id="hour_info" class="container" style="padding:30px; font-size: 20px">
+                <p style="font-weight: bold">HOURS</p>
+                <p>MON. - FRI. 9AM - 7PM</p>
+                <p>SAT. - SUN. 10AM - 6PM</p>
+                <a href="#"><img src="images/phone_call.png"></a>
+            </div>              
         </div>
         
       
         <footer id="soc_media">
-            Put hours, copyright info, and social media links here? <br/>
-            CleverTech © ALL RIGHTS RESERVED.
+            <ul class="soc">
+                <li><a class="soc-facebook" href="#"></a></li>
+                <li><a class="soc-instagram" href="#"></a></li>
+                <li><a class="soc-tumblr" href="#"></a></li>
+                <li><a class="soc-twitter" href="#"></a></li>
+                <li><a class="soc-youtube" href="#"></a></li>
+                <li><a class="soc-yelp soc-icon-last" href="#"></a></li>
+            </ul>
+            
+            <p>CleverTech © ALL RIGHTS RESERVED.</p>
         </footer>
         
         
@@ -252,12 +511,12 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>  
-        
         <script language="JavaScript" type="text/javascript">
             
             $(document).ready(function(){
                 $('.carousel').carousel({
                 interval: 6000
+                //interval: false  //Just say false for testing!
                 })
             });
             
