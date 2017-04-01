@@ -30,6 +30,16 @@
             }
             
             
+            .panel {
+                padding-top: 10px;
+                padding-bottom: 10px;
+                border-width: thick;
+                border-color: #026937;
+                position: relative;
+                top: 25px;
+            }
+            
+            
             .thumbnail {
                 border-width: thick;
                 border-color: #026937;
@@ -41,11 +51,12 @@
             /*Code from Perfect Icons BEGIN*/
             @font-face {
                 font-family: 'si';
-                src: url('socicon-v1.5/socicon.eot');
-                src: url('socicon-v1.5/socicon.eot?#iefix') format('embedded-opentype'),
-                     url('socicon-v1.5/socicon.woff') format('woff'),
-                     url('socicon-v1.5/socicon.ttf') format('truetype'),
-                     url('socicon-v1.5/socicon.svg#icomoonregular') format('svg');
+                /* icon files weren't being accessed when they were in the socicon-v1.5 folder... */
+                src: url('soc_media_icons/socicon.eot');
+                src: url('soc_media_icons/socicon.eot?#iefix') format('embedded-opentype'),
+                     url('soc_media_icons/socicon.woff') format('woff'),
+                     url('soc_media_icons/socicon.ttf') format('truetype'),
+                     url('soc_media_icons/socicon.svg#icomoonregular') format('svg');
                 font-weight: normal;
                 font-style: normal;
             }
@@ -178,12 +189,12 @@
             
             
             .carousel { 
-                max-height: 570px; 
+                max-height: 550px; 
                 overflow: hidden;
             }
             
             
-            h3 {
+            h1 {
                 text-shadow: 3px 3px #1d2023;
             }
             
@@ -198,11 +209,12 @@
             }
             
             
-            .carousel-caption h3 {
+            .carousel-caption > h3 {
                 /*color: #026937;*/
                 color: forestgreen;
                 font-size: 30px;
                 font-weight: bold;
+                text-shadow: 3px 3px #1d2023;
             }
             
             /* From http://www.bootply.com/fcH0q8HWt7 BEGIN*/
@@ -336,6 +348,7 @@
     </head>
             
     <body data-spy="scroll" data-target="#my_nav_bar">
+        <!--THE NAVBAR-->
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -346,7 +359,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">
+                    <a class="navbar-brand">
                         <img src="images/ct_small_logo.png" width="25" height="25" alt="" style="display:inline"> CleverTech
                     </a>
                 </div>
@@ -354,11 +367,11 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#about">Services</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#download">Store</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#download">Contact</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#download">Stay Clever</a></li>                             
+                        <li class="nav-item"><a class="nav-link" onclick="load_home()">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" onclick="load_services()">Services</a></li>
+                        <li class="nav-item"><a class="nav-link" onclick="load_store()">Store</a></li>
+                        <li class="nav-item"><a class="nav-link" onclick="load_contact()">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" onclick="load_stay_clever()">Stay Clever</a></li>                             
                     </ul>
                     
                     <!--Setting this div with class navbar-form aligns everything properly.-->
@@ -371,84 +384,86 @@
         </nav>
         
         
-        <div id="my_carousel" class="carousel slide carousel-fade" data-ride="carousel">
-            <div class="carousel-inner" role="listbox">
-                <div class="item active">
-                    <div id="years_exp_jumbo" class="jumbotron">
-                        <div class="carousel-caption">
-                            <h3>QUALIFIED TECHNICIANS WITH YEARS OF EXPERIENCE.</h3>
-                            <p>Our highly trained professional staff include 5 star ratings in customer service.</p>
+        <div id="content">
+            <!--Fix this. All of this should be loaded from home.html, not rewritten.-->
+            <div id="my_carousel" class="carousel slide carousel-fade" data-ride="carousel">
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active">
+                        <div id="years_exp_jumbo" class="jumbotron">
+                            <div class="carousel-caption">
+                                <h3>QUALIFIED TECHNICIANS WITH YEARS OF EXPERIENCE.</h3>
+                                <p>Our highly trained professional staff include 5 star ratings in customer service.</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                
-                <div class="item">
-                    <div id="free_diag_jumbo" class="jumbotron">
-                        <div class="carousel-caption">
-                            <h3>FREE DIAGNOSTIC</h3>
-                            <p>CleverTech uses the best tools &amp; knowledge to create well formatted diagnostics for no cost. Now that's Clever!</p>
+
+                    <div class="item">
+                        <div id="free_diag_jumbo" class="jumbotron">
+                            <div class="carousel-caption">
+                                <h3>FREE DIAGNOSTIC</h3>
+                                <p>CleverTech uses the best tools &amp; knowledge to create well formatted diagnostics for no cost. Now that's Clever!</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                
-                <div class="item">
-                    <div id="repair_jumbo" class="jumbotron">
-                        <div class="carousel-caption">
-                            <h3>REPAIR</h3>
-                            <p>We strive to have the ablity to repair any problem. Be it software or hardware repair, we'll have the answer.</p>
+
+                    <div class="item">
+                        <div id="repair_jumbo" class="jumbotron">
+                            <div class="carousel-caption">
+                                <h3>REPAIR</h3>
+                                <p>We strive to have the ablity to repair any problem. Be it software or hardware repair, we'll have the answer.</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                
-                <div class="item">
-                    <div id="comm_jumbo" class="jumbotron">
-                        <div class="carousel-caption">
-                            <h3>COMMUNICATION</h3>
-                            <p>We love keeping our customers informed. Via text or phone calls, you'll be sure to be kept in the loop.</p>
+
+                    <div class="item">
+                        <div id="comm_jumbo" class="jumbotron">
+                            <div class="carousel-caption">
+                                <h3>COMMUNICATION</h3>
+                                <p>We love keeping our customers informed. Via text or phone calls, you'll be sure to be kept in the loop.</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                
-                <div class="item">
-                    <div id="your_clev_jumbo" class="jumbotron">
-                        <div class="carousel-caption">
-                            <h3>YOUR CLEVER TECH</h3>
-                            <p>CleverTech makes sure to assign the best technician available for your specific repair.</p>
+
+                    <div class="item">
+                        <div id="your_clev_jumbo" class="jumbotron">
+                            <div class="carousel-caption">
+                                <h3>YOUR CLEVER TECH</h3>
+                                <p>CleverTech makes sure to assign the best technician available for your specific repair.</p>
+                            </div>
                         </div>
                     </div>
+
                 </div>
-                
+
+                <a class="left carousel-control" href="#my_carousel" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                </a>
+                <a class="right carousel-control" href="#my_carousel" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                </a>
             </div>
-            
-            <a class="left carousel-control" href="#my_carousel" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-            </a>
-            <a class="right carousel-control" href="#my_carousel" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-            </a>
-        </div>
-        
-        
-        <div id="about" class="container">
-            <!--CleverTech logo with subtitle-->
-            <div style="padding:30px"><img id="ct_logo_subtitles" src="images/CT_with_subtitle.png"> </div>
-            
-            <!-- VIDEO with 16:9 aspect ratio -->
-            <div class="embed-responsive embed-responsive-16by9">
-                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/QGKvYpL4DRU?ecver=2"></iframe>
+
+
+            <div id="about" class="container">
+                <!--CleverTech logo with subtitle-->
+                <div style="padding:35px"><img id="ct_logo_subtitles" src="images/CT_with_subtitle.png"> </div>
+
+                <!-- VIDEO with 16:9 aspect ratio -->
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/QGKvYpL4DRU?ecver=2"></iframe>
+                </div>
+
+                <!--Store hours-->
+                <div id="hour_info" class="panel col-sm-6">
+                    <p><strong>HOURS</strong></p>
+                    <p>MON - FRI : 9AM - 7PM</p>
+                    <p>SAT - SUN : 10AM - 6PM</p>
+                    <a style="display:inline-block" href="#"><img src="images/phone_call.png"></a>
+                    <!--Let this anchor tag have a display of inline-block so it doesn't extend across the thumbnail-->
+                </div>
+
             </div>
-            
-            <!--Store hours (could be better styled)-->
-            <div id="hour_info" class="thumbnail col-sm-6">
-                <p><strong>HOURS</strong></p>
-                <p>MON - FRI : 9AM - 7PM</p>
-                <p>SAT - SUN : 10AM - 6PM</p>
-                <a style="display:inline-block" href="#"><img src="images/phone_call.png"></a>
-                <!--Let this anchor tag have a display of inline-block so it doesn't extend across the thumbnail-->
-            </div>
-            
-        </div>
-      
+        </div> <!--End content div-->
         
         <footer id="soc_media">
             <ul class="soc">
@@ -460,7 +475,7 @@
                 <li><a class="soc-yelp soc-icon-last" href="#"></a></li>
             </ul>
             
-            <p><strong>CleverTech © ALL RIGHTS RESERVED.</strong></p>
+            <p style="margin-top: 10px;"><strong>CleverTech © ALL RIGHTS RESERVED.</strong></p>
         </footer>
         
         
@@ -472,11 +487,77 @@
             
             $(document).ready(function(){
                 $('.carousel').carousel({
-                interval: 6000
-                //interval: false  //Just say false for testing!
+                //interval: 6000
+                interval: false  //Just say false for testing!
                 })
             });
             
+            
+            function load_home() {
+                $.ajax("home.html").done(function(data) {
+                    
+                    $("#content").html(data);
+                    
+                }).fail(function() {
+
+                    alert("Could not get data!");
+
+                });   
+            }
+            
+            
+            function load_services() {                
+                
+                $.ajax("services.html").done(function(data) {
+                    
+                    $("#content").html(data);
+                    
+                }).fail(function() {
+
+                    alert("Could not get data!");
+
+                });       
+            }
+
+            function load_store() {                
+                
+                $.ajax("store.html").done(function(data) {
+                    
+                    $("#content").html(data);
+                    
+                }).fail(function() {
+
+                    alert("Could not get data!");
+
+                });       
+            }
+  
+
+            function load_contact() {                
+                
+                $.ajax("contact.html").done(function(data) {
+                    
+                    $("#content").html(data);
+                    
+                }).fail(function() {
+
+                    alert("Could not get data!");
+
+                });       
+            }
+            
+            function load_stay_clever() {                
+                
+                $.ajax("stay_clever.html").done(function(data) {
+                    
+                    $("#content").html(data);
+                    
+                }).fail(function() {
+
+                    alert("Could not get data!");
+
+                });       
+            }
         </script>
         
     </body>
