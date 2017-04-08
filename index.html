@@ -232,7 +232,7 @@
             
             .carousel-caption {
                 /*color: #929497;*/
-                text-align: left;
+                text-align: center;
                 font-size: 25px;
                 /*text-shadow: 3px 3px #1d2023;*/
                 top: 0;
@@ -240,15 +240,16 @@
             }
             
             
-            .carousel-caption > h3 {
+            .carousel-caption > h1 {
                 /*color: #026937;*/
-                color: forestgreen;
+                color: #8a8b8a;
                 font-size: 30px;
-                font-weight: bold;
+                /*font-weight: bold;*/
                 text-shadow: 3px 3px #1d2023;
             }
             
             /* From http://www.bootply.com/fcH0q8HWt7 BEGIN*/
+            /*
             .carousel-fade .carousel-inner .item {
                 opacity: 0;
                 -webkit-transition-property: opacity;
@@ -288,6 +289,7 @@
             .item:nth-child(3) {
                 /*background: orange;*/
             }
+            */
             /* From http://www.bootply.com/fcH0q8HWt7 END*/
             
             
@@ -313,7 +315,7 @@
 
             
             #years_exp_jumbo {
-                background-image: url("images/years_of_exp2.jpg");
+                background-image: url("images/home.jpg");
             }
             
             
@@ -374,6 +376,7 @@
                 width: 200px;
                 height: 70px;
             }
+
             
         </style>
     </head>
@@ -400,15 +403,15 @@
                     <ul class="nav navbar-nav">
                         <li class="nav-item"><a class="nav-link" onclick="load_home()">Home</a></li>
                         <li class="nav-item"><a class="nav-link" onclick="load_services()">Services</a></li>
-                        <li class="nav-item"><a class="nav-link" onclick="load_store()">Store</a></li>
-                        <li class="nav-item"><a class="nav-link" onclick="load_contact()">Contact</a></li>
+                        <!--<li class="nav-item"><a class="nav-link" onclick="load_store()">Store (WILL DROP)</a></li>-->
+                        <!--<li class="nav-item"><a class="nav-link" onclick="load_contact()">Contact (WILL DROP)</a></li>-->
                         <li class="nav-item"><a class="nav-link" onclick="load_stay_clever()">Stay Clever</a></li>                             
                     </ul>
                     
                     <!--Setting this div with class navbar-form aligns everything properly.-->
                     <!--navbar-right will push this button to the far right.-->
                     <div class="navbar-form navbar-right">
-                        <button id="open_ticket_btn" class="btn">Open a Ticket</button>
+                        <button id="open_ticket_btn" class="btn" onclick="load_open_ticket()">Open a Ticket</button>
                     </div>
                 </div>
             </div>
@@ -422,8 +425,8 @@
                     <div class="item active">
                         <div id="years_exp_jumbo" class="jumbotron">
                             <div class="carousel-caption">
-                                <h3>QUALIFIED TECHNICIANS WITH YEARS OF EXPERIENCE.</h3>
-                                <p>Our highly trained professional staff include 5 star ratings in customer service.</p>
+                                <h3>WELCOME TO CLEVERTECH</h3>
+                                <p>We're here to help</p>
                             </div>
                         </div>
                     </div>
@@ -477,13 +480,14 @@
 
             <div id="about" class="container">
                 <!--CleverTech logo with subtitle-->
-                <div style="padding:35px"><img id="ct_logo_subtitles" src="images/CT_with_subtitle.png"> </div>
+                <!--<div style="padding:35px"><img id="ct_logo_subtitles" src="images/CT_with_subtitle.png"> </div>-->
 
                 <!-- VIDEO with 16:9 aspect ratio -->
+                <!--
                 <div class="embed-responsive embed-responsive-16by9" style="border-radius: 10px; width: 100%; overflow: hidden;">
                     <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/QGKvYpL4DRU?ecver=2"></iframe>
                 </div>
-
+                -->
                 <!--Store hours-->
                 <div id="hour_info" class="panel col-sm-6">
                     <p><strong>HOURS</strong></p>
@@ -613,6 +617,20 @@
 
                 });       
             }
+            
+            
+            function load_open_ticket() {
+                $.ajax("open_ticket.html").done(function(data) {
+                    
+                    $("#content").html(data);
+                    
+                }).fail(function() {
+
+                    alert("Could not get data!");
+
+                });  
+            }
+            
         </script>
         
     </body>
