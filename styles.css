@@ -1,0 +1,340 @@
+/* THINK: Will hard-coded values be an issue? */           
+.navbar-brand {
+    cursor: pointer;
+}
+
+
+.nav-item {
+    cursor: pointer;
+}
+
+
+/* Stylings for Repair Services BEGIN */
+#top {
+    margin: 0 auto;
+    padding-top: 20px;
+}
+
+
+.row > .panel {
+    margin: 0;
+    border: 0;
+    box-shadow: none;
+}
+
+.panel-default > .panel-heading {
+    font-weight: bold;
+    background-color: white;
+    padding: 0;
+    border-bottom-color: gold;
+    border-bottom-width: medium;
+}
+/* Stylings for Repair Services END */
+
+
+body {
+    padding-top: 50px; /*To offset space taken by the navbar*/
+}
+
+
+#hour_info {
+    font-size: 20px;
+    float: none;
+    margin: 0 auto;
+}
+
+
+.panel {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-width: thick;
+    border-color: #026937;
+    position: relative;
+    top: 25px;
+}
+
+
+/*
+Nope. Hour info is a panel now.
+.thumbnail {
+    border-width: thick;
+    border-color: #026937;
+    position: relative;
+    top: 25px;
+}
+*/
+
+.rep_pic_label {
+    color: black;
+    margin-top: 10px;
+}
+
+/*Code from Perfect Icons BEGIN*/
+@font-face {
+    font-family: 'si';
+    /* icon files weren't being accessed when they were in the socicon-v1.5 folder... */
+    src: url('soc_media_icons/socicon.eot');
+    src: url('soc_media_icons/socicon.eot?#iefix') format('embedded-opentype'),
+         url('soc_media_icons/socicon.woff') format('woff'),
+         url('soc_media_icons/socicon.ttf') format('truetype'),
+         url('soc_media_icons/socicon.svg#icomoonregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    @font-face {
+        font-family:si;
+        src: url(socicon-v1.5/socicon.svg) format(svg);
+    }
+}
+
+.soc {
+    overflow:hidden;
+    margin:0; padding:0;
+    list-style:none;
+}
+
+.soc li {
+    display:inline-block;
+    *display:inline;
+    zoom:1;
+}
+
+.soc li a {
+    font-family:si!important;
+    font-style:normal;
+    font-weight:400;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -ms-box-sizing:border-box;
+    -o-box-sizing:border-box;
+    box-sizing:border-box;
+
+    -o-transition:.1s;
+    -ms-transition:.1s;
+    -moz-transition:.1s;
+    -webkit-transition:.1s;
+    transition:.1s;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+
+    overflow:hidden;
+    text-decoration:none;
+    text-align:center;
+    display:block;
+    position: relative;
+    z-index: 1;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 22px;
+    -webkit-border-radius: 82px;
+    -moz-border-radius: 82px;
+    border-radius: 82px;
+    margin-right: 10px;
+    color: #ffffff;
+    background-color: none;
+}
+
+.soc-icon-last{
+    margin:0 !important;
+}
+
+.soc-facebook {
+    background-color: #3e5b98;
+}
+.soc-facebook:before {
+    content:'\e041';
+}
+.soc-instagram {
+    background-color: #405de6;
+}
+.soc-instagram:before {
+    content:'\e057';
+}
+.soc-tumblr {
+    background-color: #45556c;
+}
+.soc-tumblr:before {
+    content:'\e059';
+}
+.soc-twitter {
+    background-color: #4da7de;
+}
+.soc-twitter:before {
+    content:'\e040';
+}
+.soc-youtube {
+    background-color: #e02a20;
+}
+.soc-youtube:before {
+    content:'\e051';
+}
+.soc-yelp {
+    background-color: #c83218;
+}
+.soc-yelp:before {
+    content:'\e047';
+}
+
+.soc-facebook:hover {
+    background-color: #526fac;
+}
+.soc-instagram:hover {
+    background-color: #5471fa;
+}
+.soc-tumblr:hover {
+    background-color: #596980;
+}
+.soc-twitter:hover {
+    background-color: #61bbf2;
+}
+.soc-youtube:hover {
+    background-color: #f43e34;
+}
+.soc-yelp:hover {
+    background-color: #dc462c;
+}
+/*Code from Perfect Icons END*/
+
+
+#ct_logo_subtitles {
+    height: 130px;
+    width: 230px;
+}
+
+
+.carousel { 
+    max-height: 550px; 
+    overflow: hidden;
+}
+
+
+h1 {
+    text-shadow: 3px 3px #1d2023;
+}
+
+
+.carousel-caption {
+    /*color: #929497;*/
+    text-align: center;
+    font-size: 25px;
+    /*text-shadow: 3px 3px #1d2023;*/
+    top: 0;
+    bottom: auto;
+}
+
+
+.carousel-caption > h1 {
+    /*color: #026937;*/
+    color: #8a8b8a;
+    font-size: 30px;
+    /*font-weight: bold;*/
+    text-shadow: 3px 3px #1d2023;
+}
+
+
+.nav-link {
+    padding-right: 10px;
+}
+
+
+#brand {
+    margin: 3px
+}
+
+
+#email_form {
+    float: right;
+}
+
+
+#open_ticket_btn {
+    background-color: #026937;
+    color: white;
+}
+
+
+#years_exp_jumbo {
+    background-image: url("images/home.jpg");
+}
+
+
+#free_diag_jumbo {
+    background-image: url("images/free_diag.jpg");
+}
+
+
+#repair_jumbo {
+    background-image: url("images/repair2.jpg");
+}
+
+
+#comm_jumbo {
+    background-image: url("images/comm.jpg");
+}
+
+
+#your_clev_jumbo {
+    background-image: url("images/your_clev.jpg");
+}
+
+
+.jumbotron {
+    padding: 300px;
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: center;
+}
+
+
+#app_name {
+    margin: 30px 0px;
+}
+
+
+#about {
+    text-align: center;
+}
+
+
+#purchase {
+    background-color: #026937;
+}
+
+
+#soc_media {
+    background-color: #026937;
+    margin-top: 50px;
+    text-align: center;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+
+#app_store_icon {
+    width: 200px;
+    height: 70px;
+}
+
+
+.navbar {
+    font-size: 15px;
+    background-color: white;
+}
+
+.carousel-caption > p {
+    font-weight: bold;    
+}
+
+
+.card-img-top {
+    max-height: 664px; 
+    max-width: 336px;
+}

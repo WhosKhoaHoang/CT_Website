@@ -66,9 +66,79 @@
         <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/QGKvYpL4DRU?ecver=2"></iframe>
     </div>
     -->
-
+    
+    <div class="row" style="margin-top: 40px;">
+        
+        <!-- WITH CARDS -->
+        <!--
+        <div class="col-sm-3">
+            <div class="card card-block">
+                <img class="card-img-top" src="images/imac_r.jpg" alt="Card image cap"> 
+                <h3 class="card-title">iMac</h3>
+                <p class="card-text">We repair iMacs</p>
+            </div>
+        </div>
+        
+        <div class="col-sm-3">
+            <div class="card card-block">
+                <img class="card-img-top" src="images/iphone_r.jpg" alt="Card image cap"> 
+                <h3 class="card-title">iPhone</h3>
+                <p class="card-text">We repair iPhones</p>
+            </div>
+        </div>
+        
+        <div class="col-sm-3">
+            <div class="card card-block">
+                <img class="card-img-top" src="images/ipad_r.jpg" alt="Card image cap"> 
+                <h3 class="card-title">iPad</h3>
+                <p class="card-text">We repair iPads</p>
+            </div>
+        </div>
+        
+        <div class="col-sm-3">
+            <div class="card card-block">
+                <img class="card-img-top" src="images/macbook_r.jpg" alt="Card image cap"> 
+                <h3 class="card-title">MacBook</h3>
+                <p class="card-text">We repair MacBooks</p>
+            </div>
+        </div>
+        -->
+        
+        <!-- WITH THUMBNAILS -->
+        <div class="col-md-3">
+            <a href="#" class="thumbnail">
+                <img src="images/imac_r.jpg">
+                <label class="rep_pic_label">iMacs!</label>
+            </a>
+        </div>
+        
+        <div class="col-md-3">
+            <a href="#" class="thumbnail">
+                <img src="images/iphone_r.jpg">
+                <label class="rep_pic_label">iPhones!</label>
+            </a>
+        </div>
+        
+        <div class="col-md-3">
+            <a href="#" class="thumbnail">
+                <img src="images/ipad_r.jpg">
+                <label class="rep_pic_label">iPads!</label>
+            </a>
+        </div>
+        
+        <div class="col-md-3">
+            <a href="#" class="thumbnail">
+                <img src="images/macbook_r.jpg">
+                <label class="rep_pic_label">Macbooks!</label>
+            </a>
+        </div>
+        
+        
+    </div>
+    
+    
     <!--Store hours (could be better styled)-->
-    <div id="hour_info" class="thumbnail col-sm-6">
+    <div id="hour_info" class="panel col-sm-6">
         <p><strong>HOURS</strong></p>
         <p>MON - FRI : 9AM - 7PM</p>
         <p>SAT - SUN : 10AM - 6PM</p>
