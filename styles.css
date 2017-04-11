@@ -9,6 +9,11 @@
 }
 
 
+.nav-link {
+    font-weight: 400;
+}
+
+
 /* Stylings for Repair Services BEGIN */
 #top {
     margin: 0 auto;
@@ -21,6 +26,7 @@
     border: 0;
     box-shadow: none;
 }
+
 
 .panel-default > .panel-heading {
     font-weight: bold;
@@ -73,11 +79,11 @@ Nope. Hour info is a panel now.
 @font-face {
     font-family: 'si';
     /* icon files weren't being accessed when they were in the socicon-v1.5 folder... */
-    src: url('soc_media_icons/socicon.eot');
-    src: url('soc_media_icons/socicon.eot?#iefix') format('embedded-opentype'),
-         url('soc_media_icons/socicon.woff') format('woff'),
-         url('soc_media_icons/socicon.ttf') format('truetype'),
-         url('soc_media_icons/socicon.svg#icomoonregular') format('svg');
+    src: url('/soc_media_icons/socicon.eot');
+    src: url('/soc_media_icons/socicon.eot?#iefix') format('embedded-opentype'),
+         url('/soc_media_icons/socicon.woff') format('woff'),
+         url('/soc_media_icons/socicon.ttf') format('truetype'),
+         url('/soc_media_icons/socicon.svg#icomoonregular') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -85,7 +91,7 @@ Nope. Hour info is a panel now.
 @media screen and (-webkit-min-device-pixel-ratio:0) {
     @font-face {
         font-family:si;
-        src: url(socicon-v1.5/socicon.svg) format(svg);
+        src: url(/socicon-v1.5/socicon.svg) format(svg);
     }
 }
 
@@ -224,9 +230,21 @@ h1 {
     /*color: #929497;*/
     text-align: center;
     font-size: 25px;
-    /*text-shadow: 3px 3px #1d2023;*/
+    text-shadow: 3px 3px #1d2023;
+    
+    /* Code for pushing caption to top*/
     top: 0;
     bottom: auto;
+    
+    /* Code for centering caption: */
+    /*
+    top: 50%;
+    transform: translateY(-50%);
+    bottom: initial;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    */
 }
 
 
@@ -236,6 +254,13 @@ h1 {
     font-size: 30px;
     /*font-weight: bold;*/
     text-shadow: 3px 3px #1d2023;
+    
+
+}
+
+.carousel-caption > p {
+    font-weight: bold; 
+    font-size: 30px;
 }
 
 
@@ -327,10 +352,6 @@ h1 {
 .navbar {
     font-size: 15px;
     background-color: white;
-}
-
-.carousel-caption > p {
-    font-weight: bold;    
 }
 
 

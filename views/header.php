@@ -14,7 +14,7 @@
         <!-- Add icon library from Perfect Icons-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <!-- import your own styles -->
-        <link rel="stylesheet" href="styles.css"> 
+        <link rel="stylesheet" href="http://localhost/clevertech/styles.css"> <!--Seems like I need to use an absolute pathname for CSS?-->
     </head>
     
     <body data-spy="scroll" data-target="#my_nav_bar">
@@ -31,7 +31,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand">
-                        <img src="images/ct_small_logo.png" width="25" height="25" alt="" style="display:inline"> CleverTech
+                        <img src="/images/ct_small_logo.png" width="25" height="25" alt="" style="display:inline"> CleverTech
                     </a>
                 </div>
 
