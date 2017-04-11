@@ -106,28 +106,29 @@
         
         <!-- WITH THUMBNAILS -->
         <div class="col-md-3">
-            <a href="#" class="thumbnail">
+            <!--Don't think you should be using an href. That defeats the whole purpose of having AJAX!!!-->
+            <a href="http://localhost/clevertech/services" class="thumbnail">
                 <img src="http://localhost/clevertech/images/imac_r.jpg">
                 <label class="rep_pic_label">iMacs!</label>
             </a>
         </div>
         
         <div class="col-md-3">
-            <a href="#" class="thumbnail">
+            <a href="http://localhost/clevertech/services" class="thumbnail">
                 <img src="http://localhost/clevertech/images/iphone_r.jpg">
                 <label class="rep_pic_label">iPhones!</label>
             </a>
         </div>
         
         <div class="col-md-3">
-            <a href="#" class="thumbnail">
+            <a href="http://localhost/clevertech/services" class="thumbnail">
                 <img src="http://localhost/clevertech/images/ipad_r.jpg">
                 <label class="rep_pic_label">iPads!</label>
             </a>
         </div>
         
         <div class="col-md-3">
-            <a href="#" class="thumbnail">
+            <a href="http://localhost/clevertech/services" class="thumbnail">
                 <img src="http://localhost/clevertech/images/macbook_r.jpg">
                 <label class="rep_pic_label">Macbooks!</label>
             </a>

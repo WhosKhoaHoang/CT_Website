@@ -66,12 +66,13 @@
                 $.ajax("views/services.html").done(function(data) {
                     
                     $("#content").html(data);
+                    //window.history.pushState("Details", "Title", "<?php echo(base_url()); ?>/services");
                     
                 }).fail(function() {
 
                     alert("Could not get data!");
 
-                });       
+                });      
             }
 
             
