@@ -14,7 +14,8 @@
         <!-- Add icon library from Perfect Icons-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <!-- import your own styles -->
-        <link rel="stylesheet" href="http://localhost/clevertech/styles.css"> <!--Seems like I need to use an absolute pathname for CSS?-->
+        <link rel="stylesheet" href="http://localhost/clevertech/styles.css" /> <!--Seems like I need to use an absolute pathname for CSS?-->
+        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=PT+Sans" />
     </head>
     
     <body data-spy="scroll" data-target="#my_nav_bar">
@@ -30,26 +31,31 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand">
-                        <img src="/images/ct_small_logo.png" width="25" height="25" alt="" style="display:inline"> CleverTech
+                    <a href="http://localhost/clevertech/index.php?uri=" class="navbar-brand">
+                        <img src="http://localhost/clevertech/images/ct_small_logo.png" width="25" height="25" alt="" style="display:inline"> CleverTech
                     </a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li class="nav-item"><a class="nav-link" onclick="load_home()">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" onclick="load_services()">Services</a></li>
+                        <li class="nav-item"><a href="http://localhost/clevertech/index.php?uri=" class="nav-link">Home</a></li>
+                        <li class="nav-item"><a href="http://localhost/clevertech/index.php?uri=services" class="nav-link">Services</a></li>
                         <!--<li class="nav-item"><a class="nav-link" onclick="load_store()">Store (WILL DROP)</a></li>-->
                         <!--<li class="nav-item"><a class="nav-link" onclick="load_contact()">Contact (WILL DROP)</a></li>-->
-                        <li class="nav-item"><a class="nav-link" onclick="load_stay_clever()">Stay Clever</a></li>                             
+                        <li class="nav-item"><a href="http://localhost/clevertech/index.php?uri=stay_clever" class="nav-link">Stay Clever</a></li>  
+                        <!--If i remove onclick and just use an href, does this get rid of the AJAX functionality? I think it does...-->
+                        <!--Perhaps I should just stick with going for the illusion for now...-->
                     </ul>
 
                     <!--Setting this div with class navbar-form aligns everything properly.-->
                     <!--navbar-right will push this button to the far right.-->
                     <div class="navbar-form navbar-right">
-                        <button id="open_ticket_btn" class="btn" onclick="load_open_ticket()">Open a Ticket</button>
+                        <a href="http://localhost/clevertech/index.php?uri=open_ticket" id="open_ticket_btn" href="http://google.com" class="btn">Open a Ticket</a>
+                        <!--<button id="open_ticket_btn" class="btn" onclick="load_open_ticket()">Open a Ticket</button>-->
                     </div>
                 </div>
             </div>
         </nav>
+        
+        <div id="content">

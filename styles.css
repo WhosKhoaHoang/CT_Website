@@ -1,4 +1,17 @@
 /* THINK: Will hard-coded values be an issue? */           
+
+/*@import url('https://fonts.googleapis.com/css?family=PT+Sans');*/
+
+body {
+    font-family: "PT Sans", sans-serif;
+}
+
+.navbar {
+    font-size: 15px;
+    background-color: white;
+}
+
+
 .navbar-brand {
     cursor: pointer;
 }
@@ -79,11 +92,11 @@ Nope. Hour info is a panel now.
 @font-face {
     font-family: 'si';
     /* icon files weren't being accessed when they were in the socicon-v1.5 folder... */
-    src: url('/soc_media_icons/socicon.eot');
-    src: url('/soc_media_icons/socicon.eot?#iefix') format('embedded-opentype'),
-         url('/soc_media_icons/socicon.woff') format('woff'),
-         url('/soc_media_icons/socicon.ttf') format('truetype'),
-         url('/soc_media_icons/socicon.svg#icomoonregular') format('svg');
+    src: url('soc_media_icons/socicon.eot');
+    src: url('soc_media_icons/socicon.eot?#iefix') format('embedded-opentype'),
+         url('soc_media_icons/socicon.woff') format('woff'),
+         url('soc_media_icons/socicon.ttf') format('truetype'),
+         url('soc_media_icons/socicon.svg#icomoonregular') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -91,7 +104,7 @@ Nope. Hour info is a panel now.
 @media screen and (-webkit-min-device-pixel-ratio:0) {
     @font-face {
         font-family:si;
-        src: url(/socicon-v1.5/socicon.svg) format(svg);
+        src: url(socicon-v1.5/socicon.svg) format(svg);
     }
 }
 
@@ -209,11 +222,12 @@ Nope. Hour info is a panel now.
 /*Code from Perfect Icons END*/
 
 
+/*
 #ct_logo_subtitles {
     height: 130px;
     width: 230px;
 }
-
+*/
 
 .carousel { 
     max-height: 550px; 
@@ -221,15 +235,15 @@ Nope. Hour info is a panel now.
 }
 
 
+/*
 h1 {
     text-shadow: 3px 3px #1d2023;
 }
-
+*/
 
 .carousel-caption {
     /*color: #929497;*/
     text-align: center;
-    font-size: 25px;
     text-shadow: 3px 3px #1d2023;
     
     /* Code for pushing caption to top*/
@@ -248,20 +262,17 @@ h1 {
 }
 
 
-.carousel-caption > h1 {
-    /*color: #026937;*/
-    color: #8a8b8a;
-    font-size: 30px;
-    /*font-weight: bold;*/
-    text-shadow: 3px 3px #1d2023;
-    
-
-}
-
-.carousel-caption > p {
+.carousel_header:nth-child(1) {
+    font-size: 40px;
     font-weight: bold; 
-    font-size: 30px;
 }
+
+
+.carousel_subtext:nth-child(2) {
+    font-size:35px;
+    font-weight: bold;
+}
+
 
 
 .nav-link {
@@ -346,12 +357,6 @@ h1 {
 #app_store_icon {
     width: 200px;
     height: 70px;
-}
-
-
-.navbar {
-    font-size: 15px;
-    background-color: white;
 }
 
 

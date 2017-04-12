@@ -1,3 +1,5 @@
+        </div>
+
         <footer id="soc_media">
             <ul class="soc">
                 <li><a class="soc-facebook" href="#"></a></li>
@@ -64,9 +66,13 @@
             function load_services() {                
                 
                 $.ajax("views/services.html").done(function(data) {
-                    
+                //$.ajax("http://localhost/clevertech/index.php?uri=services").done(function(data) { //Actually loads the entire index.php?
                     $("#content").html(data);
-                    //window.history.pushState("Details", "Title", "<?php echo(base_url()); ?>/services");
+                    
+                    //window.history.pushState("Details", "Title", "/services");
+                    
+                    //window.history.pushState("Details", "Title", "<? //php echo(base_url()); ?>/services");
+                    //WEIRD. uncommenting php echo() would make it so that references to these javascript functions no longer exist
                     
                 }).fail(function() {
 
@@ -109,6 +115,7 @@
                 $.ajax("views/stay_clever.html").done(function(data) {
                     
                     $("#content").html(data);
+                    //window.history.pushState("Details", "Title", "/services");
                     
                 }).fail(function() {
 

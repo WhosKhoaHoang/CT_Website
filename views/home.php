@@ -3,8 +3,9 @@
         <div class="item active">
             <div id="years_exp_jumbo" class="jumbotron">
                 <div class="carousel-caption">
-                    <p>WELCOME TO CLEVERTECH</p>
-                    <p>We're here to help</p>
+                    <!--Seems that the class styling overrides any class styling you would make for these <p> tags; however, you can use ids-->
+                    <p class="carousel_header">WELCOME TO CLEVERTECH</p>
+                    <p class="carousel_subtext">We're here to help.</p>
                 </div>
             </div>
         </div>
@@ -12,8 +13,8 @@
         <div class="item">
             <div id="free_diag_jumbo" class="jumbotron">
                 <div class="carousel-caption">
-                    <p>FREE DIAGNOSTIC</p>
-                    <p>CleverTech uses the best tools &amp; knowledge to create well formatted diagnostics for no cost. Now that's Clever!</p>
+                    <p class="carousel_header">FREE DIAGNOSTIC</p>
+                    <p class="carousel_subtext">CleverTech uses the best tools &amp; knowledge to create well formatted diagnostics for no cost. Now that's Clever!</p>
                 </div>
             </div>
         </div>
@@ -21,8 +22,8 @@
         <div class="item">
             <div id="repair_jumbo" class="jumbotron">
                 <div class="carousel-caption">
-                    <p>REPAIR</p>
-                    <p>We strive to have the ablity to repair any problem. Be it software or hardware repair, we'll have the answer.</p>
+                    <p class="carousel_header">REPAIR</p>
+                    <p class="carousel_subtext">We strive to have the ablity to repair any problem. Be it software or hardware repair, we'll have the answer.</p>
                 </div>
             </div>
         </div>
@@ -30,8 +31,8 @@
         <div class="item">
             <div id="comm_jumbo" class="jumbotron">
                 <div class="carousel-caption">
-                    <p>COMMUNICATION</p>
-                    <p>We love keeping our customers informed. Via text or phone calls, you'll be sure to be kept in the loop.</p>
+                    <p class="carousel_header">COMMUNICATION</p>
+                    <p class="carousel_subtext">We love keeping our customers informed. Via text or phone calls, you'll be sure to be kept in the loop.</p>
                 </div>
             </div>
         </div>
@@ -39,8 +40,8 @@
         <div class="item">
             <div id="your_clev_jumbo" class="jumbotron">
                 <div class="carousel-caption">
-                    <p>YOUR CLEVER TECH</p>
-                    <p>CleverTech makes sure to assign the best technician available for your specific repair.</p>
+                    <p class="carousel_header">YOUR CLEVER TECH</p>
+                    <p class="carousel_subtext">CleverTech makes sure to assign the best technician available for your specific repair.</p>
                 </div>
             </div>
         </div>
@@ -107,28 +108,28 @@
         <!-- WITH THUMBNAILS -->
         <div class="col-md-3">
             <!--Don't think you should be using an href. That defeats the whole purpose of having AJAX!!!-->
-            <a href="http://localhost/clevertech/services" class="thumbnail">
+            <a href="http://localhost/clevertech/index.php?uri=services" class="thumbnail">
                 <img src="http://localhost/clevertech/images/imac_r.jpg">
                 <label class="rep_pic_label">iMacs!</label>
             </a>
         </div>
         
         <div class="col-md-3">
-            <a href="http://localhost/clevertech/services" class="thumbnail">
+            <a href="http://localhost/clevertech/index.php?uri=services" class="thumbnail">
                 <img src="http://localhost/clevertech/images/iphone_r.jpg">
                 <label class="rep_pic_label">iPhones!</label>
             </a>
         </div>
         
         <div class="col-md-3">
-            <a href="http://localhost/clevertech/services" class="thumbnail">
+            <a href="http://localhost/clevertech/index.php?uri=services" class="thumbnail">
                 <img src="http://localhost/clevertech/images/ipad_r.jpg">
                 <label class="rep_pic_label">iPads!</label>
             </a>
         </div>
         
         <div class="col-md-3">
-            <a href="http://localhost/clevertech/services" class="thumbnail">
+            <a href="http://localhost/clevertech/index.php?uri=services" class="thumbnail">
                 <img src="http://localhost/clevertech/images/macbook_r.jpg">
                 <label class="rep_pic_label">Macbooks!</label>
             </a>
@@ -165,7 +166,7 @@
         <p><strong>HOURS</strong></p>
         <p>MON - FRI : 9AM - 7PM</p>
         <p>SAT - SUN : 10AM - 6PM</p>
-        <a style="display:inline-block" href="#"><img src="/images/phone_call.png"></a>
+        <a style="display:inline-block" href="#"><img src="http://localhost/clevertech/images/phone_call.png"></a>
         <!--Let this anchor tag have a display of inline-block so it doesn't extend across the thumbnail-->
     </div>
 
