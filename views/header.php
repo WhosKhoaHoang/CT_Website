@@ -43,7 +43,7 @@
                         <li class="nav-item"><a href="http://localhost/clevertech/index.php?uri=services" class="nav-link">Services</a></li>
                         <!--<li class="nav-item"><a class="nav-link" onclick="load_store()">Store (WILL DROP)</a></li>-->
                         <!--<li class="nav-item"><a class="nav-link" onclick="load_contact()">Contact (WILL DROP)</a></li>-->
-                        <li class="nav-item"><a href="http://localhost/clevertech/index.php?uri=stay_clever" class="nav-link">Stay Clever</a></li>  
+                        <li class="nav-item"><a href="http://localhost/clevertech/index.php?uri=stay-clever" class="nav-link">Stay Clever</a></li>  
                         <!--If i remove onclick and just use an href, does this get rid of the AJAX functionality? I think it does...-->
                         <!--Perhaps I should just stick with going for the illusion for now...-->
                     </ul>
@@ -51,11 +51,11 @@
                     <!--Setting this div with class navbar-form aligns everything properly.-->
                     <!--navbar-right will push this button to the far right.-->
                     <div class="navbar-form navbar-right">
-                        <a href="http://localhost/clevertech/index.php?uri=open_ticket" id="open_ticket_btn" href="http://google.com" class="btn">Open a Ticket</a>
+                        <a href="http://localhost/clevertech/index.php?uri=open_ticket" id="open_ticket_btn" href="http://google.com" class="btn">Start Repair</a>
                         <!--<button id="open_ticket_btn" class="btn" onclick="load_open_ticket()">Open a Ticket</button>-->
                     </div>
                 </div>
             </div>
         </nav>
         
-        <div id="content">
+        <div class="container" id="content">
