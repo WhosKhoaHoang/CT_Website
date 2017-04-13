@@ -1,19 +1,30 @@
+        <!--SECTION 3 BEGIN (could be better styled)-->
+        <div class="row">
+            <div class="panel col-sm-6" id="hour_info">
+                <p><strong>HOURS</strong></p>
+                <p>MON - FRI : 9AM - 7PM</p>
+                <p>SAT - SUN : 10AM - 6PM</p>
+                <a style="display:inline-block" href="#"><img src="http://localhost/clevertech/images/phone_call.png"></a>
+                <!--Let this anchor tag have a display of inline-block so it doesn't extend across the thumbnail-->
+            </div>
+
+            <div id="soc_media">
+                <ul class="soc">
+                    <li><a class="soc-facebook" href="#"></a></li>
+                    <li><a class="soc-instagram" href="#"></a></li>
+                    <li><a class="soc-tumblr" href="#"></a></li>
+                    <li><a class="soc-twitter" href="#"></a></li>
+                    <li><a class="soc-youtube" href="#"></a></li>
+                    <li><a class="soc-yelp soc-icon-last" href="#"></a></li>
+                </ul>
+
+                <p style="margin-top: 10px;"><strong>CleverTech © ALL RIGHTS RESERVED.</strong></p>
+            </div>
         </div>
 
-        <footer id="soc_media">
-            <ul class="soc">
-                <li><a class="soc-facebook" href="#"></a></li>
-                <li><a class="soc-instagram" href="#"></a></li>
-                <li><a class="soc-tumblr" href="#"></a></li>
-                <li><a class="soc-twitter" href="#"></a></li>
-                <li><a class="soc-youtube" href="#"></a></li>
-                <li><a class="soc-yelp soc-icon-last" href="#"></a></li>
-            </ul>
-            
-            <p style="margin-top: 10px;"><strong>CleverTech © ALL RIGHTS RESERVED.</strong></p>
-        </footer>
-        
-        
+    </body>
+</html>
+
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->

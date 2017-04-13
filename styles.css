@@ -2,13 +2,23 @@
 
 /*@import url('https://fonts.googleapis.com/css?family=PT+Sans');*/
 
+/** Regular San Francisco (Must include this at the beginning of your styles sheet!) */
+@font-face {
+  font-family: "San Francisco";
+  font-weight: 400;
+  src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff");
+}
+
 body {
-    font-family: "PT Sans", sans-serif;
+    font-family: "San Francisco", "PT Sans", sans-serif;
+    padding-top: 70px; /*To offset space taken by the navbar*/
 }
 
 .navbar {
     font-size: 20px;
     background-color: white;
+    padding: 10px;
+
 }
 
 
@@ -47,14 +57,8 @@ body {
     background-color: white;
     padding: 0;
     border-bottom-color: gold;
-    border-bottom-width: medium;
 }
 /* Stylings for Repair Services END */
-
-
-body {
-    padding-top: 50px; /*To offset space taken by the navbar*/
-}
 
 
 #hour_info {
@@ -85,7 +89,7 @@ Nope. Hour info is a panel now.
 */
 
 .rep_pic_label {
-    color: black;
+    color: #545454;
     margin-top: 10px;
 }
 
@@ -292,7 +296,7 @@ h1 {
 
 
 #open_ticket_btn {
-    background-color: #026937;
+    background-color: #026937; /* CleverTech Green */
     color: white;
     font-size: 20px;
 }
@@ -353,15 +357,6 @@ h1 {
 }
 
 
-#soc_media {
-    background-color: #026937;
-    margin-top: 50px;
-    text-align: center;
-    padding-top: 100px;
-    padding-bottom: 100px;
-}
-
-
 #app_store_icon {
     width: 200px;
     height: 70px;
@@ -376,5 +371,82 @@ h1 {
 
 .rep_pic_label {
     font-size: 25px;
-    color: #777777;
+    /*color: #777777;*/ /* CleverTech Gray */
+}
+
+
+#section1 {
+    background-color: #6aaf6a;
+    padding-bottom: 120px;
+    padding-top: 120px;
+}
+
+
+#section1 h2 {
+    position: relative; 
+    top: -50px; 
+    text-align: center;
+    color: #545454;
+}
+
+
+#section2 {
+    padding-top: 200px;  /* temporary? */
+    padding-bottom: 200px; /* temporary? */
+}
+
+
+#section3 {
+    text-align: center;
+    background-color: #6aaf6a;
+    padding-top: 120px;
+    padding-bottom: 120px;
+}
+
+
+#ct_vid {
+    
+}
+
+
+.thumbnail {
+    text-align: center;
+}
+
+
+.center {
+    margin: 0 auto; 
+    width: 80%;
+}
+
+
+#store_info {
+    
+}
+
+
+
+
+
+#soc_media {
+    /*background-color: #026937;*/
+    /*
+    margin-top: 50px;
+    text-align: center;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    */
+}
+
+
+footer {
+    height: 50px;
+    background-color: #026937; 
+}
+
+
+#contact_info {
+    position: relative;
+    top: 40px;
+    font-size: 16px;
 }
