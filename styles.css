@@ -78,16 +78,6 @@ body {
 }
 
 
-/*
-Nope. Hour info is a panel now.
-.thumbnail {
-    border-width: thick;
-    border-color: #026937;
-    position: relative;
-    top: 25px;
-}
-*/
-
 .rep_pic_label {
     color: #545454;
     margin-top: 10px;
@@ -227,29 +217,53 @@ Nope. Hour info is a panel now.
 /*Code from Perfect Icons END*/
 
 
+
+/* jumbotron settings for big logo */
 /*
-#ct_logo_subtitles {
-    height: 130px;
-    width: 230px;
+.jumbotron {
+    margin-top: 10px;
+    min-height: 300px;
+    min-width: 300px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url("images/ct_logo_big.png");
+    background-color: white;
+    
+}
+*/
+
+/* jumbotron settings for carousel */
+
+.jumbotron {
+    padding: 300px;
+    padding: 225px;
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: center;   
+}
+
+
+/*
+#ct_logo_big {
+    background-image: url("images/ct_logo_big.png");
+
 }
 */
 
 .carousel { 
-    max-height: 550px; 
+    max-height: 550px;
     overflow: hidden;
+    height: 450px;
+    
 }
 
-
-/*
-h1 {
-    text-shadow: 3px 3px #1d2023;
-}
-*/
 
 .carousel-caption {
     /*color: #929497;*/
     text-align: center;
-    text-shadow: 3px 3px #1d2023;
+    text-shadow: 4px 4px #1d2023;
     
     /* Code for pushing caption to top*/
     top: 0;
@@ -268,37 +282,30 @@ h1 {
 
 
 .carousel_header:nth-child(1) {
-    font-size: 40px;
-    font-weight: bold; 
+    font-size: 50px;
+    font-family: arial;
+    font-weight:bolder;
+    /*color: #0AC92B;*/          /* Permanent Green */
+    /*color: #24D330          /* Gummi Green like! */
+    /*color: #00CD00;*/             /* green3 like! */
+    /*color: #4DBD33; */        /* Grass like! (close to sections but dull...)*/
+    color: #5DFC0A;         /* Green LED like! */
+    /*color: #61B329;*/     /*Cinnabar Green*/
+    /*color: #6aaf6a;*/     /*section greens*/
 }
 
 
 .carousel_subtext:nth-child(2) {
     font-size:35px;
+    font-family: arial;
     font-weight: bold;
-}
-
-
-
-.nav-link {
-    padding-right: 10px;
-}
-
-
-#brand {
-    margin: 3px
-}
-
-
-#email_form {
-    float: right;
-}
-
-
-#open_ticket_btn {
-    background-color: #026937; /* CleverTech Green */
-    color: white;
-    font-size: 20px;
+    /*color: #0AC92B;*/             /* Permanent Green */
+    /*color: #24D330*/             /* Gummi Green */
+    /*color: #00CD00;*/             /* green3 */
+    /*color: #4DBD33;*/         /* Grass like! (close to sections but dull...)*/
+    color: #5DFC0A;         /* Green LED like */
+    /*color: #61B329;*/     /*Cinnabar Green*/
+    /*color: #6aaf6a;*/     /*section greens*/
 }
 
 
@@ -327,13 +334,25 @@ h1 {
 }
 
 
-.jumbotron {
-    /*padding: 300px;*/
-    padding: 200px;
-    background-size:cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    text-align: center;
+.nav-link {
+    padding-right: 10px;
+}
+
+
+#brand {
+    margin: 3px
+}
+
+
+#email_form {
+    float: right;
+}
+
+
+#open_ticket_btn {
+    background-color: #026937; /* CleverTech Green */
+    color: white;
+    font-size: 20px;
 }
 
 
@@ -375,32 +394,40 @@ h1 {
 }
 
 
-#section1 {
+#services {
     background-color: #6aaf6a;
-    padding-bottom: 120px;
     padding-top: 120px;
 }
 
 
-#section1 h2 {
+
+#services h2 {
     position: relative; 
-    top: -50px; 
     text-align: center;
     color: #545454;
+    padding-bottom: 15px;
+    font-weight: bold;
 }
 
 
-#section2 {
+
+#thumbnails {
+    position: relative;
+    top: -120px;
+}
+
+
+#how_it_works {
     padding-top: 200px;  /* temporary? */
     padding-bottom: 200px; /* temporary? */
 }
 
 
-#section3 {
+#stay_clever {
     text-align: center;
     background-color: #6aaf6a;
-    padding-top: 120px;
-    padding-bottom: 120px;
+    padding-top: 80px;
+    padding-bottom: 80px;
 }
 
 

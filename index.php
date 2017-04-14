@@ -21,7 +21,7 @@
     <body data-spy="scroll" data-target="#my_nav_bar"> <!--data-spy and data-target are for jumping to particular sections of the page through links-->
         
         <!-- THE NAVBAR -->
-        <nav class="navbar navbar-default navbar-fixed-top">
+        <nav class="navbar navbar-default navbar-fixed-top" id="my_nav_bar">
             <div class="container">
                 <div class="navbar-header">
                     <!--This "accordion" button shows up and contains the navbar links once the viewport has been adequately collapsed collapsed-->
@@ -46,11 +46,11 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav" style="float: right;">
                     <!--<ul class="nav navbar-nav" style="position: relative; left: 20%;">-->
-                        <li class="nav-item"><a href="#" class="nav-link">Services</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link">How It Works</a></li>
+                        <li class="nav-item"><a href="#services" class="nav-link">Services</a></li>
+                        <li class="nav-item"><a href="#how_it_works" class="nav-link">How It Works</a></li>
                         <!--<li class="nav-item"><a class="nav-link" onclick="load_store()">Store (WILL DROP)</a></li>-->
                         <!--<li class="nav-item"><a class="nav-link" onclick="load_contact()">Contact (WILL DROP)</a></li>-->
-                        <li class="nav-item"><a href="#" class="nav-link">Stay Clever</a></li>  
+                        <li class="nav-item"><a href="#stay_clever" class="nav-link">Stay Clever</a></li>  
                         <!--If i remove onclick and just use an href, does this get rid of the AJAX functionality? I think it does...-->
                         <!--Perhaps I should just stick with going for the illusion for now...-->
                         <li>
@@ -72,59 +72,93 @@
     
         <!-- THE CONTENT BEGIN-->
 
-        
-        <!--Perhaps I should add back the carousel code here?-->
+        <!-- BIG LOGO CODE BEGIN-->
         <!--
         <div class="row">
-            <div class="carousel-inner" role="listbox">
-                <div class="item active">
-                    <div id="years_exp_jumbo" class="jumbotron">
-                        
-                    </div>
-                </div>
-
-                <div class="item">
-                    <div id="free_diag_jumbo" class="jumbotron">
-
-                    </div>
-                </div>
-
-                <div class="item">
-                    <div id="repair_jumbo" class="jumbotron">
-
-                    </div>
-                </div>
-
-                <div class="item">
-                    <div id="comm_jumbo" class="jumbotron">
-
-                    </div>
-                </div>
-
-                <div class="item">
-                    <div id="your_clev_jumbo" class="jumbotron">
-
-                    </div>
-                </div>
-
+            <div id="ct_logo_big "class="jumbotron">
             </div>
-
-            <a class="left carousel-control" href="#my_carousel" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-            </a>
-            <a class="right carousel-control" href="#my_carousel" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-            </a>
+        </div>
+        
+        <div class="row" style="text-align: center;">
+            <label style="font-size: 30px; position: relative; top: -30px; color: #026937; margin-bottom: 50px;">Apple Computer Technicians</label>
         </div>
         -->
+        <!--BIG LOGO CODE END-->
+        
+        <!--CAROUSEL BEGIN-->
+        <div class="row">
+            <div class="col-lg-12">
+                <div id="my_carousel" class="carousel slide row" data-ride="carousel"> <!--Specified "row" as class to make carousel extend 100%-->
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <div id="years_exp_jumbo" class="jumbotron">
+                                <div class="carousel-caption">
+                                        <p class="carousel_header">WELCOME TO CLEVERTECH</p>
+                                        <p class="carousel_subtext">We're here to help.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <div id="free_diag_jumbo" class="jumbotron">
+                                <div class="carousel-caption">
+                                    <p class="carousel_header">FREE DIAGNOSTIC</p>
+                                    <p class="carousel_subtext">CleverTech uses the best tools &amp; knowledge to create well formatted diagnostics for no cost. Now that's Clever!</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <div id="repair_jumbo" class="jumbotron">
+                                <div class="carousel-caption">
+                                    <p class="carousel_header">REPAIR</p>
+                                    <p class="carousel_subtext">We strive to have the ablity to repair any problem. Be it software or hardware repair, we'll have the answer.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <div id="comm_jumbo" class="jumbotron">
+                                <div class="carousel-caption">
+                                    <p class="carousel_header">COMMUNICATION</p>
+                                    <p class="carousel_subtext">We love keeping our customers informed. Via text or phone calls, you'll be sure to be kept in the loop.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <div id="your_clev_jumbo" class="jumbotron">
+                                <div class="carousel-caption">
+                                    <p class="carousel_header">YOUR CLEVER TECH</p>
+                                    <p class="carousel_subtext">CleverTech makes sure to assign the best technician available for your specific repair.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <a class="left carousel-control" href="#my_carousel" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    </a>
+                    <a class="right carousel-control" href="#my_carousel" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!--CAROUSEL END-->
+
+        
+        
         
         
         <!-- SECTION 1 BEGIN -->
-        <div class="row" id="section1" >
-            <h2>Select Your Device To Start Repair</h2>
+        <div class="row" id="services" >
 
-            <div class="center">
+            <div class="center" id="thumbnails">
                 <!-- THUMBNAILS BEGIN -->
+                <h2>Select Your Device To Start Repair</h2>
+
                 <div class="col-md-3">
                     <a href="http://localhost/clevertech/index.php?uri=services" class="thumbnail">
                         <img src="http://localhost/clevertech/images/imac_r.jpg">
@@ -160,7 +194,7 @@
 
 
         <!-- SECTION 2 BEGIN -->
-        <div class="row" id="section2">
+        <div class="row" id="how_it_works">
             <div class="center">
                 <div class="col-sm-4">
                     <p style="text-align: center; font-size: 20px;">Device &amp; Problem</p>
@@ -179,7 +213,7 @@
 
 
         <!-- SECTION 3 BEGIN -->
-        <div class="row" id="section3">
+        <div class="row" id="stay_clever">
 
                 
                 <div class="col-md-6 col-md-offset-3" id="ct_vid">
@@ -262,8 +296,8 @@
             
             $(document).ready(function(){
                 $('.carousel').carousel({
-                //interval: 6000
-                interval: false  //Just say false for testing!
+                interval: 6000
+                //interval: false  //Just say false for testing!
                 })
             });
             
