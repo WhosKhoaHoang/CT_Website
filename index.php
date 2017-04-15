@@ -21,7 +21,7 @@
     <body data-spy="scroll" data-target="#my_navbar"> <!--data-spy and data-target are for jumping to particular sections of the page through links-->
         
         <!-- THE NAVBAR BEGIN -->
-        <nav class="navbar navbar-default navbar-fixed-top" id="my_navbar">
+        <nav class="navbar navbar-fixed-top" id="my_navbar">
             <div class="container">
                 <div class="navbar-header">
                     <!--This "accordion" button shows up and contains the navbar links once the viewport has been adequately collapsed collapsed-->

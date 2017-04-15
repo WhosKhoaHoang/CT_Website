@@ -153,3 +153,16 @@ li.nav-item > a.nav-link.active {
     margin: 0 auto; 
     width: 80%;
 }
+
+
+/* THE WINNING CODE */
+.nav > li > a:hover, .nav > li > a:focus {
+    background-color: transparent;
+    text-decoration: none; /* e.g., no underlines */
+}
+li.nav-item.active {
+    background-color: transparent;
+}
+.active a{
+    color: dimgray !important;
+}
