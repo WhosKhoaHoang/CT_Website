@@ -9,22 +9,38 @@
   src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff");
 }
 
+
 body {
     font-family: "San Francisco", "PT Sans", sans-serif;
-    padding-top: 70px; /*To offset space taken by the navbar*/
+    /*padding-top: 120px;*/ /*To offset space taken by the navbar...Perhaps don't need anymore for design we're shooting for.*/
 }
 
 .navbar {
     font-size: 20px;
-    background-color: white;
-    padding: 10px;
-
+    padding-top: 50px;
+    background-color: transparent;
 }
+
+
+/* Code for making navbar borderless BEGIN (credit to vanburen from SO) */
+.navbar.navbar-default {
+    border: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.navbar.navbar-default .navbar-collapse {
+    border: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+/* Code for making navbar borderless END */
 
 
 .navbar-brand {
     cursor: pointer;
     font-size: 20px;
+    padding: 0px;
 }
 
 
@@ -38,442 +54,102 @@ body {
 }
 
 
-/* Stylings for Repair Services BEGIN */
-#top {
-    margin: 0 auto;
-    padding-top: 20px;
-}
-
-
-.row > .panel {
-    margin: 0;
-    border: 0;
-    box-shadow: none;
-}
-
-
-.panel-default > .panel-heading {
-    font-weight: bold;
-    background-color: white;
-    padding: 0;
-    border-bottom-color: gold;
-}
-/* Stylings for Repair Services END */
-
-
-#hour_info {
-    font-size: 20px;
-    float: none;
-    margin: 0 auto;
-}
-
-
-.panel {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-width: thick;
-    border-color: #026937;
-    position: relative;
-    top: 25px;
-}
-
-
-.rep_pic_label {
-    color: #545454;
-    margin-top: 10px;
-}
-
-/*Code from Perfect Icons BEGIN*/
-@font-face {
-    font-family: 'si';
-    /* icon files weren't being accessed when they were in the socicon-v1.5 folder... */
-    src: url('soc_media_icons/socicon.eot');
-    src: url('soc_media_icons/socicon.eot?#iefix') format('embedded-opentype'),
-         url('soc_media_icons/socicon.woff') format('woff'),
-         url('soc_media_icons/socicon.ttf') format('truetype'),
-         url('soc_media_icons/socicon.svg#icomoonregular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@media screen and (-webkit-min-device-pixel-ratio:0) {
-    @font-face {
-        font-family:si;
-        src: url(socicon-v1.5/socicon.svg) format(svg);
-    }
-}
-
-.soc {
-    overflow:hidden;
-    margin:0; padding:0;
-    list-style:none;
-}
-
-.soc li {
-    display:inline-block;
-    *display:inline;
-    zoom:1;
-}
-
-.soc li a {
-    font-family:si!important;
-    font-style:normal;
-    font-weight:400;
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
-    -webkit-box-sizing:border-box;
-    -moz-box-sizing:border-box;
-    -ms-box-sizing:border-box;
-    -o-box-sizing:border-box;
-    box-sizing:border-box;
-
-    -o-transition:.1s;
-    -ms-transition:.1s;
-    -moz-transition:.1s;
-    -webkit-transition:.1s;
-    transition:.1s;
-    -webkit-transition-property: transform;
-    transition-property: transform;
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-
-    overflow:hidden;
-    text-decoration:none;
-    text-align:center;
-    display:block;
-    position: relative;
-    z-index: 1;
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
-    font-size: 22px;
-    -webkit-border-radius: 82px;
-    -moz-border-radius: 82px;
-    border-radius: 82px;
-    margin-right: 10px;
-    color: #ffffff;
-    background-color: none;
-}
-
-.soc-icon-last{
-    margin:0 !important;
-}
-
-.soc-facebook {
-    background-color: #3e5b98;
-}
-.soc-facebook:before {
-    content:'\e041';
-}
-.soc-instagram {
-    background-color: #405de6;
-}
-.soc-instagram:before {
-    content:'\e057';
-}
-.soc-tumblr {
-    background-color: #45556c;
-}
-.soc-tumblr:before {
-    content:'\e059';
-}
-.soc-twitter {
-    background-color: #4da7de;
-}
-.soc-twitter:before {
-    content:'\e040';
-}
-.soc-youtube {
-    background-color: #e02a20;
-}
-.soc-youtube:before {
-    content:'\e051';
-}
-.soc-yelp {
-    background-color: #c83218;
-}
-.soc-yelp:before {
-    content:'\e047';
-}
-
-.soc-facebook:hover {
-    background-color: #526fac;
-}
-.soc-instagram:hover {
-    background-color: #5471fa;
-}
-.soc-tumblr:hover {
-    background-color: #596980;
-}
-.soc-twitter:hover {
-    background-color: #61bbf2;
-}
-.soc-youtube:hover {
-    background-color: #f43e34;
-}
-.soc-yelp:hover {
-    background-color: #dc462c;
-}
-/*Code from Perfect Icons END*/
-
-
-
-/* jumbotron settings for big logo */
-/*
-.jumbotron {
-    margin-top: 10px;
-    min-height: 300px;
-    min-width: 300px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-image: url("images/ct_logo_big.png");
-    background-color: white;
-    
-}
-*/
-
-/* jumbotron settings for carousel */
-
-.jumbotron {
-    padding: 300px;
-    padding: 225px;
-    background-size:cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    text-align: center;   
-}
-
-
-/*
-#ct_logo_big {
-    background-image: url("images/ct_logo_big.png");
-
-}
-*/
-
-.carousel { 
-    max-height: 550px;
-    overflow: hidden;
-    height: 450px;
-    
-}
-
-
-.carousel-caption {
-    /*color: #929497;*/
-    text-align: center;
-    text-shadow: 4px 4px #1d2023;
-    
-    /* Code for pushing caption to top*/
-    top: 0;
-    bottom: auto;
-    
-    /* Code for centering caption: */
-    /*
-    top: 50%;
-    transform: translateY(-50%);
-    bottom: initial;
-    -webkit-transform-style: preserve-3d;
-    -moz-transform-style: preserve-3d;
-    transform-style: preserve-3d;
-    */
-}
-
-
-.carousel_header:nth-child(1) {
-    font-size: 50px;
-    font-family: arial;
-    font-weight:bolder;
-    /*color: #0AC92B;*/          /* Permanent Green */
-    /*color: #24D330          /* Gummi Green like! */
-    /*color: #00CD00;*/             /* green3 like! */
-    /*color: #4DBD33; */        /* Grass like! (close to sections but dull...)*/
-    color: #5DFC0A;         /* Green LED like! */
-    /*color: #61B329;*/     /*Cinnabar Green*/
-    /*color: #6aaf6a;*/     /*section greens*/
-}
-
-
-.carousel_subtext:nth-child(2) {
-    font-size:35px;
-    font-family: arial;
-    font-weight: bold;
-    /*color: #0AC92B;*/             /* Permanent Green */
-    /*color: #24D330*/             /* Gummi Green */
-    /*color: #00CD00;*/             /* green3 */
-    /*color: #4DBD33;*/         /* Grass like! (close to sections but dull...)*/
-    color: #5DFC0A;         /* Green LED like */
-    /*color: #61B329;*/     /*Cinnabar Green*/
-    /*color: #6aaf6a;*/     /*section greens*/
-}
-
-
-#years_exp_jumbo {
-    background-image: url("images/home.jpg");
-}
-
-
-#free_diag_jumbo {
-    background-image: url("images/free_diag.jpg");
-}
-
-
-#repair_jumbo {
-    background-image: url("images/repair2.jpg");
-}
-
-
-#comm_jumbo {
-    background-image: url("images/comm.jpg");
-}
-
-
-#your_clev_jumbo {
-    background-image: url("images/your_clev.jpg");
-}
-
-
-.nav-link {
-    padding-right: 10px;
-}
-
-
-#brand {
-    margin: 3px
-}
-
-
-#email_form {
-    float: right;
+.navbar .nav > li > a {
+    color: white;
 }
 
 
 #open_ticket_btn {
-    background-color: #026937; /* CleverTech Green */
+    background: rgba(0,0,0,0.4);
     color: white;
     font-size: 20px;
+    padding-left: 50px;
+    padding-right: 50px;
 }
 
 
-#app_name {
-    margin: 30px 0px;
+.jumbotron {
+    margin: 0px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+    height: 100vh;
+    width: 100vw;
 }
 
 
-#about {
-    text-align: center;
+#welcome {
+    background-image: url(images/welcome.jpg);
+    position: relative; 
+    top: 50%;
+    color: white;
 }
 
 
-#content {
-    text-align: center;
-}
-
-
-#purchase {
-    background-color: #026937;
-}
-
-
-#app_store_icon {
-    width: 200px;
-    height: 70px;
-}
-
-
-.card-img-top {
-    max-height: 630px; 
-    max-width: 210px;
-}
-
-
-.rep_pic_label {
-    font-size: 25px;
-    /*color: #777777;*/ /* CleverTech Gray */
+#welcome_content {
+    position: relative; 
+    top: 50%;
+    color: white;
 }
 
 
 #services {
-    background-color: #6aaf6a;
-    padding-top: 120px;
+    background-image: url(images/select_device.jpg);
 }
 
 
-
-#services h2 {
+#services_content {
     position: relative; 
-    text-align: center;
-    color: #545454;
-    padding-bottom: 15px;
-    font-weight: bold;
-}
-
-
-
-#thumbnails {
-    position: relative;
-    top: -120px;
+    top: 50%;
+    color: white;
 }
 
 
 #how_it_works {
-    padding-top: 200px;  /* temporary? */
-    padding-bottom: 200px; /* temporary? */
+    background-image: url(images/how_it_works.jpg);
+}
+
+
+#how_it_works_content {
+    position: relative; 
+    top: 20%;
+    color: white;   
 }
 
 
 #stay_clever {
-    text-align: center;
-    background-color: #6aaf6a;
-    padding-top: 80px;
-    padding-bottom: 80px;
+    background-image: url(images/stay_clever.jpg);
 }
 
 
-#ct_vid {
-    
+#stay_clever_content {
+    position: relative; 
+    top: 50%;
+    color: white;   
 }
 
 
-.thumbnail {
-    text-align: center;
+li.nav-item > a.nav-link.active {
+    background-color: red;
+}
+
+
+.nav-item:hover {
+    color: red;
+}
+
+
+.how_it_works_btn {
+    background: rgba(0,0,0,0.4);
+    color: white;
+    font-size: 20px;
+    width: 200px;
+    margin: 20px;
 }
 
 
 .center {
     margin: 0 auto; 
     width: 80%;
-}
-
-
-#store_info {
-    
-}
-
-
-
-
-
-#soc_media {
-    /*background-color: #026937;*/
-    /*
-    margin-top: 50px;
-    text-align: center;
-    padding-top: 100px;
-    padding-bottom: 100px;
-    */
-}
-
-
-footer {
-    height: 50px;
-    background-color: #026937; 
-}
-
-
-#contact_info {
-    position: relative;
-    top: 40px;
-    font-size: 16px;
 }
