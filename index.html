@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags always come first -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>CleverTech TESTING</title>
+        
+        <!-- Include this link on every HTML page of the website! -->
+        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+        <!-- import Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!-- Add icon library from Perfect Icons-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!-- import your own styles -->
+        <link rel="stylesheet" href="http://localhost/clevertech/styles.css" /> <!--Seems like I need to use an absolute pathname for CSS?-->
+        <!--<link rel="stylesheet" href="//fonts.googleapis.com/css?family=PT+Sans" /> No to this for now... -->
+    </head>
+    
+    <body data-spy="scroll" data-target="#my_navbar"> <!--data-spy and data-target are for jumping to particular sections of the page through links-->
+        
+        <!-- THE NAVBAR BEGIN -->
+        <nav class="navbar navbar-fixed-top" id="my_navbar">
+            <!-- Yikes, seems like the hamburger icon disappears if you remove navbar-default! -->
+            <div class="container">
+                <div class="navbar-header">
+                    
+                    <!--This "hamburger" button shows up and contains the navbar links once the viewport has been adequately collapsed collapsed-->
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    
+                    <!-- LOGO BEGIN -->
+                    <a href="#" class="navbar-brand">
+                        <img src="http://localhost/clevertech/images/navbar_logo.png" width="50" height="50" alt="" style="display:inline">
+                    </a>
+                    <!-- LOG END -->  
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling when user collapses window -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav" style="float: left;">
+                        <li class="nav-item"><a href="#services" class="nav-link">Services</a></li>
+                        <li class="nav-item"><a href="#how_it_works" class="nav-link">How It Works</a></li>
+                        <li class="nav-item"><a href="#stay_clever" class="nav-link">Stay Clever</a></li>  
+                        
+                        <!-- START REPAIR BUTTON BEGIN -->
+                        <!--Setting this div with class navbar-form aligns everything properly.-->
+                        <!--navbar-right will push this button to the far right.-->
+                        <!--
+                        <div class="navbar-right" style="padding-top: 10px; padding: 10px;">
+                            <a href="#" id="open_ticket_btn" class="btn">Start Repair</a>
+                        </div>
+                        -->
+                        <!-- START REPAIR BUTTON END -->
+                    </ul>
+                    
+                    <!-- START REPAIR BUTTON BEGIN -->
+                    <!--Setting this div with class navbar-form aligns everything properly.-->
+                    <!--navbar-right will push this button to the far right.-->
+                    <div class="navbar-right" style="padding-top: 10px; padding: 10px; display:block;">
+                        <a ihref="#" id="start_repair_btn" class="btn">Start Repair</a>
+                    </div>
+                    <!-- START REPAIR BUTTON END -->
+                </div>
+
+            </div>
+        </nav>
+        <!-- THE NAVBAR END-->
+        
+        
+        <!-- THE CONTENT BEGIN-->
+
+        
+        <!-- SECTION 1 BEGIN -->
+        <div class="jumbotron" id="welcome" style="text-align: center;">
+            <div id="welcome_content">
+                <h1>Welcome to CleverTech</h1>
+                <p>We're here to help.</p>
+            </div>
+        </div>
+        <!-- SECTION 1 END -->
+
+
+
+        <!-- SECTION 2 BEGIN -->
+        <div class="jumbotron" id="services" style="text-align: center;">
+            <!--
+            <div id="services_content">
+                <h1 style="position: relative; top: -100px;">How It Works</h1>
+                <div id="images" style="white-space: nowrap;">
+
+                    <img src="images/imac_icon%20copy.jpg">
+                    <img src="images/macbook_icon%20copy.jpg">
+                    <img src="images/iphone_icon%20copy.jpg">
+                    <img src="images/ipad_icon%20copy.jpg">
+
+                </div>
+            </div>
+            -->
+
+            
+            <div class="container" id="services_content">
+            
+            <!--
+            <div class="col-md-8 col-xs-12 logo-links">
+                <div class="row logo-bottom">
+                    <div class="col-md-2 col-xs-12 logo-border col-md-offset-1">
+                        <img id="rasv" class="center-block" src="img/rasv.png" alt="RASV logo">
+                    </div>
+                    <div class="col-md-2 col-xs-12 logo-border">
+                        <img class="center-block" src="img/victoria-farmers.png" alt="Victoria Farmers logo">
+                    </div>
+                    <div class="col-md-2 col-xs-12 logo-border">
+                        <img class="center-block" src="img/anz.png" alt="ANZ logo">
+                    </div>
+                    <div class="col-md-2 col-xs-12 logo-border">
+                        <img class="center-block" src="img/pwc.png" alt="PWC logo">
+                    </div>
+                    <div class="col-md-2 col-xs-12 logo-border">
+                        <img class="center-block" src="img/vac.png" alt="VAC logo">
+                    </div>
+                </div>
+                -->
+                
+                
+                <div class="row">
+                    <h1 style="position: relative; top: -50px;">Select Your Device &amp; Tell Us Your Problem</h1>
+                </div>
+                
+                <!--
+                <div class="row" style="background-color:red;">
+                    
+                    <div class="col-xs-3" style="text-align: center;">
+                        <div style="width: 250px; height: 250px; background-color: orange;"></div>
+                        <p>iMac</p>
+                    </div>                       
+                    <div class="col-xs-3">
+                        <div style="width: 250px; height: 250px; background-color: yellow;"></div>
+                        <p>Macbook</p>
+                    </div>
+                   <div class="col-xs-3">
+                        <div style="width: 250px; height: 250px; background-color: green;"></div>
+                        <p>iPhone</p>
+                    </div>   
+                   <div class="col-xs-3">
+                        <div style="width: 250px; height: 250px; background-color: blue;"></div>
+                        <p>iPad</p>
+                    </div>  
+                    
+                </div>
+                -->
+              
+                <!--
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="panel" style="background-color: rgba(0,0,0,0.4);">
+                            <img src="images/imac_new.png"> 
+                        </div>
+                        <p>iMac</p>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="panel" style="background-color: rgba(0,0,0,0.4);">
+                            <img src="images/macbook_new.png"> 
+                        </div>
+                        <p>Macbook</p>
+
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="panel" style="background-color: rgba(0,0,0,0.4);">
+                            <img src="images/iphone_new.png"> 
+                        </div>
+                        <p>iPhone</p>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="panel" style="background-color: rgba(0,0,0,0.4);">
+                            <img src="images/ipad_new.png"> 
+                        </div>
+                        <p>iPad</p>
+                    </div>
+                </div>
+                -->
+                
+                
+                <div class="row">                   
+                    <div class="col-xs-3" style="background-color: rgba(0,0,0,0.4);">
+                        <img src="images/imac_white.png" style="width: 100%; height: 100%;">
+                        <p>iMac</p>
+                    </div>                       
+                    <div class="col-xs-3" style="background-color: rgba(0,0,0,0.4);">
+                        <img src="images/macbook_white.png" style="width: 100%; height: 100%;">
+                        <p>Macbook</p>
+                    </div>
+                   <div class="col-xs-3" style="background-color: rgba(0,0,0,0.4);">
+                        <img src="images/iphone_white.png" style="width: 100%; height: 100%;">
+                        <p>iPhone</p>
+                    </div>   
+                   <div class="col-xs-3" style="background-color: rgba(0,0,0,0.4);">
+                        <img src="images/ipad_white.png" style="width: 100%; height: 100%;">
+                        <p>iPad</p>
+                    </div>   
+                </div>
+
+                <!--
+                <div class="row" style="background-color: pink;">
+                    
+                    <div class="col-xs-3">
+                        <div class="equal panel panel-default" style="max-height: 200px;">
+                            <div class="panel-body">
+                                <img src="images/imac_icon copy.jpg" style="height: 100%; width: 100%;">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-xs-3">
+                        <div class="equal panel panel-default" style="max-height: 200px;">
+                            <div class="panel-body">
+                                <img src="images/macbook_icon copy.jpg" style="height: 100%; width: 100%;">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-xs-3">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                        <img src="images/iphone_icon copy.jpg" style="height: 100%; width: 100%;">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-xs-3">
+                        <img src="images/ipad_icon copy.jpg" style="height: 100%; width: 100%;">
+                        <p>iPad</p>
+                    </div>
+                </div>
+                -->
+                
+            </div>
+        
+        
+        </div>
+        <!-- SECTION 2 END -->
+
+
+
+
+        <!-- SECTION 3 BEGIN -->
+        <div class="jumbotron" id="how_it_works" style="text-align: center;">
+            <div id="how_it_works_content">
+                <h1 style="position: relative; top: -50px;">How It Works</h1>
+                
+                <div class="btn how_it_works_btn">1. Device &amp; Problem</div>
+                <div class="btn how_it_works_btn">2. Schedule Pick-Up</div>
+                <div class="btn how_it_works_btn">3. Get It Fixed</div>
+
+            </div>
+        </div>
+        <!-- SECTION 3 END -->
+
+        
+        
+        <!-- STAY CLEVER BEGIN -->
+        <div class="jumbotron" id="stay_clever" style="text-align: center;">
+            <div class="container" id="stay_clever_content">
+                <!--
+                <h1>Welcome to CleverTech</h1>
+                <p>We're here to help.</p>
+                -->
+                <div class="row">
+                    
+                    <div class="col-sm-2" style="background-color: rgba(0,0,0,0.4); text-align: left;">
+                        <dl> 
+                           <dt>Address</dt> 
+                           <dd>1150 Murphy Ave, Ste 205</dd> 
+                           <dd>San Jose, CA 9513</dd><br/>
+                           <dt>Phone Number:</dt> 
+                           <dd>408.316.7600</dd><br/> 
+                           <dt>Hours:</dt> 
+                           <dd>Mon - Fri: 9am - 7pm</dd>    
+                           <dd>Sat - Sun: 10am - 6pm</dd>    
+                        </dl>             
+                    </div>
+
+                    <div class="col-md-4">
+                        <ul class="soc">
+                            <li><a class="soc-facebook" href="#"></a></li>
+                            <li><a class="soc-instagram" href="#"></a></li><br/>
+                            <li><a class="soc-tumblr" href="#"></a></li>
+                            <li><a class="soc-twitter" href="#"></a></li><br/>
+                            <li><a class="soc-youtube" href="#"></a></li>
+                            <li><a class="soc-yelp" href="#"></a></li>
+                            <!--<li><a class="soc-yelp" href="#"></a></li>-->
+                        </ul>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <!-- STAY CLEVER END -->
+
+
+        <!-- THE CONTENT END -->
+        
+        <!--
+        <a href="#" class="back-to-top" style="display: inline; margin: 0 auto;">
+            <img src="images/up.png">
+        </a>
+        -->
+        
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>  
+        <script language="JavaScript" type="text/javascript">
+            
+            $("body").scrollspy({ target: "#my_navbar" });
+
+            
+            $("#mac_repr_btn").click(function() {
+
+                //console.log($("#mac_repairs").css("display"));
+                
+                if ($("#mac_repairs").css("display") === "none") {
+                    $("#tab_mob_repairs").css("display", "none");
+                    $("#mac_repairs").css("display", "block");
+                }
+            });
+            
+            
+            $("#tab_mob_repr_btn").click(function() {
+                //console.log($("#tab_mob_repairs").css("display"));
+                
+                if ($("#tab_mob_repairs").css("display") === "none") {
+                    
+                    $("#mac_repairs").css("display", "none");
+                    $("#tab_mob_repairs").css("display", "block");
+                }
+            })
+            
+            
+            $(document).ready(function(){
+                $('.carousel').carousel({
+                interval: 6000
+                //interval: false  //Just say false for testing!
+                })
+            });
+            
+
+            $("#mac_repr_btn").click(function() {
+
+                if ($("#mac_repairs").css("display") === "none") {
+                    $("#tab_mob_repairs").css("display", "none");
+                    $("#mac_repairs").css("display", "block");
+                }
+            });
+
+
+            $("#tab_mob_repr_btn").click(function() {
+                //console.log("HELLO!");
+
+                if ($("#tab_mob_repairs").css("display") === "none") {
+
+                    $("#mac_repairs").css("display", "none");
+                    $("#tab_mob_repairs").css("display", "block");
+                }
+            })
+            
+            $(document).ready(function() {
+
+            var offset = 250;
+
+            var duration = 300;
+
+            $(window).scroll(function() {
+
+                if ($(this).scrollTop() > offset) {
+
+                $(".back-to-top").fadeIn(duration);
+
+                } else {
+
+                $(".back-to-top").fadeOut(duration);
+
+                }
+
+                });
+
+
+
+                $(".back-to-top").click(function(event) {
+
+                event.preventDefault();
+
+                $("html, body").animate({scrollTop: 0}, duration);
+
+                return false;
+
+                })
+
+            });
+        </script>
+    </body>
+</html>
