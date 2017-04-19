@@ -20,15 +20,14 @@
         <style type="text/css">
 
             /* Apparently it matters where you put media queries if you want them to work properly? */
-            /*
+            
             @media (max-width: 768px) { 
-                .myH2 {  
-                    color: red;
-                    font-size: 12px;
+
+                #khoahoang {
                 }
 
             }
-            */
+            
             
         </style>
         
@@ -148,7 +147,7 @@
             <div class="container" id="stay_clever_content">
                 
                 
-                <div class="row" style="position: relative; top: 30px;">    
+                <div class="row" style="position: relative; top: 100px;">    
                     
                     <h2 class="gonz_quote">
                         "I want to see a paradigm shift. We're going to be so good...It wouldn't make sense to go anywhere else."<br/><br/>
@@ -163,58 +162,63 @@
                     <br/><br/><br/>
                     <br/><br/><br/>
                 </div>
-
-                <!-- EVERYTHING IN ONE ROW TEST-->
+                
+                
+                <!-- LAYOUT 1 -->
+                <!-- LAYOUT 1 BEGIN -->
                 <!--
-                <div class="row">
-
-                    <div class="col-xs-6">
-                        <div class="row" style="float: left;">
-                            <label>For the crazy ones:</label>
-                            <ul class="soc">
-                                <li><a class="soc-facebook" href="#"></a></li>
-                                <li><a class="soc-instagram" href="#"></a></li>
-                                <li><a class="soc-tumblr" href="#"></a></li>
-                                <li><a class="soc-twitter" href="#"></a></li>
-                                <li><a class="soc-youtube" href="#"></a></li>
-                                <li><a class="soc-yelp" href="#"></a></li>
-                            </ul>
+                <div class="row" style="margin-top:50px;">
+                    <div class="col-md-4">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <label>For the crazy ones:</label>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <ul class="soc">
+                                    <li><a class="soc-facebook" href="#"></a></li> 
+                                    <li><a class="soc-instagram" href="#"></a></li> 
+                                    <li><a class="soc-tumblr" href="#"></a></li>
+                                    <li><a class="soc-twitter" href="#"></a></li> 
+                                    <li><a class="soc-youtube" href="#"></a></li> 
+                                    <li><a class="soc-yelp" href="#"></a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="col-xs-6">
+                    
+                    <div class="col-md-8"> 
                         <div class="row">
-                            <div class="col-xs-6" style="float: left; background: red;">
-                                    <dl>
-                                        <dt>Address:</dt> 
-                                        <dd>1150 Murphy Ave, Ste 205</dd> 
-                                        <dd>San Jose, CA 9513</dd>
-                                    </dl>
-                                    <dl>
-                                        <dt>Phone Number:</dt> 
-                                        <dd>408.316.7600</dd><br/> 
-                                    </dl>
+                            <div class="col-xs-6 col-md-9">
+                                <dl class="pull-right">
+                                    <dt>Phone Number:</dt> 
+                                    <dd>408.316.7600</dd><br/> 
+                                    <dt>Address:</dt> 
+                                    <dd>1150 Murphy Ave, Ste 205</dd> 
+                                    <dd>San Jose, CA 9513</dd> <br/>
+                                </dl>
                             </div>
 
-                            <div class="col-xs-6" style="float: right; background: yellow;">
-                                <div style="float: left;">
-                                    <dl>
-                                        <dt>Hours:</dt> 
-                                        <dd>Mon - Fri: <br/>9am - 7pm</dd>    
-                                        <dd>Sat - Sun: <br/>10am - 6pm</dd>  <br/> 
-                                    </dl>
-                                </div>
+                            <div class="col-xs-6 col-md-3">
+
+                                <dl class="pull-left">
+                                    <dd>Monday - Friday: <br/>9am - 7pm</dd>    
+                                    <dd>Saturday - Sunday: <br/>10am - 6pm</dd>  <br/> 
+                                    <dd>© CleverTech Corporation</dd>
+                                </dl>
                             </div>
-                            
                         </div>
                     </div>
-                        
                 </div>
                 -->
+                <!-- LAYOUT 1 END -->
                 
                 
-                
-                <!--MOST PROMISING LAYOUT-->
+                <!-- LAYOUT 2 -->
+                <!-- LAYOUT 2 BEGIN -->
                 <div class="row">
                     <label>For the crazy ones:</label>
                     <div>
@@ -234,8 +238,6 @@
                 <div class="row">
                     <div class="col-xs-6">
                         <div class="row" style="float:right;"> 
-                        <!-- Have a row here so when you float: right, the contents will float right with respect to this column, 
-                             NOT with respect to the outer row!!! -->
                             <dl>
                                 <dt>Address:</dt> 
                                 <dd>1150 Murphy Ave, Ste 205</dd> 
@@ -259,11 +261,13 @@
                     </div>
                 </div>
                 
-                
                 <div class="row">
                         © CleverTech Corporation
                 </div>
-  
+                <!-- LAYOUT 2 END -->
+                
+                
+                
             </div>
         </div>
         <!-- STAY CLEVER END -->
