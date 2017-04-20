@@ -67,7 +67,7 @@
                     <!--Setting this div with class navbar-form aligns everything properly.-->
                     <!--navbar-right will push this button to the far right.-->
                     <div class="navbar-right" style="padding-top: 10px; padding: 10px; display:block;">
-                        <a ihref="#" id="start_repair_btn" class="btn">Start Repair</a>
+                        <a href="#" id="start_repair_btn" class="btn" data-toggle="modal" data-target="#start_repair_modal">Start Repair</a>
                     </div>
                     <!-- START REPAIR BUTTON END -->
                 </div>
@@ -76,6 +76,497 @@
         </nav>
         <!-- THE NAVBAR END-->
         
+        
+        <!-- MODALS BEGIN -->
+        <!--Thanks to Ren De Nobel from SO: http://stackoverflow.com/questions/18053408/vertically-centering-bootstrap-modal-window-->
+        
+        
+        <!-- Start Repair Modal -->
+        <div id="start_repair_modal" class="modal fade" role="dialog">
+            <div class="vertical-alignment-helper">
+                <div class="modal-dialog vertical-align-center">
+                    <div class="modal-dialog">
+                        
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <!--
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Modal Header</h4>
+                            </div>
+                            -->
+                            
+                            <div class="modal-body">
+
+                                <label style="color: green;">Request A Pick-Up</label>
+                                <p>Looking to request a pick-up for multiple devices? Click Here!</p>
+                                
+                                <p>Your Information</p>
+                                <hr/>
+                                
+                                <form>
+                                    <p>Name <span style="color:red;">*</span></p>
+
+                                    <div class="row">
+                                            
+                                        
+                                        <div class="form-group col-xs-6">
+                                            <label for="first_name">First Name</label>
+                                            <input class="form-control" id="first_name"> 
+                                        </div>
+
+                                        <div class="form-group col-xs-6">
+                                            <label for="last_name">Last Name</label>
+                                            <input class="form-control" id="last_name">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="form-group col-xs-6">
+                                            <label for="email">Email</label>
+                                            <input class="form-control" id="email">
+                                        </div>
+                                    </div>
+                                
+                                    <div class="row">
+                                        <!-- Should I use padding at this particular spot? -->
+                                        <p style="padding: 20px;">A confirmation email will be sent to the email address provided. The email
+                                           will also be used as the contact for the order</p>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group col-xs-6">
+                                            <label for="phone">Phone</label>
+                                            <input class="form-control" id="phone"> 
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="form-group col-xs-6">
+                                            <label for="company_name">Company Name</label>
+                                            <input class="form-control" id="company_name">
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    <p>Pick-Up Address <span style="color:red;">*</span></p>
+
+                                    
+                                    
+                                    <div class="row">
+                                        <div class="form-group col-xs-12">
+                                            <label for="street_address">Street Address</label>
+                                            <input class="form-control" id="street_address">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="form-group col-xs-12">
+                                            <label for="address_line2">Address Line 2</label>
+                                            <input class="form-control" id="address_line2">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="form-group col-xs-6">
+                                            <label for="city">City</label>
+                                            <input class="form-control" id="city">
+                                        </div>
+                                        <div class="form-group col-xs-6">
+                                            <label for="state">State</label>
+                                            <input class="form-control" id="state">
+                                        </div>
+                                    
+                                    </div>
+                                    
+                                </form>
+                                
+                                
+                            </div>
+                            
+                            
+                            <!--
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                            -->
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <!-- Select iMac Modal -->
+        <div id="imac_device_select" class="modal fade" role="dialog">
+            <div class="vertical-alignment-helper">
+                <div class="modal-dialog vertical-align-center">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content" style="padding: 20px;">
+                            <!--
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Modal Header</h4>
+                            </div>
+                            -->
+                            
+                            <div class="modal-body">
+                                <div class="row" style="text-align: center; z-index: 1">
+                                    <h2>iMac</h2>
+                                </div>
+                                
+                                <div class="row" style="position: relative; top: -20px;"> 
+                                    <div class="col-xs-1"></div>
+                                    
+                                    <div class="col-xs-5" style="text-align: center;">
+                                        <img src="images/imac_black_sharp.png" style="width: 100%; height: 100%;">
+                                        <p class="device_model">27'' Model</p>
+                                    </div>
+                                    
+                                    <div class="col-xs-5" style="text-align: center;">
+                                        <img src="images/imac_black21-5_sharp.png" style="width: 100%; height: 100%;">
+                                        <p class="device_model">21.5'' Model</p>
+                                    </div>
+                                    
+                                    <div class="col-xs-1"></div>
+                                </div>
+                                
+                                <div clas="row" style="text-align: center;">
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            <a class="problem_item btn btn-block">Graphics Card</a>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <a class="problem_item btn btn-block">SSD Upgrade</a>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <a class="problem_item btn btn-block">LCD</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            <a class="problem_item btn btn-block">Motherboard</a>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <a class="problem_item btn btn-block">Optical Drive</a>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <a class="problem_item btn btn-block">RAM</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            <a class="problem_item btn btn-block">Power Supply</a>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <a class="problem_item btn btn-block">Data Recovery</a>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <a class="problem_item btn btn-block">Virus Removal</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            
+                            <!--
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                            -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        <!-- Select Macbook Model -->
+        <div id="macbook_device_select" class="modal fade" role="dialog">
+            <div class="vertical-alignment-helper">
+                <div class="modal-dialog vertical-align-center">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            
+                            <!--
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Modal Header</h4>
+                            </div>
+                            -->
+                            
+                            <div class="modal-body">
+                                <div class="row" style="text-align: center; z-index: 1">
+                                    <h2>Macbook</h2>
+                                </div>
+                                
+                                <div class="row" style="position: relative; top: -20px;"> 
+                                    
+                                    <div class="col-xs-4" style="text-align: center;">
+                                        <img src="images/macbook_air_black.png" style="width: 100%; height: 100%;">
+                                        <p class="device_model">Macbook Air</p>
+                                    </div>
+                                    
+                                    <div class="col-xs-4" style="text-align: center;">
+                                        <img src="images/macbook_pro_black.png" style="width: 100%; height: 100%;">
+                                        <p class="device_model">Macbook Pro (non-Retina)</p>
+                                    </div>
+                                    
+                                    <div class="col-xs-4" style="text-align: center;">
+                                        <img src="images/macbook_pro_black.png" style="width: 100%; height: 100%;">
+                                        <p class="device_model">21.5'' Model (Retina)</p>
+                                    </div>
+                                    
+                                </div>
+                                
+                                <div clas="row" style="text-align: center;">
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            <a class="problem_item btn btn-block">Graphics Card</a>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <a class="problem_item btn btn-block">SSD Upgrade</a>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <a class="problem_item btn btn-block">LCD</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            <a class="problem_item btn btn-block">Motherboard</a>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <a class="problem_item btn btn-block">Keyboard</a>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <a class="problem_item btn btn-block">RAM</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            <a class="problem_item btn btn-block">Battery</a>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <a class="problem_item btn btn-block">Data Recovery</a>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <a class="problem_item btn btn-block">Virus Removal</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            
+                            <!--
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                            -->                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        <!-- Select iPhone Model -->
+        <div id="iphone_device_select" class="modal fade" role="dialog">
+            <div class="vertical-alignment-helper">
+                <div class="modal-dialog vertical-align-center">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            
+                            <!--
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Modal Header</h4>
+                            </div>
+                            -->
+                            
+                            <div class="modal-body">
+                                <div class="row" style="text-align: center; z-index: 1">
+                                    <h2>iPhone</h2>
+                                </div>
+                                
+                                <div class="row" style="position: relative; top: -20px;"> 
+                                    <div class="col-xs-3" style="text-align: center;">
+                                        <img src="images/iphone_duo.png" style="width: 100%; height: 100%;">
+                                        <p class="device_model">7 Plus &amp; 7</p>
+                                    </div>                                    
+                                    <div class="col-xs-3" style="text-align: center;">
+                                        <img src="images/iphone_duo.png" style="width: 100%; height: 100%;">
+                                        <p class="device_model">6s Plus &amp; 6s</p>
+                                    </div>
+                                    
+                                    <div class="col-xs-3" style="text-align: center;">
+                                        <img src="images/iphone_duo.png" style="width: 100%; height: 100%;">
+                                        <p class="device_model">6 Plus &amp; 6</p>
+                                    </div>
+                                    
+                                    <div class="col-xs-3" style="text-align: center;">
+                                        <img src="images/iphone_alone.png" style="width: 100%; height: 100%;">
+                                        <p class="device_model">5 SE/5s/5c/5</p>
+                                    </div>                                
+                                </div>
+                                
+                                <div clas="row" style="text-align: center;">
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            <a class="problem_item btn btn-block">Screen</a>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <a class="problem_item btn btn-block">Wifi</a>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <a class="problem_item btn btn-block">Speakers</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            <a class="problem_item btn btn-block">Battery</a>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <a class="problem_item btn btn-block">Headphone Jack</a>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <a class="problem_item btn btn-block">Home Button</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            <a class="problem_item btn btn-block">Water Damage</a>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <a class="problem_item btn btn-block">Charging Port</a>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <a class="problem_item btn btn-block">Camera</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            
+                            <!--
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                            -->                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        <!-- Select iPad Model -->
+        <div id="ipad_device_select" class="modal fade" role="dialog">
+            <div class="vertical-alignment-helper">
+                <div class="modal-dialog vertical-align-center">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            
+                            <!--
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Modal Header</h4>
+                            </div>
+                            -->
+                            
+                            <div class="modal-body">
+                                <div class="row" style="text-align: center; z-index: 1">
+                                    <h2>iPad</h2>
+                                </div>
+                                
+                                <div class="row" style="position: relative; top: -20px;"> 
+                                    <div class="col-xs-3" style="text-align: center;">
+                                        <img src="images/ipad_air.png" style="width: 100%; height: 100%;">
+                                        <p class="device_model">iPad 2/3/4 &amp; Air</p>
+                                    </div>                                    
+                                    <div class="col-xs-3" style="text-align: center;">
+                                        <img src="images/ipad_air.png" style="width: 100%; height: 100%;">
+                                        <p class="device_model">iPad Air 2</p>
+                                    </div>
+                                    
+                                    <div class="col-xs-3" style="text-align: center;">
+                                        <img src="images/ipad_mini.png" style="width: 100%; height: 100%;">
+                                        <p class="device_model">iPad Mini 1/2/3</p>
+                                    </div>
+                                    
+                                    <div class="col-xs-3" style="text-align: center;">
+                                        <img src="images/ipad_mini.png" style="width: 100%; height: 100%;">
+                                        <p class="device_model">iPad Mini 4</p>
+                                    </div>                                
+                                </div>
+                                
+                                <div clas="row" style="text-align: center;">
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            <a class="problem_item btn btn-block">Glass Digitizer</a>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <a class="problem_item btn btn-block">Wifi</a>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <a class="problem_item btn btn-block">Speakers</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            <a class="problem_item btn btn-block">Battery</a>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <a class="problem_item btn btn-block">Headphone Jack</a>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <a class="problem_item btn btn-block">Home Button</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            <a class="problem_item btn btn-block">LCD</a>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <a class="problem_item btn btn-block">Charging Port</a>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <a class="problem_item btn btn-block">Camera</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            
+                            <!--
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                            -->
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- MODALS END -->
         
         
         
@@ -117,20 +608,28 @@
                 
                 <div class="row">                   
                     <div class="col-xs-3" style="background-color: rgba(0,0,0,0.4);">
-                        <img src="images/imac_white2.png" style="width: 100%; height: 100%;">
-                        <p>iMac</p>
+                        <a class="device_selection" href="" data-toggle="modal" data-target="#imac_device_select">
+                            <img src="images/imac_white2.png" style="width: 100%; height: 100%;">
+                            <p>iMac</p>
+                        </a>
                     </div>                       
                     <div class="col-xs-3" style="background-color: rgba(0,0,0,0.4);">
-                        <img src="images/macbook_white2.png" style="width: 100%; height: 100%;">
-                        <p>Macbook</p>
+                        <a class="device_selection" href="" data-toggle="modal" data-target="#macbook_device_select">
+                            <img src="images/macbook_white2.png" style="width: 100%; height: 100%;">
+                            <p>Macbook</p>
+                        </a>
                     </div>
                    <div class="col-xs-3" style="background-color: rgba(0,0,0,0.4);">
-                        <img src="images/iphone_white2.png" style="width: 100%; height: 100%;">
-                        <p>iPhone</p>
+                        <a class="device_selection" href="" data-toggle="modal" data-target="#iphone_device_select">
+                            <img src="images/iphone_white2.png" style="width: 100%; height: 100%;">
+                            <p>iPhone</p>
+                       </a>
                     </div>   
                    <div class="col-xs-3" style="background-color: rgba(0,0,0,0.4);">
-                        <img src="images/ipad_white2.png" style="width: 100%; height: 100%;">
-                        <p>iPad</p>
+                        <a class="device_selection" href="" data-toggle="modal" data-target="#ipad_device_select">
+                            <img src="images/ipad_white2.png" style="width: 100%; height: 100%;">
+                            <p>iPad</p>
+                       </a>
                     </div>   
                 </div>
                 
@@ -164,8 +663,60 @@
                 </div>
                 
                 
+                
                 <!-- LAYOUT 1 -->
                 <!-- LAYOUT 1 BEGIN -->
+                <div class="row">
+                    <label>For the crazy ones:</label>
+                    <div>
+                        <ul class="soc">
+                            <li><a class="soc-facebook" href="#"></a></li>
+                            <li><a class="soc-instagram" href="#"></a></li>
+                            <li><a class="soc-tumblr" href="#"></a></li>
+                            <li><a class="soc-twitter" href="#"></a></li>
+                            <li><a class="soc-youtube" href="#"></a></li>
+                            <li><a class="soc-yelp" href="#"></a></li>
+                        </ul>
+                    </div>
+                </div>    
+                
+                <div class="row"> <br/> </div>
+                
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="row" style="float:right;"> 
+                            <dl>
+                                <dt>Address:</dt> 
+                                <dd>1150 Murphy Ave, Ste 205</dd> 
+                                <dd>San Jose, CA 9513</dd>
+                            </dl>
+                            <dl>
+                                <dt>Phone Number:</dt> 
+                                <dd>408.316.7600</dd><br/> 
+                            </dl>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xs-6">
+                        <div class="row" style="float: left; padding-left: 40px; padding-top: 10px;">
+                            <dl>
+                                <dt>Hours:</dt> 
+                                <dd>Monday - Friday: <br/>9am - 7pm</dd>    
+                                <dd>Saturday - Sunday: <br/>10am - 6pm</dd>  <br/> 
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                        © CleverTech Corporation
+                </div>
+                <!-- LAYOUT 1 END -->
+                
+                
+                
+                <!-- LAYOUT 2 -->
+                <!-- LAYOUT 2 BEGIN -->
                 <!--
                 <div class="row" style="margin-top:50px;">
                     <div class="col-md-4">
@@ -214,59 +765,7 @@
                     </div>
                 </div>
                 -->
-                <!-- LAYOUT 1 END -->
-                
-                
-                <!-- LAYOUT 2 -->
-                <!-- LAYOUT 2 BEGIN -->
-                <div class="row">
-                    <label>For the crazy ones:</label>
-                    <div>
-                        <ul class="soc">
-                            <li><a class="soc-facebook" href="#"></a></li>
-                            <li><a class="soc-instagram" href="#"></a></li>
-                            <li><a class="soc-tumblr" href="#"></a></li>
-                            <li><a class="soc-twitter" href="#"></a></li>
-                            <li><a class="soc-youtube" href="#"></a></li>
-                            <li><a class="soc-yelp" href="#"></a></li>
-                        </ul>
-                    </div>
-                </div>    
-                
-                <div class="row"> <br/> </div>
-                
-                <div class="row">
-                    <div class="col-xs-6">
-                        <div class="row" style="float:right;"> 
-                            <dl>
-                                <dt>Address:</dt> 
-                                <dd>1150 Murphy Ave, Ste 205</dd> 
-                                <dd>San Jose, CA 9513</dd>
-                            </dl>
-                            <dl>
-                                <dt>Phone Number:</dt> 
-                                <dd>408.316.7600</dd><br/> 
-                            </dl>
-                        </div>
-                    </div>
-                    
-                    <div class="col-xs-6">
-                        <div class="row" style="float: left; padding-left: 40px; padding-top: 10px;">
-                            <dl>
-                                <dt>Hours:</dt> 
-                                <dd>Monday - Friday: <br/>9am - 7pm</dd>    
-                                <dd>Saturday - Sunday: <br/>10am - 6pm</dd>  <br/> 
-                            </dl>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="row">
-                        © CleverTech Corporation
-                </div>
                 <!-- LAYOUT 2 END -->
-                
-                
                 
             </div>
         </div>

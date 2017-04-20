@@ -12,6 +12,17 @@
 }
 
 
+.device_selection:hover {
+    text-decoration: none;
+    
+}
+
+
+.device_selection p {
+    color: white;
+}
+
+
 body {
     font-family: "San Francisco", "PT Sans", sans-serif;
     /*padding-top: 120px;*/ /*To offset space taken by the navbar...Perhaps don't need anymore for design we're shooting for.*/
@@ -392,3 +403,48 @@ li.nav-item.active {
     background-color: #dc462c;
 }
 /*Code from Perfect Icons END*/
+
+
+
+
+.vertical-alignment-helper {
+    display:table;
+    height: 100%;
+    width: 100%;
+    pointer-events:none; /* This makes sure that we can still click outside of the modal to close it */
+}
+.vertical-align-center {
+    /* To center vertically */
+    display: table-cell;
+    vertical-align: middle;
+    pointer-events:none;
+}
+.modal-content {
+    /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it for our case since we added these two classes^ */
+    width:inherit;
+    height:inherit;
+    /* To center horizontally */
+    margin: 0 auto;
+    pointer-events: all;
+}
+
+
+.problem_item {
+    margin-bottom: 10px;
+    border-color: black;
+    border-width: medium;
+    background-color: white;
+    color: black;
+}
+.problem_item:hover,
+.problem_item:active {
+    color: #FFF;
+    background: green;
+    border-color: green:
+}
+
+
+.device_model {
+    font-size: 15px;
+    font-weight: bold;
+}
