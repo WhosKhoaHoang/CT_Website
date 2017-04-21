@@ -19,15 +19,7 @@
         
         <style type="text/css">
 
-            /* Apparently it matters where you put media queries if you want them to work properly? */
-            
-            @media (max-width: 768px) { 
-
-                #khoahoang {
-                }
-
-            }
-            
+            /* Apparently it matters where you put media queries if you want them to work properly */
             
         </style>
         
@@ -79,8 +71,6 @@
         
         <!-- MODALS BEGIN -->
         <!--Thanks to Ren De Nobel from SO: http://stackoverflow.com/questions/18053408/vertically-centering-bootstrap-modal-window-->
-        
-        
         <!-- Start Repair Modal -->
         <div id="start_repair_modal" class="modal fade" role="dialog">
             <div class="vertical-alignment-helper">
@@ -395,7 +385,7 @@
                             -->
                             
                             <div class="modal-body">
-                                <div class="row" style="text-align: center; z-index: 1">
+                                <div class="row" style="text-align: center; margin-bottom: 20px; z-index: 1">
                                     <h2>iPhone</h2>
                                 </div>
                                 
@@ -489,7 +479,7 @@
                             -->
                             
                             <div class="modal-body">
-                                <div class="row" style="text-align: center; z-index: 1">
+                                <div class="row" style="text-align: center; margin-bottom: 20px; z-index: 1">
                                     <h2>iPad</h2>
                                 </div>
                                 
@@ -663,9 +653,60 @@
                 </div>
                 
                 
+                <!-- FLANKED LAYOUT WITH BUTTONS ON THE RIGHT BEGIN -->
+                <!--
+                <div class="row" style="margin-top:50px;">
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-xs-6 col-md-3">
+                                <dl class="pull-right">
+                                    <dt>Phone Number:</dt> 
+                                    <dd>408.316.7600</dd><br/> 
+                                    <dt>Address:</dt> 
+                                    <dd>1150 Murphy Ave, Ste 205</dd> 
+                                    <dd>San Jose, CA 9513</dd> <br/>
+                                </dl>
+                            </div>
+
+                            <div class="col-xs-6 col-md-9">
+
+                                <dl class="pull-left">
+                                    <dd>Monday - Friday: <br/>9am - 7pm</dd>    
+                                    <dd>Saturday - Sunday: <br/>10am - 6pm</dd>  <br/> 
+                                    <dd>© CleverTech Corporation</dd>
+                                </dl>
+                            </div>   
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="col-md-4"> 
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <label>For the crazy ones:</label>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <ul class="soc">
+                                    <li><a class="soc-facebook" href="#"></a></li> 
+                                    <li><a class="soc-instagram" href="#"></a></li> 
+                                    <li><a class="soc-tumblr" href="#"></a></li>
+                                    <li><a class="soc-twitter" href="#"></a></li> 
+                                    <li><a class="soc-youtube" href="#"></a></li> 
+                                    <li><a class="soc-yelp" href="#"></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+                -->
+                <!-- FLANKED LAYOUT WITH BUTTONS ON THE RIGHT END -->
                 
-                <!-- LAYOUT 1 -->
-                <!-- LAYOUT 1 BEGIN -->
+                
+                <!-- CENTERED INFO AND BUTTONS BEGIN-->
+                <!--
                 <div class="row">
                     <label>For the crazy ones:</label>
                     <div>
@@ -711,18 +752,17 @@
                 <div class="row">
                         © CleverTech Corporation
                 </div>
-                <!-- LAYOUT 1 END -->
+                -->
+                <!-- CENTERED INFO AND BUTTONS END-->
                 
                 
                 
-                <!-- LAYOUT 2 -->
-                <!-- LAYOUT 2 BEGIN -->
-                <!--
+                <!-- FLANKED LAYOUT BEGIN -->
                 <div class="row" style="margin-top:50px;">
                     <div class="col-md-4">
                         <div class="row">
                             <div class="col-lg-12">
-                                <label>For the crazy ones:</label>
+                                <label style="padding-top: 20px;">For the crazy ones:</label>
                             </div>
                         </div>
                         
@@ -764,8 +804,7 @@
                         </div>
                     </div>
                 </div>
-                -->
-                <!-- LAYOUT 2 END -->
+                <!-- FLANKED LAYOUT END -->
                 
             </div>
         </div>
@@ -774,11 +813,17 @@
 
         <!-- THE CONTENT END -->
         
-        <!-- Code for arrows
+        <!-- Code for back to top button (from https://getflywheel.com/layout/add-sticky-back-top-button-website/) -->
+        <!--
         <a href="#" class="back-to-top" style="display: inline; margin: 0 auto;">
             <img src="images/up.png">
         </a>
         -->
+        
+        <!--<a class="back-to-top" style="display: inline;" href="#">Back to Top</a>--> <!-- Code for Reference -->
+        <a id="move_up" href="#"></a>
+        <a id="move_down" style="display: inline;" href="#"></a>
+
         
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -790,94 +835,105 @@
             
             //Fit Text Code!!
             $(".gonz_quote").fitText(2, { minFontSize: '20px', maxFontSize: '25px' });
-
-            
-            
-            
-            
             $("body").scrollspy({ target: "#my_navbar" });
 
-            
-            $("#mac_repr_btn").click(function() {
-                
-                if ($("#mac_repairs").css("display") === "none") {
-                    $("#tab_mob_repairs").css("display", "none");
-                    $("#mac_repairs").css("display", "block");
-                }
-            });
-            
-            
-            $("#tab_mob_repr_btn").click(function() {
-                //console.log($("#tab_mob_repairs").css("display"));
-                
-                if ($("#tab_mob_repairs").css("display") === "none") {
-                    
-                    $("#mac_repairs").css("display", "none");
-                    $("#tab_mob_repairs").css("display", "block");
-                }
-            })
-            
-            
-            $(document).ready(function(){
-                $('.carousel').carousel({
-                interval: 6000
-                //interval: false  //Just say false for testing!
-                })
-            });
-            
-
-            $("#mac_repr_btn").click(function() {
-
-                if ($("#mac_repairs").css("display") === "none") {
-                    $("#tab_mob_repairs").css("display", "none");
-                    $("#mac_repairs").css("display", "block");
-                }
-            });
-
-
-            $("#tab_mob_repr_btn").click(function() {
-                //console.log("HELLO!");
-
-                if ($("#tab_mob_repairs").css("display") === "none") {
-
-                    $("#mac_repairs").css("display", "none");
-                    $("#tab_mob_repairs").css("display", "block");
-                }
-            })
-            
-            $(document).ready(function() {
-
-            var offset = 250;
-
+            //Code for back to top button (https://getflywheel.com/layout/add-sticky-back-top-button-website/)
+            // ==================== CODE FOR REFERENCE BEGIN ====================
+            /*
+            var offset = 250; 
+            //^Determines when the back to top button will appear.
             var duration = 300;
-
+            //^Determines how quickly the back to top button will appear when it does appear.
+            
             $(window).scroll(function() {
-
-                if ($(this).scrollTop() > offset) {
-
-                $(".back-to-top").fadeIn(duration);
+                //Note that scrollTop keeps track of the current scroll position within the page.
+                if ($(this).scrollTop() > offset) { //If this window's scrollTop value is greater than offset...
+                    $(".back-to-top").fadeIn(duration);  //then make the button appear
 
                 } else {
-
-                $(".back-to-top").fadeOut(duration);
-
+                    $(".back-to-top").fadeOut(duration); //If the scrollTop value is l.t.e., then disappear
                 }
-
-                });
-
-
-
-                $(".back-to-top").click(function(event) {
-
-                event.preventDefault();
-
-                $("html, body").animate({scrollTop: 0}, duration);
-
-                return false;
-
-                })
-
             });
+
+            //Code for button behavior when you click on it...
+            $(".back-to-top").click(function(event) {
+                console.log($(window).scrollTop());
+                event.preventDefault();
+                $("html, body").animate({scrollTop: 0}, duration);
+                return false;
+            })
+            */
+            // ==================== CODE FOR REFERENCE BEGIN ====================
+
+            
+            var duration = 300;  
+            var welcome_top = $("#welcome").position().top;
+            var how_it_works_top = $("#how_it_works").position().top; //485 on full viewport
+            var services_top = $("#services").position().top;
+            var stay_clever_top = $("#stay_clever").position().top; //1400 on full viewport
+            
+            //scroll() constantly keeps tabs on the position of the scrollbar?
+            $(window).scroll(function() {                
+                //For the move up button
+                if ($(this).scrollTop() >= how_it_works_top) {
+                    $("#move_up").fadeIn(duration);
+                }
+                else {
+                    $("#move_up").fadeOut(duration);
+                }
+                
+                //For the move down button
+                if ($(this).scrollTop() >= stay_clever_top) {
+                    $("#move_down").fadeOut(duration);
+                }
+                else {
+                    $("#move_down").fadeIn(duration);
+                }
+            });
+            
+
+            $("#move_up").click(function(event) {
+                event.preventDefault();
+                var cur_scrolltop = $(window).scrollTop();
+                var welcome_bottom = welcome_top + $("#welcome").outerHeight(false);
+                var how_it_works_bottom = how_it_works_top + $("#how_it_works").outerHeight(false);    
+                var services_bottom = services_top + $("#services").outerHeight(false);
+                
+                //When we're on the How It Works section:
+                if (cur_scrolltop >= welcome_bottom && cur_scrolltop < services_top) {
+                    $("html, body").animate({scrollTop: welcome_top}, duration);
+                }
+                //When we're on the Services section:
+                else if (cur_scrolltop >= how_it_works_bottom && cur_scrolltop < stay_clever_top) {
+                    $("html, body").animate({scrollTop: how_it_works_top}, duration);
+                }
+                //When we're on the Stay Clever section:
+                else if (cur_scrolltop >= services_bottom) {
+                    $("html, body").animate({scrollTop: services_top}, duration);
+                }
+                
+                return false; //Does this need to be here?
+            });
+            
+            
+            $("#move_down").click(function(event) {
+                event.preventDefault();                
+                var cur_scrolltop = $(window).scrollTop();
+
+                if (cur_scrolltop < how_it_works_top) {
+                    $("html, body").animate({scrollTop: how_it_works_top}, duration);
+                }
+                else if (cur_scrolltop < services_top) {
+                    $("html, body").animate({scrollTop: services_top}, duration);
+                }
+                else if (cur_scrolltop < stay_clever_top) {
+                    // ##### BUG: move down button still exists when you move into stay_clever #####
+                    $("html, body").animate({scrollTop: stay_clever_top}, duration);
+                }
+                
+                return false; //Does this need to be here?
+            });
+            
         </script>
     </body>
 </html>

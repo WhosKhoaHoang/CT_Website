@@ -3,7 +3,6 @@
 /*@import url('https://fonts.googleapis.com/css?family=PT+Sans');*/
 
 
-
 /** Regular San Francisco (Must include this at the beginning of your styles sheet!) */
 @font-face {
   font-family: "San Francisco";
@@ -226,12 +225,13 @@ li.nav-item.active {
 }
 
 
-
+/* Code for back to top button (https://getflywheel.com/layout/add-sticky-back-top-button-website/)*/
+/* Note how we can move the postion of the button with these stylings!! */
+/* The following is code for reference */
 .back-to-top {
- 
     background: none;
     margin: 0;
-    position: fixed;
+    position: fixed; /* Makes it so the arrow stays where it is. */
     bottom: 0;
     right: 0;
     width: 70px;
@@ -241,6 +241,41 @@ li.nav-item.active {
     text-decoration: none;
     color: #ffffff;
     background-color: #ff9000;
+}
+
+
+/* Situated at top of viewport */
+#move_up {
+    background: none;
+    margin: 0px;
+    position: fixed;
+   
+    top: 10%;
+    left: 48%;
+    
+    width: 70px;
+    height: 70px;
+    z-index: 100;
+    display: none;
+    background: url("images/up_small.png");
+}
+
+
+/* Situated at bottom of viewport */
+#move_down {
+    background: none;
+    margin: 0px;
+    position: fixed; /* Makes it so the arrow stays where it is. */
+
+    bottom: 5%;
+    right: 45%;
+    
+    width: 70px;
+    height: 70px;
+    z-index: 100;
+    /*display: none;*/
+    text-decoration: none;
+    background: url("images/down.png");
 }
 
 
@@ -406,7 +441,8 @@ li.nav-item.active {
 
 
 
-
+/* CSS FOR CENTERING MODALS BEGIN */
+/* Thanks to Ren De Nobel from SO: http://stackoverflow.com/questions/18053408/vertically-centering-bootstrap-modal-window */
 .vertical-alignment-helper {
     display:table;
     height: 100%;
@@ -427,12 +463,12 @@ li.nav-item.active {
     margin: 0 auto;
     pointer-events: all;
 }
-
+/* CSS FOR CENTERING MODALS END */
 
 .problem_item {
     margin-bottom: 10px;
     border-color: black;
-    border-width: medium;
+    /*border-width: medium;*/
     background-color: white;
     color: black;
 }
@@ -448,3 +484,6 @@ li.nav-item.active {
     font-size: 15px;
     font-weight: bold;
 }
+
+
+
