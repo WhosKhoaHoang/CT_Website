@@ -486,4 +486,12 @@ li.nav-item.active {
 }
 
 
+.modal-dialog {
+    overflow-y: initial !important;
+}
 
+
+.modal-body {
+    height: 700px;
+    overflow-y: auto;
+}

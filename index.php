@@ -1,3 +1,34 @@
+<?php
+    $error = ""; $successMessage = "";
+    /*
+    //If there's anything in the $_POST array...(wouldn't it be better to use isset?)
+    if ($_POST) {
+        if (!$_POST["email"]) {
+            $error .= "An email address is required.<br>";
+        }
+        
+        if ($_POST['email'] && filter_var($_POST["email"], FILTER_VALIDATE_EMAIL) === false) {
+            $error .= "The email address is invalid.<br>";
+        }
+        
+        
+        if ($error != "") {
+            $error = '<div class="alert alert-danger" role="alert"><p>There were error(s) in your form:</p>' . $error . '</div>';
+        } else {
+            $emailTo = "whoskhoahoang@gmail.com"; //FOR TESTING
+            $headers = "From: ".$_POST['email'];
+            
+            if (mail($emailTo, "", "", $headers)) {
+                $successMessage = '<div class="alert alert-success" role="alert">Your message was sent, we\'ll get back to you ASAP!</div>';
+            } else {
+                $error = '<div class="alert alert-danger" role="alert"><p><strong>Your message couldn\'t be sent - please try again later</div>';
+            }
+        }   
+        
+    }
+    */
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -79,109 +110,154 @@
                         
                         <!-- Modal content-->
                         <div class="modal-content">
-                            <!--
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">Modal Header</h4>
-                            </div>
-                            -->
-                            
                             <div class="modal-body">
 
-                                <label style="color: green;">Request A Pick-Up</label>
+                                <h3 style="color: green;">Request A Pick-Up</h3>
                                 <p>Looking to request a pick-up for multiple devices? Click Here!</p>
                                 
-                                <p>Your Information</p>
+                                <h3 style="color: green;">Your Information</h3>
                                 <hr/>
-                                
-                                <form>
+                                 
+                                <form method="post"> <!-- Should I have action="/validate.php" ? -->
                                     <p>Name <span style="color:red;">*</span></p>
 
                                     <div class="row">
-                                            
-                                        
                                         <div class="form-group col-xs-6">
                                             <label for="first_name">First Name</label>
-                                            <input class="form-control" id="first_name"> 
+                                            <input class="form-control" id="first_name" name="first_name"> 
                                         </div>
 
                                         <div class="form-group col-xs-6">
                                             <label for="last_name">Last Name</label>
-                                            <input class="form-control" id="last_name">
+                                            <input class="form-control" id="last_name" name="last_name">
                                         </div>
                                     </div>
                                     
                                     <div class="row">
                                         <div class="form-group col-xs-6">
                                             <label for="email">Email</label>
-                                            <input class="form-control" id="email">
+                                            <input class="form-control" type="email" id="email" name="email">
                                         </div>
                                     </div>
                                 
                                     <div class="row">
                                         <!-- Should I use padding at this particular spot? -->
-                                        <p style="padding: 20px;">A confirmation email will be sent to the email address provided. The email
-                                           will also be used as the contact for the order</p>
+                                        <p style="padding: 20px;">A confirmation email will be sent to the email address provided. The email will also be used as the contact for the order</p>
                                     </div>
 
                                     <div class="row">
                                         <div class="form-group col-xs-6">
                                             <label for="phone">Phone</label>
-                                            <input class="form-control" id="phone"> 
+                                            <input class="form-control" type="tel" id="phone" name="phone"> 
                                         </div>
                                     </div>
                                     
                                     <div class="row">
                                         <div class="form-group col-xs-6">
                                             <label for="company_name">Company Name</label>
-                                            <input class="form-control" id="company_name">
+                                            <input class="form-control" id="company_name" name="company_name">
                                         </div>
-                                    </div>
-                                    
+                                    </div>    
                                     
                                     <p>Pick-Up Address <span style="color:red;">*</span></p>
-
-                                    
-                                    
+ 
                                     <div class="row">
                                         <div class="form-group col-xs-12">
                                             <label for="street_address">Street Address</label>
-                                            <input class="form-control" id="street_address">
+                                            <input class="form-control" id="street_address" name="street_address">
                                         </div>
                                     </div>
                                     
                                     <div class="row">
                                         <div class="form-group col-xs-12">
                                             <label for="address_line2">Address Line 2</label>
-                                            <input class="form-control" id="address_line2">
+                                            <input class="form-control" id="address_line2" name="address_line2">
                                         </div>
                                     </div>
                                     
                                     <div class="row">
                                         <div class="form-group col-xs-6">
                                             <label for="city">City</label>
-                                            <input class="form-control" id="city">
+                                            <input class="form-control" id="city" name="city">
                                         </div>
                                         <div class="form-group col-xs-6">
                                             <label for="state">State</label>
-                                            <input class="form-control" id="state">
+                                            <input class="form-control" id="state" name="state">
                                         </div>
-                                    
                                     </div>
                                     
+                                    <div class="row">
+                                        <div class="form-group col-xs-6">
+                                            <label for="city">ZIP / Postal Code</label>
+                                            <input class="form-control" id="zip_postal" name="zip_postal">
+                                        </div>
+                                        <div class="form-group col-xs-6">
+                                            <label for="state">Country</label>
+                                            <input class="form-control" id="country" name="country">
+                                        </div>
+                                    </div>
+                                    
+                                    <h3 style="color: green;">Computer/Device Information</h3>
+                                    <hr/>
+
+                                    <div class="row">
+                                        <div class="form-group col-xs-6">
+                                            <label for="city">Device Type</label>
+                                            <input class="form-control" id="device_type" name="device_type">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="form-group col-xs-6">
+                                            <label for="city">Serial Number</label>
+                                            <input class="form-control" id="serial_number" name="serial_number">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="form-group col-xs-6">
+                                            <label for="city">Part / Type / Product Number</label>
+                                            <input class="form-control" id="part_type_product_number" name="part_type_product_number">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="form-group col-xs-6">
+                                            <label for="city">Other Information</label>
+                                            <input class="form-control" id="other_info" name="other_info">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="form-group col-xs-6">
+                                            <label for="city">Asset Tag</label>
+                                            <input class="form-control" id="asset_tag" name="asset_tag">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="form-group col-xs-6">
+                                            <label for="city">Customer Reference #</label>
+                                            <input class="form-control" id="cust_ref_num" name="cust_ref_num">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="form-group col-xs-12">
+                                            <label for="city">Symptoms / Needs</label>
+                                            <textarea class="form-control" rows=4 id="symptoms_needs" name="symptoms_needs" style="resize: none;"></textarea>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="form-group col-xs-12">
+                                            <button type="submit" id="submit" class="btn btn-success">Submit</button>
+                                        </div>
+                                    </div>
                                 </form>
-                                
-                                
                             </div>
-                            
-                            
-                            <!--
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            </div>
-                            -->
+ 
                         </div>
-                        
                         
                     </div>
                 </div>
@@ -762,7 +838,7 @@
                     <div class="col-md-4">
                         <div class="row">
                             <div class="col-lg-12">
-                                <label style="padding-top: 20px;">For the crazy ones:</label>
+                                <label>For the crazy ones:</label>
                             </div>
                         </div>
                         
@@ -813,14 +889,7 @@
 
         <!-- THE CONTENT END -->
         
-        <!-- Code for back to top button (from https://getflywheel.com/layout/add-sticky-back-top-button-website/) -->
-        <!--
-        <a href="#" class="back-to-top" style="display: inline; margin: 0 auto;">
-            <img src="images/up.png">
-        </a>
-        -->
-        
-        <!--<a class="back-to-top" style="display: inline;" href="#">Back to Top</a>--> <!-- Code for Reference -->
+        <!-- Arrow Button Code -->
         <a id="move_up" href="#"></a>
         <a id="move_down" style="display: inline;" href="#"></a>
 
@@ -833,38 +902,10 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/FitText.js/1.2.0/jquery.fittext.min.js"></script>
         <script language="JavaScript" type="text/javascript">
             
-            //Fit Text Code!!
-            $(".gonz_quote").fitText(2, { minFontSize: '20px', maxFontSize: '25px' });
             $("body").scrollspy({ target: "#my_navbar" });
 
-            //Code for back to top button (https://getflywheel.com/layout/add-sticky-back-top-button-website/)
-            // ==================== CODE FOR REFERENCE BEGIN ====================
-            /*
-            var offset = 250; 
-            //^Determines when the back to top button will appear.
-            var duration = 300;
-            //^Determines how quickly the back to top button will appear when it does appear.
-            
-            $(window).scroll(function() {
-                //Note that scrollTop keeps track of the current scroll position within the page.
-                if ($(this).scrollTop() > offset) { //If this window's scrollTop value is greater than offset...
-                    $(".back-to-top").fadeIn(duration);  //then make the button appear
-
-                } else {
-                    $(".back-to-top").fadeOut(duration); //If the scrollTop value is l.t.e., then disappear
-                }
-            });
-
-            //Code for button behavior when you click on it...
-            $(".back-to-top").click(function(event) {
-                console.log($(window).scrollTop());
-                event.preventDefault();
-                $("html, body").animate({scrollTop: 0}, duration);
-                return false;
-            })
-            */
-            // ==================== CODE FOR REFERENCE BEGIN ====================
-
+            //Fit Text Code!!
+            $(".gonz_quote").fitText(2, { minFontSize: '20px', maxFontSize: '25px' });
             
             var duration = 300;  
             var welcome_top = $("#welcome").position().top;
@@ -932,6 +973,40 @@
                 }
                 
                 return false; //Does this need to be here?
+            });
+            
+            
+            // ============== Client-side form validation ==============
+            $("form").submit(function(e) {
+
+                /*
+                var error = "";
+
+                if ($("first_name").val() === "" && $("last_name").val() === "") {
+                    error += "Please enter your full name.<br/>";
+                }
+                if ($("#email").val() === "") {
+                    error += "The email field is required.<br/>";
+                }
+                if ($("#phone").val() === "") {
+                    error += "The phone field is required.<br/>";
+                }
+                if ($("street_address").val() === "" && $("city").val() === "" && $("state").val() === "") {
+                    error += "Please enter your full address.<br/>";
+                }
+                
+
+                //If an error message exists (i.e., isn't the empty string)
+                if (error !== "") {
+
+                    //DON'T FORGET TO ACTUALLY WRITE THE div WITH THE error ID!!!
+                    $("#error").html('<div class="alert alert-danger" role="alert"><p><strong>There were error(s) in your form:</strong></p>' + error + '</div>');
+
+                    return false;
+                } else {
+                    return true;
+                }
+                */
             });
             
         </script>
