@@ -90,7 +90,7 @@
                     <!--Setting this div with class navbar-form aligns everything properly.-->
                     <!--navbar-right will push this button to the far right.-->
                     <div class="navbar-right" style="padding-top: 10px; padding: 10px; display:block;">
-                        <a href="#" id="start_repair_btn" class="btn" data-toggle="modal" data-target="#start_repair_modal">Start Repair</a>
+                        <a href="#" id="start_repair_btn" class="btn" data-toggle="modal" data-target="#start_repair_modal">Request Pick-Up</a>
                     </div>
                     <!-- START REPAIR BUTTON END -->
                 </div>
@@ -106,153 +106,173 @@
         <div id="start_repair_modal" class="modal fade" role="dialog">
             <div class="vertical-alignment-helper">
                 <div class="modal-dialog vertical-align-center">
-                    <div class="modal-dialog">
+                    <div id="start_a_repair_dialog" class="modal-dialog">
                         
                         <!-- Modal content-->
                         <div class="modal-content">
-                            <div class="modal-body">
+                            <div id="start_a_repair_body" class="modal-body">
 
-                                <h3 style="color: green;">Request A Pick-Up</h3>
+                                <h3 style="color: #0f6a37;">Request Pick-Up</h3>
                                 <p>Looking to request a pick-up for multiple devices? Click Here!</p>
                                 
-                                <h3 style="color: green;">Your Information</h3>
+                                <h3 style="color: #0f6a37;">Your Information</h3>
                                 <hr/>
                                  
                                 <form method="post"> <!-- Should I have action="/validate.php" ? -->
-                                    <p>Name <span style="color:red;">*</span></p>
+                                    <!--<p class="required">Name</p>-->
 
-                                    <div class="row">
-                                        <div class="form-group col-xs-6">
-                                            <label for="first_name">First Name</label>
-                                            <input class="form-control" id="first_name" name="first_name"> 
-                                        </div>
-
-                                        <div class="form-group col-xs-6">
-                                            <label for="last_name">Last Name</label>
-                                            <input class="form-control" id="last_name" name="last_name">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <label class="required" for="first_name">First Name</label>
+                                                <input class="form-control" id="first_name" name="first_name">
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <label class="required" for="last_name">Last Name</label>
+                                                <input class="form-control" id="last_name" name="last_name">
+                                            </div>
                                         </div>
                                     </div>
                                     
-                                    <div class="row">
-                                        <div class="form-group col-xs-6">
-                                            <label for="email">Email</label>
-                                            <input class="form-control" type="email" id="email" name="email">
-                                        </div>
-                                    </div>
-                                
-                                    <div class="row">
-                                        <!-- Should I use padding at this particular spot? -->
-                                        <p style="padding: 20px;">A confirmation email will be sent to the email address provided. The email will also be used as the contact for the order</p>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="form-group col-xs-6">
-                                            <label for="phone">Phone</label>
-                                            <input class="form-control" type="tel" id="phone" name="phone"> 
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <label class="required" for="email">Email</label>
+                                                <input class="form-control" type="email" id="email" name="email">
+                                            </div>
                                         </div>
                                     </div>
                                     
-                                    <div class="row">
-                                        <div class="form-group col-xs-6">
-                                            <label for="company_name">Company Name</label>
-                                            <input class="form-control" id="company_name" name="company_name">
-                                        </div>
-                                    </div>    
                                     
-                                    <p>Pick-Up Address <span style="color:red;">*</span></p>
+                                    <p style="padding-bottom: 10px;">A confirmation email will be sent to your email address. The email will also be used as the contact for the order.</p>
+                                    
+                                    
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <label class="required" for="phone">Phone Number</label>
+                                                <input class="form-control" type="tel" id="phone" name="phone"> 
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    
+                                    
+                                    <!--<p class="required">Pick-Up Address</p>-->
  
-                                    <div class="row">
-                                        <div class="form-group col-xs-12">
-                                            <label for="street_address">Street Address</label>
-                                            <input class="form-control" id="street_address" name="street_address">
+                                    
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <label for="street_address">Street Address</label>
+                                                <input class="form-control" id="street_address" name="street_address">
+                                            </div>
                                         </div>
                                     </div>
                                     
-                                    <div class="row">
-                                        <div class="form-group col-xs-12">
-                                            <label for="address_line2">Address Line 2</label>
-                                            <input class="form-control" id="address_line2" name="address_line2">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <label for="address_line2">Address Line 2</label>
+                                                <input class="form-control" id="address_line2" name="address_line2">
+                                            </div>
                                         </div>
                                     </div>
                                     
-                                    <div class="row">
-                                        <div class="form-group col-xs-6">
-                                            <label for="city">City</label>
-                                            <input class="form-control" id="city" name="city">
-                                        </div>
-                                        <div class="form-group col-xs-6">
-                                            <label for="state">State</label>
-                                            <input class="form-control" id="state" name="state">
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="row">
-                                        <div class="form-group col-xs-6">
-                                            <label for="city">ZIP / Postal Code</label>
-                                            <input class="form-control" id="zip_postal" name="zip_postal">
-                                        </div>
-                                        <div class="form-group col-xs-6">
-                                            <label for="state">Country</label>
-                                            <input class="form-control" id="country" name="country">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <label for="city">City</label>
+                                                <select class="form-control" id="city" name="city" >
+                                                    <option selected disabled>Select City</option>
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <label for="state">State</label>
+                                                <input class="form-control" id="state" name="state">
+                                            </div>
                                         </div>
                                     </div>
                                     
-                                    <h3 style="color: green;">Computer/Device Information</h3>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <label for="city">ZIP / Postal Code</label>
+                                                <input class="form-control" id="zip_postal" name="zip_postal">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <h3 style="color: #0f6a37;">Device Information</h3>
                                     <hr/>
 
-                                    <div class="row">
-                                        <div class="form-group col-xs-6">
-                                            <label for="city">Device Type</label>
-                                            <input class="form-control" id="device_type" name="device_type">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <label for="city">Device Type</label>
+                                                <input class="form-control" id="device_type" name="device_type">
+                                            </div>
                                         </div>
                                     </div>
                                     
-                                    <div class="row">
-                                        <div class="form-group col-xs-6">
-                                            <label for="city">Serial Number</label>
-                                            <input class="form-control" id="serial_number" name="serial_number">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <label for="city">Serial Number</label>
+                                                <input class="form-control" id="serial_number" name="serial_number">
+                                            </div>
                                         </div>
                                     </div>
                                     
-                                    <div class="row">
-                                        <div class="form-group col-xs-6">
-                                            <label for="city">Part / Type / Product Number</label>
-                                            <input class="form-control" id="part_type_product_number" name="part_type_product_number">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <label for="city">Part / Type / Product Number</label>
+                                                <input class="form-control" id="part_type_product_number" name="part_type_product_number">
+                                            </div>
                                         </div>
                                     </div>
                                     
-                                    <div class="row">
-                                        <div class="form-group col-xs-6">
-                                            <label for="city">Other Information</label>
-                                            <input class="form-control" id="other_info" name="other_info">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <label for="city">Other Information</label>
+                                                <input class="form-control" id="other_info" name="other_info">
+                                            </div>
                                         </div>
                                     </div>
                                     
-                                    <div class="row">
-                                        <div class="form-group col-xs-6">
-                                            <label for="city">Asset Tag</label>
-                                            <input class="form-control" id="asset_tag" name="asset_tag">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <label for="city">Asset Tag</label>
+                                                <input class="form-control" id="asset_tag" name="asset_tag">
+                                            </div>
                                         </div>
                                     </div>
                                     
-                                    <div class="row">
-                                        <div class="form-group col-xs-6">
-                                            <label for="city">Customer Reference #</label>
-                                            <input class="form-control" id="cust_ref_num" name="cust_ref_num">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <label for="city">Customer Reference #</label>
+                                                <input class="form-control" id="cust_ref_num" name="cust_ref_num">
+                                            </div>
                                         </div>
                                     </div>
                                     
-                                    <div class="row">
-                                        <div class="form-group col-xs-12">
-                                            <label for="city">Symptoms / Needs</label>
-                                            <textarea class="form-control" rows=4 id="symptoms_needs" name="symptoms_needs" style="resize: none;"></textarea>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <label for="city">Symptoms / Needs</label>
+                                                <textarea class="form-control" rows=4 id="symptoms_needs" name="symptoms_needs" style="resize: none;"></textarea>
+                                            </div>
                                         </div>
                                     </div>
                                     
-                                    <div class="row">
-                                        <div class="form-group col-xs-12">
-                                            <button type="submit" id="submit" class="btn btn-success">Submit</button>
-                                        </div>
+                                    <div class="form-group">
+                                        <button type="submit" id="submit" class="btn" style="background-color: #0f6a37; color: white;">Submit</button>
                                     </div>
                                 </form>
                             </div>
@@ -338,8 +358,13 @@
                                     </div>
                                 </div>
                                 
+                                <div class="row"> 
+                                    <button class="btn col-xs-4 col-xs-offset-4" style="background-color: #0f6a37; color: white; margin-top: 10px;">Request Pick-Up</button>
+                                </div>
+                                
                             </div>
                             
+
                             <!--
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -430,8 +455,13 @@
                                     </div>
                                 </div>
                                 
+                                <div class="row"> 
+                                    <button class="btn col-xs-4 col-xs-offset-4" style="background-color: #0f6a37; color: white; margin-top: 10px;">Request Pick-Up</button>
+                                </div>
+                                
                             </div>
                             
+
                             <!--
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -524,8 +554,13 @@
                                     </div>
                                 </div>
                                 
+                                <div class="row"> 
+                                    <button class="btn col-xs-4 col-xs-offset-4" style="background-color: #0f6a37; color: white; margin-top: 10px;">Request Pick-Up</button>
+                                </div>
+                                
                             </div>
                             
+
                             <!--
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -618,6 +653,10 @@
                                     </div>
                                 </div>
                                 
+                                <div class="row"> 
+                                    <button class="btn col-xs-4 col-xs-offset-4" style="background-color: #0f6a37; color: white; margin-top: 10px;">Request Pick-Up</button>
+                                </div>
+                                
                             </div>
                             
                             <!--
@@ -655,7 +694,7 @@
                 <h1 style="position: relative; top: -50px;">How It Works</h1>
                 
                 <div class="btn how_it_works_btn">1. Device &amp; Problem</div>
-                <div class="btn how_it_works_btn">2. Schedule Pick-Up</div>
+                <div class="btn how_it_works_btn">2. Request Pick-Up</div>
                 <div class="btn how_it_works_btn">3. Get It Fixed</div>
 
             </div>
@@ -975,6 +1014,29 @@
                 return false; //Does this need to be here?
             });
             
+            
+            // For smooth scrollspy scrolling (thanks to nice ass from SO)
+            $("nav ul li a[href^='#']").on("click", function(e) {
+
+                //nav .navbar-header a[href^='#']  //This is for the brand logo
+                
+                // prevent default anchor click behavior
+                e.preventDefault();
+
+                // store hash
+                var hash = this.hash;
+
+                console.log(hash);
+                
+                // animate
+                $("html, body").animate({
+                    scrollTop: $(hash).offset().top
+                }, 300, function(){
+                    // when done, add hash to url
+                    // (default click behaviour)
+                    window.location.hash = hash;
+                });
+            });
             
             // ============== Client-side form validation ==============
             $("form").submit(function(e) {

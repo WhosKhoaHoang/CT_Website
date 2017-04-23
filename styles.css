@@ -225,25 +225,6 @@ li.nav-item.active {
 }
 
 
-/* Code for back to top button (https://getflywheel.com/layout/add-sticky-back-top-button-website/)*/
-/* Note how we can move the postion of the button with these stylings!! */
-/* The following is code for reference */
-.back-to-top {
-    background: none;
-    margin: 0;
-    position: fixed; /* Makes it so the arrow stays where it is. */
-    bottom: 0;
-    right: 0;
-    width: 70px;
-    height: 70px;
-    z-index: 100;
-    display: none;
-    text-decoration: none;
-    color: #ffffff;
-    background-color: #ff9000;
-}
-
-
 /* Situated at top of viewport */
 #move_up {
     background: none;
@@ -291,6 +272,14 @@ li.nav-item.active {
         position: relative;
         top: 35px;
         left: 10%; 
+    }
+    
+    #move_up {
+        left: 45%;
+    }
+    
+    #move_down {
+        right: 42%;
     }
 
 }
@@ -462,6 +451,8 @@ li.nav-item.active {
     /* To center horizontally */
     margin: 0 auto;
     pointer-events: all;
+    
+    /*background-color: gray;*/
 }
 /* CSS FOR CENTERING MODALS END */
 
@@ -475,8 +466,8 @@ li.nav-item.active {
 .problem_item:hover,
 .problem_item:active {
     color: #FFF;
-    background: green;
-    border-color: green:
+    background: #0f6a37; /* CleverTech Green */
+    border-color: #0f6a37:
 }
 
 
@@ -485,13 +476,50 @@ li.nav-item.active {
     font-weight: bold;
 }
 
-
+/*
 .modal-dialog {
     overflow-y: initial !important;
 }
+*/
 
+#start_a_repair_dialog {
+    overflow-y: initial !important;
+}
 
+/*
 .modal-body {
     height: 700px;
     overflow-y: auto;
 }
+*/
+
+#start_a_repair_body {
+    height: 700px; /* Fix height so scrollbar will appear */
+    overflow-y: auto;
+}
+
+
+.required:after {
+    content: " *";
+    color: red;
+    font-size: 15px;
+}
+
+
+/* Code for rounding corners on scrollbar */
+/*
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+*/
+
