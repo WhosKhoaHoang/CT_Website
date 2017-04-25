@@ -72,7 +72,8 @@
                     </button>
                     
                     <!-- LOGO BEGIN -->
-                    <a href="#" class="navbar-brand">
+                    <a class="navbar-brand" data-toggle="modal" data-target="#clevertech_vid">
+                        <!--If you decide to make clicking on the logo shoot to the top, add href="#welcome"-->
                         <img src="http://localhost/clevertech/images/navbar_logo.png" width="50" height="50" alt="" style="display:inline">
                     </a>
                     <!-- LOGO END -->  
@@ -111,9 +112,6 @@
                         <!-- Modal content-->
                         <div class="modal-content">
                             <div id="start_a_repair_body" class="modal-body">
-
-                                <h3 style="color: #0f6a37;">Request Pick-Up</h3>
-                                <p>Looking to request a pick-up for multiple devices? Click Here!</p>
                                 
                                 <h3 style="color: #0f6a37;">Your Information</h3>
                                 <hr/>
@@ -163,7 +161,7 @@
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-xs-12">
-                                                <label for="street_address">Street Address</label>
+                                                <label class="required" for="street_address">Street Address</label>
                                                 <input class="form-control" id="street_address" name="street_address">
                                             </div>
                                         </div>
@@ -181,7 +179,7 @@
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-xs-6">
-                                                <label for="city">City</label>
+                                                <label class="required" for="city">City</label>
                                                 <select class="form-control" id="city" name="city" >
                                                     <option selected disabled>Select City</option>
                                                     <option>1</option>
@@ -190,7 +188,7 @@
                                                 </select>
                                             </div>
                                             <div class="col-xs-6">
-                                                <label for="state">State</label>
+                                                <label class="required" for="state">State</label>
                                                 <input class="form-control" id="state" name="state">
                                             </div>
                                         </div>
@@ -199,7 +197,7 @@
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-xs-6">
-                                                <label for="city">ZIP / Postal Code</label>
+                                                <label class="required" for="city">ZIP / Postal Code</label>
                                                 <input class="form-control" id="zip_postal" name="zip_postal">
                                             </div>
                                         </div>
@@ -211,26 +209,23 @@
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-xs-6">
-                                                <label for="city">Device Type</label>
-                                                <input class="form-control" id="device_type" name="device_type">
+                                                <label for="device_type">Device Type</label>
+                                                <select class="form-control" id="device_type" name="device_type" >
+                                                    <option selected disabled>Select Device Type</option>
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
                                     
+                                    <!-- CHECK THAT THE LENGTH OF THIS VALUE IS 12!!!-->
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-xs-6">
-                                                <label for="city">Serial Number</label>
+                                                <label class="required" for="city">Serial Number</label>
                                                 <input class="form-control" id="serial_number" name="serial_number">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-xs-6">
-                                                <label for="city">Part / Type / Product Number</label>
-                                                <input class="form-control" id="part_type_product_number" name="part_type_product_number">
                                             </div>
                                         </div>
                                     </div>
@@ -270,6 +265,12 @@
                                             </div>
                                         </div>
                                     </div>
+                                    
+                                    <div id="error" style="display: hidden"></div>
+                                    <!-- PUT THIS HERE FOR NOW -->
+                                    
+                                    <h3 style="color: #0f6a37;">Pick-Up Information</h3>
+                                    <hr/>
                                     
                                     <div class="form-group">
                                         <button type="submit" id="submit" class="btn" style="background-color: #0f6a37; color: white;">Submit</button>
@@ -671,6 +672,23 @@
             </div>
         </div>
         
+        <div id="clevertech_vid" class="modal fade" role="dialog">
+            <div class="vertical-alignment-helper">
+                <div class="modal-dialog vertical-align-center">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            
+                            <div class="modal-body">
+                                <div class="embed-responsive embed-responsive-16by9">
+                                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/QGKvYpL4DRU"></iframe>
+                                </div>                    
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- MODALS END -->
         
         
@@ -682,7 +700,7 @@
         <div class="jumbotron" id="welcome" style="text-align: center;">
             <div id="welcome_content">
                 <h1>Welcome to CleverTech</h1>
-                <p>We're here to help.</p>
+                <p id="here_to_help">We're here to help.</p>
             </div>
         </div>
         <!-- SECTION 1 END -->
@@ -708,32 +726,32 @@
             <div class="container" id="services_content">  
                 
                 <div class="row">
-                    <h1 style="position: relative; top: -50px;">Select Your Device &amp; Tell Us Your Problem</h1>
+                    <h1 style="position: relative; top: -50px;">Choose Your Device</h1>
                 </div>
                 
                 <div class="row">                   
                     <div class="col-xs-3" style="background-color: rgba(0,0,0,0.4);">
                         <a class="device_selection" href="" data-toggle="modal" data-target="#imac_device_select">
                             <img src="images/imac_white2.png" style="width: 100%; height: 100%;">
-                            <p>iMac</p>
+                            <p class="services_device_type">iMac</p>
                         </a>
                     </div>                       
                     <div class="col-xs-3" style="background-color: rgba(0,0,0,0.4);">
                         <a class="device_selection" href="" data-toggle="modal" data-target="#macbook_device_select">
                             <img src="images/macbook_white2.png" style="width: 100%; height: 100%;">
-                            <p>Macbook</p>
+                            <p class="services_device_type">Macbook</p>
                         </a>
                     </div>
                    <div class="col-xs-3" style="background-color: rgba(0,0,0,0.4);">
                         <a class="device_selection" href="" data-toggle="modal" data-target="#iphone_device_select">
                             <img src="images/iphone_white2.png" style="width: 100%; height: 100%;">
-                            <p>iPhone</p>
+                            <p class="services_device_type">iPhone</p>
                        </a>
                     </div>   
                    <div class="col-xs-3" style="background-color: rgba(0,0,0,0.4);">
                         <a class="device_selection" href="" data-toggle="modal" data-target="#ipad_device_select">
                             <img src="images/ipad_white2.png" style="width: 100%; height: 100%;">
-                            <p>iPad</p>
+                            <p class="services_device_type">iPad</p>
                        </a>
                     </div>   
                 </div>
@@ -944,7 +962,10 @@
             $("body").scrollspy({ target: "#my_navbar" });
 
             //Fit Text Code!!
-            $(".gonz_quote").fitText(2, { minFontSize: '20px', maxFontSize: '25px' });
+            $(".gonz_quote").fitText(2, { minFontSize: "20px", maxFontSize: "25px" });
+            //$(".problem_item").fitText(2, { minFontSize: '20px', maxFontSize: '25px' });
+            //$(".services_device_type").fitText(2, { minFontSize: "15px", maxFontSize: "20px" });
+
             
             var duration = 300;  
             var welcome_top = $("#welcome").position().top;
@@ -1016,9 +1037,8 @@
             
             
             // For smooth scrollspy scrolling (thanks to nice ass from SO)
-            $("nav ul li a[href^='#']").on("click", function(e) {
-
-                //nav .navbar-header a[href^='#']  //This is for the brand logo
+            $("nav ul li a[href^='#'], nav .navbar-header a[href^='#']").on("click", function(e) {
+                //First arg is for the navbar items, second arg is for the brand logo
                 
                 // prevent default anchor click behavior
                 e.preventDefault();
@@ -1026,7 +1046,7 @@
                 // store hash
                 var hash = this.hash;
 
-                console.log(hash);
+                //console.log(hash);
                 
                 // animate
                 $("html, body").animate({
@@ -1038,14 +1058,15 @@
                 });
             });
             
+            
             // ============== Client-side form validation ==============
             $("form").submit(function(e) {
 
-                /*
+                
                 var error = "";
 
-                if ($("first_name").val() === "" && $("last_name").val() === "") {
-                    error += "Please enter your full name.<br/>";
+                if ($("#first_name").val() === "" || $("#last_name").val() === "") {
+                    error += "Your full name is required.<br/>";
                 }
                 if ($("#email").val() === "") {
                     error += "The email field is required.<br/>";
@@ -1053,8 +1074,8 @@
                 if ($("#phone").val() === "") {
                     error += "The phone field is required.<br/>";
                 }
-                if ($("street_address").val() === "" && $("city").val() === "" && $("state").val() === "") {
-                    error += "Please enter your full address.<br/>";
+                if ($("#street_address").val() === "" || $("#city").val() === "" || $("#state").val() === "") {
+                    error += "Your full street address is required.<br/>";
                 }
                 
 
@@ -1068,7 +1089,7 @@
                 } else {
                     return true;
                 }
-                */
+                
             });
             
         </script>
