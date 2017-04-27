@@ -214,10 +214,19 @@
                                                 <label class="required" for="device_type">Device Type</label>
                                                 <select class="form-control" id="device_type" name="device_type" >
                                                     <option selected disabled>Select Device Type</option>
-                                                    <option>iMac</option>
-                                                    <option>Macbook</option>
-                                                    <option>iPhone</option>
-                                                    <option>iPad</option>
+                                                    <option>iMac 27'' Model</option>
+                                                    <option>iMac 21.5'' Model</option>
+                                                    <option>Macbook Air</option>
+                                                    <option>Macbook Pro (non-Retina)</option>
+                                                    <option>Macbook 21.5'' Model (Retina)</option>
+                                                    <option>iPhone 7 Plus &amp; 7</option>
+                                                    <option>iPhone 6s Plus &amp; 6s</option>
+                                                    <option>iPhone 6 Plus &amp; 6</option>
+                                                    <option>iPhone 5 SE/5s/5c/5</option>
+                                                    <option>iPad 2/3/4 &amp; Air</option>
+                                                    <option>iPad Air 2</option>
+                                                    <option>iPad Mini 1/2/3</option>
+                                                    <option>iPad Mini 4</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -1132,7 +1141,6 @@
             
             // ============== Client-side form validation ==============
             $("form").submit(function(e) {
-
                 
                 var error = "";
 
@@ -1148,7 +1156,6 @@
                 if ($("#street_address").val() === "" || $("#city").val() === "" || $("#state").val() === "") {
                     error += "Your full street address is required.<br/>";
                 }
-                
 
                 //If an error message exists (i.e., isn't the empty string)
                 if (error !== "") {
@@ -1171,7 +1178,7 @@
                 
                 var device_type = $(this).data("value");
                 $("#" + device_type + "_model_chosen").val($(this).find("p").html()); 
-                //Set the device that has been chosen   
+                //Set the model that has been chosen   
                                                 
                 if ($("#" + device_type + "_problem_chosen").val() !== "0") {
                     console.log("I'MA SET THE PRICE FROM MODEL!")
@@ -1209,472 +1216,206 @@
             
             
             function check_and_set_repair_prices(model, problem) {
-                    if (model === "iMac 27'' Model" || model === "iMac 21.5'' Model") {
-                        set_imac_repair_prices(model, problem);
-                    }
-                    else if (model === "Macbook Air" || model === "Macbook Pro (non-Retina)" ||
-                            model === "Macbook 21.5'' Model (Retina)") {
-                        set_macbook_repair_prices(model, problem);
-                    }
-                    else if (model === "iPhone 7 Plus &amp; 7" || model === "iPhone 6s Plus &amp; 6s" || 
-                            model === "iPhone 6 Plus &amp; 6" || model === "iPhone 5 SE/5s/5c/5") {
-                        set_iphone_repair_prices(model, problem);
-                    }
-                    else if (model === "iPad 2/3/4 &amp; Air" || model === "iPad Air 2" || 
-                            model === "iPad Mini 1/2/3" || model === "iPad Mini 4") {
-                        console.log("WATAAHHHH");
-                        set_ipad_repair_prices(model, problem);
-                        console.log("WUT DA HEO?!");
-                    }
+                if (model === "iMac 27'' Model" || model === "iMac 21.5'' Model") {
+                    check_imac_repair_prices(model, problem);
+                }
+                else if (model === "Macbook Air" || model === "Macbook Pro (non-Retina)" ||
+                        model === "Macbook 21.5'' Model (Retina)") {
+                    check_macbook_repair_prices(model, problem);
+                }
+                else if (model === "iPhone 7 Plus &amp; 7" || model === "iPhone 6s Plus &amp; 6s" || 
+                        model === "iPhone 6 Plus &amp; 6" || model === "iPhone 5 SE/5s/5c/5") {
+                    check_iphone_repair_prices(model, problem);
+                }
+                else if (model === "iPad 2/3/4 &amp; Air" || model === "iPad Air 2" || 
+                        model === "iPad Mini 1/2/3" || model === "iPad Mini 4") {
+                    check_ipad_repair_prices(model, problem);
+                }
             }
             
             
-            function set_imac_repair_prices(model, problem) {
+            function check_imac_repair_prices(model, problem) {
                 if (problem === "Graphics Card") {
-                    if (model === "iMac 27'' Model") {
-                        $("#imac_repair_price").html("$100");
-                    }
-                    else if (model === "iMac 21.5'' Model") {
-                        $("#imac_repair_price").html("$200");
-                    }
+                    set_imac_repair_prices(model, "$100", "$200");
                 }
                 else if (problem === "SSD Upgrade") {
-                    if (model === "iMac 27'' Model") {
-                        $("#imac_repair_price").html("$300");
-                    }
-                    else if (model === "iMac 21.5'' Model") {
-                        $("#imac_repair_price").html("$400");
-                    }
+                    set_imac_repair_prices(model, "$300", "$400");
                 }
                 else if (problem === "LCD") {
-                    if (model === "iMac 27'' Model") {
-                        $("#imac_repair_price").html("$500");
-                    }
-                    else if (model === "iMac 21.5'' Model") {
-                        $("#imac_repair_price").html("$600");
-                    }
+                    set_imac_repair_prices(model, "$500", "$600");
                 }
                 else if (problem === "Motherboard") {
-                    if (model === "iMac 27'' Model") {
-                        $("#imac_repair_price").html("$700");
-                    }
-                    else if (model === "iMac 21.5'' Model") {
-                        $("#imac_repair_price").html("$800");
-                    }
+                    set_imac_repair_prices(model, "$700", "$800");
                 }
                 else if (problem === "Optical Drive") {
-                    if (model === "iMac 27'' Model") {
-                        $("#imac_repair_price").html("$900");
-                    }
-                    else if (model === "iMac 21.5'' Model") {
-                        $("#imac_repair_price").html("$1000");
-                    }
+                    set_imac_repair_prices(model, "$900", "$1000");
                 }
                 else if (problem === "RAM") {
-                    if (model === "iMac 27'' Model") {
-                        $("#imac_repair_price").html("$1100");
-                    }
-                    else if (model === "iMac 21.5'' Model") {
-                        $("#imac_repair_price").html("$1200");
-                    } 
+                    set_imac_repair_prices(model, "$1100", "$1200");
                 } 
                 else if (problem === "Power Supply") {
-                    if (model === "iMac 27'' Model") {
-                        $("#imac_repair_price").html("$1300");
-                    }
-                    else if (model === "iMac 21.5'' Model") {
-                        $("#imac_repair_price").html("$1400");
-                    }
+                    set_imac_repair_prices(model, "$1300", "$1400");
                 }
                 else if (problem === "Data Recovery") {
-                    if (model === "iMac 27'' Model") {
-                        $("#imac_repair_price").html("$1500");
-                    }
-                    else if (model === "iMac 21.5'' Model") {
-                        $("#imac_repair_price").html("$1600");
-                    }
+                    set_imac_repair_prices(model, "$1500", "$1600");
                 }
                 else if (problem === "Virus Removal") {
-                    if (model === "iMac 27'' Model") {
-                        $("#imac_repair_price").html("$1700");
-                    }
-                    else if (model === "iMac 21.5'' Model") {
-                        $("#imac_repair_price").html("$1800");
-                    }
+                    set_imac_repair_prices(model, "$1700", "$1800");
                 }
             }
             
             
-            function set_macbook_repair_prices(model, problem) {
+            function check_macbook_repair_prices(model, problem) {
                 if (problem === "Graphics Card") {
-                    if (model === "Macbook Air") {
-                        $("#macbook_repair_price").html("$100");
-                    }
-                    else if (model === "Macbook Pro (non-Retina)") {
-                        $("#macbook_repair_price").html("$200");
-                    }
-                    else if (model === "Macbook 21.5'' Model (Retina)") {
-                        $("#macbook_repair_price").html("$300");
-                    }
+                    set_macbook_repair_prices(model, "$100", "$200", "$300");
                 }
                 else if (problem === "SSD Upgrade") {
-                    if (model === "Macbook Air") {
-                        $("#macbook_repair_price").html("$400");
-                    }
-                    else if (model === "Macbook Pro (non-Retina)") {
-                        $("#macbook_repair_price").html("$500");
-                    }
-                    else if (model === "Macbook 21.5'' Model (Retina)") {
-                        $("#macbook_repair_price").html("$600");
-                    }
+                    set_macbook_repair_prices(model, "$400", "$500", "$600");
                 }
                 else if (problem === "LCD") {
-                    if (model === "Macbook Air") {
-                        $("#macbook_repair_price").html("$700");
-                    }
-                    else if (model === "Macbook Pro (non-Retina)") {
-                        $("#macbook_repair_price").html("$800");
-                    }
-                    else if (model === "Macbook 21.5'' Model (Retina)") {
-                        $("#macbook_repair_price").html("$900");
-                    }
+                    set_macbook_repair_prices(model, "$700", "$800", "$900");
                 }
                 else if (problem === "Motherboard") {
-                    if (model === "Macbook Air") {
-                        $("#macbook_repair_price").html("$1000");
-                    }
-                    else if (model === "Macbook Pro (non-Retina)") {
-                        $("#macbook_repair_price").html("$1100");
-                    }
-                    else if (model === "Macbook 21.5'' Model (Retina)") {
-                        $("#macbook_repair_price").html("$1200");
-                    }
+                    set_macbook_repair_prices(model, "$1000", "$1100", "$1200");
                 }
                 else if (problem === "Keyboard") {
-                    if (model === "Macbook Air") {
-                        $("#macbook_repair_price").html("$1300");
-                    }
-                    else if (model === "Macbook Pro (non-Retina)") {
-                        $("#macbook_repair_price").html("$1400");
-                    }
-                    else if (model === "Macbook 21.5'' Model (Retina)") {
-                        $("#macbook_repair_price").html("$1500");
-                    }
+                    set_macbook_repair_prices(model, "$1300", "$1400", "$1500");
                 }
                 else if (problem === "RAM") {
-                    if (model === "Macbook Air") {
-                        $("#macbook_repair_price").html("$1600");
-                    }
-                    else if (model === "Macbook Pro (non-Retina)") {
-                        $("#macbook_repair_price").html("$1700");
-                    }
-                    else if (model === "Macbook 21.5'' Model (Retina)") {
-                        $("#macbook_repair_price").html("$1800");
-                    }
+                    set_macbook_repair_prices(model, "$1600", "$1700", "$1800");
                 }
                 else if (problem === "Battery") {
-                    if (model === "Macbook Air") {
-                        $("#macbook_repair_price").html("$1900");
-                    }
-                    else if (model === "Macbook Pro (non-Retina)") {
-                        $("#macbook_repair_price").html("$2000");
-                    }
-                    else if (model === "Macbook 21.5'' Model (Retina)") {
-                        $("#macbook_repair_price").html("$2100");
-                    }
+                    set_macbook_repair_prices(model, "$1900", "$2000", "$2100");
                 }
                 else if (problem === "Data Recovery") {
-                    if (model === "Macbook Air") {
-                        $("#macbook_repair_price").html("$2200");
-                    }
-                    else if (model === "Macbook Pro (non-Retina)") {
-                        $("#macbook_repair_price").html("$2300");
-                    }
-                    else if (model === "Macbook 21.5'' Model (Retina)") {
-                        $("#macbook_repair_price").html("$2400");
-                    }
+                    set_macbook_repair_prices(model, "$2200", "$2300", "$2400");
                 }
                 else if (problem === "Virus Removal") {
-                    if (model === "Macbook Air") {
-                        $("#macbook_repair_price").html("$2500");
-                    }
-                    else if (model === "Macbook Pro (non-Retina)") {
-                        $("#macbook_repair_price").html("$2600");
-                    }
-                    else if (model === "Macbook 21.5'' Model (Retina)") {
-                        $("#macbook_repair_price").html("$2700");
-                    }
+                    set_macbook_repair_prices(model, "$2500", "$2600", "$2700");
                 }
             }
             
             
-            function set_iphone_repair_prices(model, problem) {
-                console.log("IN set_iphone_repair_prices")
+            function check_iphone_repair_prices(model, problem) {
                 if (problem === "Screen") {
-                    if (model === "iPhone 7 Plus &amp; 7") {
-                        $("#iphone_repair_price").html("$100");
-                    }
-                    else if (model === "iPhone 6s Plus &amp; 6s") {
-                        $("#iphone_repair_price").html("$200");
-                    }
-                    else if (model === "iPhone 6 Plus &amp; 6") {
-                        $("#iphone_repair_price").html("$300");
-                    }
-                    else if (model === "iPhone 5 SE/5s/5c/5") {
-                        $("#iphone_repair_price").html("$400");
-                    }
+                    set_iphone_repair_prices(model, "$100", "$200", "$300", "$400");
                 }
                 else if (problem === "Wifi") {
-                    if (model === "iPhone 7 Plus &amp; 7") {
-                        $("#iphone_repair_price").html("$500");
-                    }
-                    else if (model === "iPhone 6s Plus &amp; 6s") {
-                        $("#iphone_repair_price").html("$600");
-                    }
-                    else if (model === "iPhone 6 Plus &amp; 6") {
-                        $("#iphone_repair_price").html("$700");
-                    }
-                    else if (model === "iPhone 5 SE/5s/5c/5") {
-                        $("#iphone_repair_price").html("$800");
-                    }   
+                    set_iphone_repair_prices(model, "$500", "$600", "$700", "$800");  
                 }
                 else if (problem === "Speakers") {
-                    if (model === "iPhone 7 Plus &amp; 7") {
-                        $("#iphone_repair_price").html("$900");
-                    }
-                    else if (model === "iPhone 6s Plus &amp; 6s") {
-                        $("#iphone_repair_price").html("$1000");
-                    }
-                    else if (model === "iPhone 6 Plus &amp; 6") {
-                        $("#iphone_repair_price").html("$1100");
-                    }
-                    else if (model === "iPhone 5 SE/5s/5c/5") {
-                        $("#iphone_repair_price").html("$1200");
-                    }   
+                    set_iphone_repair_prices(model, "$900", "$1000", "$1100", "$1200");  
                 }
                 else if (problem === "Battery") {
-                    if (model === "iPhone 7 Plus &amp; 7") {
-                        $("#iphone_repair_price").html("$1300");
-                    }
-                    else if (model === "iPhone 6s Plus &amp; 6s") {
-                        $("#iphone_repair_price").html("$1400");
-                    }
-                    else if (model === "iPhone 6 Plus &amp; 6") {
-                        $("#iphone_repair_price").html("$1500");
-                    }
-                    else if (model === "iPhone 5 SE/5s/5c/5") {
-                        $("#iphone_repair_price").html("$1600");
-                    } 
+                    set_iphone_repair_prices(model, "$1300", "$1400", "$1500", "$1600");
                 }
                 else if (problem === "Headphone Jack") {
-                    if (model === "iPhone 7 Plus &amp; 7") {
-                        $("#iphone_repair_price").html("$1700");
-                    }
-                    else if (model === "iPhone 6s Plus &amp; 6s") {
-                        $("#iphone_repair_price").html("$1800");
-                    }
-                    else if (model === "iPhone 6 Plus &amp; 6") {
-                        $("#iphone_repair_price").html("$1900");
-                    }
-                    else if (model === "iPhone 5 SE/5s/5c/5") {
-                        $("#iphone_repair_price").html("$2000");
-                    } 
+                    set_iphone_repair_prices(model, "$1700", "$1800", "$1900", "$2000");
                 }
                 else if (problem === "Home Button") {
-                    if (model === "iPhone 7 Plus &amp; 7") {
-                        $("#iphone_repair_price").html("$2100");
-                    }
-                    else if (model === "iPhone 6s Plus &amp; 6s") {
-                        $("#iphone_repair_price").html("$2200");
-                    }
-                    else if (model === "iPhone 6 Plus &amp; 6") {
-                        $("#iphone_repair_price").html("$2300");
-                    }
-                    else if (model === "iPhone 5 SE/5s/5c/5") {
-                        $("#iphone_repair_price").html("$2400");
-                    } 
+                    set_iphone_repair_prices(model, "$2100", "$2200", "$2300", "$2400");
                 }
                 else if (problem === "Water Damage") {
-                    if (model === "iPhone 7 Plus &amp; 7") {
-                        $("#iphone_repair_price").html("$2500");
-                    }
-                    else if (model === "iPhone 6s Plus &amp; 6s") {
-                        $("#iphone_repair_price").html("$2600");
-                    }
-                    else if (model === "iPhone 6 Plus &amp; 6") {
-                        $("#iphone_repair_price").html("$2700");
-                    }
-                    else if (model === "iPhone 5 SE/5s/5c/5") {
-                        $("#iphone_repair_price").html("$2800");
-                    } 
+                    set_iphone_repair_prices(model, "$2500", "$2600", "$2700", "$2800");
                 }
                 else if (problem === "Charging Port") {
-                    if (model === "iPhone 7 Plus &amp; 7") {
-                        $("#iphone_repair_price").html("$2900");
-                    }
-                    else if (model === "iPhone 6s Plus &amp; 6s") {
-                        $("#iphone_repair_price").html("$3000");
-                    }
-                    else if (model === "iPhone 6 Plus &amp; 6") {
-                        $("#iphone_repair_price").html("$3100");
-                    }
-                    else if (model === "iPhone 5 SE/5s/5c/5") {
-                        $("#iphone_repair_price").html("$3200");
-                    } 
+                    set_iphone_repair_prices(model, "$2900", "$3000", "$3100", "$3200");
                 }
                 else if (problem === "Camera") {
-                    if (model === "iPhone 7 Plus &amp; 7") {
-                        $("#iphone_repair_price").html("$3300");
-                    }
-                    else if (model === "iPhone 6s Plus &amp; 6s") {
-                        $("#iphone_repair_price").html("$3400");
-                    }
-                    else if (model === "iPhone 6 Plus &amp; 6") {
-                        $("#iphone_repair_price").html("$3500");
-                    }
-                    else if (model === "iPhone 5 SE/5s/5c/5") {
-                        $("#iphone_repair_price").html("$3600");
-                    } 
+                    set_iphone_repair_prices(model, "$3300", "$3400", "$3500", "$2360");
                 }
             }
             
             
-            function set_ipad_repair_prices(model, problem) {
+            function check_ipad_repair_prices(model, problem) {
                 if (problem === "Glass Digitizer") {
-                    if (model === "iPad 2/3/4 &amp; Air") {
-                        $("#ipad_repair_price").html("$100");
-                    }
-                    else if (model === "iPad Air 2") {
-                        console.log("HERE");
-                        $("#ipad_repair_price").html("$200");
-                    }
-                    else if (model === "iPad Mini 1/2/3") {
-                        $("#ipad_repair_price").html("$300");
-                    }
-                    else if (model === "iPad Mini 4") {
-                        $("#ipad_repair_price").html("$400");
-                    }
+                    set_ipad_repair_prices(model, "$100", "$200", "$300", "$400");
                 }
                 else if (problem === "Wifi") {
-                    if (model === "iPad 2/3/4 &amp; Air") {
-                        $("#ipad_repair_price").html("$500");
-                    }
-                    else if (model === "iPad Air 2") {
-                        console.log("HERE");
-                        $("#ipad_repair_price").html("$600");
-                    }
-                    else if (model === "iPad Mini 1/2/3") {
-                        $("#ipad_repair_price").html("$700");
-                    }
-                    else if (model === "iPad Mini 4") {
-                        $("#ipad_repair_price").html("$800");
-                    }
+                    set_ipad_repair_prices(model, "$500", "$600", "$700", "$800");
                 }
                 else if (problem === "Speakers") {
-                    if (model === "iPad 2/3/4 &amp; Air") {
-                        $("#ipad_repair_price").html("$900");
-                    }
-                    else if (model === "iPad Air 2") {
-                        console.log("HERE");
-                        $("#ipad_repair_price").html("$1000");
-                    }
-                    else if (model === "iPad Mini 1/2/3") {
-                        $("#ipad_repair_price").html("$1100");
-                    }
-                    else if (model === "iPad Mini 4") {
-                        $("#ipad_repair_price").html("$1200");
-                    }
+                    set_ipad_repair_prices(model, "$900", "$1000", "$1100", "$1200");
                 }
                 else if (problem === "Battery") {
-                    if (model === "iPad 2/3/4 &amp; Air") {
-                        $("#ipad_repair_price").html("$1300");
-                    }
-                    else if (model === "iPad Air 2") {
-                        console.log("HERE");
-                        $("#ipad_repair_price").html("$1400");
-                    }
-                    else if (model === "iPad Mini 1/2/3") {
-                        $("#ipad_repair_price").html("$1500");
-                    }
-                    else if (model === "iPad Mini 4") {
-                        $("#ipad_repair_price").html("$1600");
-                    }  
+                    set_ipad_repair_prices(model, "$1300", "$1400", "$1500", "$1600");
                 }
                 else if (problem === "Headphone Jack") {
-                    if (model === "iPad 2/3/4 &amp; Air") {
-                        $("#ipad_repair_price").html("$1700");
-                    }
-                    else if (model === "iPad Air 2") {
-                        console.log("HERE");
-                        $("#ipad_repair_price").html("$1800");
-                    }
-                    else if (model === "iPad Mini 1/2/3") {
-                        $("#ipad_repair_price").html("$1900");
-                    }
-                    else if (model === "iPad Mini 4") {
-                        $("#ipad_repair_price").html("$2000");
-                    }  
+                    set_ipad_repair_prices(model, "$1700", "$1800", "$1900", "$2000");
+
                 }
                 else if (problem === "Home Button") {
-                    if (model === "iPad 2/3/4 &amp; Air") {
-                        $("#ipad_repair_price").html("$2100");
-                    }
-                    else if (model === "iPad Air 2") {
-                        console.log("HERE");
-                        $("#ipad_repair_price").html("$2200");
-                    }
-                    else if (model === "iPad Mini 1/2/3") {
-                        $("#ipad_repair_price").html("$2300");
-                    }
-                    else if (model === "iPad Mini 4") {
-                        $("#ipad_repair_price").html("$2400");
-                    }  
+                    set_ipad_repair_prices(model, "$2100", "$2200", "$2300", "$2400");
                 }
                 else if (problem === "LCD") {
-                    if (model === "iPad 2/3/4 &amp; Air") {
-                        $("#ipad_repair_price").html("$2500");
-                    }
-                    else if (model === "iPad Air 2") {
-                        console.log("HERE");
-                        $("#ipad_repair_price").html("$2600");
-                    }
-                    else if (model === "iPad Mini 1/2/3") {
-                        $("#ipad_repair_price").html("$2700");
-                    }
-                    else if (model === "iPad Mini 4") {
-                        $("#ipad_repair_price").html("$2800");
-                    }  
+                    set_ipad_repair_prices(model, "$2500", "$2600", "$2700", "$2800");  
                 }
                 else if (problem === "Charging Port") {
-                    if (model === "iPad 2/3/4 &amp; Air") {
-                        $("#ipad_repair_price").html("$2900");
-                    }
-                    else if (model === "iPad Air 2") {
-                        console.log("HERE");
-                        $("#ipad_repair_price").html("$3000");
-                    }
-                    else if (model === "iPad Mini 1/2/3") {
-                        $("#ipad_repair_price").html("$3100");
-                    }
-                    else if (model === "iPad Mini 4") {
-                        $("#ipad_repair_price").html("$3200");
-                    }  
+                    set_ipad_repair_prices(model, "$2900", "$3000", "$3100", "$3200");  
                 }
                 else if (problem === "Camera") {
-                    if (model === "iPad 2/3/4 &amp; Air") {
-                        $("#ipad_repair_price").html("$3300");
-                    }
-                    else if (model === "iPad Air 2") {
-                        console.log("HERE");
-                        $("#ipad_repair_price").html("$3400");
-                    }
-                    else if (model === "iPad Mini 1/2/3") {
-                        $("#ipad_repair_price").html("$3500");
-                    }
-                    else if (model === "iPad Mini 4") {
-                        $("#ipad_repair_price").html("$3600");
-                    }  
+                    set_ipad_repair_prices(model, "$3300", "$3400", "$3500", "$3600");  
                 }
+            }
+            
+            
+            function set_imac_repair_prices(model, imac27_price, imac215_price) {
+                if (model === "iMac 27'' Model") {
+                    $("#imac_repair_price").html(imac27_price);
+                }
+                else if (model === "iMac 21.5'' Model") {
+                    $("#imac_repair_price").html(imac215_price);
+                }
+            }
+            
+            
+            function set_macbook_repair_prices(model, mbair_price, 
+                                                mbpro_non_retina_price, 
+                                                mbpro215_retina_price) {
+                if (model === "Macbook Air") {
+                    $("#macbook_repair_price").html(mbair_price);
+                }
+                else if (model === "Macbook Pro (non-Retina)") {
+                    $("#macbook_repair_price").html(mbpro_non_retina_price);
+                }
+                else if (model === "Macbook 21.5'' Model (Retina)") {
+                    $("#macbook_repair_price").html(mbpro215_retina_price);
+                }
+            }
+            
+            
+            function set_iphone_repair_prices(model, iphone7p7_price, iphone6sp6s_price, 
+                                                iphone6p6_price, iphone5se5s5c5_price) {
+                if (model === "iPhone 7 Plus &amp; 7") {
+                    $("#iphone_repair_price").html(iphone7p7_price);
+                }
+                else if (model === "iPhone 6s Plus &amp; 6s") {
+                    $("#iphone_repair_price").html(iphone6sp6s_price);
+                }
+                else if (model === "iPhone 6 Plus &amp; 6") {
+                    $("#iphone_repair_price").html(iphone6p6_price);
+                }
+                else if (model === "iPhone 5 SE/5s/5c/5") {
+                    $("#iphone_repair_price").html(iphone5se5s5c5_price);
+                }
+            }
+            
+            
+            function set_ipad_repair_prices(model, ipad234air_price, ipadair2_price, 
+                                            ipadmini123_price, ipadmini4_price) {
+                if (model === "iPad 2/3/4 &amp; Air") {
+                    $("#ipad_repair_price").html(ipad234air_price);
+                }
+                else if (model === "iPad Air 2") {
+                    console.log("HERE");
+                    $("#ipad_repair_price").html(ipadair2_price);
+                }
+                else if (model === "iPad Mini 1/2/3") {
+                    $("#ipad_repair_price").html(ipadmini123_price);
+                }
+                else if (model === "iPad Mini 4") {
+                    $("#ipad_repair_price").html(ipadmini4_price);
+                } 
             }
             
         </script>
