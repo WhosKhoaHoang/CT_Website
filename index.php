@@ -113,12 +113,14 @@
                         <div class="modal-content">
                             <div id="start_a_repair_body" class="modal-body">
                                 
-                                <h3 style="color: #0f6a37;">Your Information</h3>
-                                <hr/>
+
                                  
                                 <form method="post"> <!-- Should I have action="/validate.php" ? -->
                                     <!--<p class="required">Name</p>-->
 
+                                    <h3 style="color: #0f6a37;">Your Information</h3>
+                                    <hr/>
+                                    
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-xs-6">
@@ -182,9 +184,9 @@
                                                 <label class="required" for="city">City</label>
                                                 <select class="form-control" id="city" name="city" >
                                                     <option selected disabled>Select City</option>
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>3</option>
+                                                    <option>San Jose</option>
+                                                    <option>Santa Clara</option>
+                                                    <option>Milpitas</option>
                                                 </select>
                                             </div>
                                             <div class="col-xs-6">
@@ -209,12 +211,13 @@
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-xs-6">
-                                                <label for="device_type">Device Type</label>
+                                                <label class="required" for="device_type">Device Type</label>
                                                 <select class="form-control" id="device_type" name="device_type" >
                                                     <option selected disabled>Select Device Type</option>
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>3</option>
+                                                    <option>iMac</option>
+                                                    <option>Macbook</option>
+                                                    <option>iPhone</option>
+                                                    <option>iPad</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -233,26 +236,17 @@
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-xs-6">
-                                                <label for="city">Other Information</label>
-                                                <input class="form-control" id="other_info" name="other_info">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-xs-6">
-                                                <label for="city">Asset Tag</label>
-                                                <input class="form-control" id="asset_tag" name="asset_tag">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-xs-6">
                                                 <label for="city">Customer Reference #</label>
                                                 <input class="form-control" id="cust_ref_num" name="cust_ref_num">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <label for="city">Other Information</label>
+                                                <input class="form-control" id="other_info" name="other_info">
                                             </div>
                                         </div>
                                     </div>
@@ -266,11 +260,17 @@
                                         </div>
                                     </div>
                                     
-                                    <div id="error" style="display: hidden"></div>
-                                    <!-- PUT THIS HERE FOR NOW -->
-                                    
                                     <h3 style="color: #0f6a37;">Pick-Up Information</h3>
                                     <hr/>
+                                    
+                                    <div class="form-group">
+                                        <label class="required">Service Type</label><br/>
+                                        <p><input name="service_type" type="radio"> &nbsp; Personal Hardware Service </p> 
+                                        <p><input name="service_type" type="radio"> &nbsp; Business Hardware Service </p> 
+                                    </div>
+                                    
+                                    <div id="error" style="display: hidden"></div>
+                                    <!-- PUT THIS HERE FOR NOW -->
                                     
                                     <div class="form-group">
                                         <button type="submit" id="submit" class="btn" style="background-color: #0f6a37; color: white;">Submit</button>
@@ -287,90 +287,119 @@
         
         
         <!-- Select iMac Modal -->
+        <!-- Note that you mainly used data-value so you can get the device name and make them part of variable names -->
         <div id="imac_device_select" class="modal fade" role="dialog">
             <div class="vertical-alignment-helper">
                 <div class="modal-dialog vertical-align-center">
                     <div class="modal-dialog">
                         <!-- Modal content-->
                         <div class="modal-content" style="padding: 20px;">
-                            <!--
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">Modal Header</h4>
-                            </div>
-                            -->
                             
                             <div class="modal-body">
                                 <div class="row" style="text-align: center; z-index: 1">
                                     <h2>iMac</h2>
                                 </div>
                                 
-                                <div class="row" style="position: relative; top: -20px;"> 
+                                
+                                <div class="row" style="position: relative; top: -20px;">  
+                                    
+                                    <!--The value of this element gets set to 1 when a model is chosen-->
+                                    <input id="imac_device_chosen" type="radio" value=0 style="display: none;">
+                                    
                                     <div class="col-xs-1"></div>
                                     
                                     <div class="col-xs-5" style="text-align: center;">
-                                        <img src="images/imac_black_sharp.png" style="width: 100%; height: 100%;">
-                                        <p class="device_model">27'' Model</p>
+                                        <input class="device_select" type="radio" name="imac_select_group" value="1" id="imac_select1" />
+                                        <label for="imac_select1" data-value="imac">
+                                            <img src="images/imac_black_sharp.png" style="width: 100%; height: 100%;">
+                                            <p class="device_model">iMac 27'' Model</p>
+                                        </label>
                                     </div>
                                     
                                     <div class="col-xs-5" style="text-align: center;">
-                                        <img src="images/imac_black21-5_sharp.png" style="width: 100%; height: 100%;">
-                                        <p class="device_model">21.5'' Model</p>
+                                        <input class="device_select" type="radio" name="imac_select_group" value="2" id="imac_select2" />
+                                        <label for="imac_select2" data-value="imac">
+                                            <img src="images/imac_black21-5_sharp.png" style="width: 100%; height: 100%;">
+                                            <p class="device_model">iMac 21.5'' Model</p>
+                                        </label>
                                     </div>
                                     
                                     <div class="col-xs-1"></div>
                                 </div>
+                                
+                                
                                 
                                 <div clas="row" style="text-align: center;">
+
+                                    <!--The value of this element gets set to 1 when a problem is chosen-->
+                                    <input id="imac_problem_chosen" type="radio" value=0 style="display: none;">
+                                    
                                     <div class="row">
                                         <div class="col-xs-4">
-                                            <a class="problem_item btn btn-block">Graphics Card</a>
+                                            <!--Maybe I can make this a label instead of an anchor so that I can do that radio button trick agian...-->
+                                            <input class="problem_select" type="radio" name="imac_problem_select_group" value="1" id="imac_problem_select1" />
+                                            <label for="imac_problem_select1" class="problem_item btn btn-block" data-value="imac">Graphics Card</label>
                                         </div>
                                         <div class="col-xs-4">
-                                            <a class="problem_item btn btn-block">SSD Upgrade</a>
+                                            <input class="problem_select" type="radio" name="imac_problem_select_group" value="2" id="imac_problem_select2" />
+                                            <label for="imac_problem_select2" class="problem_item btn btn-block" data-value="imac">SSD Upgrade</label>
                                         </div>
                                         <div class="col-xs-4">
-                                            <a class="problem_item btn btn-block">LCD</a>
+                                            <input class="problem_select" type="radio" name="imac_problem_select_group" value="3" id="imac_problem_select3" />
+                                            <label for="imac_problem_select3" class="problem_item btn btn-block" data-value="imac">LCD</label>
+                                        </div>
+                                    </div>
+ 
+
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            <input class="problem_select" type="radio" name="imac_problem_select_group" value="4" id="imac_problem_select4" />
+                                            <label for="imac_problem_select4" class="problem_item btn btn-block" data-value="imac">Motherboard</label>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <input class="problem_select" type="radio" name="imac_problem_select_group" value="5" id="imac_problem_select5" />
+                                            <label for="imac_problem_select5" class="problem_item btn btn-block" data-value="imac">Optical Drive</label>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <input class="problem_select" type="radio" name="imac_problem_select_group" value="6" id="imac_problem_select6" />
+                                            <label for="imac_problem_select6" class="problem_item btn btn-block" data-value="imac">RAM</label>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-xs-4">
-                                            <a class="problem_item btn btn-block">Motherboard</a>
+                                            <input class="problem_select" type="radio" name="imac_problem_select_group" value="7" id="imac_problem_select7" />
+                                            <label for="imac_problem_select7" class="problem_item btn btn-block" data-value="imac">Power Supply</label>
                                         </div>
                                         <div class="col-xs-4">
-                                            <a class="problem_item btn btn-block">Optical Drive</a>
+                                            <input class="problem_select" type="radio" name="imac_problem_select_group" value="8" id="imac_problem_select8" />
+                                            <label for="imac_problem_select8" class="problem_item btn btn-block" data-value="imac">Data Recovery</label>
                                         </div>
                                         <div class="col-xs-4">
-                                            <a class="problem_item btn btn-block">RAM</a>
+                                            <input class="problem_select" type="radio" name="imac_problem_select_group" value="9" id="imac_problem_select9" />
+                                            <label for="imac_problem_select9" class="problem_item btn btn-block" data-value="imac">Virus Removal</label>
                                         </div>
                                     </div>
-
-                                    <div class="row">
-                                        <div class="col-xs-4">
-                                            <a class="problem_item btn btn-block">Power Supply</a>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <a class="problem_item btn btn-block">Data Recovery</a>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <a class="problem_item btn btn-block">Virus Removal</a>
-                                        </div>
-                                    </div>
+                                    
                                 </div>
                                 
+                                <div class="row" style="font-size: 15px;"> 
+                                    <div class="col-xs-2 col-xs-offset-4">
+                                        <label>Price: </label>
+                                    </div>
+                                    <div class="col-xs-2">
+                                        <label class="price_value" style="float: right;"></label> 
+                                        <!--^Need to make this depend on the items that were selected-->
+                                    </div>
+                                </div>
+                                    
                                 <div class="row"> 
-                                    <button class="btn col-xs-4 col-xs-offset-4" style="background-color: #0f6a37; color: white; margin-top: 10px;">Request Pick-Up</button>
+                                    <button class="btn_from_device_modal btn col-xs-4 col-xs-offset-4" style="background-color: #0f6a37; color: white; margin-top: 10px;" data-dismiss="modal" data-toggle="modal" data-target="#start_repair_modal">Request Pick-Up</button>
+                                    <!-- I might actually need to use some Javascript here for the pre-fillout behavior -->
                                 </div>
                                 
                             </div>
                             
-
-                            <!--
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            </div>
-                            -->
                         </div>
                     </div>
                 </div>
@@ -387,87 +416,111 @@
                         <!-- Modal content-->
                         <div class="modal-content">
                             
-                            <!--
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">Modal Header</h4>
-                            </div>
-                            -->
-                            
+                            <!-- FOCUS HERE -->
+
                             <div class="modal-body">
                                 <div class="row" style="text-align: center; z-index: 1">
                                     <h2>Macbook</h2>
                                 </div>
                                 
-                                <div class="row" style="position: relative; top: -20px;"> 
+                                <div class="row" style="position: relative; top: -10px;"> 
+                                    
+                                    <!--The value of this element gets set to 1 when a model is chosen-->
+                                    <input id="macbook_device_chosen" type="radio" value=0 style="display: none;">
                                     
                                     <div class="col-xs-4" style="text-align: center;">
-                                        <img src="images/macbook_air_black.png" style="width: 100%; height: 100%;">
-                                        <p class="device_model">Macbook Air</p>
+                                        <input class="device_select" type="radio" name="macbook_select_group" value="1" id="macbook_select1" />
+                                        <label for="macbook_select1" data-value="macbook">
+                                            <img src="images/macbook_air_black.png" style="width: 100%; height: 100%;">
+                                            <p class="device_model">Macbook Air</p>
+                                        </label>
                                     </div>
                                     
                                     <div class="col-xs-4" style="text-align: center;">
-                                        <img src="images/macbook_pro_black.png" style="width: 100%; height: 100%;">
-                                        <p class="device_model">Macbook Pro (non-Retina)</p>
+                                        <input class="device_select" type="radio" name="macbook_select_group" value="2" id="macbook_select2" />
+                                        <label for="macbook_select2" data-value="macbook">
+                                            <img src="images/macbook_pro_black.png" style="width: 100%; height: 100%;">
+                                            <p class="device_model">Macbook Pro (non-Retina)</p>
+                                        </label>
                                     </div>
                                     
                                     <div class="col-xs-4" style="text-align: center;">
-                                        <img src="images/macbook_pro_black.png" style="width: 100%; height: 100%;">
-                                        <p class="device_model">21.5'' Model (Retina)</p>
+                                        <input class="device_select" type="radio" name="macbook_select_group" value="3" id="macbook_select3" />
+                                        <label for="macbook_select3" data-value="macbook">
+                                            <img src="images/macbook_pro_black.png" style="width: 100%; height: 100%;">
+                                            <p class="device_model">Macbook 21.5'' Model (Retina)</p>
+                                        </label>
                                     </div>
                                     
                                 </div>
                                 
                                 <div clas="row" style="text-align: center;">
+                                    
+                                    <!--The value of this element gets set to 1 when a problem is chosen-->
+                                    <input id="macbook_problem_chosen" type="radio" value=0 style="display: none;">
+                                    
                                     <div class="row">
                                         <div class="col-xs-4">
-                                            <a class="problem_item btn btn-block">Graphics Card</a>
+                                            <input class="problem_select" type="radio" name="macbook_problem_select_group" value="1" id="macbook_problem_select1" />
+                                            <label for="macbook_problem_select1" class="problem_item btn btn-block" data-value="macbook">Graphics Card</label>
                                         </div>
                                         <div class="col-xs-4">
-                                            <a class="problem_item btn btn-block">SSD Upgrade</a>
+                                            <input class="problem_select" type="radio" name="macbook_problem_select_group" value="2" id="macbook_problem_select2" />
+                                            <label for="macbook_problem_select2" class="problem_item btn btn-block" data-value="macbook">SSD Upgrade</label>
                                         </div>
                                         <div class="col-xs-4">
-                                            <a class="problem_item btn btn-block">LCD</a>
+                                            <input class="problem_select" type="radio" name="macbook_problem_select_group" value="3" id="macbook_problem_select3" />
+                                            <label for="macbook_problem_select3" class="problem_item btn btn-block" data-value="macbook">LCD</label>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-xs-4">
-                                            <a class="problem_item btn btn-block">Motherboard</a>
+                                            <input class="problem_select" type="radio" name="macbook_problem_select_group" value="4" id="macbook_problem_select4" />
+                                            <label for="macbook_problem_select4" class="problem_item btn btn-block" data-value="macbook">Motherboard</label>
                                         </div>
                                         <div class="col-xs-4">
-                                            <a class="problem_item btn btn-block">Keyboard</a>
+                                            <input class="problem_select" type="radio" name="macbook_problem_select_group" value="5" id="macbook_problem_select5" />
+                                            <label for="macbook_problem_select5" class="problem_item btn btn-block" data-value="macbook">Keyboard</label>
                                         </div>
                                         <div class="col-xs-4">
-                                            <a class="problem_item btn btn-block">RAM</a>
+                                            <input class="problem_select" type="radio" name="macbook_problem_select_group" value="6" id="macbook_problem_select6" />
+                                            <label for="macbook_problem_select6" class="problem_item btn btn-block" data-value="macbook">RAM</label>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-xs-4">
-                                            <a class="problem_item btn btn-block">Battery</a>
+                                            <input class="problem_select" type="radio" name="macbook_problem_select_group" value="7" id="macbook_problem_select7" />
+                                            <label for="macbook_problem_select7" class="problem_item btn btn-block" data-value="macbook">Battery</label>
                                         </div>
                                         <div class="col-xs-4">
-                                            <a class="problem_item btn btn-block">Data Recovery</a>
+                                            <input class="problem_select" type="radio" name="macbook_problem_select_group" value="8" id="macbook_problem_select8" />
+                                            <label for="macbook_problem_select8" class="problem_item btn btn-block" data-value="macbook">Data Recovery</label>
                                         </div>
                                         <div class="col-xs-4">
-                                            <a class="problem_item btn btn-block">Virus Removal</a>
+                                            <input class="problem_select" type="radio" name="macbook_problem_select_group" value="9" id="macbook_problem_select9" />
+                                            <label for="macbook_problem_select9" class="problem_item btn btn-block" data-value="macbook">Virus Removal</label>
                                         </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row" style="font-size: 15px;"> 
+                                    <div class="col-xs-2 col-xs-offset-4">
+                                        <label>Price: </label>
+                                    </div>
+                                    <div class="col-xs-2">
+                                        <label class="price_value" style="float: right;"></label> 
+                                        <!--^Need to make this depend on the items that were selected-->
                                     </div>
                                 </div>
                                 
                                 <div class="row"> 
-                                    <button class="btn col-xs-4 col-xs-offset-4" style="background-color: #0f6a37; color: white; margin-top: 10px;">Request Pick-Up</button>
+                                    <button class="btn_from_device_modal btn col-xs-4 col-xs-offset-4" style="background-color: #0f6a37; color: white; margin-top: 10px;" data-dismiss="modal" data-toggle="modal" data-target="#start_repair_modal">Request Pick-Up</button>
                                 </div>
                                 
                             </div>
-                            
-
-                            <!--
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            </div>
-                            -->                            
+                                                     
                         </div>
                     </div>
                 </div>
@@ -484,89 +537,114 @@
                         <!-- Modal content-->
                         <div class="modal-content">
                             
-                            <!--
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">Modal Header</h4>
-                            </div>
-                            -->
-                            
                             <div class="modal-body">
                                 <div class="row" style="text-align: center; margin-bottom: 20px; z-index: 1">
                                     <h2>iPhone</h2>
                                 </div>
                                 
                                 <div class="row" style="position: relative; top: -20px;"> 
+                                    
+                                    <!--The value of this element gets set to 1 when a model is chosen-->
+                                    <input id="iphone_device_chosen" type="radio" value=0 style="display: none;">
+                                    
                                     <div class="col-xs-3" style="text-align: center;">
-                                        <img src="images/iphone_duo.png" style="width: 100%; height: 100%;">
-                                        <p class="device_model">7 Plus &amp; 7</p>
+                                        <input class="device_select" type="radio" name="iphone_select_group" value="1" id="iphone_select1" />
+                                        <label for="iphone_select1" data-value="iphone">
+                                            <img src="images/iphone_duo.png" style="width: 100%; height: 100%;">
+                                            <p class="device_model">iPhone 7 Plus &amp; 7</p>
+                                        </label>
                                     </div>                                    
                                     <div class="col-xs-3" style="text-align: center;">
-                                        <img src="images/iphone_duo.png" style="width: 100%; height: 100%;">
-                                        <p class="device_model">6s Plus &amp; 6s</p>
+                                        <input class="device_select" type="radio" name="iphone_select_group" value="2" id="iphone_select2" />
+                                        <label for="iphone_select2" data-value="iphone">
+                                            <img src="images/iphone_duo.png" style="width: 100%; height: 100%;">
+                                            <p class="device_model">iPhone 6s Plus &amp; 6s</p>
+                                        </label>
                                     </div>
                                     
                                     <div class="col-xs-3" style="text-align: center;">
-                                        <img src="images/iphone_duo.png" style="width: 100%; height: 100%;">
-                                        <p class="device_model">6 Plus &amp; 6</p>
+                                        <input class="device_select" type="radio" name="iphone_select_group" value="3" id="iphone_select3" />
+                                        <label for="iphone_select3" data-value="iphone">
+                                            <img src="images/iphone_duo.png" style="width: 100%; height: 100%;">
+                                            <p class="device_model">iPhone 6 Plus &amp; 6</p>
+                                        </label>
                                     </div>
                                     
                                     <div class="col-xs-3" style="text-align: center;">
-                                        <img src="images/iphone_alone.png" style="width: 100%; height: 100%;">
-                                        <p class="device_model">5 SE/5s/5c/5</p>
+                                        <input class="device_select" type="radio" name="iphone_select_group" value="4" id="iphone_select4" />
+                                        <label for="iphone_select4" data-value="iphone">
+                                            <img src="images/iphone_alone.png" style="width: 100%; height: 100%;">
+                                            <p class="device_model">iPhone 5 SE/5s/5c/5</p>
+                                        </label>
                                     </div>                                
                                 </div>
                                 
                                 <div clas="row" style="text-align: center;">
+                                    <!--The value of this element gets set to 1 when a problem is chosen-->
+                                    <input id="iphone_problem_chosen" type="radio" value=0 style="display: none;">
+                                    
                                     <div class="row">
                                         <div class="col-xs-4">
-                                            <a class="problem_item btn btn-block">Screen</a>
+                                            <input class="problem_select" type="radio" name="iphone_problem_select_group" value="1" id="iphone_problem_select1" />
+                                            <label for="iphone_problem_select1" class="problem_item btn btn-block" data-value="iphone">Screen</label>                                            
                                         </div>
                                         <div class="col-xs-4">
-                                            <a class="problem_item btn btn-block">Wifi</a>
+                                            <input class="problem_select" type="radio" name="iphone_problem_select_group" value="2" id="iphone_problem_select2" />
+                                            <label for="iphone_problem_select2" class="problem_item btn btn-block" data-value="iphone">Wifi</label>
                                         </div>
                                         <div class="col-xs-4">
-                                            <a class="problem_item btn btn-block">Speakers</a>
+                                            <input class="problem_select" type="radio" name="iphone_problem_select_group" value="3" id="iphone_problem_select3" />
+                                            <label for="iphone_problem_select3" class="problem_item btn btn-block" data-value="iphone">Speakers</label>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-xs-4">
-                                            <a class="problem_item btn btn-block">Battery</a>
+                                            <input class="problem_select" type="radio" name="iphone_problem_select_group" value="4" id="iphone_problem_select4" />
+                                            <label for="iphone_problem_select4" class="problem_item btn btn-block" data-value="iphone">Battery</label>
                                         </div>
                                         <div class="col-xs-4">
-                                            <a class="problem_item btn btn-block">Headphone Jack</a>
+                                            <input class="problem_select" type="radio" name="iphone_problem_select_group" value="5" id="iphone_problem_select5" />
+                                            <label for="iphone_problem_select5" class="problem_item btn btn-block" data-value="iphone">Headphone Jack</label>
                                         </div>
                                         <div class="col-xs-4">
-                                            <a class="problem_item btn btn-block">Home Button</a>
+                                            <input class="problem_select" type="radio" name="iphone_problem_select_group" value="6" id="iphone_problem_select6" />
+                                            <label for="iphone_problem_select6" class="problem_item btn btn-block" data-value="iphone">Home Button</label>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-xs-4">
-                                            <a class="problem_item btn btn-block">Water Damage</a>
+                                            <input class="problem_select" type="radio" name="iphone_problem_select_group" value="7" id="iphone_problem_select7" />
+                                            <label for="iphone_problem_select7" class="problem_item btn btn-block" data-value="iphone">Water Damage</label>
                                         </div>
                                         <div class="col-xs-4">
-                                            <a class="problem_item btn btn-block">Charging Port</a>
+                                            <input class="problem_select" type="radio" name="iphone_problem_select_group" value="8" id="iphone_problem_select8" />
+                                            <label for="iphone_problem_select8" class="problem_item btn btn-block" data-value="iphone">Charging Port</label>
                                         </div>
                                         <div class="col-xs-4">
-                                            <a class="problem_item btn btn-block">Camera</a>
+                                            <input class="problem_select" type="radio" name="iphone_problem_select_group" value="9" id="iphone_problem_select9" />
+                                            <label for="iphone_problem_select9" class="problem_item btn btn-block" data-value="iphone">Camera</label>
                                         </div>
+                                    </div>
+                                </div>
+
+                                <div class="row" style="font-size: 15px;"> 
+                                    <div class="col-xs-2 col-xs-offset-4">
+                                        <label>Price: </label>
+                                    </div>
+                                    <div class="col-xs-2">
+                                        <label class="price_value" style="float: right;"></label> 
+                                        <!--^Need to make this depend on the items that were selected-->
                                     </div>
                                 </div>
                                 
                                 <div class="row"> 
-                                    <button class="btn col-xs-4 col-xs-offset-4" style="background-color: #0f6a37; color: white; margin-top: 10px;">Request Pick-Up</button>
+                                    <button class="btn_from_device_modal btn col-xs-4 col-xs-offset-4" style="background-color: #0f6a37; color: white; margin-top: 10px;" data-dismiss="modal" data-toggle="modal" data-target="#start_repair_modal">Request Pick-Up</button>
                                 </div>
                                 
                             </div>
-                            
-
-                            <!--
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            </div>
-                            -->                            
+                                                     
                         </div>
                     </div>
                 </div>
@@ -583,94 +661,121 @@
                         <!-- Modal content-->
                         <div class="modal-content">
                             
-                            <!--
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">Modal Header</h4>
-                            </div>
-                            -->
-                            
                             <div class="modal-body">
                                 <div class="row" style="text-align: center; margin-bottom: 20px; z-index: 1">
                                     <h2>iPad</h2>
                                 </div>
                                 
                                 <div class="row" style="position: relative; top: -20px;"> 
+                                    
+                                    <!--The value of this element gets set to 1 when a model is chosen-->
+                                    <input id="ipad_device_chosen" type="radio" value=0 style="display: none;">
+                                    
                                     <div class="col-xs-3" style="text-align: center;">
-                                        <img src="images/ipad_air.png" style="width: 100%; height: 100%;">
-                                        <p class="device_model">iPad 2/3/4 &amp; Air</p>
+                                        <input class="device_select" type="radio" name="ipad_select_group" value="1" id="ipad_select1" />
+                                        <label for="ipad_select1" data-value="ipad">
+                                            <img src="images/ipad_air.png" style="width: 100%; height: 100%;">
+                                            <p class="device_model">iPad 2/3/4 &amp; Air</p>
+                                        </label>
                                     </div>                                    
                                     <div class="col-xs-3" style="text-align: center;">
-                                        <img src="images/ipad_air.png" style="width: 100%; height: 100%;">
-                                        <p class="device_model">iPad Air 2</p>
+                                        <input class="device_select" type="radio" name="ipad_select_group" value="2" id="ipad_select2" />
+                                        <label for="ipad_select2" data-value="ipad">
+                                            <img src="images/ipad_air.png" style="width: 100%; height: 100%;">
+                                            <p class="device_model">iPad Air 2</p>
+                                        </label>
                                     </div>
                                     
                                     <div class="col-xs-3" style="text-align: center;">
-                                        <img src="images/ipad_mini.png" style="width: 100%; height: 100%;">
-                                        <p class="device_model">iPad Mini 1/2/3</p>
+                                        <input class="device_select" type="radio" name="ipad_select_group" value="3" id="ipad_select3" />
+                                        <label for="ipad_select3" data-value="ipad">
+                                            <img src="images/ipad_mini.png" style="width: 100%; height: 100%;">
+                                            <p class="device_model">iPad Mini 1/2/3</p>
+                                        </label>
                                     </div>
                                     
                                     <div class="col-xs-3" style="text-align: center;">
-                                        <img src="images/ipad_mini.png" style="width: 100%; height: 100%;">
-                                        <p class="device_model">iPad Mini 4</p>
+                                        <input class="device_select" type="radio" name="ipad_select_group" value="4" id="ipad_select4" />
+                                        <label for="ipad_select4" data-value="ipad">
+                                            <img src="images/ipad_mini.png" style="width: 100%; height: 100%;">
+                                            <p class="device_model">iPad Mini 4</p>
+                                        </label>
                                     </div>                                
                                 </div>
                                 
                                 <div clas="row" style="text-align: center;">
+                                    
+                                    <!--The value of this element gets set to 1 when a problem is chosen-->
+                                    <input id="ipad_problem_chosen" type="radio" value=0 style="display: none;">
+                                    
                                     <div class="row">
                                         <div class="col-xs-4">
-                                            <a class="problem_item btn btn-block">Glass Digitizer</a>
+                                            <input class="problem_select" type="radio" name="ipad_problem_select_group" value="1" id="ipad_problem_select1" />
+                                            <label for="ipad_problem_select1" class="problem_item btn btn-block" data-value="ipad">Glass Digitizer</label>
                                         </div>
                                         <div class="col-xs-4">
-                                            <a class="problem_item btn btn-block">Wifi</a>
+                                            <input class="problem_select" type="radio" name="ipad_problem_select_group" value="2" id="ipad_problem_select2" />
+                                            <label for="ipad_problem_select2" class="problem_item btn btn-block" data-value="ipad">Wifi</label>
                                         </div>
                                         <div class="col-xs-4">
-                                            <a class="problem_item btn btn-block">Speakers</a>
+                                            <input class="problem_select" type="radio" name="ipad_problem_select_group" value="3" id="ipad_problem_select3" />
+                                            <label for="ipad_problem_select3" class="problem_item btn btn-block" data-value="ipad">Speakers</label>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-xs-4">
-                                            <a class="problem_item btn btn-block">Battery</a>
+                                            <input class="problem_select" type="radio" name="ipad_problem_select_group" value="4" id="ipad_problem_select4" />
+                                            <label for="ipad_problem_select4" class="problem_item btn btn-block" data-value="ipad">Battery</label>
                                         </div>
                                         <div class="col-xs-4">
-                                            <a class="problem_item btn btn-block">Headphone Jack</a>
+                                            <input class="problem_select" type="radio" name="ipad_problem_select_group" value="5" id="ipad_problem_select5" />
+                                            <label for="ipad_problem_select5" class="problem_item btn btn-block" data-value="ipad">Headphone Jack</label>
                                         </div>
                                         <div class="col-xs-4">
-                                            <a class="problem_item btn btn-block">Home Button</a>
+                                            <input class="problem_select" type="radio" name="ipad_problem_select_group" value="6" id="ipad_problem_select6" />
+                                            <label for="ipad_problem_select6" class="problem_item btn btn-block" data-value="ipad">Home Button</label>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-xs-4">
-                                            <a class="problem_item btn btn-block">LCD</a>
+                                            <input class="problem_select" type="radio" name="ipad_problem_select_group" value="7" id="ipad_problem_select7" />
+                                            <label for="ipad_problem_select7" class="problem_item btn btn-block" data-value="ipad">LCD</label>
                                         </div>
                                         <div class="col-xs-4">
-                                            <a class="problem_item btn btn-block">Charging Port</a>
+                                            <input class="problem_select" type="radio" name="ipad_problem_select_group" value="8" id="ipad_problem_select8" />
+                                            <label for="ipad_problem_select8" class="problem_item btn btn-block" data-value="ipad">Charging Port</label>
                                         </div>
                                         <div class="col-xs-4">
-                                            <a class="problem_item btn btn-block">Camera</a>
+                                            <input class="problem_select" type="radio" name="ipad_problem_select_group" value="9" id="ipad_problem_select9" />
+                                            <label for="ipad_problem_select9" class="problem_item btn btn-block" data-value="ipad">Camera</label>
                                         </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row" style="font-size: 15px;"> 
+                                    <div class="col-xs-2 col-xs-offset-4">
+                                        <label>Price: </label>
+                                    </div>
+                                    <div class="col-xs-2">
+                                        <label class="price_value" style="float: right;"></label> 
+                                        <!--^Need to make this depend on the items that were selected-->
                                     </div>
                                 </div>
                                 
                                 <div class="row"> 
-                                    <button class="btn col-xs-4 col-xs-offset-4" style="background-color: #0f6a37; color: white; margin-top: 10px;">Request Pick-Up</button>
+                                    <button class="btn_from_device_modal btn col-xs-4 col-xs-offset-4" style="background-color: #0f6a37; color: white; margin-top: 10px;" data-dismiss="modal" data-toggle="modal" data-target="#start_repair_modal">Request Pick-Up</button>
                                 </div>
                                 
                             </div>
-                            
-                            <!--
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            </div>
-                            -->
                             
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        
         
         <div id="clevertech_vid" class="modal fade" role="dialog">
             <div class="vertical-alignment-helper">
@@ -682,6 +787,52 @@
                                 <div class="embed-responsive embed-responsive-16by9">
                                     <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/QGKvYpL4DRU"></iframe>
                                 </div>                    
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div id="contact_us" class="modal fade" role="dialog">
+            <div class="vertical-alignment-helper">
+                <div class="modal-dialog vertical-align-center">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            
+                            <div class="modal-body">
+                                <!-- Put form code here-->
+                                <form method="post" style="padding: 20px;"> <!-- Should I have action="/validate.php" ? -->
+                                    <!--<p class="required">Name</p>-->
+
+                                    <div class="form-group">
+                                        <label class="required" for="first_name">First Name</label>
+                                        <input class="form-control" id="first_name" name="first_name">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="required" for="first_name">Email</label>
+                                        <input class="form-control" id="first_name" name="first_name">
+                                        <input type="checkbox"> Check here to receive email updates
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="required" for="first_name">Subject</label>
+                                        <input class="form-control" id="first_name" name="first_name">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="required" for="first_name">Message</label>
+                                        <textarea class="form-control" rows=4 id="symptoms_needs" name="symptoms_needs" style="resize: none;"></textarea>               
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <button type="submit" id="submit" class="btn" style="background-color: #0f6a37; color: white;">Submit</button>
+                                    </div>
+                                </form>
+                                
                             </div>
                             
                         </div>
@@ -708,12 +859,18 @@
 
         <!-- SECTION 2 BEGIN -->
         <div class="jumbotron" id="how_it_works" style="text-align: center;">
-            <div id="how_it_works_content">
-                <h1 style="position: relative; top: -50px;">How It Works</h1>
-                
-                <div class="btn how_it_works_btn">1. Device &amp; Problem</div>
-                <div class="btn how_it_works_btn">2. Request Pick-Up</div>
-                <div class="btn how_it_works_btn">3. Get It Fixed</div>
+            <div class="container" id="how_it_works_content">
+                <div class="row">
+                    <h1>From start to finish</h1>
+                </div>
+                <div class="row">
+                    <div class="btn how_it_works_btn">Pick-Up</div>
+                    <div class="btn how_it_works_btn">Repair</div>
+                    <div class="btn how_it_works_btn">Drop-Off</div>
+                </div>
+                <div class="row">
+                    <h1>3 days to complete</h1>
+                </div>
 
             </div>
         </div>
@@ -726,33 +883,28 @@
             <div class="container" id="services_content">  
                 
                 <div class="row">
-                    <h1 style="position: relative; top: -50px;">Choose Your Device</h1>
+                    <h1 style="position: relative; top: -50px;">Got Problems?<br/>Tell us your model</h1>
                 </div>
                 
                 <div class="row">                   
-                    <div class="col-xs-3" style="background-color: rgba(0,0,0,0.4);">
-                        <a class="device_selection" href="" data-toggle="modal" data-target="#imac_device_select">
-                            <img src="images/imac_white2.png" style="width: 100%; height: 100%;">
-                            <p class="services_device_type">iMac</p>
-                        </a>
+                    <div class="col-xs-3 problem_device" data-toggle="modal" data-target="#imac_device_select" style="background-color: rgba(0,0,0,0.4); border-top-left-radius: 10px; border-bottom-left-radius: 10px;">
+                        <!-- What if I got rid of this anchor tag. It added some unnecessary padding to <img>-->
+                        <!--<a class="device_selection" href="" data-toggle="modal" data-target="#imac_device_select">-->
+                        <img src="images/imac_white2.png" style="width: 100%; height: 100%;">
+                        <p class="services_device_type">iMac</p>
+                        <!--</a>-->
                     </div>                       
-                    <div class="col-xs-3" style="background-color: rgba(0,0,0,0.4);">
-                        <a class="device_selection" href="" data-toggle="modal" data-target="#macbook_device_select">
-                            <img src="images/macbook_white2.png" style="width: 100%; height: 100%;">
-                            <p class="services_device_type">Macbook</p>
-                        </a>
+                    <div class="col-xs-3 problem_device" style="background-color: rgba(0,0,0,0.4);" data-toggle="modal" data-target="#macbook_device_select">
+                        <img src="images/macbook_white2.png" style="width: 100%; height: 100%;">
+                        <p class="services_device_type">Macbook</p>
                     </div>
-                   <div class="col-xs-3" style="background-color: rgba(0,0,0,0.4);">
-                        <a class="device_selection" href="" data-toggle="modal" data-target="#iphone_device_select">
-                            <img src="images/iphone_white2.png" style="width: 100%; height: 100%;">
-                            <p class="services_device_type">iPhone</p>
-                       </a>
+                    <div class="col-xs-3 problem_device" style="background-color: rgba(0,0,0,0.4);" data-toggle="modal" data-target="#iphone_device_select">
+                        <img src="images/iphone_white2.png" style="width: 100%; height: 100%;">
+                        <p class="services_device_type">iPhone</p>
                     </div>   
-                   <div class="col-xs-3" style="background-color: rgba(0,0,0,0.4);">
-                        <a class="device_selection" href="" data-toggle="modal" data-target="#ipad_device_select">
-                            <img src="images/ipad_white2.png" style="width: 100%; height: 100%;">
-                            <p class="services_device_type">iPad</p>
-                       </a>
+                    <div class="col-xs-3 problem_device" data-toggle="modal" data-target="#ipad_device_select" style="background-color: rgba(0,0,0,0.4); border-top-right-radius: 10px; border-bottom-right-radius: 10px;">
+                        <img src="images/ipad_white2.png" style="width: 100%; height: 100%;">
+                        <p class="services_device_type">iPad</p>
                     </div>   
                 </div>
                 
@@ -771,16 +923,23 @@
                 
                 <div class="row" style="position: relative; top: 100px;">    
                     
-                    <h2 class="gonz_quote">
-                        "I want to see a paradigm shift. We're going to be so good...It wouldn't make sense to go anywhere else."<br/><br/>
-                        Gonzalo Martinez<br/>
-                        Founder
-                    </h2>
-
+                    <div class="row">
+                        <h2 class="gonz_quote">
+                            "I want to see a paradigm shift. We're going to be so good...It wouldn't make sense to go anywhere else."<br/><br/>
+                            Gonzalo Martinez<br/>
+                            Founder
+                        </h2>
+                    </div>
+                    
+                    <div class="row">
+                        <div id="contact_us_btn" class="btn" data-toggle="modal" data-target="#contact_us">Contact Us</div>
+                    </div>
                 </div>
                 
+
+                
                 <div class="row">
-                    <br/><br/><br/>
+                    <br/>
                     <br/><br/><br/>
                     <br/><br/><br/>
                 </div>
@@ -962,7 +1121,7 @@
             $("body").scrollspy({ target: "#my_navbar" });
 
             //Fit Text Code!!
-            $(".gonz_quote").fitText(2, { minFontSize: "20px", maxFontSize: "25px" });
+            $(".gonz_quote").fitText(2, { minFontSize: "15px", maxFontSize: "22px" });
             //$(".problem_item").fitText(2, { minFontSize: '20px', maxFontSize: '25px' });
             //$(".services_device_type").fitText(2, { minFontSize: "15px", maxFontSize: "20px" });
 
@@ -972,6 +1131,7 @@
             var how_it_works_top = $("#how_it_works").position().top; //485 on full viewport
             var services_top = $("#services").position().top;
             var stay_clever_top = $("#stay_clever").position().top; //1400 on full viewport
+            
             
             //scroll() constantly keeps tabs on the position of the scrollbar?
             $(window).scroll(function() {                
@@ -1016,6 +1176,12 @@
                 return false; //Does this need to be here?
             });
             
+            
+            $(".btn_from_device_modal").click(function(event) {
+                event.preventDefault(); 
+                //prefill start a repair modal with values selected here
+                
+            });
             
             $("#move_down").click(function(event) {
                 event.preventDefault();                
@@ -1091,6 +1257,85 @@
                 }
                 
             });
+            
+            
+            // ===================== For device select buttons =====================
+            $(".device_select ~ label").click(function() {
+                
+                var device_type = $(this).data("value");
+                //console.log("HEY " + device_type + "!");
+                
+                //$("#" + device_type + "_device_chosen").val("1");
+                $("#" + device_type + "_device_chosen").val($(this).find("p").html());   //device chosen is device_type     
+                //console.log($("#" + device_type + "_device_chosen").val());
+                
+                
+                //$("#" + device_type + "_device_chosen").val(device_type);
+                                
+                if ($("#" + device_type + "_problem_chosen").val() !== "0") {
+                    console.log("I'MA SET THE PRICE FROM MODEL!")
+                    console.log("The Model Is: " + $(this).find("p").html()); //The device
+                    console.log("The Problem Is: " + $("#" + device_type + "_problem_chosen").val()); //The problem
+                    //To get the selected problem button, say:
+                    //$('.button.problem_item_active') 
+                    //^get attribute value, etc. Whatever you need. Will need to do this to set the price.
+                    
+                    
+                    //If this is an imac... {
+                    //   if the problem is problem1...set price
+                    //   else if the problem is problem2...set price
+                    //}
+                    //Else if this is a macbook... {
+                    //   if the problem is problem1...set price
+                    //   else if the problem is problem2...set price
+                    //}
+                }
+            });
+            
+            
+            // ===================== For problem select buttons =====================
+            $(".problem_item").click(function() { //Watch out how this basically applies to ALL buttons
+                
+                //Used to need this when I wasn't using the radio button + label trick (learned from Samich on SO)
+                /*
+                $(".problem_item").removeClass("problem_item_active"); 
+                //Didn't want to use .active because then you would have had to override the default .active. You
+                //generally strive to not override in case of any unexpected applications of the styling.
+                $(this).addClass("problem_item_active");
+                //^Have these two lines because I'm trying to make buttons act like radio buttons
+                */
+
+                var device_type = $(this).data("value");
+                //console.log(device_type);
+                //console.log(problem);
+                
+                //$("#" + device_type + "_problem_chosen").val("1");
+                $("#" + device_type + "_problem_chosen").val($(this).html(););          
+
+                
+                if ($("#" + device_type + "_device_chosen").val() !== "0") {
+                    console.log("I'MA SET THE PRICE FROM PROBLEM!")
+                    console.log("The Model Is: " + $("#" + device_type + "_device_chosen").val()); //The device
+                    console.log("The Problem Is: " + $("#" + device_type + "_problem_chosen").val()); //The problem
+                    //To get the selected problem button, say:
+                    //$('.button.problem_item_active') 
+                    //^get attribute value, etc. Whatever you need. Will need to do this to set the price.
+                }
+
+            });
+
+
+            
+            /*
+            //Used to need this when I wasn't using the radio button + label trick (learned from Samich on SO)
+            $(".problem_device").hover(function(){
+                $(this).find("p").css("color", "dimgray");
+            }, function() {
+                $(this).find("p").css("color", "white");
+            });
+            */
+            
+
             
         </script>
     </body>

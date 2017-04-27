@@ -80,6 +80,15 @@ body {
 }
 
 
+#contact_us_btn {
+    background: rgba(0,0,0,0.4);
+    color: white;
+    font-size: 15px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+
 .jumbotron {
     margin: 0px;
     background-position: center;
@@ -453,7 +462,13 @@ li.nav-item.active {
     background-color: white;
     color: black;
 }
-.problem_item:hover,
+.problem_item:hover {
+    color: #FFF;
+    background-color: lightgreen;
+    color: black;
+}
+
+
 .problem_item:active {
     color: #FFF;
     background: #0f6a37; /* CleverTech Green */
@@ -465,6 +480,8 @@ li.nav-item.active {
     font-size: 15px;
     font-weight: bold;
 }
+
+
 
 /*
 .modal-dialog {
@@ -493,4 +510,39 @@ li.nav-item.active {
     content: " *";
     color: red;
     font-size: 15px;
+}
+
+
+
+
+.device_select[type=radio], .problem_select[type=radio] {
+    display: none;
+}
+
+.device_select[type=radio]:checked + label, .problem_select[type=radio]:checked + label{
+    background-color:lightgreen;
+    border-radius: 10px;
+    border-color: black;
+}
+
+.device_select ~ label:hover, .problem_select ~ label:hover {
+    cursor: pointer;
+    background-color: lightgreen;
+    border-radius: 10px;
+}
+
+.problem_item_active {
+    background-color: lightgreen;
+}
+
+
+
+.problem_device:hover {
+    cursor: pointer;
+    color: dimgray;
+}
+
+
+.btn {
+    border-radius: 10px;
 }
