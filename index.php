@@ -63,7 +63,7 @@
             <div class="container">
                 <div class="navbar-header">
                     
-                    <!--This "hamburger" button shows up and contains the navbar links once the viewport has been adequately collapsed collapsed-->
+                    <!--This "hamburger" button shows up and contains the navbar links once the viewport has been adequately shrinked -->
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
@@ -72,7 +72,7 @@
                     </button>
                     
                     <!-- LOGO BEGIN -->
-                    <a class="navbar-brand" data-toggle="modal" data-target="#clevertech_vid">
+                    <a class="navbar-brand" href="#welcome">
                         <!--If you decide to make clicking on the logo shoot to the top, add href="#welcome"-->
                         <img src="http://localhost/clevertech/images/navbar_logo.png" width="50" height="50" alt="" style="display:inline">
                     </a>
@@ -103,7 +103,7 @@
         
         <!-- MODALS BEGIN -->
         <!--Thanks to Ren De Nobel from SO: http://stackoverflow.com/questions/18053408/vertically-centering-bootstrap-modal-window-->
-        <!-- Start Repair Modal -->
+        <!-- START REPAIR MODAL BEGIN -->
         <div id="start_repair_modal" class="modal fade" role="dialog">
             <div class="vertical-alignment-helper">
                 <div class="modal-dialog vertical-align-center">
@@ -284,9 +284,9 @@
                 </div>
             </div>
         </div>
+        <!-- START REPAIR MODAL END -->
         
-        
-        <!-- Select iMac Modal -->
+        <!-- SELECT IMAC MODEL MODAL BEGIN -->
         <!-- Note that you mainly used data-value so you can get the device name and make them part of variable names -->
         <div id="imac_device_select" class="modal fade" role="dialog">
             <div class="vertical-alignment-helper">
@@ -303,8 +303,9 @@
                                 
                                 <div class="row" style="position: relative; top: -20px;">  
                                     
-                                    <!--The value of this element gets set to 1 when a model is chosen-->
-                                    <input id="imac_device_chosen" type="radio" value=0 style="display: none;">
+                                    <!-- MODEL SELECTION -->
+                                    <!--The value of this element gets set to a model when a model is chosen-->
+                                    <input id="imac_model_chosen" type="radio" value=0 style="display: none;">
                                     
                                     <div class="col-xs-1"></div>
                                     
@@ -330,22 +331,22 @@
                                 
                                 
                                 <div clas="row" style="text-align: center;">
-
-                                    <!--The value of this element gets set to 1 when a problem is chosen-->
+                                    
+                                    <!-- PROBLEM SELECTION -->
+                                    <!--The value of this element gets set to the problem when a problem is chosen-->
                                     <input id="imac_problem_chosen" type="radio" value=0 style="display: none;">
                                     
                                     <div class="row">
                                         <div class="col-xs-4">
-                                            <!--Maybe I can make this a label instead of an anchor so that I can do that radio button trick agian...-->
-                                            <input class="problem_select" type="radio" name="imac_problem_select_group" value="1" id="imac_problem_select1" />
+                                            <input class="problem_select" type="radio" name="imac_problem_select_group" id="imac_problem_select1" />
                                             <label for="imac_problem_select1" class="problem_item btn btn-block" data-value="imac">Graphics Card</label>
                                         </div>
                                         <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="imac_problem_select_group" value="2" id="imac_problem_select2" />
+                                            <input class="problem_select" type="radio" name="imac_problem_select_group" id="imac_problem_select2" />
                                             <label for="imac_problem_select2" class="problem_item btn btn-block" data-value="imac">SSD Upgrade</label>
                                         </div>
                                         <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="imac_problem_select_group" value="3" id="imac_problem_select3" />
+                                            <input class="problem_select" type="radio" name="imac_problem_select_group" id="imac_problem_select3" />
                                             <label for="imac_problem_select3" class="problem_item btn btn-block" data-value="imac">LCD</label>
                                         </div>
                                     </div>
@@ -353,30 +354,30 @@
 
                                     <div class="row">
                                         <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="imac_problem_select_group" value="4" id="imac_problem_select4" />
+                                            <input class="problem_select" type="radio" name="imac_problem_select_group" id="imac_problem_select4" />
                                             <label for="imac_problem_select4" class="problem_item btn btn-block" data-value="imac">Motherboard</label>
                                         </div>
                                         <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="imac_problem_select_group" value="5" id="imac_problem_select5" />
+                                            <input class="problem_select" type="radio" name="imac_problem_select_group" id="imac_problem_select5" />
                                             <label for="imac_problem_select5" class="problem_item btn btn-block" data-value="imac">Optical Drive</label>
                                         </div>
                                         <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="imac_problem_select_group" value="6" id="imac_problem_select6" />
+                                            <input class="problem_select" type="radio" name="imac_problem_select_group" id="imac_problem_select6" />
                                             <label for="imac_problem_select6" class="problem_item btn btn-block" data-value="imac">RAM</label>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="imac_problem_select_group" value="7" id="imac_problem_select7" />
+                                            <input class="problem_select" type="radio" name="imac_problem_select_group" id="imac_problem_select7" />
                                             <label for="imac_problem_select7" class="problem_item btn btn-block" data-value="imac">Power Supply</label>
                                         </div>
                                         <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="imac_problem_select_group" value="8" id="imac_problem_select8" />
+                                            <input class="problem_select" type="radio" name="imac_problem_select_group" id="imac_problem_select8" />
                                             <label for="imac_problem_select8" class="problem_item btn btn-block" data-value="imac">Data Recovery</label>
                                         </div>
                                         <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="imac_problem_select_group" value="9" id="imac_problem_select9" />
+                                            <input class="problem_select" type="radio" name="imac_problem_select_group" id="imac_problem_select9" />
                                             <label for="imac_problem_select9" class="problem_item btn btn-block" data-value="imac">Virus Removal</label>
                                         </div>
                                     </div>
@@ -388,7 +389,7 @@
                                         <label>Price: </label>
                                     </div>
                                     <div class="col-xs-2">
-                                        <label class="price_value" style="float: right;"></label> 
+                                        <label id="imac_repair_price" class="price_value" style="float: right;"></label> 
                                         <!--^Need to make this depend on the items that were selected-->
                                     </div>
                                 </div>
@@ -405,10 +406,10 @@
                 </div>
             </div>
         </div>
+        <!-- SELECT IMAC MODEL MODAL END -->
         
         
-        
-        <!-- Select Macbook Model -->
+        <!-- SELECT MACBOOK MODEL MODAL BEGIN -->
         <div id="macbook_device_select" class="modal fade" role="dialog">
             <div class="vertical-alignment-helper">
                 <div class="modal-dialog vertical-align-center">
@@ -416,8 +417,6 @@
                         <!-- Modal content-->
                         <div class="modal-content">
                             
-                            <!-- FOCUS HERE -->
-
                             <div class="modal-body">
                                 <div class="row" style="text-align: center; z-index: 1">
                                     <h2>Macbook</h2>
@@ -425,8 +424,9 @@
                                 
                                 <div class="row" style="position: relative; top: -10px;"> 
                                     
-                                    <!--The value of this element gets set to 1 when a model is chosen-->
-                                    <input id="macbook_device_chosen" type="radio" value=0 style="display: none;">
+                                    <!-- MODEL SELECTION -->
+                                    <!--The value of this element gets set to a model when a model is chosen-->
+                                    <input id="macbook_model_chosen" type="radio" value=0 style="display: none;">
                                     
                                     <div class="col-xs-4" style="text-align: center;">
                                         <input class="device_select" type="radio" name="macbook_select_group" value="1" id="macbook_select1" />
@@ -456,50 +456,51 @@
                                 
                                 <div clas="row" style="text-align: center;">
                                     
-                                    <!--The value of this element gets set to 1 when a problem is chosen-->
+                                    <!-- PROBLEM SELECTION -->
+                                    <!--The value of this element gets set to the problem when a problem is chosen-->
                                     <input id="macbook_problem_chosen" type="radio" value=0 style="display: none;">
                                     
                                     <div class="row">
                                         <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="macbook_problem_select_group" value="1" id="macbook_problem_select1" />
+                                            <input class="problem_select" type="radio" name="macbook_problem_select_group" id="macbook_problem_select1" />
                                             <label for="macbook_problem_select1" class="problem_item btn btn-block" data-value="macbook">Graphics Card</label>
                                         </div>
                                         <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="macbook_problem_select_group" value="2" id="macbook_problem_select2" />
+                                            <input class="problem_select" type="radio" name="macbook_problem_select_group" id="macbook_problem_select2" />
                                             <label for="macbook_problem_select2" class="problem_item btn btn-block" data-value="macbook">SSD Upgrade</label>
                                         </div>
                                         <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="macbook_problem_select_group" value="3" id="macbook_problem_select3" />
+                                            <input class="problem_select" type="radio" name="macbook_problem_select_group" id="macbook_problem_select3" />
                                             <label for="macbook_problem_select3" class="problem_item btn btn-block" data-value="macbook">LCD</label>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="macbook_problem_select_group" value="4" id="macbook_problem_select4" />
+                                            <input class="problem_select" type="radio" name="macbook_problem_select_group" id="macbook_problem_select4" />
                                             <label for="macbook_problem_select4" class="problem_item btn btn-block" data-value="macbook">Motherboard</label>
                                         </div>
                                         <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="macbook_problem_select_group" value="5" id="macbook_problem_select5" />
+                                            <input class="problem_select" type="radio" name="macbook_problem_select_group" id="macbook_problem_select5" />
                                             <label for="macbook_problem_select5" class="problem_item btn btn-block" data-value="macbook">Keyboard</label>
                                         </div>
                                         <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="macbook_problem_select_group" value="6" id="macbook_problem_select6" />
+                                            <input class="problem_select" type="radio" name="macbook_problem_select_group" id="macbook_problem_select6" />
                                             <label for="macbook_problem_select6" class="problem_item btn btn-block" data-value="macbook">RAM</label>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="macbook_problem_select_group" value="7" id="macbook_problem_select7" />
+                                            <input class="problem_select" type="radio" name="macbook_problem_select_group" id="macbook_problem_select7" />
                                             <label for="macbook_problem_select7" class="problem_item btn btn-block" data-value="macbook">Battery</label>
                                         </div>
                                         <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="macbook_problem_select_group" value="8" id="macbook_problem_select8" />
+                                            <input class="problem_select" type="radio" name="macbook_problem_select_group" id="macbook_problem_select8" />
                                             <label for="macbook_problem_select8" class="problem_item btn btn-block" data-value="macbook">Data Recovery</label>
                                         </div>
                                         <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="macbook_problem_select_group" value="9" id="macbook_problem_select9" />
+                                            <input class="problem_select" type="radio" name="macbook_problem_select_group" id="macbook_problem_select9" />
                                             <label for="macbook_problem_select9" class="problem_item btn btn-block" data-value="macbook">Virus Removal</label>
                                         </div>
                                     </div>
@@ -510,7 +511,7 @@
                                         <label>Price: </label>
                                     </div>
                                     <div class="col-xs-2">
-                                        <label class="price_value" style="float: right;"></label> 
+                                        <label id="macbook_repair_price" class="price_value" style="float: right;"></label> 
                                         <!--^Need to make this depend on the items that were selected-->
                                     </div>
                                 </div>
@@ -526,10 +527,10 @@
                 </div>
             </div>
         </div>
+        <!-- SELECT MACBOOK MODEL MODAL END -->
         
         
-        
-        <!-- Select iPhone Model -->
+        <!-- SELECT IPHONE MODEL MODAL BEGIN -->
         <div id="iphone_device_select" class="modal fade" role="dialog">
             <div class="vertical-alignment-helper">
                 <div class="modal-dialog vertical-align-center">
@@ -544,8 +545,9 @@
                                 
                                 <div class="row" style="position: relative; top: -20px;"> 
                                     
-                                    <!--The value of this element gets set to 1 when a model is chosen-->
-                                    <input id="iphone_device_chosen" type="radio" value=0 style="display: none;">
+                                    <!-- MODEL SELECTION -->
+                                    <!--The value of this element gets set to a model when a model is chosen-->
+                                    <input id="iphone_model_chosen" type="radio" value=0 style="display: none;">
                                     
                                     <div class="col-xs-3" style="text-align: center;">
                                         <input class="device_select" type="radio" name="iphone_select_group" value="1" id="iphone_select1" />
@@ -580,50 +582,52 @@
                                 </div>
                                 
                                 <div clas="row" style="text-align: center;">
+                                    
+                                    <!-- PROBLEM SELECTION -->
                                     <!--The value of this element gets set to 1 when a problem is chosen-->
                                     <input id="iphone_problem_chosen" type="radio" value=0 style="display: none;">
                                     
                                     <div class="row">
                                         <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="iphone_problem_select_group" value="1" id="iphone_problem_select1" />
+                                            <input class="problem_select" type="radio" name="iphone_problem_select_group" id="iphone_problem_select1" />
                                             <label for="iphone_problem_select1" class="problem_item btn btn-block" data-value="iphone">Screen</label>                                            
                                         </div>
                                         <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="iphone_problem_select_group" value="2" id="iphone_problem_select2" />
+                                            <input class="problem_select" type="radio" name="iphone_problem_select_group" id="iphone_problem_select2" />
                                             <label for="iphone_problem_select2" class="problem_item btn btn-block" data-value="iphone">Wifi</label>
                                         </div>
                                         <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="iphone_problem_select_group" value="3" id="iphone_problem_select3" />
+                                            <input class="problem_select" type="radio" name="iphone_problem_select_group" id="iphone_problem_select3" />
                                             <label for="iphone_problem_select3" class="problem_item btn btn-block" data-value="iphone">Speakers</label>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="iphone_problem_select_group" value="4" id="iphone_problem_select4" />
+                                            <input class="problem_select" type="radio" name="iphone_problem_select_group" id="iphone_problem_select4" />
                                             <label for="iphone_problem_select4" class="problem_item btn btn-block" data-value="iphone">Battery</label>
                                         </div>
                                         <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="iphone_problem_select_group" value="5" id="iphone_problem_select5" />
+                                            <input class="problem_select" type="radio" name="iphone_problem_select_group" id="iphone_problem_select5" />
                                             <label for="iphone_problem_select5" class="problem_item btn btn-block" data-value="iphone">Headphone Jack</label>
                                         </div>
                                         <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="iphone_problem_select_group" value="6" id="iphone_problem_select6" />
+                                            <input class="problem_select" type="radio" name="iphone_problem_select_group" id="iphone_problem_select6" />
                                             <label for="iphone_problem_select6" class="problem_item btn btn-block" data-value="iphone">Home Button</label>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="iphone_problem_select_group" value="7" id="iphone_problem_select7" />
+                                            <input class="problem_select" type="radio" name="iphone_problem_select_group" id="iphone_problem_select7" />
                                             <label for="iphone_problem_select7" class="problem_item btn btn-block" data-value="iphone">Water Damage</label>
                                         </div>
                                         <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="iphone_problem_select_group" value="8" id="iphone_problem_select8" />
+                                            <input class="problem_select" type="radio" name="iphone_problem_select_group" id="iphone_problem_select8" />
                                             <label for="iphone_problem_select8" class="problem_item btn btn-block" data-value="iphone">Charging Port</label>
                                         </div>
                                         <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="iphone_problem_select_group" value="9" id="iphone_problem_select9" />
+                                            <input class="problem_select" type="radio" name="iphone_problem_select_group" id="iphone_problem_select9" />
                                             <label for="iphone_problem_select9" class="problem_item btn btn-block" data-value="iphone">Camera</label>
                                         </div>
                                     </div>
@@ -634,7 +638,7 @@
                                         <label>Price: </label>
                                     </div>
                                     <div class="col-xs-2">
-                                        <label class="price_value" style="float: right;"></label> 
+                                        <label id="iphone_repair_price" class="price_value" style="float: right;"></label> 
                                         <!--^Need to make this depend on the items that were selected-->
                                     </div>
                                 </div>
@@ -650,10 +654,10 @@
                 </div>
             </div>
         </div>
+        <!-- SELECT IPHONE MODEL MODAL END -->
         
         
-        
-        <!-- Select iPad Model -->
+        <!-- SELECT IPAD MODEL MODAL BEGIN -->
         <div id="ipad_device_select" class="modal fade" role="dialog">
             <div class="vertical-alignment-helper">
                 <div class="modal-dialog vertical-align-center">
@@ -668,8 +672,9 @@
                                 
                                 <div class="row" style="position: relative; top: -20px;"> 
                                     
-                                    <!--The value of this element gets set to 1 when a model is chosen-->
-                                    <input id="ipad_device_chosen" type="radio" value=0 style="display: none;">
+                                    <!-- MODEL SELECTION -->
+                                    <!--The value of this element gets set to a model when a model is chosen-->
+                                    <input id="ipad_model_chosen" type="radio" value=0 style="display: none;">
                                     
                                     <div class="col-xs-3" style="text-align: center;">
                                         <input class="device_select" type="radio" name="ipad_select_group" value="1" id="ipad_select1" />
@@ -705,50 +710,51 @@
                                 
                                 <div clas="row" style="text-align: center;">
                                     
+                                    <!-- PROBLEM SELECTION -->
                                     <!--The value of this element gets set to 1 when a problem is chosen-->
                                     <input id="ipad_problem_chosen" type="radio" value=0 style="display: none;">
                                     
                                     <div class="row">
                                         <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="ipad_problem_select_group" value="1" id="ipad_problem_select1" />
+                                            <input class="problem_select" type="radio" name="ipad_problem_select_group" id="ipad_problem_select1" />
                                             <label for="ipad_problem_select1" class="problem_item btn btn-block" data-value="ipad">Glass Digitizer</label>
                                         </div>
                                         <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="ipad_problem_select_group" value="2" id="ipad_problem_select2" />
+                                            <input class="problem_select" type="radio" name="ipad_problem_select_group" id="ipad_problem_select2" />
                                             <label for="ipad_problem_select2" class="problem_item btn btn-block" data-value="ipad">Wifi</label>
                                         </div>
                                         <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="ipad_problem_select_group" value="3" id="ipad_problem_select3" />
+                                            <input class="problem_select" type="radio" name="ipad_problem_select_group" id="ipad_problem_select3" />
                                             <label for="ipad_problem_select3" class="problem_item btn btn-block" data-value="ipad">Speakers</label>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="ipad_problem_select_group" value="4" id="ipad_problem_select4" />
+                                            <input class="problem_select" type="radio" name="ipad_problem_select_group" id="ipad_problem_select4" />
                                             <label for="ipad_problem_select4" class="problem_item btn btn-block" data-value="ipad">Battery</label>
                                         </div>
                                         <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="ipad_problem_select_group" value="5" id="ipad_problem_select5" />
+                                            <input class="problem_select" type="radio" name="ipad_problem_select_group" id="ipad_problem_select5" />
                                             <label for="ipad_problem_select5" class="problem_item btn btn-block" data-value="ipad">Headphone Jack</label>
                                         </div>
                                         <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="ipad_problem_select_group" value="6" id="ipad_problem_select6" />
+                                            <input class="problem_select" type="radio" name="ipad_problem_select_group" id="ipad_problem_select6" />
                                             <label for="ipad_problem_select6" class="problem_item btn btn-block" data-value="ipad">Home Button</label>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="ipad_problem_select_group" value="7" id="ipad_problem_select7" />
+                                            <input class="problem_select" type="radio" name="ipad_problem_select_group" id="ipad_problem_select7" />
                                             <label for="ipad_problem_select7" class="problem_item btn btn-block" data-value="ipad">LCD</label>
                                         </div>
                                         <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="ipad_problem_select_group" value="8" id="ipad_problem_select8" />
+                                            <input class="problem_select" type="radio" name="ipad_problem_select_group" id="ipad_problem_select8" />
                                             <label for="ipad_problem_select8" class="problem_item btn btn-block" data-value="ipad">Charging Port</label>
                                         </div>
                                         <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="ipad_problem_select_group" value="9" id="ipad_problem_select9" />
+                                            <input class="problem_select" type="radio" name="ipad_problem_select_group" id="ipad_problem_select9" />
                                             <label for="ipad_problem_select9" class="problem_item btn btn-block" data-value="ipad">Camera</label>
                                         </div>
                                     </div>
@@ -759,7 +765,7 @@
                                         <label>Price: </label>
                                     </div>
                                     <div class="col-xs-2">
-                                        <label class="price_value" style="float: right;"></label> 
+                                        <label id="ipad_repair_price" class="price_value" style="float: right;"></label> 
                                         <!--^Need to make this depend on the items that were selected-->
                                     </div>
                                 </div>
@@ -775,8 +781,10 @@
                 </div>
             </div>
         </div>
+        <!-- SELECT IPAD MODEL MODAL END -->
         
         
+        <!-- CLEVERTECH VIDEO MODAL BEGIN -->
         <div id="clevertech_vid" class="modal fade" role="dialog">
             <div class="vertical-alignment-helper">
                 <div class="modal-dialog vertical-align-center">
@@ -794,8 +802,10 @@
                 </div>
             </div>
         </div>
+        <!-- CLEVERTECH VIDEO MODAL END -->
         
         
+        <!-- CONTACT US MODAL BEGIN -->
         <div id="contact_us" class="modal fade" role="dialog">
             <div class="vertical-alignment-helper">
                 <div class="modal-dialog vertical-align-center">
@@ -840,6 +850,8 @@
                 </div>
             </div>
         </div>
+        <!-- CONTACT US MODAL END -->
+
         <!-- MODALS END -->
         
         
@@ -886,9 +898,10 @@
                     <h1 style="position: relative; top: -50px;">Got Problems?<br/>Tell us your model</h1>
                 </div>
                 
-                <div class="row">                   
+                <div class="row">
+                    <!-- Add solid color to this div to see how nicely the color consumes the whole menu item -->
                     <div class="col-xs-3 problem_device" data-toggle="modal" data-target="#imac_device_select" style="background-color: rgba(0,0,0,0.4); border-top-left-radius: 10px; border-bottom-left-radius: 10px;">
-                        <!-- What if I got rid of this anchor tag. It added some unnecessary padding to <img>-->
+                        <!-- What if I got rid of this anchor tag. It added some unnecessary padding to <img> -->
                         <!--<a class="device_selection" href="" data-toggle="modal" data-target="#imac_device_select">-->
                         <img src="images/imac_white2.png" style="width: 100%; height: 100%;">
                         <p class="services_device_type">iMac</p>
@@ -936,117 +949,12 @@
                     </div>
                 </div>
                 
-
                 
                 <div class="row">
                     <br/>
                     <br/><br/><br/>
                     <br/><br/><br/>
                 </div>
-                
-                
-                <!-- FLANKED LAYOUT WITH BUTTONS ON THE RIGHT BEGIN -->
-                <!--
-                <div class="row" style="margin-top:50px;">
-                    <div class="col-md-8">
-                        <div class="row">
-                            <div class="col-xs-6 col-md-3">
-                                <dl class="pull-right">
-                                    <dt>Phone Number:</dt> 
-                                    <dd>408.316.7600</dd><br/> 
-                                    <dt>Address:</dt> 
-                                    <dd>1150 Murphy Ave, Ste 205</dd> 
-                                    <dd>San Jose, CA 9513</dd> <br/>
-                                </dl>
-                            </div>
-
-                            <div class="col-xs-6 col-md-9">
-
-                                <dl class="pull-left">
-                                    <dd>Monday - Friday: <br/>9am - 7pm</dd>    
-                                    <dd>Saturday - Sunday: <br/>10am - 6pm</dd>  <br/> 
-                                    <dd>© CleverTech Corporation</dd>
-                                </dl>
-                            </div>   
-                        </div>
-                    </div>
-                    
-                    
-                    <div class="col-md-4"> 
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <label>For the crazy ones:</label>
-                            </div>
-                        </div>
-                        
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <ul class="soc">
-                                    <li><a class="soc-facebook" href="#"></a></li> 
-                                    <li><a class="soc-instagram" href="#"></a></li> 
-                                    <li><a class="soc-tumblr" href="#"></a></li>
-                                    <li><a class="soc-twitter" href="#"></a></li> 
-                                    <li><a class="soc-youtube" href="#"></a></li> 
-                                    <li><a class="soc-yelp" href="#"></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div> 
-                -->
-                <!-- FLANKED LAYOUT WITH BUTTONS ON THE RIGHT END -->
-                
-                
-                <!-- CENTERED INFO AND BUTTONS BEGIN-->
-                <!--
-                <div class="row">
-                    <label>For the crazy ones:</label>
-                    <div>
-                        <ul class="soc">
-                            <li><a class="soc-facebook" href="#"></a></li>
-                            <li><a class="soc-instagram" href="#"></a></li>
-                            <li><a class="soc-tumblr" href="#"></a></li>
-                            <li><a class="soc-twitter" href="#"></a></li>
-                            <li><a class="soc-youtube" href="#"></a></li>
-                            <li><a class="soc-yelp" href="#"></a></li>
-                        </ul>
-                    </div>
-                </div>    
-                
-                <div class="row"> <br/> </div>
-                
-                <div class="row">
-                    <div class="col-xs-6">
-                        <div class="row" style="float:right;"> 
-                            <dl>
-                                <dt>Address:</dt> 
-                                <dd>1150 Murphy Ave, Ste 205</dd> 
-                                <dd>San Jose, CA 9513</dd>
-                            </dl>
-                            <dl>
-                                <dt>Phone Number:</dt> 
-                                <dd>408.316.7600</dd><br/> 
-                            </dl>
-                        </div>
-                    </div>
-                    
-                    <div class="col-xs-6">
-                        <div class="row" style="float: left; padding-left: 40px; padding-top: 10px;">
-                            <dl>
-                                <dt>Hours:</dt> 
-                                <dd>Monday - Friday: <br/>9am - 7pm</dd>    
-                                <dd>Saturday - Sunday: <br/>10am - 6pm</dd>  <br/> 
-                            </dl>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="row">
-                        © CleverTech Corporation
-                </div>
-                -->
-                <!-- CENTERED INFO AND BUTTONS END-->
-                
                 
                 
                 <!-- FLANKED LAYOUT BEGIN -->
@@ -1122,8 +1030,6 @@
 
             //Fit Text Code!!
             $(".gonz_quote").fitText(2, { minFontSize: "15px", maxFontSize: "22px" });
-            //$(".problem_item").fitText(2, { minFontSize: '20px', maxFontSize: '25px' });
-            //$(".services_device_type").fitText(2, { minFontSize: "15px", maxFontSize: "20px" });
 
             
             var duration = 300;  
@@ -1194,7 +1100,6 @@
                     $("html, body").animate({scrollTop: services_top}, duration);
                 }
                 else if (cur_scrolltop < stay_clever_top) {
-                    // ##### BUG: move down button still exists when you move into stay_clever #####
                     $("html, body").animate({scrollTop: stay_clever_top}, duration);
                 }
                 
@@ -1259,83 +1164,518 @@
             });
             
             
+            //FOCUS HERE!!
+            
             // ===================== For device select buttons =====================
             $(".device_select ~ label").click(function() {
                 
                 var device_type = $(this).data("value");
-                //console.log("HEY " + device_type + "!");
-                
-                //$("#" + device_type + "_device_chosen").val("1");
-                $("#" + device_type + "_device_chosen").val($(this).find("p").html());   //device chosen is device_type     
-                //console.log($("#" + device_type + "_device_chosen").val());
-                
-                
-                //$("#" + device_type + "_device_chosen").val(device_type);
-                                
+                $("#" + device_type + "_model_chosen").val($(this).find("p").html()); 
+                //Set the device that has been chosen   
+                                                
                 if ($("#" + device_type + "_problem_chosen").val() !== "0") {
                     console.log("I'MA SET THE PRICE FROM MODEL!")
-                    console.log("The Model Is: " + $(this).find("p").html()); //The device
+                    console.log("The Model Is: " + $("#" + device_type + "_model_chosen").val()); //The model
                     console.log("The Problem Is: " + $("#" + device_type + "_problem_chosen").val()); //The problem
-                    //To get the selected problem button, say:
-                    //$('.button.problem_item_active') 
-                    //^get attribute value, etc. Whatever you need. Will need to do this to set the price.
+
+                    var model = $(this).find("p").html();
+                    var problem = $("#" + device_type + "_problem_chosen").val();
                     
-                    
-                    //If this is an imac... {
-                    //   if the problem is problem1...set price
-                    //   else if the problem is problem2...set price
-                    //}
-                    //Else if this is a macbook... {
-                    //   if the problem is problem1...set price
-                    //   else if the problem is problem2...set price
-                    //}
+                    check_and_set_repair_prices(model, problem);
+
                 }
             });
             
             
             // ===================== For problem select buttons =====================
-            $(".problem_item").click(function() { //Watch out how this basically applies to ALL buttons
-                
-                //Used to need this when I wasn't using the radio button + label trick (learned from Samich on SO)
-                /*
-                $(".problem_item").removeClass("problem_item_active"); 
-                //Didn't want to use .active because then you would have had to override the default .active. You
-                //generally strive to not override in case of any unexpected applications of the styling.
-                $(this).addClass("problem_item_active");
-                //^Have these two lines because I'm trying to make buttons act like radio buttons
-                */
+            $(".problem_select ~ label").click(function() {
 
                 var device_type = $(this).data("value");
-                //console.log(device_type);
-                //console.log(problem);
+                $("#" + device_type + "_problem_chosen").val($(this).html());  
+                //Set the problem that has been chosen
                 
-                //$("#" + device_type + "_problem_chosen").val("1");
-                $("#" + device_type + "_problem_chosen").val($(this).html(););          
-
-                
-                if ($("#" + device_type + "_device_chosen").val() !== "0") {
+                if ($("#" + device_type + "_model_chosen").val() !== "0") {
                     console.log("I'MA SET THE PRICE FROM PROBLEM!")
-                    console.log("The Model Is: " + $("#" + device_type + "_device_chosen").val()); //The device
+                    console.log("The Model Is: " + $("#" + device_type + "_model_chosen").val()); //The model
                     console.log("The Problem Is: " + $("#" + device_type + "_problem_chosen").val()); //The problem
-                    //To get the selected problem button, say:
-                    //$('.button.problem_item_active') 
-                    //^get attribute value, etc. Whatever you need. Will need to do this to set the price.
+                    
+                    var model = $("#" + device_type + "_model_chosen").val();
+                    var problem = $("#" + device_type + "_problem_chosen").val();
+                    
+                    check_and_set_repair_prices(model, problem);
                 }
 
             });
-
-
             
-            /*
-            //Used to need this when I wasn't using the radio button + label trick (learned from Samich on SO)
-            $(".problem_device").hover(function(){
-                $(this).find("p").css("color", "dimgray");
-            }, function() {
-                $(this).find("p").css("color", "white");
-            });
-            */
             
-
+            function check_and_set_repair_prices(model, problem) {
+                    if (model === "iMac 27'' Model" || model === "iMac 21.5'' Model") {
+                        set_imac_repair_prices(model, problem);
+                    }
+                    else if (model === "Macbook Air" || model === "Macbook Pro (non-Retina)" ||
+                            model === "Macbook 21.5'' Model (Retina)") {
+                        set_macbook_repair_prices(model, problem);
+                    }
+                    else if (model === "iPhone 7 Plus &amp; 7" || model === "iPhone 6s Plus &amp; 6s" || 
+                            model === "iPhone 6 Plus &amp; 6" || model === "iPhone 5 SE/5s/5c/5") {
+                        set_iphone_repair_prices(model, problem);
+                    }
+                    else if (model === "iPad 2/3/4 &amp; Air" || model === "iPad Air 2" || 
+                            model === "iPad Mini 1/2/3" || model === "iPad Mini 4") {
+                        console.log("WATAAHHHH");
+                        set_ipad_repair_prices(model, problem);
+                        console.log("WUT DA HEO?!");
+                    }
+            }
+            
+            
+            function set_imac_repair_prices(model, problem) {
+                if (problem === "Graphics Card") {
+                    if (model === "iMac 27'' Model") {
+                        $("#imac_repair_price").html("$100");
+                    }
+                    else if (model === "iMac 21.5'' Model") {
+                        $("#imac_repair_price").html("$200");
+                    }
+                }
+                else if (problem === "SSD Upgrade") {
+                    if (model === "iMac 27'' Model") {
+                        $("#imac_repair_price").html("$300");
+                    }
+                    else if (model === "iMac 21.5'' Model") {
+                        $("#imac_repair_price").html("$400");
+                    }
+                }
+                else if (problem === "LCD") {
+                    if (model === "iMac 27'' Model") {
+                        $("#imac_repair_price").html("$500");
+                    }
+                    else if (model === "iMac 21.5'' Model") {
+                        $("#imac_repair_price").html("$600");
+                    }
+                }
+                else if (problem === "Motherboard") {
+                    if (model === "iMac 27'' Model") {
+                        $("#imac_repair_price").html("$700");
+                    }
+                    else if (model === "iMac 21.5'' Model") {
+                        $("#imac_repair_price").html("$800");
+                    }
+                }
+                else if (problem === "Optical Drive") {
+                    if (model === "iMac 27'' Model") {
+                        $("#imac_repair_price").html("$900");
+                    }
+                    else if (model === "iMac 21.5'' Model") {
+                        $("#imac_repair_price").html("$1000");
+                    }
+                }
+                else if (problem === "RAM") {
+                    if (model === "iMac 27'' Model") {
+                        $("#imac_repair_price").html("$1100");
+                    }
+                    else if (model === "iMac 21.5'' Model") {
+                        $("#imac_repair_price").html("$1200");
+                    } 
+                } 
+                else if (problem === "Power Supply") {
+                    if (model === "iMac 27'' Model") {
+                        $("#imac_repair_price").html("$1300");
+                    }
+                    else if (model === "iMac 21.5'' Model") {
+                        $("#imac_repair_price").html("$1400");
+                    }
+                }
+                else if (problem === "Data Recovery") {
+                    if (model === "iMac 27'' Model") {
+                        $("#imac_repair_price").html("$1500");
+                    }
+                    else if (model === "iMac 21.5'' Model") {
+                        $("#imac_repair_price").html("$1600");
+                    }
+                }
+                else if (problem === "Virus Removal") {
+                    if (model === "iMac 27'' Model") {
+                        $("#imac_repair_price").html("$1700");
+                    }
+                    else if (model === "iMac 21.5'' Model") {
+                        $("#imac_repair_price").html("$1800");
+                    }
+                }
+            }
+            
+            
+            function set_macbook_repair_prices(model, problem) {
+                if (problem === "Graphics Card") {
+                    if (model === "Macbook Air") {
+                        $("#macbook_repair_price").html("$100");
+                    }
+                    else if (model === "Macbook Pro (non-Retina)") {
+                        $("#macbook_repair_price").html("$200");
+                    }
+                    else if (model === "Macbook 21.5'' Model (Retina)") {
+                        $("#macbook_repair_price").html("$300");
+                    }
+                }
+                else if (problem === "SSD Upgrade") {
+                    if (model === "Macbook Air") {
+                        $("#macbook_repair_price").html("$400");
+                    }
+                    else if (model === "Macbook Pro (non-Retina)") {
+                        $("#macbook_repair_price").html("$500");
+                    }
+                    else if (model === "Macbook 21.5'' Model (Retina)") {
+                        $("#macbook_repair_price").html("$600");
+                    }
+                }
+                else if (problem === "LCD") {
+                    if (model === "Macbook Air") {
+                        $("#macbook_repair_price").html("$700");
+                    }
+                    else if (model === "Macbook Pro (non-Retina)") {
+                        $("#macbook_repair_price").html("$800");
+                    }
+                    else if (model === "Macbook 21.5'' Model (Retina)") {
+                        $("#macbook_repair_price").html("$900");
+                    }
+                }
+                else if (problem === "Motherboard") {
+                    if (model === "Macbook Air") {
+                        $("#macbook_repair_price").html("$1000");
+                    }
+                    else if (model === "Macbook Pro (non-Retina)") {
+                        $("#macbook_repair_price").html("$1100");
+                    }
+                    else if (model === "Macbook 21.5'' Model (Retina)") {
+                        $("#macbook_repair_price").html("$1200");
+                    }
+                }
+                else if (problem === "Keyboard") {
+                    if (model === "Macbook Air") {
+                        $("#macbook_repair_price").html("$1300");
+                    }
+                    else if (model === "Macbook Pro (non-Retina)") {
+                        $("#macbook_repair_price").html("$1400");
+                    }
+                    else if (model === "Macbook 21.5'' Model (Retina)") {
+                        $("#macbook_repair_price").html("$1500");
+                    }
+                }
+                else if (problem === "RAM") {
+                    if (model === "Macbook Air") {
+                        $("#macbook_repair_price").html("$1600");
+                    }
+                    else if (model === "Macbook Pro (non-Retina)") {
+                        $("#macbook_repair_price").html("$1700");
+                    }
+                    else if (model === "Macbook 21.5'' Model (Retina)") {
+                        $("#macbook_repair_price").html("$1800");
+                    }
+                }
+                else if (problem === "Battery") {
+                    if (model === "Macbook Air") {
+                        $("#macbook_repair_price").html("$1900");
+                    }
+                    else if (model === "Macbook Pro (non-Retina)") {
+                        $("#macbook_repair_price").html("$2000");
+                    }
+                    else if (model === "Macbook 21.5'' Model (Retina)") {
+                        $("#macbook_repair_price").html("$2100");
+                    }
+                }
+                else if (problem === "Data Recovery") {
+                    if (model === "Macbook Air") {
+                        $("#macbook_repair_price").html("$2200");
+                    }
+                    else if (model === "Macbook Pro (non-Retina)") {
+                        $("#macbook_repair_price").html("$2300");
+                    }
+                    else if (model === "Macbook 21.5'' Model (Retina)") {
+                        $("#macbook_repair_price").html("$2400");
+                    }
+                }
+                else if (problem === "Virus Removal") {
+                    if (model === "Macbook Air") {
+                        $("#macbook_repair_price").html("$2500");
+                    }
+                    else if (model === "Macbook Pro (non-Retina)") {
+                        $("#macbook_repair_price").html("$2600");
+                    }
+                    else if (model === "Macbook 21.5'' Model (Retina)") {
+                        $("#macbook_repair_price").html("$2700");
+                    }
+                }
+            }
+            
+            
+            function set_iphone_repair_prices(model, problem) {
+                console.log("IN set_iphone_repair_prices")
+                if (problem === "Screen") {
+                    if (model === "iPhone 7 Plus &amp; 7") {
+                        $("#iphone_repair_price").html("$100");
+                    }
+                    else if (model === "iPhone 6s Plus &amp; 6s") {
+                        $("#iphone_repair_price").html("$200");
+                    }
+                    else if (model === "iPhone 6 Plus &amp; 6") {
+                        $("#iphone_repair_price").html("$300");
+                    }
+                    else if (model === "iPhone 5 SE/5s/5c/5") {
+                        $("#iphone_repair_price").html("$400");
+                    }
+                }
+                else if (problem === "Wifi") {
+                    if (model === "iPhone 7 Plus &amp; 7") {
+                        $("#iphone_repair_price").html("$500");
+                    }
+                    else if (model === "iPhone 6s Plus &amp; 6s") {
+                        $("#iphone_repair_price").html("$600");
+                    }
+                    else if (model === "iPhone 6 Plus &amp; 6") {
+                        $("#iphone_repair_price").html("$700");
+                    }
+                    else if (model === "iPhone 5 SE/5s/5c/5") {
+                        $("#iphone_repair_price").html("$800");
+                    }   
+                }
+                else if (problem === "Speakers") {
+                    if (model === "iPhone 7 Plus &amp; 7") {
+                        $("#iphone_repair_price").html("$900");
+                    }
+                    else if (model === "iPhone 6s Plus &amp; 6s") {
+                        $("#iphone_repair_price").html("$1000");
+                    }
+                    else if (model === "iPhone 6 Plus &amp; 6") {
+                        $("#iphone_repair_price").html("$1100");
+                    }
+                    else if (model === "iPhone 5 SE/5s/5c/5") {
+                        $("#iphone_repair_price").html("$1200");
+                    }   
+                }
+                else if (problem === "Battery") {
+                    if (model === "iPhone 7 Plus &amp; 7") {
+                        $("#iphone_repair_price").html("$1300");
+                    }
+                    else if (model === "iPhone 6s Plus &amp; 6s") {
+                        $("#iphone_repair_price").html("$1400");
+                    }
+                    else if (model === "iPhone 6 Plus &amp; 6") {
+                        $("#iphone_repair_price").html("$1500");
+                    }
+                    else if (model === "iPhone 5 SE/5s/5c/5") {
+                        $("#iphone_repair_price").html("$1600");
+                    } 
+                }
+                else if (problem === "Headphone Jack") {
+                    if (model === "iPhone 7 Plus &amp; 7") {
+                        $("#iphone_repair_price").html("$1700");
+                    }
+                    else if (model === "iPhone 6s Plus &amp; 6s") {
+                        $("#iphone_repair_price").html("$1800");
+                    }
+                    else if (model === "iPhone 6 Plus &amp; 6") {
+                        $("#iphone_repair_price").html("$1900");
+                    }
+                    else if (model === "iPhone 5 SE/5s/5c/5") {
+                        $("#iphone_repair_price").html("$2000");
+                    } 
+                }
+                else if (problem === "Home Button") {
+                    if (model === "iPhone 7 Plus &amp; 7") {
+                        $("#iphone_repair_price").html("$2100");
+                    }
+                    else if (model === "iPhone 6s Plus &amp; 6s") {
+                        $("#iphone_repair_price").html("$2200");
+                    }
+                    else if (model === "iPhone 6 Plus &amp; 6") {
+                        $("#iphone_repair_price").html("$2300");
+                    }
+                    else if (model === "iPhone 5 SE/5s/5c/5") {
+                        $("#iphone_repair_price").html("$2400");
+                    } 
+                }
+                else if (problem === "Water Damage") {
+                    if (model === "iPhone 7 Plus &amp; 7") {
+                        $("#iphone_repair_price").html("$2500");
+                    }
+                    else if (model === "iPhone 6s Plus &amp; 6s") {
+                        $("#iphone_repair_price").html("$2600");
+                    }
+                    else if (model === "iPhone 6 Plus &amp; 6") {
+                        $("#iphone_repair_price").html("$2700");
+                    }
+                    else if (model === "iPhone 5 SE/5s/5c/5") {
+                        $("#iphone_repair_price").html("$2800");
+                    } 
+                }
+                else if (problem === "Charging Port") {
+                    if (model === "iPhone 7 Plus &amp; 7") {
+                        $("#iphone_repair_price").html("$2900");
+                    }
+                    else if (model === "iPhone 6s Plus &amp; 6s") {
+                        $("#iphone_repair_price").html("$3000");
+                    }
+                    else if (model === "iPhone 6 Plus &amp; 6") {
+                        $("#iphone_repair_price").html("$3100");
+                    }
+                    else if (model === "iPhone 5 SE/5s/5c/5") {
+                        $("#iphone_repair_price").html("$3200");
+                    } 
+                }
+                else if (problem === "Camera") {
+                    if (model === "iPhone 7 Plus &amp; 7") {
+                        $("#iphone_repair_price").html("$3300");
+                    }
+                    else if (model === "iPhone 6s Plus &amp; 6s") {
+                        $("#iphone_repair_price").html("$3400");
+                    }
+                    else if (model === "iPhone 6 Plus &amp; 6") {
+                        $("#iphone_repair_price").html("$3500");
+                    }
+                    else if (model === "iPhone 5 SE/5s/5c/5") {
+                        $("#iphone_repair_price").html("$3600");
+                    } 
+                }
+            }
+            
+            
+            function set_ipad_repair_prices(model, problem) {
+                if (problem === "Glass Digitizer") {
+                    if (model === "iPad 2/3/4 &amp; Air") {
+                        $("#ipad_repair_price").html("$100");
+                    }
+                    else if (model === "iPad Air 2") {
+                        console.log("HERE");
+                        $("#ipad_repair_price").html("$200");
+                    }
+                    else if (model === "iPad Mini 1/2/3") {
+                        $("#ipad_repair_price").html("$300");
+                    }
+                    else if (model === "iPad Mini 4") {
+                        $("#ipad_repair_price").html("$400");
+                    }
+                }
+                else if (problem === "Wifi") {
+                    if (model === "iPad 2/3/4 &amp; Air") {
+                        $("#ipad_repair_price").html("$500");
+                    }
+                    else if (model === "iPad Air 2") {
+                        console.log("HERE");
+                        $("#ipad_repair_price").html("$600");
+                    }
+                    else if (model === "iPad Mini 1/2/3") {
+                        $("#ipad_repair_price").html("$700");
+                    }
+                    else if (model === "iPad Mini 4") {
+                        $("#ipad_repair_price").html("$800");
+                    }
+                }
+                else if (problem === "Speakers") {
+                    if (model === "iPad 2/3/4 &amp; Air") {
+                        $("#ipad_repair_price").html("$900");
+                    }
+                    else if (model === "iPad Air 2") {
+                        console.log("HERE");
+                        $("#ipad_repair_price").html("$1000");
+                    }
+                    else if (model === "iPad Mini 1/2/3") {
+                        $("#ipad_repair_price").html("$1100");
+                    }
+                    else if (model === "iPad Mini 4") {
+                        $("#ipad_repair_price").html("$1200");
+                    }
+                }
+                else if (problem === "Battery") {
+                    if (model === "iPad 2/3/4 &amp; Air") {
+                        $("#ipad_repair_price").html("$1300");
+                    }
+                    else if (model === "iPad Air 2") {
+                        console.log("HERE");
+                        $("#ipad_repair_price").html("$1400");
+                    }
+                    else if (model === "iPad Mini 1/2/3") {
+                        $("#ipad_repair_price").html("$1500");
+                    }
+                    else if (model === "iPad Mini 4") {
+                        $("#ipad_repair_price").html("$1600");
+                    }  
+                }
+                else if (problem === "Headphone Jack") {
+                    if (model === "iPad 2/3/4 &amp; Air") {
+                        $("#ipad_repair_price").html("$1700");
+                    }
+                    else if (model === "iPad Air 2") {
+                        console.log("HERE");
+                        $("#ipad_repair_price").html("$1800");
+                    }
+                    else if (model === "iPad Mini 1/2/3") {
+                        $("#ipad_repair_price").html("$1900");
+                    }
+                    else if (model === "iPad Mini 4") {
+                        $("#ipad_repair_price").html("$2000");
+                    }  
+                }
+                else if (problem === "Home Button") {
+                    if (model === "iPad 2/3/4 &amp; Air") {
+                        $("#ipad_repair_price").html("$2100");
+                    }
+                    else if (model === "iPad Air 2") {
+                        console.log("HERE");
+                        $("#ipad_repair_price").html("$2200");
+                    }
+                    else if (model === "iPad Mini 1/2/3") {
+                        $("#ipad_repair_price").html("$2300");
+                    }
+                    else if (model === "iPad Mini 4") {
+                        $("#ipad_repair_price").html("$2400");
+                    }  
+                }
+                else if (problem === "LCD") {
+                    if (model === "iPad 2/3/4 &amp; Air") {
+                        $("#ipad_repair_price").html("$2500");
+                    }
+                    else if (model === "iPad Air 2") {
+                        console.log("HERE");
+                        $("#ipad_repair_price").html("$2600");
+                    }
+                    else if (model === "iPad Mini 1/2/3") {
+                        $("#ipad_repair_price").html("$2700");
+                    }
+                    else if (model === "iPad Mini 4") {
+                        $("#ipad_repair_price").html("$2800");
+                    }  
+                }
+                else if (problem === "Charging Port") {
+                    if (model === "iPad 2/3/4 &amp; Air") {
+                        $("#ipad_repair_price").html("$2900");
+                    }
+                    else if (model === "iPad Air 2") {
+                        console.log("HERE");
+                        $("#ipad_repair_price").html("$3000");
+                    }
+                    else if (model === "iPad Mini 1/2/3") {
+                        $("#ipad_repair_price").html("$3100");
+                    }
+                    else if (model === "iPad Mini 4") {
+                        $("#ipad_repair_price").html("$3200");
+                    }  
+                }
+                else if (problem === "Camera") {
+                    if (model === "iPad 2/3/4 &amp; Air") {
+                        $("#ipad_repair_price").html("$3300");
+                    }
+                    else if (model === "iPad Air 2") {
+                        console.log("HERE");
+                        $("#ipad_repair_price").html("$3400");
+                    }
+                    else if (model === "iPad Mini 1/2/3") {
+                        $("#ipad_repair_price").html("$3500");
+                    }
+                    else if (model === "iPad Mini 4") {
+                        $("#ipad_repair_price").html("$3600");
+                    }  
+                }
+            }
             
         </script>
     </body>

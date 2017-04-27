@@ -13,7 +13,6 @@
 
 .device_selection:hover {
     text-decoration: none;
-    
 }
 
 
@@ -26,6 +25,7 @@ body {
     font-family: "San Francisco", "PT Sans", sans-serif;
     /*padding-top: 120px;*/ /*To offset space taken by the navbar...Perhaps don't need anymore for design we're shooting for.*/
 }
+
 
 .navbar {
     font-size: 20px;
@@ -40,6 +40,7 @@ body {
     -webkit-box-shadow: none;
     box-shadow: none;
 }
+
 
 .navbar.navbar-default .navbar-collapse {
     border: 0;
@@ -179,8 +180,7 @@ body {
 }
 
 
-
-/* THE WINNING CODE */
+/* THE WINNING CODE for making navbar items act the way they do */
 .nav > li > a:hover, .nav > li > a:focus {
     background-color: transparent;
     color: dimgray;
@@ -217,7 +217,6 @@ li.nav-item.active {
   display: table-cell;
   float: none;
 }
-
 
 
 .equal {
@@ -280,18 +279,7 @@ li.nav-item.active {
     #move_down {
         right: 42%;
     }
-    
-
-
 }
-
-
-
-.img-responsive {
-    width: auto;
-    height: auto;
-}
-
 
 
 /*Code from Perfect Icons BEGIN*/
@@ -428,7 +416,6 @@ li.nav-item.active {
 /*Code from Perfect Icons END*/
 
 
-
 /* CSS FOR CENTERING MODALS BEGIN */
 /* Thanks to Ren De Nobel from SO: http://stackoverflow.com/questions/18053408/vertically-centering-bootstrap-modal-window */
 .vertical-alignment-helper {
@@ -455,8 +442,10 @@ li.nav-item.active {
 }
 /* CSS FOR CENTERING MODALS END */
 
+
 .problem_item {
     margin-bottom: 10px;
+    border-radius: 10px;
     border-color: black;
     /*border-width: medium;*/
     background-color: white;
@@ -482,23 +471,10 @@ li.nav-item.active {
 }
 
 
-
-/*
-.modal-dialog {
-    overflow-y: initial !important;
-}
-*/
-
 #start_a_repair_dialog {
     overflow-y: initial !important;
 }
 
-/*
-.modal-body {
-    height: 700px;
-    overflow-y: auto;
-}
-*/
 
 #start_a_repair_body {
     height: 700px; /* Fix height so scrollbar will appear */
@@ -513,11 +489,10 @@ li.nav-item.active {
 }
 
 
-
-
 .device_select[type=radio], .problem_select[type=radio] {
     display: none;
 }
+
 
 .device_select[type=radio]:checked + label, .problem_select[type=radio]:checked + label{
     background-color:lightgreen;
@@ -525,24 +500,15 @@ li.nav-item.active {
     border-color: black;
 }
 
+
 .device_select ~ label:hover, .problem_select ~ label:hover {
     cursor: pointer;
     background-color: lightgreen;
     border-radius: 10px;
 }
 
-.problem_item_active {
-    background-color: lightgreen;
-}
-
-
 
 .problem_device:hover {
     cursor: pointer;
     color: dimgray;
-}
-
-
-.btn {
-    border-radius: 10px;
 }
