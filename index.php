@@ -118,7 +118,7 @@
                                 <form method="post"> <!-- Should I have action="/validate.php" ? -->
                                     <!--<p class="required">Name</p>-->
 
-                                    <h3 style="color: #0f6a37;">Your Information</h3>
+                                    <h3 style="color: #0f6a37;">Your Info</h3>
                                     <hr/>
                                     
                                     <div class="form-group">
@@ -205,15 +205,15 @@
                                         </div>
                                     </div>
                                     
-                                    <h3 style="color: #0f6a37;">Device Information</h3>
+                                    <h3 style="color: #0f6a37;">Device Info</h3>
                                     <hr/>
 
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-xs-6">
-                                                <label class="required" for="device_type">Device Type</label>
-                                                <select class="form-control" id="device_type" name="device_type" >
-                                                    <option selected disabled>Select Device Type</option>
+                                                <label class="required" for="model_type">Device Type</label>
+                                                <select class="form-control" id="model_type" name="model_type" >
+                                                    <option selected disabled>Select Model Type</option>
                                                     <option>iMac 27'' Model</option>
                                                     <option>iMac 21.5'' Model</option>
                                                     <option>Macbook Air</option>
@@ -236,7 +236,7 @@
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-xs-6">
-                                                <label class="required" for="city">Serial Number</label>
+                                                <label class="required" for="serial_number">Serial Number</label>
                                                 <input class="form-control" id="serial_number" name="serial_number">
                                             </div>
                                         </div>
@@ -245,7 +245,17 @@
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-xs-6">
-                                                <label for="city">Customer Reference #</label>
+                                                <label for="problem">Problem</label>
+                                                <input class="form-control" id="problem" name="problem">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <label for="cust_ref_num">Customer Reference #</label>
                                                 <input class="form-control" id="cust_ref_num" name="cust_ref_num">
                                             </div>
                                         </div>
@@ -254,22 +264,14 @@
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-xs-6">
-                                                <label for="city">Other Information</label>
-                                                <input class="form-control" id="other_info" name="other_info">
+                                                <label for="other_info">Anything else you'd like to tell us?</label>
+                                                <textarea class="form-control" id="other_info" rows=4 name="other_info" style="resize: none;"></textarea>
                                             </div>
                                         </div>
                                     </div>
                                     
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-xs-12">
-                                                <label for="city">Symptoms / Needs</label>
-                                                <textarea class="form-control" rows=4 id="symptoms_needs" name="symptoms_needs" style="resize: none;"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
                                     
-                                    <h3 style="color: #0f6a37;">Pick-Up Information</h3>
+                                    <h3 style="color: #0f6a37;">Pick-Up Info</h3>
                                     <hr/>
                                     
                                     <div class="form-group">
@@ -394,17 +396,17 @@
                                 </div>
                                 
                                 <div class="row" style="font-size: 15px;"> 
-                                    <div class="col-xs-2 col-xs-offset-4">
-                                        <label>Price: </label>
+                                    <div class="col-xs-3 col-xs-offset-4" style="float: left; padding: 0px;">
+                                        <label>Service Price: </label>
                                     </div>
                                     <div class="col-xs-2">
-                                        <label id="imac_repair_price" class="price_value" style="float: right;"></label> 
+                                        <label id="imac_repair_price" class="price_value" style="float: left;"></label> 
                                         <!--^Need to make this depend on the items that were selected-->
                                     </div>
                                 </div>
-                                    
-                                <div class="row"> 
-                                    <button class="btn_from_device_modal btn col-xs-4 col-xs-offset-4" style="background-color: #0f6a37; color: white; margin-top: 10px;" data-dismiss="modal" data-toggle="modal" data-target="#start_repair_modal">Request Pick-Up</button>
+                                
+                                <div class="row">
+                                    <button class="btn_from_device_modal btn col-xs-4 col-xs-offset-4" style="background-color: #0f6a37; color: white; margin-top: 10px;" data-dismiss="modal" data-toggle="modal" data-target="#start_repair_modal" id="imac_service_pickup">Request Pick-Up</button>
                                     <!-- I might actually need to use some Javascript here for the pre-fillout behavior -->
                                 </div>
                                 
@@ -516,17 +518,17 @@
                                 </div>
                                 
                                 <div class="row" style="font-size: 15px;"> 
-                                    <div class="col-xs-2 col-xs-offset-4">
-                                        <label>Price: </label>
+                                    <div class="col-xs-3 col-xs-offset-4" style="float: left; padding: 0px;">
+                                        <label>Service Price: </label>
                                     </div>
                                     <div class="col-xs-2">
-                                        <label id="macbook_repair_price" class="price_value" style="float: right;"></label> 
+                                        <label id="macbook_repair_price" class="price_value" style="float: left;"></label> 
                                         <!--^Need to make this depend on the items that were selected-->
                                     </div>
                                 </div>
                                 
                                 <div class="row"> 
-                                    <button class="btn_from_device_modal btn col-xs-4 col-xs-offset-4" style="background-color: #0f6a37; color: white; margin-top: 10px;" data-dismiss="modal" data-toggle="modal" data-target="#start_repair_modal">Request Pick-Up</button>
+                                    <button class="btn_from_device_modal btn col-xs-4 col-xs-offset-4" style="background-color: #0f6a37; color: white; margin-top: 10px;" data-dismiss="modal" data-toggle="modal" data-target="#start_repair_modal" id="macbook_service_pickup">Request Pick-Up</button>
                                 </div>
                                 
                             </div>
@@ -643,17 +645,17 @@
                                 </div>
 
                                 <div class="row" style="font-size: 15px;"> 
-                                    <div class="col-xs-2 col-xs-offset-4">
-                                        <label>Price: </label>
+                                    <div class="col-xs-3 col-xs-offset-4" style="float: left; padding: 0px;">
+                                        <label>Service Price: </label>
                                     </div>
                                     <div class="col-xs-2">
-                                        <label id="iphone_repair_price" class="price_value" style="float: right;"></label> 
+                                        <label id="iphone_repair_price" class="price_value" style="float: left;"></label> 
                                         <!--^Need to make this depend on the items that were selected-->
                                     </div>
                                 </div>
                                 
                                 <div class="row"> 
-                                    <button class="btn_from_device_modal btn col-xs-4 col-xs-offset-4" style="background-color: #0f6a37; color: white; margin-top: 10px;" data-dismiss="modal" data-toggle="modal" data-target="#start_repair_modal">Request Pick-Up</button>
+                                    <button class="btn_from_device_modal btn col-xs-4 col-xs-offset-4" style="background-color: #0f6a37; color: white; margin-top: 10px;" data-dismiss="modal" data-toggle="modal" data-target="#start_repair_modal" id="iphone_service_pickup">Request Pick-Up</button>
                                 </div>
                                 
                             </div>
@@ -770,17 +772,17 @@
                                 </div>
                                 
                                 <div class="row" style="font-size: 15px;"> 
-                                    <div class="col-xs-2 col-xs-offset-4">
-                                        <label>Price: </label>
+                                    <div class="col-xs-3 col-xs-offset-4" style="float: left; padding: 0px;">
+                                        <label>Service Price: </label>
                                     </div>
                                     <div class="col-xs-2">
-                                        <label id="ipad_repair_price" class="price_value" style="float: right;"></label> 
+                                        <label id="ipad_repair_price" class="price_value" style="float: left;"></label> 
                                         <!--^Need to make this depend on the items that were selected-->
                                     </div>
                                 </div>
                                 
                                 <div class="row"> 
-                                    <button class="btn_from_device_modal btn col-xs-4 col-xs-offset-4" style="background-color: #0f6a37; color: white; margin-top: 10px;" data-dismiss="modal" data-toggle="modal" data-target="#start_repair_modal">Request Pick-Up</button>
+                                    <button class="btn_from_device_modal btn col-xs-4 col-xs-offset-4" style="background-color: #0f6a37; color: white; margin-top: 10px;" data-dismiss="modal" data-toggle="modal" data-target="#start_repair_modal" id="ipad_service_pickup">Request Pick-Up</button>
                                 </div>
                                 
                             </div>
@@ -828,23 +830,23 @@
 
                                     <div class="form-group">
                                         <label class="required" for="first_name">First Name</label>
-                                        <input class="form-control" id="first_name" name="first_name">
+                                        <input class="form-control" id="contact_us_first_name" name="contact_us_first_name">
                                     </div>
                                     
                                     <div class="form-group">
-                                        <label class="required" for="first_name">Email</label>
-                                        <input class="form-control" id="first_name" name="first_name">
-                                        <input type="checkbox"> Check here to receive email updates
+                                        <label class="required" for="contact_us_email">Email</label>
+                                        <input class="form-control" id="contact_us_email" name="contact_us_email">
+                                        <input id="receive_email_updates" type="checkbox"> Check here to receive email updates
                                     </div>
                                     
                                     <div class="form-group">
-                                        <label class="required" for="first_name">Subject</label>
-                                        <input class="form-control" id="first_name" name="first_name">
+                                        <label class="required" for="contact_us_subject">Subject</label>
+                                        <input class="form-control" id="contact_us_subject" name="contact_us_subject">
                                     </div>
                                     
                                     <div class="form-group">
-                                        <label class="required" for="first_name">Message</label>
-                                        <textarea class="form-control" rows=4 id="symptoms_needs" name="symptoms_needs" style="resize: none;"></textarea>               
+                                        <label class="required" for="contact_us_msg">Message</label>
+                                        <textarea class="form-control" rows=4 id="contact_us_msg" name="contact_us_msg" style="resize: none;"></textarea>               
                                     </div>
                                     
                                     <div class="form-group">
@@ -1417,6 +1419,60 @@
                     $("#ipad_repair_price").html(ipadmini4_price);
                 } 
             }
+            
+            
+            $("#imac_service_pickup").click(function() {
+                //Take model type and pre-fill #model_type
+                //Take problem and pre-fill #symptoms/needs
+                var decoded = decode_entities($("#imac_model_chosen").val());
+                $("#model_type").val(decoded); 
+                $("#problem").val($("#imac_problem_chosen").val());
+            });
+            
+            
+            $("#macbook_service_pickup").click(function() {
+                //Take model type and pre-fill #model_type
+                //Take problem and pre-fill #symptoms/needs
+                
+                var decoded = decode_entities($("#macbook_model_chosen").val());
+                $("#model_type").val(decoded);
+                $("#problem").val($("#macbook_problem_chosen").val());
+
+            });
+            
+            
+            $("#iphone_service_pickup").click(function() {
+                //Take model type and pre-fill #model_type
+                //Take problem and pre-fill #symptoms/needs
+                
+                var decoded = decode_entities($("#iphone_model_chosen").val())
+                $("#model_type").val(decoded);
+                $("#problem").val($("#iphone_problem_chosen").val());
+
+
+            });
+            
+            
+            $("#ipad_service_pickup").click(function() {
+                //Take model type and pre-fill #model_type
+                //Take problem and pre-fill #symptoms/needs
+                
+                var decoded = decode_entities($("#ipad_model_chosen").val());
+                $("#model_type").val(decoded);
+                $("#problem").val($("#ipad_problem_chosen").val());
+
+            });
+            
+            
+            //Need this for decoding HTML entities (thanks to lucascaro from SO)
+            function decode_entities(encoded_string) {
+                //var decoded = $("<div/>").html($("#iphone_model_chosen").val()).text();
+                //^Don't do it this way. Apparently this makes us open to XSS attacks.
+                var text_area = document.createElement('textarea');
+                text_area.innerHTML = encoded_string;
+                return text_area.value;
+            }
+            
             
         </script>
     </body>
