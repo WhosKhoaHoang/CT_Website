@@ -1,7 +1,18 @@
 <?php
     $error = ""; $successMessage = "";
+
     /*
-    //If there's anything in the $_POST array...(wouldn't it be better to use isset?)
+    if ($_POST) { //I.e., return true was executed in the the submit() method.
+        
+        //$model_type = $_POST["model_type"];
+        //print_r($model_type);
+
+    }
+    */
+
+    /*
+    //If there's anything in the $_POST array...(wouldn't it be better to use isset? No because $_POST is always
+    //gonna be set with something so the inside of the if block would always be executed?
     if ($_POST) {
         if (!$_POST["email"]) {
             $error .= "An email address is required.<br>";
@@ -111,7 +122,7 @@
                         
                         <!-- Modal content-->
                         <div class="modal-content">
-                            <div id="start_a_repair_body" class="modal-body">
+                            <div id="start_a_repair_body" class="modal-body" style="font-size: 165x; padding: 20px;">
                                  
                                 <form method="post"> <!-- Should I have action="/validate.php" ? -->
                                     <!--<p class="required">Name</p>-->
@@ -208,6 +219,7 @@
                                     <hr/>
                                     
                                     <!-- DYNAMIC INPUT SECTION BEGIN! -->
+                                    <!-- Note how names for dynamic inputs are all associated with arrays! -->
                                     <div id="dynamic_input">
                                         
                                         <div id="dynamic_device_group0"> <!-- The first BEGIN -->
@@ -245,7 +257,7 @@
                                             <div class="form-group">
                                                 <div class="row">
                                                     <div class="col-xs-6">
-                                                        <label for="problem">Problem</label>
+                                                        <label class="required" for="problem">Problem</label>
                                                         <input class="form-control" id="problem" name="problem[]">
                                                     </div>
                                                     <div class="col-xs-6">
@@ -254,7 +266,13 @@
                                                     </div>
                                                 </div>
                                             </div>
-
+                                            
+                                            <!--
+                                            <div class="form-group">
+                                                <p>Estimated Service Cost: </p><span id="est_service_cost" style="display:none;"></span>
+                                            </div>
+                                            -->
+                                            
                                             <div class="form-group">
                                                 <div class="row">
                                                     <div class="col-xs-12">
@@ -820,7 +838,7 @@
         
         
         <!-- CONTACT US MODAL BEGIN -->
-        <div id="contact_us" class="modal fade" role="dialog">
+        <div id="contact_us_modal" class="modal fade" role="dialog">
             <div class="vertical-alignment-helper">
                 <div class="modal-dialog vertical-align-center">
                     <div class="modal-dialog">
@@ -866,12 +884,156 @@
         </div>
         <!-- CONTACT US MODAL END -->
 
+        
+        <!-- Say tabindex=-1 so users can access keyboard shortcuts on modals -->
+        <!-- Note how you didn't center this modal. It was causing weird stuff to happen during resizing. -->
+        <div class="modal fade in" id="pick_up_info_modal" tabindex="-1" role="dialog" aria-hidden="true">
+
+            <div class="modal-dialog modal-lg" style="margin-top: 100px;">
+                <div class="modal-content">
+
+                    <div class="modal-body" style="padding-left: 50px; padding-right: 50px; text-align: center;">
+                        <div class="row">
+                            <h1>Smart Pick-Up</h1>
+                        </div>
+                        
+                        <div class="row">
+                            <p class="how_it_works_text">CleverTech performs home &amp; business computer pick-ups the day after a pick-up request is submitted. In some case (when possible) the day of submission. After submitting a request, we will call you to veify time and location for the computer pick-yp. It's easy!</p>
+                        </div>
+                        
+
+                        <div class="row" style="margin-top: 20px;">
+                            <a class="how_it_works_text" style="cursor: pointer; color: green;" data-dismiss="modal" data-toggle="modal" data-target="#start_repair_modal">Start your pick-up request here ></a>
+                        </div>
+                        
+
+                        <div class="row" style="margin-top: 70px;">
+                            <h1>What to expect</h1>
+                        </div>
+                        <div class="row">
+                            <p class="how_it_works_text">Pick-up requests submitted before 10:30 am are usually picked up same day. If submitted after 10:30 am, expect a phone call to schedule a next day pick-up. If you need to cancel or reschedule a pick-up, please call us at 408.316.7600. A pick-up fee ($50) is charged for any repairs that are declined. If you approve the repair, the pick-up fee is waived.</p>
+                        </div>
+                        
+                        
+                        <div class="row" style="margin-top: 20px; margin-bottom: 18px;">
+                            <a class="how_it_works_text" style="cursor: pointer; color: green;" data-dismiss="modal" data-toggle="modal" data-target="#terms_and_cond_modal">Terms &amp; Conditions ></a>
+                        </div>
+                        
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        
+        <!-- Note how you didn't center this modal. It was causing weird stuff to happen during resizing. -->
+        <div class="modal fade in" id="repair_info_modal" tabindex="-1" role="dialog" aria-hidden="true">
+
+            <div class="modal-dialog modal-lg" style="margin-top: 100px;">
+                <div class="modal-content">
+
+                    <div class="modal-body" style="padding-left: 50px; padding-right: 50px; text-align: center;">
+                        
+                        <div class="row">
+                            <h1>CleverTech Repair</h1>
+                        </div>
+                        
+                        <div class="row">
+                            <p class="how_it_works_text">We're here to help. CleverTech repairs are performed by experts who use genuine Apple parts. All parts from 2006 till now are in stock. This allows us to turnaround repairs in 2-3 days no matter what model computer or issue you're experiencing. We're so good, it doesn't make sense to go anywhere else!</p>
+                        </div>
+                        
+
+                        <div class="row" style="margin-top: 20px;">
+                            <a class="how_it_works_text" style="cursor: pointer; color: green;" data-dismiss="modal" data-toggle="modal" data-target="#start_repair_modal">Start your pick-up request here ></a>
+                        </div>
+                        
+
+                        <div class="row" style="margin-top: 70px;">
+                            <h1>The CleverWay!</h1>
+                        </div>
+                        <div class="row">
+                            <p class="how_it_works_text">Every repair comes with a 90 Day Limited Warranty and up to 365 days of coverage on parts with Manufacturer Warranties. The limited warranty provides that if within 90 days from the repair date of your CleverTech repair you device fails to operate for some reasons related to the original repair, CleverTech will perform any labor related to the original repair free of charge.</p>
+                        </div>
+                        
+                        
+                        <div class="row" style="margin-top: 20px; margin-bottom: 18px;">
+                            <a class="how_it_works_text" style="cursor: pointer; color: green;" data-dismiss="modal" data-toggle="modal" data-target="#terms_and_cond_modal">Terms &amp; Conditions ></a>
+                        </div>
+                        
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        
+        <!-- Note how you didn't center this modal. It was causing weird stuff to happen during resizing. -->
+        <div class="modal fade in" id="drop_off_info_modal" tabindex="-1" role="dialog" aria-hidden="true">
+
+            <div class="modal-dialog modal-lg" style="margin-top: 100px;">
+                <div class="modal-content">
+
+                    <!--<div class="modal-body" style="padding: 50px; text-align: center;">-->
+                    <div class="modal-body" style="padding-left: 50px; padding-right: 50px; text-align: center;">
+                        
+                        <div class="row">
+                            <h1>Smart Drop-Off</h1>
+                        </div>
+                        
+                        <div class="row">
+                            <p class="how_it_works_text">Drop-offs are performed between 11am-3pm. Drop-off location can differ from pick-up location if requested.</p>
+                        </div>
+                        
+
+                        <div class="row" style="margin-top: 100px;">
+                            <h1>Customer's Responsibilities</h1>
+                        </div>
+                        <div class="row">
+                            <p class="how_it_works_text">Your photo ID will be needed to verify who you are. If you need to cancel or reschedule a drop-off, please call us at 408-316-7600. Any instructions/tips for the driver to access your building or parking are greatly appreciated.</p>
+                        </div>
+                        
+                        
+                        <div class="row" style="margin-top: 20px; margin-bottom: 18px;">
+                            <a class="how_it_works_text" style="cursor: pointer; color: green;" data-dismiss="modal" data-toggle="modal" data-target="#terms_and_cond_modal">Terms &amp; Conditions ></a>
+                        </div>
+                        
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        
+        
+        <!-- Note how you didn't center this modal. It was causing weird stuff to happen during resizing. -->
+        <div class="modal fade in" id="terms_and_cond_modal" tabindex="-1" role="dialog" aria-hidden="true">
+
+            <div class="modal-dialog modal-lg" style="margin-top: 100px;">
+                <div class="modal-content">
+
+                    <!--<div class="modal-body" style="padding: 50px; text-align: center;">-->
+                    <div class="modal-body" style="padding-left: 50px; padding-right: 50px; text-align: center;">
+                        
+                        <div class="row">
+                            <h1>Terms &amp; Conditions</h1>
+                        </div>
+  
+                        <div class="row">
+                            <p class="how_it_works_text">Your photo ID will be needed to verify who you are. If you need to cancel or reschedule a drop-off, please call us at 408-316-7600. Any instructions/tips for the driver to access your building or parking are greatly appreciated.Your photo ID will be needed to verify who you are. If you need to cancel or reschedule a drop-off, please call us at 408-316-7600. Any instructions/tips for the driver to access your building or parking are greatly appreciated.Your photo ID will be needed to verify who you are. If you need to cancel or reschedule a drop-off, please call us at 408-316-7600. Any instructions/tips for the driver to access your building or parking are greatly appreciated.Your photo ID will be needed to verify who you are. If you need to cancel or reschedule a drop-off, please call us at 408-316-7600. Any instructions/tips for the driver to access your building or parking are greatly appreciated.</p>
+                        </div>
+  
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        
         <!-- MODALS END -->
         
         
         
         <!-- THE CONTENT BEGIN-->
-
         
         <!-- SECTION 1 BEGIN -->
         <div class="jumbotron" id="welcome" style="text-align: center;">
@@ -890,9 +1052,9 @@
                     <h1>From start to finish</h1>
                 </div>
                 <div class="row">
-                    <div class="btn how_it_works_btn">Pick-Up</div>
-                    <div class="btn how_it_works_btn">Repair</div>
-                    <div class="btn how_it_works_btn">Drop-Off</div>
+                    <button class="btn how_it_works_btn" data-toggle="modal" data-target="#pick_up_info_modal">Pick-Up</button>
+                    <button class="btn how_it_works_btn" data-toggle="modal" data-target="#repair_info_modal">Repair</button>
+                    <button class="btn how_it_works_btn" data-toggle="modal" data-target="#drop_off_info_modal">Drop-Off</button>
                 </div>
                 <div class="row">
                     <h1>3 days to complete</h1>
@@ -959,7 +1121,7 @@
                     </div>
                     
                     <div class="row">
-                        <div id="contact_us_btn" class="btn" data-toggle="modal" data-target="#contact_us">Contact Us</div>
+                        <div id="contact_us_btn" class="btn" data-toggle="modal" data-target="#contact_us_modal">Contact Us</div>
                     </div>
                 </div>
                 
@@ -1148,16 +1310,20 @@
             // ============== Client-side form validation ==============
             $("form").submit(function(e) {
                 
+                console.log("IN FORM SUBMISSION")
+
                 var error = "";
 
+                //If you decide to highlight the sections of the form corresponding to where the user F'ed up,
+                //in these if statements might be where to do it....
                 if ($("#first_name").val() === "" || $("#last_name").val() === "") {
                     error += "Your full name is required.<br/>";
                 }
                 if ($("#email").val() === "") {
-                    error += "The email field is required.<br/>";
+                    error += "Your email address is required.<br/>";
                 }
                 if ($("#phone").val() === "") {
-                    error += "The phone field is required.<br/>";
+                    error += "Your phone number is required.<br/>";
                 }
                 if ($("#street_address").val() === "" || $("#city").val() === "" || $("#state").val() === "") {
                     error += "Your full street address is required.<br/>";
@@ -1165,13 +1331,25 @@
 
                 //Loop through dynamic device information to do validation here?
                 //$("dynamic_input").find(".required") or something? Then loop through to see if any of them are empty.
-                console.log($("#dynamic_input").find(".required"));
+                //Note that you directly grab ahold of those child elements as you loop through the set of children.
                 
+                var req_dynamic_inputs = $("#dynamic_input").find(".required");
+                console.log(req_dynamic_inputs.length); //FOR TESTING
                 
+                for (var i = 0; i < req_dynamic_inputs.length; i++) {
+                    if ($(req_dynamic_inputs[i]).val() === "") {
+                        console.log("SOMETHING WAS WRONG!\n");
+                        //Append an error message to error?
+                    }
+                }
+                
+                //return true; //INCLUDE JUST THIS ONLY FOR TESTING!!!
                 
                 //If an error message exists (i.e., isn't the empty string)
                 if (error !== "") {
 
+                    //Perhaps this is where all of the "YOU F'ED UP!" stylings should go here?
+                    
                     //DON'T FORGET TO ACTUALLY WRITE THE div WITH THE error ID!!!
                     $("#error").html('<div class="alert alert-danger" role="alert"><p><strong>There were error(s) in your form:</strong></p>' + error + '</div>');
 
@@ -1179,7 +1357,6 @@
                 } else {
                     return true;
                 }
-                
             });
             
             
@@ -1227,6 +1404,7 @@
             });
             
             
+            //TODO: CHANGE THESE TO SWITCH STATEMENTS!!
             function check_and_set_repair_prices(model, problem) {
                 if (model === "iMac 27'' Model" || model === "iMac 21.5'' Model") {
                     check_imac_repair_prices(model, problem);
@@ -1247,126 +1425,129 @@
             
             
             function check_imac_repair_prices(model, problem) {
-                if (problem === "Graphics Card") {
-                    set_imac_repair_prices(model, "$285", "$285");
-                }
-                else if (problem === "SSD Upgrade") {
-                    set_imac_repair_prices(model, "$422-$575", "$422-$575");
-                }
-                else if (problem === "LCD Replacement") {
-                    set_imac_repair_prices(model, "$380-$741", "$380-$741");
-                }
-                else if (problem === "Motherboard") {
-                    set_imac_repair_prices(model, "$285", "$285");
-                }
-                else if (problem === "Optical Drive") {
-                    set_imac_repair_prices(model, "$217", "$217");
-                }
-                else if (problem === "RAM") {
-                    set_imac_repair_prices(model, "$128-$218", "$128-$218");
-                } 
-                else if (problem === "Power Supply") {
-                    set_imac_repair_prices(model, "$240", "$240");
-                }
-                else if (problem === "Data Recovery") {
-                    set_imac_repair_prices(model, "$190-$???", "$190-$???");
-                }
-                else if (problem === "Virus Removal") {
-                    set_imac_repair_prices(model, "$79", "$79");
+                switch(problem) {
+                    case "Graphics Card":
+                        set_imac_repair_prices(model, "$285", "$285");
+                        break;
+                    case "SSD Upgrade":
+                        set_imac_repair_prices(model, "$422-$575", "$422-$575");
+                        break;
+                    case "LCD Replacement":
+                        set_imac_repair_prices(model, "$380-$741", "$380-$741");
+                        break;
+                    case "Motherboard":
+                        set_imac_repair_prices(model, "$285", "$285");
+                        break;
+                    case "Optical Drive":
+                        set_imac_repair_prices(model, "$217", "$217");
+                        break;
+                    case "RAM":
+                        set_imac_repair_prices(model, "$128-$218", "$128-$218");
+                        break;
+                    case "Power Supply":
+                        set_imac_repair_prices(model, "$240", "$240");
+                        break;
+                    case "Data Recovery":
+                        set_imac_repair_prices(model, "$190-$???", "$190-$???");
+                        break;
+                    case "Virus Removal":
+                        set_imac_repair_prices(model, "$79", "$79");
                 }
             }
             
             
             function check_macbook_repair_prices(model, problem) {
-                if (problem === "Graphics Card") {
-                    set_macbook_repair_prices(model, "$285", "$285", "$285");
-                }
-                else if (problem === "SSD Upgrade") {
-                    set_macbook_repair_prices(model, "$570-$873", "$327-$480", "$570-$873");
-                }
-                else if (problem === "LCD Replacement") {
-                    set_macbook_repair_prices(model, "$256-$355", "$158-$390", "$338-$546");
-                }
-                else if (problem === "Motherboard") {
-                    set_macbook_repair_prices(model, "$285", "$285", "$285");
-                }
-                else if (problem === "Keyboard") {
-                    set_macbook_repair_prices(model, "$228", "$228", "$228");
-                }
-                else if (problem === "RAM") {
-                    set_macbook_repair_prices(model, "(No Service)", "$128-$218", "(No Service)");
-                }
-                else if (problem === "Battery") {
-                    set_macbook_repair_prices(model, "$153", "$153", "$166");
-                }
-                else if (problem === "Data Recovery") {
-                    set_macbook_repair_prices(model, "$190-$???", "$190-$???", "$190-$???");
-                }
-                else if (problem === "Virus Removal") {
-                    set_macbook_repair_prices(model, "$79", "$79", "$79");
+                switch(problem) {
+                    case "Graphics Card":
+                        set_macbook_repair_prices(model, "$285", "$285", "$285");
+                        break;
+                    case "SSD Upgrade":
+                        set_macbook_repair_prices(model, "$570-$873", "$327-$480", "$570-$873");
+                        break;
+                    case "LCD Replacement":
+                        set_macbook_repair_prices(model, "$256-$355", "$158-$390", "$338-$546");
+                        break;
+                    case "Motherboard":
+                        set_macbook_repair_prices(model, "$285", "$285", "$285");
+                        break;
+                    case "Keyboard":
+                        set_macbook_repair_prices(model, "$228", "$228", "$228");
+                        break;
+                    case "RAM":
+                        set_macbook_repair_prices(model, "(No Service)", "$128-$218", "(No Service)");
+                        break;
+                    case "Battery":
+                        set_macbook_repair_prices(model, "$153", "$153", "$166");
+                        break;
+                    case "Data Recovery":
+                        set_macbook_repair_prices(model, "$190-$???", "$190-$???", "$190-$???");
+                        break;
+                    case "Virus Removal":
+                        set_macbook_repair_prices(model, "$79", "$79", "$79");
                 }
             }
             
             
             function check_iphone_repair_prices(model, problem) {
-                if (problem === "Screen") {
-                    set_iphone_repair_prices(model, "$162-$183", "$145-$104.99", "$134-$102", "$80-$85");
-                }
-                else if (problem === "Wifi") {
-                    set_iphone_repair_prices(model, "$56-$120", "$56-$120", "$56-$120", "$56-$120");  
-                }
-                else if (problem === "Speakers") {
-                    set_iphone_repair_prices(model, "$62", "$62", "$62", "$62");  
-                }
-                else if (problem === "Battery") {
-                    set_iphone_repair_prices(model, "$66", "$66", "$66", "$66");
-                }
-                else if (problem === "Headphone Jack") {
-                    set_iphone_repair_prices(model, "$70", "$70", "$70", "$70");
-                }
-                else if (problem === "Home Button") {
-                    set_iphone_repair_prices(model, "$56", "$56", "$56", "$56");
-                }
-                else if (problem === "Water Damage") {
-                    set_iphone_repair_prices(model, "$120-$285", "$120-$285", "$120-$285", "$120-$285");
-                }
-                else if (problem === "Charging Port") {
-                    set_iphone_repair_prices(model, "$70", "$70", "$70", "$70");
-                }
-                else if (problem === "Camera") {
-                    set_iphone_repair_prices(model, "$66", "$66", "$66", "$66");
+                switch(problem) {
+                    case "Screen":
+                        set_iphone_repair_prices(model, "$162-$183", "$145-$104.99", "$134-$102", "$80-$85");
+                        break;
+                    case "Wifi":
+                        set_iphone_repair_prices(model, "$56-$120", "$56-$120", "$56-$120", "$56-$120");  
+                        break;
+                    case "Speakers":
+                        set_iphone_repair_prices(model, "$62", "$62", "$62", "$62");  
+                        break;
+                    case "Battery":
+                        set_iphone_repair_prices(model, "$66", "$66", "$66", "$66");
+                        break;
+                    case "Headphone Jack":
+                        set_iphone_repair_prices(model, "$70", "$70", "$70", "$70");
+                        break;
+                    case "Home Button":
+                        set_iphone_repair_prices(model, "$56", "$56", "$56", "$56");
+                        break;
+                    case "Water Damage":
+                        set_iphone_repair_prices(model, "$120-$285", "$120-$285", "$120-$285", "$120-$285");
+                        break;
+                    case "Charging Port":
+                        set_iphone_repair_prices(model, "$70", "$70", "$70", "$70");
+                        break;
+                    case "Camera":
+                        set_iphone_repair_prices(model, "$66", "$66", "$66", "$66");
                 }
             }
             
             
             function check_ipad_repair_prices(model, problem) {
-                if (problem === "Glass Digitizer") {
-                    set_ipad_repair_prices(model, "$100", "$200", "$300", "$400");
-                }
-                else if (problem === "Wifi") {
-                    set_ipad_repair_prices(model, "$93", "$93", "$93", "$93");
-                }
-                else if (problem === "Speakers") {
-                    set_ipad_repair_prices(model, "$97", "$97", "$97", "$97");
-                }
-                else if (problem === "Battery") {
-                    set_ipad_repair_prices(model, "$105", "$105", "$105", "$105");
-                }
-                else if (problem === "Headphone Jack") {
-                    set_ipad_repair_prices(model, "$92", "$92", "$92", "$92");
-
-                }
-                else if (problem === "Home Button") {
-                    set_ipad_repair_prices(model, "$98", "$98", "$98", "$98");
-                }
-                else if (problem === "LCD Replacement") {
-                    set_ipad_repair_prices(model, "$118-$140", "$230", "$142", "$230");  
-                }
-                else if (problem === "Charging Port") {
-                    set_ipad_repair_prices(model, "$97", "$97", "$97", "$97");  
-                }
-                else if (problem === "Camera") {
-                    set_ipad_repair_prices(model, "$91", "$91", "$91", "$91");  
+                switch(problem) {
+                    case "Glass Digitizer":
+                        set_ipad_repair_prices(model, "$100", "$200", "$300", "$400");
+                        break;
+                    case "Wifi":
+                        set_ipad_repair_prices(model, "$93", "$93", "$93", "$93");
+                        break;
+                    case "Speakers":
+                        set_ipad_repair_prices(model, "$97", "$97", "$97", "$97");
+                        break;
+                    case "Battery":
+                        set_ipad_repair_prices(model, "$105", "$105", "$105", "$105");
+                        break;
+                    case "Headphone Jack":
+                        set_ipad_repair_prices(model, "$92", "$92", "$92", "$92");
+                        break;
+                    case "Home Button":
+                        set_ipad_repair_prices(model, "$98", "$98", "$98", "$98");
+                        break;
+                    case "LCD Replacement":
+                        set_ipad_repair_prices(model, "$118-$140", "$230", "$142", "$230");  
+                        break;
+                    case "Charging Port":
+                        set_ipad_repair_prices(model, "$97", "$97", "$97", "$97");  
+                        break;
+                    case "Camera":
+                        set_ipad_repair_prices(model, "$91", "$91", "$91", "$91");  
                 }
             }
             
@@ -1538,7 +1719,6 @@
                                                     <label for='cust_ref_num'>Customer Reference #</label>\
                                                     <input class='form-control' id='cust_ref_num' name='cust_ref_num[]'>\
                                                 </div>\
-                                            </div>\
                                         </div>\
                                         <div class='form-group'>\
                                             <div class='row'>\
@@ -1551,7 +1731,7 @@
                     counter++;
                 }
                 
-                console.log("new_div:");
+                console.log("TESTING new_div:");
                 console.log(new_div); //FOR TESTING
                 
                 //$("#start_a_repair_body").animate({scrollTop: ($("#add_device_btn").position().top + $(new_div).outerHeight(false))}, 300);
