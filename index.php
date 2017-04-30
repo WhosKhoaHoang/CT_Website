@@ -1,23 +1,118 @@
 <?php
     $error = ""; $successMessage = "";
 
+    //echo(ctype_digit("2223.2"));
+    //echo("12 ".(1+1)."!");
+    
     /*
-    if ($_POST) { //I.e., return true was executed in the the submit() method.
-        
-        //$model_type = $_POST["model_type"];
-        //print_r($model_type);
-
+    $string = preg_replace('/\D/', '', "123456789012+++");
+    //^Makes it so that no errors are thrown in the events of spaces or plusses, etc. Only digits are considered.
+    if (preg_match('/^\d{12}$/', $string)) {
+      echo("OK! 12 digits!");
+    } else {
+      echo("FAIL!");
     }
+    //^All this was from here: http://stackoverflow.com/questions/3998482/how-to-get-length-of-integers-in-php
     */
 
-    /*
+    if ($_POST) { //I.e., return true was executed in the the submit() method.
+                
+        if (!$_POST["first_name"] || !$_POST["last_name"]) {
+            $error .= "- Your full name is required.<br/>";
+        }
+        if (!$_POST["email"]) {
+            $error .= "- Your email is required.<br/>";
+        }
+        if ($_POST["email"] && filter_var($_POST["email"], FILTER_VALIDATE_EMAIL === false)) {
+            $error .= "- The email address you entered is not valid.<br/>";
+        }
+        if (!$_POST["phone"]) {
+            $error .= "- Your phone number is required.<br/>";
+        }
+        if (!$_POST["street_address"]) {
+            $error .= "- Your street address is required<br/>";
+        }
+        if (!isset($_POST["city"])) {
+            $error .= "- Your city is required<br/>";
+        }
+        
+        //. A perhaps killer tip:
+        //  Each index in the dynamic form arrays corresponds to a device. E.g., index 0 corresponds
+        //  with the 1st device, index 1 corresponds with the 2nd device, etc.
+        //. Challenge:
+        //  Give specific info about where missing required fields are. Perhaps doing it this way would
+        //  do away with needing the hidden input tag with the num_devices ID because you'd depend entirely
+        //  on the arrays that were POSTed. Perhaps you'd change the null value that model type has to ""
+        
+        $NUM_REQS = 3;
+        $num_devices = $_POST["num_devices"];
+
+        //Initialize lengths:
+        $model_type_len = 0;
+        if (isset($_POST["model_type"])) {
+            $model_type_len = count($_POST["model_type"]);
+        }
+        $serial_number_len = $_POST["serial_number"][0] === "" ? 0 : count($_POST["serial_number"]);
+        $problem_len = $_POST["problem"][0] === "" ? 0 : count($_POST["problem"]);
+        $cust_ref_num_len = $_POST["cust_ref_num"][0] === "" ? 0 : count($_POST["cust_ref_num"]);
+        $other_info_len = $_POST["other_info"][0] === "" ? 0 : count($_POST["other_info"]);
+        
+        echo("model_type_len: ".$model_type_len."<br/>");
+        echo("serial_number_len: ".$serial_number_len."<br/>");
+        echo("problem_len: ".$problem_len."<br/>");
+        echo("Sum of Lengths: ".($model_type_len+$serial_number_len+$problem_len)."<br/>");
+        echo("Number of devices: ".$num_devices."<br/>");
+        echo("Number of Requirements: ".$NUM_REQS."<br/><br/>");
+        
+        if (($model_type_len+$serial_number_len+$problem_len) < ($num_devices*$NUM_REQS)) {
+            $error .= "- You have missing entries for your devices information.<br/>";
+        }
+        if ($serial_number_len != 0) {
+            //validate serial numbers (length and numeric)
+            //$error .= "- A serial number you entered was not 12 digits in length.<br/>";
+            //$error .= "- A serial number you entered did not consist of only numbers.<br/>";
+            for ($i = 0; $i < $serial_number_len; $i++) {
+                if (!ctype_digit($_POST["serial_number"][$i])) {
+                    $error .= "- Serial number must consist of only numbers for Device ".($i+1).".<br/>";
+                }
+                
+                //$_POST["serial_number"][$i]= preg_replace('/\D/', '', $_POST["serial_number"][$i]);
+                //^Makes it so that no errors are thrown in the events of spaces or plusses, etc. Only digits are considered.
+                if (!preg_match('/^\d{12}$/', $_POST["serial_number"][$i])) {
+                    $error .= "- Serial number must consist of 12 digitis for Device ".($i+1).".<br/>";
+                }
+            }
+        }
+        
+        
+        if ($error != "") {
+            echo($error);
+        }
+        else {
+            //Make hashmaps for individual devices that you'll then use for the email
+            for ($i = 0; $i < $num_devices; $i++) {
+                //Make new array
+                //Index the ith position of model_type to get model type
+                //Index the ith position of serial_number to get serial number
+                //Index the ith position of problem to get the problem
+                
+                //Check the length of the optional arrays cust_ref_num and other_info
+                //if len(cust_ref_num) >= i { Index the ith position of cust_ref_num to get reference number }
+                //if len(other_info) >= i { Index the ith position of other_info to get other info}
+            }
+        }
+        
+    }
+    
+
     //If there's anything in the $_POST array...(wouldn't it be better to use isset? No because $_POST is always
     //gonna be set with something so the inside of the if block would always be executed?
+    /*
     if ($_POST) {
         if (!$_POST["email"]) {
             $error .= "An email address is required.<br>";
         }
-        
+        //If email is there but it's invalid...
         if ($_POST['email'] && filter_var($_POST["email"], FILTER_VALIDATE_EMAIL) === false) {
             $error .= "The email address is invalid.<br>";
         }
@@ -26,6 +121,8 @@
         if ($error != "") {
             $error = '<div class="alert alert-danger" role="alert"><p>There were error(s) in your form:</p>' . $error . '</div>';
         } else {
+            //SEND THE EMAIL
+            
             $emailTo = "whoskhoahoang@gmail.com"; //FOR TESTING
             $headers = "From: ".$_POST['email'];
             
@@ -123,7 +220,11 @@
                         <!-- Modal content-->
                         <div class="modal-content">
                             <div id="start_a_repair_body" class="modal-body" style="font-size: 165x; padding: 20px;">
-                                 
+                                
+                                <div class="form-group" style="margin-bottom: 30px;">
+                                    <button type="button" class="close" data-dismiss="modal" style="float: left;">&times;</button>
+                                </div>
+                                
                                 <form method="post"> <!-- Should I have action="/validate.php" ? -->
                                     <!--<p class="required">Name</p>-->
 
@@ -148,7 +249,7 @@
                                             <div class="col-xs-6">
                                                 <label class="required" for="email">Email</label>
                                                 <input class="form-control" type="email" id="email" name="email">
-                                                <p>We'll be sure to send you a confirmation email to this address</p>
+                                                <p>We'll be sending you a confirmation email to this address.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -161,7 +262,7 @@
                                         <div class="row">
                                             <div class="col-xs-6">
                                                 <label class="required" for="phone">Phone Number</label>
-                                                <input class="form-control" type="tel" id="phone" name="phone"> 
+                                                <input class="form-control" type="tel" id="phone" name="phone">
                                             </div>
                                         </div>
                                     </div> 
@@ -192,41 +293,37 @@
                                         <div class="row">
                                             <div class="col-xs-6">
                                                 <label class="required" for="city">City</label>
-                                                <select class="form-control" id="city" name="city" >
+                                                <select class="form-control" id="city" name="city">
                                                     <option selected disabled>Select City</option>
                                                     <option>San Jose</option>
                                                     <option>Santa Clara</option>
                                                     <option>Milpitas</option>
                                                 </select>
-                                            </div>
+                                            </div>           
                                             <div class="col-xs-6">
-                                                <label class="required" for="state">State</label>
-                                                <input class="form-control" id="state" name="state">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-xs-6">
-                                                <label class="required" for="city">ZIP / Postal Code</label>
+                                                <label for="zip_postal">ZIP / Postal Code</label>
                                                 <input class="form-control" id="zip_postal" name="zip_postal">
                                             </div>
                                         </div>
                                     </div>
+
                                     
                                     <h3 style="color: #0f6a37;">Device Info</h3>
                                     <hr/>
                                     
                                     <!-- DYNAMIC INPUT SECTION BEGIN! -->
                                     <!-- Note how names for dynamic inputs are all associated with arrays! -->
+                                                                        
                                     <div id="dynamic_input">
                                         
-                                        <div id="dynamic_device_group0"> <!-- The first BEGIN -->
+                                        <!-- The first BEGIN -->
+                                        <div id="dynamic_device_group0"> 
+                                            <h4 style="text-decoration: underline;">Device 1</h4>
                                             <div class="form-group">
                                                 <div class="row">
                                                     <div class="col-xs-6">
-                                                        <label class="required" for="model_type">Device Type</label>
+                                                        
+                                                        <label class="required" for="model_type">Model Type</label>
                                                         <select class="form-control" id="model_type" name="model_type[]" >
                                                             <option selected disabled>Select Model Type</option>
                                                             <option>iMac 27'' Model</option>
@@ -243,12 +340,14 @@
                                                             <option>iPad Mini 1/2/3</option>
                                                             <option>iPad Mini 4</option>
                                                         </select>
+                                                        
                                                     </div>
                                                     <!-- CHECK THAT THE LENGTH OF THIS VALUE IS 12!!!-->
                                                     <div class="col-xs-6">
-                                                        <label class="required" for="serial_number">Serial Number</label>
+                                                        
+                                                        <label class="required" for="serial_number">12-Digit Serial #</label>
                                                         <input class="form-control" id="serial_number" name="serial_number[]">
-                                                        <p style="color: red;">Please be sure to enter a 12-digit value</p>
+                                                        
                                                     </div>
                                                 </div>
                                             </div>
@@ -257,12 +356,16 @@
                                             <div class="form-group">
                                                 <div class="row">
                                                     <div class="col-xs-6">
+                                                        
                                                         <label class="required" for="problem">Problem</label>
                                                         <input class="form-control" id="problem" name="problem[]">
+                                                        
                                                     </div>
                                                     <div class="col-xs-6">
+                                                        
                                                         <label for="cust_ref_num">Customer Reference #</label>
                                                         <input class="form-control" id="cust_ref_num" name="cust_ref_num[]">
+                                                        
                                                     </div>
                                                 </div>
                                             </div>
@@ -276,14 +379,17 @@
                                             <div class="form-group">
                                                 <div class="row">
                                                     <div class="col-xs-12">
+                                                        
                                                         <label for="other_info">Anything else you'd like to tell us about your problem?</label>
                                                         <textarea class="form-control" id="other_info" rows=4 name="other_info[]" style="resize: none;"></textarea>
+                                                        
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+                                        <!-- The first END -->
                                         
-                                    </div> <!-- The first END -->
+                                    </div> 
                                     
                                     
                                     <input type="button" id="add_device_btn" class="btn" value="Add another device" onClick="add_device('dynamic_input');" style="margin-top: 20px; width: 200px;">
@@ -307,6 +413,8 @@
                                     <div class="form-group">
                                         <button type="submit" id="submit" class="btn" style="background-color: #0f6a37; color: white;">Submit</button>
                                     </div>
+                                    
+                                    <input type="hidden" id="num_devices" name="num_devices" value=1 />  
                                 </form>
                             </div>
  
@@ -1008,18 +1116,143 @@
         <!-- Note how you didn't center this modal. It was causing weird stuff to happen during resizing. -->
         <div class="modal fade in" id="terms_and_cond_modal" tabindex="-1" role="dialog" aria-hidden="true">
 
-            <div class="modal-dialog modal-lg" style="margin-top: 100px;">
+            <div id="terms_and_cond_dialog" class="modal-dialog modal-lg" style="margin-top: 100px; ">
                 <div class="modal-content">
 
                     <!--<div class="modal-body" style="padding: 50px; text-align: center;">-->
-                    <div class="modal-body" style="padding-left: 50px; padding-right: 50px; text-align: center;">
+                    <div id="terms_and_cond_body" class="modal-body" style="padding-left: 50px; padding-right: 50px;">
                         
                         <div class="row">
                             <h1>Terms &amp; Conditions</h1>
                         </div>
   
                         <div class="row">
-                            <p class="how_it_works_text">Your photo ID will be needed to verify who you are. If you need to cancel or reschedule a drop-off, please call us at 408-316-7600. Any instructions/tips for the driver to access your building or parking are greatly appreciated.Your photo ID will be needed to verify who you are. If you need to cancel or reschedule a drop-off, please call us at 408-316-7600. Any instructions/tips for the driver to access your building or parking are greatly appreciated.Your photo ID will be needed to verify who you are. If you need to cancel or reschedule a drop-off, please call us at 408-316-7600. Any instructions/tips for the driver to access your building or parking are greatly appreciated.Your photo ID will be needed to verify who you are. If you need to cancel or reschedule a drop-off, please call us at 408-316-7600. Any instructions/tips for the driver to access your building or parking are greatly appreciated.</p>
+                            <p class="how_it_works_text">
+
+                                Apple Computer Technicians
+
+                                (408) 316-7600
+
+                                    HomeServicesStoreContactStay Clever
+
+                                Limited Warranty
+
+                                CLEVERTECH provides a 15-Day Return Window (see Return of Non-Defective Products below) and the following limited warranty. This limited warranty extends only to the original purchaser.
+                                Please note that any warranty services or questions must be accompanied by the order number from the transaction through which the warranted product was purchased. The order number serves as your warranty number and must be retained. CLEVERTECH will offer no warranty service without this number.
+                                CLEVERTECH warrants products and its parts against defects in materials or workmanship for 90 days from the original ship date. During this period, CLEVERTECH will repair or replace defective parts with new or reconditioned parts at CLEVERTECH’s option, without charge to you. This is only applicable if the product is not warranted by manufacturer.
+                                All shipping fees both to and from CLEVERTECH following the first 90-days of purchase period must be paid by the customer. All returns, both during and following the 15-day period, must be affected via the Procedures for Obtaining Warranty Service described below.
+                                All original parts (parts installed by CLEVERTECH at the original system build) replaced by CLEVERTECH or its authorized service center, become the property of CLEVERTECH. Any after-market additions or modifications will not be warranted. The product owner is responsible for the payment, at current rates, for any service or repair outside the scope of this limited warranty.
+                                CLEVERTECH makes no other warranty, either express or implied, including but not limited to implied warranties of merchantability, fitness for a particular purpose, or conformity to any representation or description, with respect to this product other than as set forth below. CLEVERTECH makes no warranty or representation, either express or implied, with respect to any other manufacturer’s product or documentation, its quality, performance, merchantability, fitness for a particular purpose, or conformity to any representation or description.
+                                Except as provided below, CLEVERTECH is not liable for any loss, cost, expense, inconvenience or damage that may result from use or inability to use the product. Under no circumstances shall CLEVERTECH be liable for any loss, cost, expense, inconvenience or damage exceeding the purchase price of the product.
+                                The warranty and remedies set forth below are exclusive and in lieu of all others, oral or written, expressed or implied. No reseller, agent or employee is authorized to make any modification, extension or addition to this warranty.
+
+                                Warranty Conditions
+
+                                The above Limited Warranty is subject to the following conditions:
+
+                                · This warranty extends only to products distributed and/or sold by CLEVERTECH. It is effective only if the products are purchased and operated in the USA. (Within the USA including US 48 States, Alaska and Hawaii.)
+
+                                · This warranty covers only normal use of the product. CLEVERTECH shall not be liable under this warranty if any damage or defect results from (i) misuse, abuse, neglect, improper shipping or installation; (ii) disasters such as fire, flood, lightning or improper electric current; or (iii) service or alteration by anyone other than an authorized CLEVERTECH representative; (iv) damages incurred through irresponsible use, including those resulting from viruses or spyware, over clocking, or other non-recommended practices.
+
+                                · You must retain your bill of sale or other proof of purchase to receive warranty service.
+
+                                · No warranty extension will be granted for any replacement part(s) furnished to the purchaser in fulfillment of this warranty.
+
+                                · CLEVERTECH and its Authorized Service Center accepts no responsibility for any software programs, data or information stored on any media or any parts of any products returned for repair to CLEVERTECH.
+
+                                · All pre-installed software programs are licensed to customers under non-CLEVERTECH software vendor’s term and conditions provided with the packages.
+
+                                · This warranty does not cover any third party software or virus related problems.
+
+                                · CLEVERTECH makes no warranty either expressed or implied regarding third-party (non-CLEVERTECH) software.
+
+                                · Thirty-day Return Window does not include opened software, parts, special order merchandise and shipping and handling fees.
+
+                                CLEVERTECH provides a 15-Day Return Window (see Return of Non-Defective Products below) and the following limited warranty. This limited warranty extends only to the original purchaser.
+
+                                Please note that any warranty services or questions must be accompanied by the order number from the transaction through which the warranted product was purchased. The order number serves as your warranty number and must be retained. CLEVERTECH will offer no warranty service without this number.
+
+                                CLEVERTECH warrants products and its parts against defects in materials or workmanship for 90 days from the original ship date. During this period, CLEVERTECH will repair or replace defective parts with new or reconditioned parts at CLEVERTECH’s option, without charge to you. This is only applicable if the product is not warranted by manufacturer.
+
+                                All shipping fees both to and from CLEVERTECH following the first 90-days of purchase period must be paid by the customer. All returns, both during and following the 15-day period, must be affected via the Procedures for Obtaining Warranty Service described below.
+
+                                All original parts (parts installed by CLEVERTECH at the original system build) replaced by CLEVERTECH or its authorized service center, become the property of CLEVERTECH. Any after-market additions or modifications will not be warranted. The product owner is responsible for the payment, at current rates, for any service or repair outside the scope of this limited warranty.
+
+                                CLEVERTECH makes no other warranty, either express or implied, including but not limited to implied warranties of merchantability, fitness for a particular purpose, or conformity to any representation or description, with respect to this product other than as set forth below. CLEVERTECH makes no warranty or representation, either express or implied, with respect to any other manufacturer’s product or documentation, its quality, performance, merchantability, fitness for a particular purpose, or conformity to any representation or description.
+
+                                Except as provided below, CLEVERTECH is not liable for any loss, cost, expense, inconvenience or damage that may result from use or inability to use the product. Under no circumstances shall CLEVERTECH be liable for any loss, cost, expense, inconvenience or damage exceeding the purchase price of the product.
+
+                                The warranty and remedies set forth below are exclusive and in lieu of all others, oral or written, expressed or implied. No reseller, agent or employee is authorized to make any modification, extension or addition to this warranty.
+
+                                A non-defective product may be returned to CLEVERTECH within 15 days of the invoice date for a refund of the original purchase price with the following amendments/fees:
+
+                                New products: 
+                                -May be returned within 15 days for a full refund or store credit, if sealed, unopened and undamaged. 
+                                -Open box products that are undamaged and still in new condition are subject to a 35% restocking fee.
+
+                                Refurbished products: 
+                                -May be returned within 15 days for a store credit and/or a 25% restocking fee. We reserve the right to deny a return or credit based on the condition of the product. The return must be in the same condition as when it was sold.
+
+                                CLEVERTECH will refund neither the original shipping cost nor the shipping and handling fees incurred from the products return. If the original purchase was made under a “Free Shipping” promotion then a charge of up to $200 (depending on the weight of the product) fee will be deducted from any return in counter to that offer.
+
+                                No refund will be granted for software which has been opened, used, or tampered with in any way which jeopardized CLEVERTECH’s ability to remarket or resell the product. CLEVERTECH maintains full discretion in decisions regarding a products fitness for return.
+
+                                Any non-defective returns are subject to a 15% restocking fee, which percentage is taken from the final purchase price less any shipping or handling charges.
+
+                                Quantity purchases of five products or more are not eligible for return.
+
+                                To return a defective product, please contact our Customer Service Department for a Return Merchandise Authorization (RMA) number and follow the Return of Products Instructions below. The RMA is valid for 30 days from date of issuance. Returns will not be accepted without an RMA. Manufacturer restrictions do apply. Any item missing the UPC on the original packaging may not be returned.
+
+                                Procedures for Obtaining Warranty Service
+
+                                RMA (Returning Merchandise Authorization) Policy:
+
+                                · If repairs are required, the customer must obtain a RMA number and provide proof of purchase. RMA and services are rendered by CLEVERTECH only. Any shipping cost (starting from the original date of purchase) on any item returned for repair is the customers’ responsibility. All returned parts must have a RMA number written clearly on the outside of the package along with a letter detailing the problems and a copy of the original proof of purchase. No COD packages will be accepted. No package will be accepted without a RMA number written on the outside of the package. RMA numbers are only valid for 30 days from the date of issue.
+
+                                Should you have any problems with your products, please follow these procedures to obtain the service:
+
+                                1. If you have purchased our on-site warranty, please find your warranty# (the order number from the transaction through which the warranted product was originally purchased) and contact CLEVERTECH Customer Service at PHONE NUMBER.
+
+                                2. If the system must be repaired, an RMA number (Return Merchandise Authorization Number) will be issued for shipment to our repair department. Please follow the instructions given by CLEVERTECH technical support staff to ship your computer. CLEVERTECH will not accept any shipments without a RMA number.
+
+                                3. Pack the system in its original box or a well-protected box, as outlined in the Return Shipping Instructions. CLEVERTECH will not be responsible for shipping damage/loss of any product outside the original 30-day CLEVERTECH-paid service period. It is very important that you write the RMA number clearly on the outside of the package. Ship the system with a copy of your bill of sale or other proof of purchase, your name, address, phone number, description of the problem(s), and the RMA number you have obtained to:
+
+                                CLEVERTECH Computer Service Center
+
+                                RMA#____________
+
+                                1150 Murphy Ave Ste 205
+
+                                San Jose, CA 93131
+
+                                4. Upon receiving the computer, CLEVERTECH will repair or replace your computer (at CLEVERTECH’s discretion) and will ship it back to you within 2 weeks (dependent on parts availability) via UPS, FedEx, USPS.
+
+                                5. Cross-exchange (Parts only): You will need to provide a valid credit card number as a deposit guarantee when the RMA number is issued. Once approval has been obtained on your credit card, the part(s) will be shipped via UPS, FedEx, USPS. You will need to ship defective part(s) back to CLEVERTECH within 15 days to avoid charges to your credit card. If such charges are incurred, the shipped part(s) will be billed at the then current price.
+
+                                6. CLEVERTECH will pay for shipping to and from the customer only within the first thirty days following the original product ship date. Following the RMA period all shipping fees both for under warranty and post warranty repairs are the sole responsibility of the customer. The customer also assumes full liability for losses or damages resulting from shipping as well as all responsibility to pursue remuneration for such issues with their selected carrier.
+
+                                After 90-Day Warranty – Post Warranty Repair
+
+                                For post warranty repair, the procedure is the same as outlined above for RMA and shipping. However, you are responsible for shipping charges both ways, current labor charges (if not under warranty), and the current price of part(s) used in repair.
+
+                                Technical Support:
+
+                                · service@urclevertech.com
+
+                                Contact: (408) 316-7600
+
+                                Customer Service:
+
+                                · sales@urclevertech.com
+
+                                Contact: (408) 316-7600
+
+
+
+                                WARRANTY EXCLUSIONS
+
+                                CLEVERTECH does not offer technical support for any software including installed OS or other programs. Technical support should be pursued through channels offered by the software’s individual tech support. CLEVERTECH accepts no liability for problems caused by after-market software or hardware modifications or additions. CLEVERTECH is not responsible for giving any technical support concerning the installation or integration of any software or component the customer did not pay CLEVERTECH to install. CLEVERTECH is not responsible for loss of data or time, even with hardware failure. Customers are responsible for backing up any data for their own protection. CLEVERTECH is not responsible for any loss of work (“down time”) caused by a product requiring service. This warranty is null and void if the defect or malfunction was due to damage resulting from operation not within manufacturer specifications. It will also be null and void if there are indications of misuse and/or abuse. CLEVERTECH has the option of voiding the warranty if anyone other than a CLEVERTECH technician attempts to service the product. CLEVERTECH will not warrant any problems arising from an act of (lighting, flooding, tornado, etc.), electrical spikes or surges, or problems arising out of hardware, software, or additional devices added to complement any system/component bought at CLEVERTECH. Under no circumstances will CLEVERTECH be responsible for any refund or remuneration exceeding the original purchase price of the product less any shipping fees. CLEVERTECH will not be held responsible for typographical errors on sales receipts, repair tickets, or on our website. CLEVERTECH makes every effort to make sure all information on our website is correct.
+                            </p>
                         </div>
   
                     </div>
@@ -1039,7 +1272,7 @@
         <div class="jumbotron" id="welcome" style="text-align: center;">
             <div id="welcome_content">
                 <h1>Welcome to CleverTech</h1>
-                <p id="here_to_help">We're here to help.</p>
+                <p id="here_to_help" style="font-size: 25px;">We're here to help</p>
             </div>
         </div>
         <!-- SECTION 1 END -->
@@ -1049,17 +1282,25 @@
         <div class="jumbotron" id="how_it_works" style="text-align: center;">
             <div class="container" id="how_it_works_content">
                 <div class="row">
-                    <h1>From start to finish</h1>
+                    <h1>Start to Finish</h1>
+                    <p style="font-size: 25px;">3 days to complete</p>
                 </div>
                 <div class="row">
+                    <!--
                     <button class="btn how_it_works_btn" data-toggle="modal" data-target="#pick_up_info_modal">Pick-Up</button>
                     <button class="btn how_it_works_btn" data-toggle="modal" data-target="#repair_info_modal">Repair</button>
                     <button class="btn how_it_works_btn" data-toggle="modal" data-target="#drop_off_info_modal">Drop-Off</button>
+                    -->
+                    
+                    <h1 class="btn how_it_works_btn" data-toggle="modal" data-target="#pick_up_info_modal">Pick-Up</h1>
+                    <h1 class="btn how_it_works_btn" data-toggle="modal" data-target="#repair_info_modal">Repair</h1>
+                    <h1 class="btn how_it_works_btn" data-toggle="modal" data-target="#drop_off_info_modal">Drop-Off</h1>
                 </div>
+                <!--
                 <div class="row">
-                    <h1>3 days to complete</h1>
+                    <p>3 days to complete</p>
                 </div>
-
+                -->
             </div>
         </div>
         <!-- SECTION 2 END -->
@@ -1071,7 +1312,9 @@
             <div class="container" id="services_content">  
                 
                 <div class="row">
-                    <h1 style="position: relative; top: -50px;">Got Problems?<br/>Tell us your model</h1>
+                    <!--<h1 style="position: relative; top: -50px;">Got Problems?<br/>Tell us your model</h1>-->
+                    <h1>Got Problems?</h1>
+                    <p style="font-size: 25px;">Tell us your model</p>
                 </div>
                 
                 <div class="row">
@@ -1186,7 +1429,6 @@
         </div>
         <!-- STAY CLEVER END -->
 
-
         <!-- THE CONTENT END -->
         
         <!-- Arrow Button Code -->
@@ -1300,68 +1542,13 @@
                 $("html, body").animate({
                     scrollTop: $(hash).offset().top
                 }, 300, function(){
-                    // when done, add hash to url
-                    // (default click behaviour)
+                    //when done, add hash to url
+                    //(default click behaviour)
                     window.location.hash = hash;
                 });
             });
             
-            
-            // ============== Client-side form validation ==============
-            $("form").submit(function(e) {
-                
-                console.log("IN FORM SUBMISSION")
-
-                var error = "";
-
-                //If you decide to highlight the sections of the form corresponding to where the user F'ed up,
-                //in these if statements might be where to do it....
-                if ($("#first_name").val() === "" || $("#last_name").val() === "") {
-                    error += "Your full name is required.<br/>";
-                }
-                if ($("#email").val() === "") {
-                    error += "Your email address is required.<br/>";
-                }
-                if ($("#phone").val() === "") {
-                    error += "Your phone number is required.<br/>";
-                }
-                if ($("#street_address").val() === "" || $("#city").val() === "" || $("#state").val() === "") {
-                    error += "Your full street address is required.<br/>";
-                }
-
-                //Loop through dynamic device information to do validation here?
-                //$("dynamic_input").find(".required") or something? Then loop through to see if any of them are empty.
-                //Note that you directly grab ahold of those child elements as you loop through the set of children.
-                
-                var req_dynamic_inputs = $("#dynamic_input").find(".required");
-                console.log(req_dynamic_inputs.length); //FOR TESTING
-                
-                for (var i = 0; i < req_dynamic_inputs.length; i++) {
-                    if ($(req_dynamic_inputs[i]).val() === "") {
-                        console.log("SOMETHING WAS WRONG!\n");
-                        //Append an error message to error?
-                    }
-                }
-                
-                //return true; //INCLUDE JUST THIS ONLY FOR TESTING!!!
-                
-                //If an error message exists (i.e., isn't the empty string)
-                if (error !== "") {
-
-                    //Perhaps this is where all of the "YOU F'ED UP!" stylings should go here?
-                    
-                    //DON'T FORGET TO ACTUALLY WRITE THE div WITH THE error ID!!!
-                    $("#error").html('<div class="alert alert-danger" role="alert"><p><strong>There were error(s) in your form:</strong></p>' + error + '</div>');
-
-                    return false;
-                } else {
-                    return true;
-                }
-            });
-            
-            
-            //FOCUS HERE!!
-            
+                        
             // ===================== For device select buttons =====================
             $(".device_select ~ label").click(function() {
                 
@@ -1666,25 +1853,26 @@
             
             
             var counter = 1;
-            var limit = 3;
+            var limit = 10;
             //Hmm, be sure you add code to DELETE a device section too...
             function add_device(div_name){
-                
+                                
                 if (counter === 1) {
                     $("#remove_device_btn").css("display", "inline-block");
                 }
                 
                 if (counter == limit)  {
-                    alert("You have reached the limit of adding " + counter + " inputs");
+                    alert("You have reached the limit of adding " + counter + " devices");
                 }
                 else {
                     var new_div = document.createElement("div");
                     new_div.id = "dynamic_device_group" + counter;
                     new_div.innerHTML = "<hr/>\
                                         <div class='form-group'>\
+                                            <h4 style='text-decoration: underline;'>Device "+(counter+1)+"</h4>\
                                             <div class='row'>\
                                                 <div class='col-xs-6'>\
-                                                    <label class='required' for='model_type'>Device Type</label>\
+                                                    <label class='required' for='model_type'>Model Type</label>\
                                                     <select class='form-control' id='model_type' name='model_type[]'>\
                                                         <option selected disabled>Select Model Type</option>\
                                                         <option>iMac 27'' Model</option>\
@@ -1703,28 +1891,29 @@
                                                     </select>\
                                                 </div>\
                                                 <div class='col-xs-6'>\
-                                                    <label class='required' for='serial_number'>Serial Number</label>\
+                                                    <label class='required' for='serial_number'>12-Digit Serial #</label>\
                                                     <input class='form-control' id='serial_number' name='serial_number[]'>\
-                                                    <p style='color: red;'>Please be sure to enter a 12-digit value</p>\
                                                 </div>\
                                             </div>\
                                         </div>\
                                         <div class='form-group'>\
                                             <div class='row'>\
                                                 <div class='col-xs-6'>\
-                                                    <label for='problem'>Problem</label>\
+                                                    <label class='required' for='problem'>Problem</label>\
                                                     <input class='form-control' id='problem' name='problem[]'>\
                                                 </div>\
                                                 <div class='col-xs-6'>\
                                                     <label for='cust_ref_num'>Customer Reference #</label>\
                                                     <input class='form-control' id='cust_ref_num' name='cust_ref_num[]'>\
                                                 </div>\
+                                            </div>\
                                         </div>\
                                         <div class='form-group'>\
                                             <div class='row'>\
                                                 <div class='col-xs-12'>\
-                                                <label for='other_info'>Anything else you'd like to tell us about this device?</label>\
-                                                <textarea class='form-control' id='other_info' rows=4 name='other_info[]' style='resize:none;'></textarea>\
+                                                    <label for='other_info'>Anything else you'd like to tell us about your problem?</label>\
+                                                    <textarea class='form-control' id='other_info' rows=4 name='other_info[]' style='resize:none;'></textarea>\
+                                                </div>\
                                             </div>\
                                         </div>"
                     document.getElementById(div_name).appendChild(new_div); //think: div_name stands in for "this"?
@@ -1751,6 +1940,88 @@
                 }
             }
             
+            
+            // ============== Client-side form validation ==============
+            $("form").submit(function(e) {
+                                
+                var error = "";
+                //If you decide to highlight the sections of the form corresponding to where the user F'ed up,
+                //in these if statements might be where to do it....
+                if ($("#first_name").val() === "" || $("#last_name").val() === "") {
+                    error += "- Your full name is required.<br/>";
+                }
+                if ($("#email").val() === "") {
+                    error += "- Your email address is required.<br/>";
+                }
+                if ($("#phone").val() === "") {
+                    error += "- Your phone number is required.<br/>";
+                }
+                if ($("#street_address").val() === "") {
+                    error += "- Your street address is required.<br/>";
+                }
+                if ($("#city").val() === "") {
+                    error += "- Your city is required.<br/>";
+                }
+                
+                var device_lst = $("#dynamic_input").children();
+                for (var i = 0; i < device_lst.length; i++) {
+                    
+                    var req_dynamic_labels = $(device_lst[i]).find(".required");
+                    for (var j = 0; j < req_dynamic_labels.length; j++) {
+
+                        if ($(req_dynamic_labels[j]).html() === "Model Type") {
+                            
+                            if ($(req_dynamic_labels[j]).next().val() === null) {
+                                error += "- Model type is required for Device "+(i+1)+".<br/>";    
+                            }
+                        }
+                        if ($(req_dynamic_labels[j]).html() === "12-Digit Serial #") {
+                            
+                            if ($(req_dynamic_labels[j]).next().val() === "") {
+                                error += "- Serial number is required for Device "+(i+1)+".<br/>";
+                            } 
+                            else if ($("#serial_number").val() != "") {
+                                if (!is_numeric($("#serial_number").val())) {
+                                    error += "- Serial number must consist of only numbers for Device "+(i+1)+".<br/>";  
+                                }
+                                if ($("#serial_number").val().length != 12) {
+                                    error += "- Serial number must consist of 12 digits for Device "+(i+1)+".<br/>";  
+                                }
+                            }
+                        }
+                        if ($(req_dynamic_labels[j]).html() === "Problem") {
+                            
+                            if ($(req_dynamic_labels[j]).next().val() === "") {
+                                error += "- Problem is required for Device "+(i+1)+".<br/>";    
+                            }
+                        }
+                    }
+                }
+                
+                $("#num_devices").val(counter); //WOULD IT BE ALRIGHT TO KEEP THIS LINE HERE?
+                return true; //INCLUDE JUST THIS AND COMMENT OUT THE BELOW FOR TESTING!!!
+                
+                /*
+                //If an error message exists (i.e., isn't the empty string)
+                if (error !== "") {
+
+                    //Perhaps this is where all of the "YOU F'ED UP!" stylings should go here?
+                    //DON'T FORGET TO ACTUALLY WRITE THE div WITH THE error ID!!!
+                    $("#error").html('<div class="alert alert-danger" role="alert"><p><strong>There were error(s) in your form:</strong></p>' + error + '</div>');
+
+                    return false;
+                } else {
+                    $("#num_devices").val(counter);
+                    return true;
+                }
+                */
+            });
+                
+            
+            function is_numeric(n) {
+                return !isNaN(parseFloat(n)) && isFinite(n);
+            }
+            //^Got this from: http://stackoverflow.com/questions/18082/validate-decimal-numbers-in-javascript-isnumeric
         </script>
     </body>
 </html>
