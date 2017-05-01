@@ -1,20 +1,11 @@
 <?php
     $error = ""; $successMessage = "";
-
-    //echo(ctype_digit("2223.2"));
-    //echo("12 ".(1+1)."!");
-    
-    /*
-    $string = preg_replace('/\D/', '', "123456789012+++");
-    //^Makes it so that no errors are thrown in the events of spaces or plusses, etc. Only digits are considered.
-    if (preg_match('/^\d{12}$/', $string)) {
-      echo("OK! 12 digits!");
-    } else {
-      echo("FAIL!");
+    function phpAlert($msg) {
+        echo '<script type="text/javascript">alert("' . $msg . '")</script>';
     }
-    //^All this was from here: http://stackoverflow.com/questions/3998482/how-to-get-length-of-integers-in-php
-    */
 
+    //If there's anything in the $_POST array...(wouldn't it be better to use isset? No because $_POST is always
+    //gonna be set with something so the inside of the if block would always be executed?
     if ($_POST) { //I.e., return true was executed in the the submit() method.
                 
         if (!$_POST["first_name"] || !$_POST["last_name"]) {
@@ -37,43 +28,75 @@
         }
         
         //. A perhaps killer tip:
-        //  Each index in the dynamic form arrays corresponds to a device. E.g., index 0 corresponds
-        //  with the 1st device, index 1 corresponds with the 2nd device, etc.
+        //  - Each index in the dynamic form arrays corresponds to a device. E.g., index 0 corresponds
+        //    with the 1st device, index 1 corresponds with the 2nd device, etc.
+        //  - !!!QUESTIONABLE -->  Note that there'll never be a case where an entry in array has the empty string 
+        //    while other entries have something in them. The only time there'll ever be an empty string is if that 
+        //    entry is never filled out anywhere...this makes things super tricky because if the user doesn't fill 
+        //    in any entries for the first device but fills in entries for the second device, the info for the second
+        //    device will go to the 0th index in the arrays corresponding to what was filled out. <--QUESTIONABLE!!!
+        //  - In regards to that^...if the first and ONLY entry in an array is "", then the user completely overlook this
+        //    field for ALL devices. Think: If data for device 3 was filled out, then all data that wasn't fill out before
+        //    it will be blank.
         //. Challenge:
-        //  Give specific info about where missing required fields are. Perhaps doing it this way would
-        //  do away with needing the hidden input tag with the num_devices ID because you'd depend entirely
-        //  on the arrays that were POSTed. Perhaps you'd change the null value that model type has to ""
+        //  - Give specific info about where missing required fields are. Perhaps doing it this way would
+        //  - do away with needing the hidden input tag with the num_devices ID because you'd depend entirely
+        //  - on the arrays that were POSTed. Perhaps you'd change the null value that model type has to ""
         
         $NUM_REQS = 3;
         $num_devices = $_POST["num_devices"];
 
         //Initialize lengths:
-        $model_type_len = 0;
-        if (isset($_POST["model_type"])) {
-            $model_type_len = count($_POST["model_type"]);
-        }
-        $serial_number_len = $_POST["serial_number"][0] === "" ? 0 : count($_POST["serial_number"]);
-        $problem_len = $_POST["problem"][0] === "" ? 0 : count($_POST["problem"]);
-        $cust_ref_num_len = $_POST["cust_ref_num"][0] === "" ? 0 : count($_POST["cust_ref_num"]);
-        $other_info_len = $_POST["other_info"][0] === "" ? 0 : count($_POST["other_info"]);
+        //. Instead of using these length varibles, maybe you can just delete that first and only empty string entry...
+        //. Except fot $_POST["model_type"], if the first and ONLY entry is "", then the user completely overlooked this field for ALL devices...
+
+        //Think: How to make the setting of the $_POST["model_type"] array itself look like the others when the
+        //form is submitted without any value passed to the corresponding input? Might need to do this if I want to
+        //output specific information...Jeez, having a disabled option from a select element just for a better
+        //user experience really complicates the backend code!
+        $model_type_len = !isset($_POST["model_type"]) ? 0 : count($_POST["model_type"]);
+       
+        $serial_number_len = ($_POST["serial_number"][0] === "" && count($_POST["serial_number"]) === 1) ? 0 : count($_POST["serial_number"]);
         
+        $problem_len = ($_POST["problem"][0] === "" && count($_POST["problem"]) === 1) ? 0 : count($_POST["problem"]);
+        
+        $cust_ref_num_len = ($_POST["cust_ref_num"][0] === "" && count($_POST["cust_ref_num"]) === 1) ? 0 : count($_POST["cust_ref_num"]);
+        
+        $other_info_len = ($_POST["other_info"][0] === "" && count($_POST["other_info"]) === 1) ? 0 : count($_POST["other_info"]);
+        
+        
+        echo("model_type_array: <br/>");
+        print_r($_POST["model_type"]); echo("<br/>");
+        echo("serial_number array: <br/>");
+        print_r($_POST["serial_number"]); echo("<br/>");
+        echo("problem array: <br/>");
+        print_r($_POST["problem"]); echo("<br/>");
+        echo("cust_ref_num array: <br/>");
+        print_r($_POST["cust_ref_num"]); echo("<br/>");
+        echo("other_info array: <br/>");
+        print_r($_POST["other_info"]); echo("<br/>");
+        
+        echo("<br/>");
         echo("model_type_len: ".$model_type_len."<br/>");
         echo("serial_number_len: ".$serial_number_len."<br/>");
         echo("problem_len: ".$problem_len."<br/>");
-        echo("Sum of Lengths: ".($model_type_len+$serial_number_len+$problem_len)."<br/>");
+        echo("cust_ref_len: ".$cust_ref_num_len."<br/>");
+        echo("other_info_len: ".$other_info_len."<br/>");
+        echo("Sum of Lengths: ".($model_type_len+$serial_number_len+$problem_len)."<br/>");        
         echo("Number of devices: ".$num_devices."<br/>");
-        echo("Number of Requirements: ".$NUM_REQS."<br/><br/>");
+        echo("Number of Requirements: ".$NUM_REQS."<br/><br/><br/>");
+        
         
         if (($model_type_len+$serial_number_len+$problem_len) < ($num_devices*$NUM_REQS)) {
             $error .= "- You have missing entries for your devices information.<br/>";
         }
         if ($serial_number_len != 0) {
+            
             //validate serial numbers (length and numeric)
-            //$error .= "- A serial number you entered was not 12 digits in length.<br/>";
-            //$error .= "- A serial number you entered did not consist of only numbers.<br/>";
             for ($i = 0; $i < $serial_number_len; $i++) {
                 if (!ctype_digit($_POST["serial_number"][$i])) {
                     $error .= "- Serial number must consist of only numbers for Device ".($i+1).".<br/>";
+
                 }
                 
                 //$_POST["serial_number"][$i]= preg_replace('/\D/', '', $_POST["serial_number"][$i]);
@@ -86,55 +109,56 @@
         
         
         if ($error != "") {
-            echo($error);
+            //echo("ERRORS:<br/>");
+            //echo($error);
+            //$error = '<div class="alert alert-danger" role="alert"><p>There were error(s) in your form:</p>' . $error . '</div>';
+            //echo "<script language='javascript'>alert('WRONG')</scipt>";
+            //phpAlert(   "Hello world!\\n\\nPHP has got an Alert Box"   );
         }
         else {
-            //Make hashmaps for individual devices that you'll then use for the email
-            for ($i = 0; $i < $num_devices; $i++) {
-                //Make new array
-                //Index the ith position of model_type to get model type
-                //Index the ith position of serial_number to get serial number
-                //Index the ith position of problem to get the problem
-                
-                //Check the length of the optional arrays cust_ref_num and other_info
-                //if len(cust_ref_num) >= i { Index the ith position of cust_ref_num to get reference number }
-                //if len(other_info) >= i { Index the ith position of other_info to get other info}
-            }
-        }
-        
-    }
-    
+            $device_lst = array();
 
-    //If there's anything in the $_POST array...(wouldn't it be better to use isset? No because $_POST is always
-    //gonna be set with something so the inside of the if block would always be executed?
-    /*
-    if ($_POST) {
-        if (!$_POST["email"]) {
-            $error .= "An email address is required.<br>";
-        }
-        //If email is there but it's invalid...
-        if ($_POST['email'] && filter_var($_POST["email"], FILTER_VALIDATE_EMAIL) === false) {
-            $error .= "The email address is invalid.<br>";
-        }
-        
-        
-        if ($error != "") {
-            $error = '<div class="alert alert-danger" role="alert"><p>There were error(s) in your form:</p>' . $error . '</div>';
-        } else {
-            //SEND THE EMAIL
+            //Make hashmaps for individual devices that you'll then use for the email
+            for ($i = 0; $i < $num_devices; $i++) {                 
+                $device = array();
+                
+                $device["model_type"] = ""; $device["serial_number"] = "";
+                $device["problem"] = ""; $device["cust_ref_num"] = ""; $device["other_info"] = "";
+                
+                $device["model_type"] = $_POST["model_type"][$i];
+                $device["serial_number"] = $_POST["serial_number"][$i];                
+                $device["problem"] = $_POST["problem"][$i];
+                
+                if ($cust_ref_num_len >= $i) {
+                    $device["cust_ref_num"] = $_POST["cust_ref_num"][$i];
+                }
+                if ($other_info_len >= $i) {
+                    $device["other_info"] = $_POST["other_info"][$i];
+                }
+                
+                $device_lst[] = $device;                
+            }
             
+            
+            echo("<pre>"); //FOR TESTING
+            echo("device_lst array is: <br/>"); //FOR TESTING
+            print_r($device_lst); //FOR TESTING
+               
+            
+            /*
             $emailTo = "whoskhoahoang@gmail.com"; //FOR TESTING
             $headers = "From: ".$_POST['email'];
-            
+
             if (mail($emailTo, "", "", $headers)) {
                 $successMessage = '<div class="alert alert-success" role="alert">Your message was sent, we\'ll get back to you ASAP!</div>';
             } else {
                 $error = '<div class="alert alert-danger" role="alert"><p><strong>Your message couldn\'t be sent - please try again later</div>';
             }
-        }   
+            */
+        }
         
     }
-    */
+
 ?>
 
 <!DOCTYPE html>
@@ -225,7 +249,7 @@
                                     <button type="button" class="close" data-dismiss="modal" style="float: left;">&times;</button>
                                 </div>
                                 
-                                <form method="post"> <!-- Should I have action="/validate.php" ? -->
+                                <form id="pick_up_request_form" method="post"> <!-- Should I have action="/validate.php" ? -->
                                     <!--<p class="required">Name</p>-->
 
                                     <h3 style="color: #0f6a37;">Your Info</h3>
@@ -295,6 +319,7 @@
                                                 <label class="required" for="city">City</label>
                                                 <select class="form-control" id="city" name="city">
                                                     <option selected disabled>Select City</option>
+                                                    <!--<option selected readonly>Select City</option>-->
                                                     <option>San Jose</option>
                                                     <option>Santa Clara</option>
                                                     <option>Milpitas</option>
@@ -324,6 +349,8 @@
                                                     <div class="col-xs-6">
                                                         
                                                         <label class="required" for="model_type">Model Type</label>
+                                                        <!-- FOR TESTING: -->
+                                                        <!--<input type="hidden" name="model_type[]" value="" />-->
                                                         <select class="form-control" id="model_type" name="model_type[]" >
                                                             <option selected disabled>Select Model Type</option>
                                                             <option>iMac 27'' Model</option>
@@ -408,7 +435,6 @@
                                     </div>
                                     
                                     <div id="error" style="display: hidden"></div>
-                                    <!-- PUT THIS HERE FOR NOW -->
                                     
                                     <div class="form-group">
                                         <button type="submit" id="submit" class="btn" style="background-color: #0f6a37; color: white;">Submit</button>
@@ -524,14 +550,20 @@
                                     
                                 </div>
                                 
-                                <div class="row" style="font-size: 15px;"> 
-                                    <div class="col-xs-3 col-xs-offset-4" style="float: left; padding: 0px;">
-                                        <label>Service Price: </label>
+                                <div class="row" style="font-size: 15px; text-align: center;"> 
+                                    <div class="col-xs-12">
+                                        <div class="row">
+                                            <label style="display: block;">Service Price: </label>
+                                        </div>
+                                        <div class="row">
+                                            <label id="imac_repair_price" class="price_value">&nbsp;</label>
+                                        </div>
                                     </div>
+                                    <!--
                                     <div class="col-xs-2">
                                         <label id="imac_repair_price" class="price_value" style="float: left;"></label> 
-                                        <!--^Need to make this depend on the items that were selected-->
                                     </div>
+                                    -->
                                 </div>
                                 
                                 <div class="row">
@@ -646,14 +678,23 @@
                                     </div>
                                 </div>
                                 
-                                <div class="row" style="font-size: 15px;"> 
+                                <div class="row" style="font-size: 15px; text-align: center;"> 
+                                    <div class="col-xs-12">
+                                        <div class="row">
+                                            <label style="display: block;">Service Price: </label>
+                                        </div>
+                                        <div class="row">
+                                            <label id="macbook_repair_price" class="price_value">&nbsp;</label>
+                                        </div>
+                                    </div>
+                                    <!--
                                     <div class="col-xs-3 col-xs-offset-4" style="float: left; padding: 0px;">
                                         <label>Service Price: </label>
                                     </div>
                                     <div class="col-xs-2">
                                         <label id="macbook_repair_price" class="price_value" style="float: left;"></label> 
-                                        <!--^Need to make this depend on the items that were selected-->
-                                    </div>
+                                    </div> 
+                                    -->
                                 </div>
                                 
                                 <div class="row"> 
@@ -773,14 +814,23 @@
                                     </div>
                                 </div>
 
-                                <div class="row" style="font-size: 15px;"> 
+                                <div class="row" style="font-size: 15px; text-align: center;"> 
+                                    <div class="col-xs-12">
+                                        <div class="row">
+                                            <label style="display: block;">Service Price: </label>
+                                        </div>
+                                        <div class="row">
+                                            <label id="iphone_repair_price" class="price_value">&nbsp;</label>
+                                        </div>
+                                    </div>
+                                    <!--
                                     <div class="col-xs-3 col-xs-offset-4" style="float: left; padding: 0px;">
                                         <label>Service Price: </label>
                                     </div>
                                     <div class="col-xs-2">
                                         <label id="iphone_repair_price" class="price_value" style="float: left;"></label> 
-                                        <!--^Need to make this depend on the items that were selected-->
                                     </div>
+                                    -->
                                 </div>
                                 
                                 <div class="row"> 
@@ -857,7 +907,7 @@
                                     <div class="row">
                                         <div class="col-xs-4">
                                             <input class="problem_select" type="radio" name="ipad_problem_select_group" id="ipad_problem_select1" />
-                                            <label for="ipad_problem_select1" class="problem_item btn btn-block" data-value="ipad">Glass Digitizer</label>
+                                            <label for="ipad_problem_select1" class="problem_item btn btn-block" data-value="ipad">Screen</label>
                                         </div>
                                         <div class="col-xs-4">
                                             <input class="problem_select" type="radio" name="ipad_problem_select_group" id="ipad_problem_select2" />
@@ -900,14 +950,24 @@
                                     </div>
                                 </div>
                                 
-                                <div class="row" style="font-size: 15px;"> 
+                                <div class="row" style="font-size: 15px; text-align: center;">
+                                    <div class="col-xs-12">
+                                        <div class="row">
+                                            <label style="display: block;">Service Price: </label>
+                                        </div>
+                                        <div class="row">
+                                            <label id="ipad_repair_price" class="price_value">&nbsp;</label>
+                                        </div>
+                                    </div>
+                                    
+                                    <!--
                                     <div class="col-xs-3 col-xs-offset-4" style="float: left; padding: 0px;">
                                         <label>Service Price: </label>
                                     </div>
                                     <div class="col-xs-2">
                                         <label id="ipad_repair_price" class="price_value" style="float: left;"></label> 
-                                        <!--^Need to make this depend on the items that were selected-->
                                     </div>
+                                    -->
                                 </div>
                                 
                                 <div class="row"> 
@@ -931,7 +991,7 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             
-                            <div class="modal-body">
+                            <div class="modal-body" style="background-color: black;">
                                 <div class="embed-responsive embed-responsive-16by9">
                                     <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/QGKvYpL4DRU"></iframe>
                                 </div>                    
@@ -954,18 +1014,21 @@
                             
                             <div class="modal-body">
                                 <!-- Put form code here-->
-                                <form method="post" style="padding: 20px;"> <!-- Should I have action="/validate.php" ? -->
+                                <form id="contact_form" method="post" style="padding: 20px;" action="sendmail.php">
                                     <!--<p class="required">Name</p>-->
-
+                                    <div class="form-group" style="text-align: center;">
+                                        <h3>Send Us A Message!</h3>
+                                    </div>
+                                    
                                     <div class="form-group">
-                                        <label class="required" for="first_name">First Name</label>
-                                        <input class="form-control" id="contact_us_first_name" name="contact_us_first_name">
+                                        <label class="required" for="contact_us_name">Name</label>
+                                        <input class="form-control" id="contact_us_name" name="contact_us_first_name">
                                     </div>
                                     
                                     <div class="form-group">
                                         <label class="required" for="contact_us_email">Email</label>
-                                        <input class="form-control" id="contact_us_email" name="contact_us_email">
-                                        <input id="receive_email_updates" type="checkbox"> Check here to receive email updates
+                                        <input class="form-control" type="email" id="contact_us_email" name="contact_us_email">
+                                        <!--<input id="receive_email_updates" type="checkbox"> Check here to receive email updates-->
                                     </div>
                                     
                                     <div class="form-group">
@@ -978,8 +1041,10 @@
                                         <textarea class="form-control" rows=4 id="contact_us_msg" name="contact_us_msg" style="resize: none;"></textarea>               
                                     </div>
                                     
+                                    <div id="contact_form_error" style="display: hidden"></div>
+
                                     <div class="form-group">
-                                        <button type="submit" id="submit" class="btn" style="background-color: #0f6a37; color: white;">Submit</button>
+                                        <button type="submit" id="contact_submit" class="btn" style="background-color: #0f6a37; color: white;">Submit</button>
                                     </div>
                                 </form>
                                 
@@ -1006,7 +1071,7 @@
                         </div>
                         
                         <div class="row">
-                            <p class="how_it_works_text">CleverTech performs home &amp; business computer pick-ups the day after a pick-up request is submitted. In some case (when possible) the day of submission. After submitting a request, we will call you to veify time and location for the computer pick-yp. It's easy!</p>
+                            <p class="how_it_works_text">CleverTech performs home &amp; business computer pick-ups the day after a pick-up request is submitted. In some case (when possible) the day of submission. After submitting a request, we will call you to veify time and location for the computer pick-up. It's easy!</p>
                         </div>
                         
 
@@ -1019,7 +1084,7 @@
                             <h1>What to expect</h1>
                         </div>
                         <div class="row">
-                            <p class="how_it_works_text">Pick-up requests submitted before 10:30 am are usually picked up same day. If submitted after 10:30 am, expect a phone call to schedule a next day pick-up. If you need to cancel or reschedule a pick-up, please call us at 408.316.7600. A pick-up fee ($50) is charged for any repairs that are declined. If you approve the repair, the pick-up fee is waived.</p>
+                            <p class="how_it_works_text">Pick-up requests submitted before 10:30 am are usually picked up same day. If submitted after 10:30 am, expect a phone call to schedule a next day pick-up. If you need to cancel or reschedule a pick-up, please call us at 408-316-7600. A pick-up fee ($50) is charged for any repairs that are declined. If you approve the repair, the pick-up fee is waived.</p>
                         </div>
                         
                         
@@ -1123,133 +1188,127 @@
                     <div id="terms_and_cond_body" class="modal-body" style="padding-left: 50px; padding-right: 50px;">
                         
                         <div class="row">
-                            <h1>Terms &amp; Conditions</h1>
+                            <h3>Terms &amp; Conditions</h3>
                         </div>
   
                         <div class="row">
-                            <p class="how_it_works_text">
+                            <p style="font-size: 15px;">
 
-                                Apple Computer Technicians
+                                <br/>Limited Warranty<br/><br/>
 
-                                (408) 316-7600
-
-                                    HomeServicesStoreContactStay Clever
-
-                                Limited Warranty
-
-                                CLEVERTECH provides a 15-Day Return Window (see Return of Non-Defective Products below) and the following limited warranty. This limited warranty extends only to the original purchaser.
-                                Please note that any warranty services or questions must be accompanied by the order number from the transaction through which the warranted product was purchased. The order number serves as your warranty number and must be retained. CLEVERTECH will offer no warranty service without this number.
+                                CLEVERTECH provides a 15-Day Return Window (see Return of Non-Defective Products below) and the following limited warranty. This limited warranty extends only to the original purchaser.<br/>
+                                Please note that any warranty services or questions must be accompanied by the order number from the transaction through which the warranted product was purchased. The order number serves as your warranty number and must be retained. CLEVERTECH will offer no warranty service without this number.<br/>
                                 CLEVERTECH warrants products and its parts against defects in materials or workmanship for 90 days from the original ship date. During this period, CLEVERTECH will repair or replace defective parts with new or reconditioned parts at CLEVERTECH’s option, without charge to you. This is only applicable if the product is not warranted by manufacturer.
-                                All shipping fees both to and from CLEVERTECH following the first 90-days of purchase period must be paid by the customer. All returns, both during and following the 15-day period, must be affected via the Procedures for Obtaining Warranty Service described below.
-                                All original parts (parts installed by CLEVERTECH at the original system build) replaced by CLEVERTECH or its authorized service center, become the property of CLEVERTECH. Any after-market additions or modifications will not be warranted. The product owner is responsible for the payment, at current rates, for any service or repair outside the scope of this limited warranty.
-                                CLEVERTECH makes no other warranty, either express or implied, including but not limited to implied warranties of merchantability, fitness for a particular purpose, or conformity to any representation or description, with respect to this product other than as set forth below. CLEVERTECH makes no warranty or representation, either express or implied, with respect to any other manufacturer’s product or documentation, its quality, performance, merchantability, fitness for a particular purpose, or conformity to any representation or description.
-                                Except as provided below, CLEVERTECH is not liable for any loss, cost, expense, inconvenience or damage that may result from use or inability to use the product. Under no circumstances shall CLEVERTECH be liable for any loss, cost, expense, inconvenience or damage exceeding the purchase price of the product.
-                                The warranty and remedies set forth below are exclusive and in lieu of all others, oral or written, expressed or implied. No reseller, agent or employee is authorized to make any modification, extension or addition to this warranty.
+                                All shipping fees both to and from CLEVERTECH following the first 90-days of purchase period must be paid by the customer. All returns, both during and following the 15-day period, must be affected via the Procedures for Obtaining Warranty Service described below.<br/>
+                                All original parts (parts installed by CLEVERTECH at the original system build) replaced by CLEVERTECH or its authorized service center, become the property of CLEVERTECH. Any after-market additions or modifications will not be warranted. The product owner is responsible for the payment, at current rates, for any service or repair outside the scope of this limited warranty.<br/>
+                                CLEVERTECH makes no other warranty, either express or implied, including but not limited to implied warranties of merchantability, fitness for a particular purpose, or conformity to any representation or description, with respect to this product other than as set forth below. CLEVERTECH makes no warranty or representation, either express or implied, with respect to any other manufacturer’s product or documentation, its quality, performance, merchantability, fitness for a particular purpose, or conformity to any representation or description.<br/>
+                                Except as provided below, CLEVERTECH is not liable for any loss, cost, expense, inconvenience or damage that may result from use or inability to use the product. Under no circumstances shall CLEVERTECH be liable for any loss, cost, expense, inconvenience or damage exceeding the purchase price of the product.<br/>
+                                The warranty and remedies set forth below are exclusive and in lieu of all others, oral or written, expressed or implied. No reseller, agent or employee is authorized to make any modification, extension or addition to this warranty.<br/><br/>
 
-                                Warranty Conditions
+                                Warranty Conditions<br/><br/>
 
-                                The above Limited Warranty is subject to the following conditions:
+                                The above Limited Warranty is subject to the following conditions:<br/><br/>
 
-                                · This warranty extends only to products distributed and/or sold by CLEVERTECH. It is effective only if the products are purchased and operated in the USA. (Within the USA including US 48 States, Alaska and Hawaii.)
+                                · This warranty extends only to products distributed and/or sold by CLEVERTECH. It is effective only if the products are purchased and operated in the USA. (Within the USA including US 48 States, Alaska and Hawaii.)<br/><br/>
 
-                                · This warranty covers only normal use of the product. CLEVERTECH shall not be liable under this warranty if any damage or defect results from (i) misuse, abuse, neglect, improper shipping or installation; (ii) disasters such as fire, flood, lightning or improper electric current; or (iii) service or alteration by anyone other than an authorized CLEVERTECH representative; (iv) damages incurred through irresponsible use, including those resulting from viruses or spyware, over clocking, or other non-recommended practices.
+                                · This warranty covers only normal use of the product. CLEVERTECH shall not be liable under this warranty if any damage or defect results from (i) misuse, abuse, neglect, improper shipping or installation; (ii) disasters such as fire, flood, lightning or improper electric current; or (iii) service or alteration by anyone other than an authorized CLEVERTECH representative; (iv) damages incurred through irresponsible use, including those resulting from viruses or spyware, over clocking, or other non-recommended practices.<br/><br/>
 
-                                · You must retain your bill of sale or other proof of purchase to receive warranty service.
+                                · You must retain your bill of sale or other proof of purchase to receive warranty service.<br/><br/>
 
-                                · No warranty extension will be granted for any replacement part(s) furnished to the purchaser in fulfillment of this warranty.
+                                · No warranty extension will be granted for any replacement part(s) furnished to the purchaser in fulfillment of this warranty.<br/><br/>
 
-                                · CLEVERTECH and its Authorized Service Center accepts no responsibility for any software programs, data or information stored on any media or any parts of any products returned for repair to CLEVERTECH.
+                                · CLEVERTECH and its Authorized Service Center accepts no responsibility for any software programs, data or information stored on any media or any parts of any products returned for repair to CLEVERTECH.<br/><br/>
 
-                                · All pre-installed software programs are licensed to customers under non-CLEVERTECH software vendor’s term and conditions provided with the packages.
+                                · All pre-installed software programs are licensed to customers under non-CLEVERTECH software vendor’s term and conditions provided with the packages.<br/><br/>
 
-                                · This warranty does not cover any third party software or virus related problems.
+                                · This warranty does not cover any third party software or virus related problems.<br/><br/>
 
-                                · CLEVERTECH makes no warranty either expressed or implied regarding third-party (non-CLEVERTECH) software.
+                                · CLEVERTECH makes no warranty either expressed or implied regarding third-party (non-CLEVERTECH) software.<br/><br/>
 
-                                · Thirty-day Return Window does not include opened software, parts, special order merchandise and shipping and handling fees.
+                                · Thirty-day Return Window does not include opened software, parts, special order merchandise and shipping and handling fees.<br/><br/>
 
-                                CLEVERTECH provides a 15-Day Return Window (see Return of Non-Defective Products below) and the following limited warranty. This limited warranty extends only to the original purchaser.
+                                CLEVERTECH provides a 15-Day Return Window (see Return of Non-Defective Products below) and the following limited warranty. This limited warranty extends only to the original purchaser.<br/><br/>
 
-                                Please note that any warranty services or questions must be accompanied by the order number from the transaction through which the warranted product was purchased. The order number serves as your warranty number and must be retained. CLEVERTECH will offer no warranty service without this number.
+                                Please note that any warranty services or questions must be accompanied by the order number from the transaction through which the warranted product was purchased. The order number serves as your warranty number and must be retained. CLEVERTECH will offer no warranty service without this number.<br/><br/>
 
-                                CLEVERTECH warrants products and its parts against defects in materials or workmanship for 90 days from the original ship date. During this period, CLEVERTECH will repair or replace defective parts with new or reconditioned parts at CLEVERTECH’s option, without charge to you. This is only applicable if the product is not warranted by manufacturer.
+                                CLEVERTECH warrants products and its parts against defects in materials or workmanship for 90 days from the original ship date. During this period, CLEVERTECH will repair or replace defective parts with new or reconditioned parts at CLEVERTECH’s option, without charge to you. This is only applicable if the product is not warranted by manufacturer.<br/><br/>
 
-                                All shipping fees both to and from CLEVERTECH following the first 90-days of purchase period must be paid by the customer. All returns, both during and following the 15-day period, must be affected via the Procedures for Obtaining Warranty Service described below.
+                                All shipping fees both to and from CLEVERTECH following the first 90-days of purchase period must be paid by the customer. All returns, both during and following the 15-day period, must be affected via the Procedures for Obtaining Warranty Service described below.<br/><br/>
 
-                                All original parts (parts installed by CLEVERTECH at the original system build) replaced by CLEVERTECH or its authorized service center, become the property of CLEVERTECH. Any after-market additions or modifications will not be warranted. The product owner is responsible for the payment, at current rates, for any service or repair outside the scope of this limited warranty.
+                                All original parts (parts installed by CLEVERTECH at the original system build) replaced by CLEVERTECH or its authorized service center, become the property of CLEVERTECH. Any after-market additions or modifications will not be warranted. The product owner is responsible for the payment, at current rates, for any service or repair outside the scope of this limited warranty.<br/><br/>
 
-                                CLEVERTECH makes no other warranty, either express or implied, including but not limited to implied warranties of merchantability, fitness for a particular purpose, or conformity to any representation or description, with respect to this product other than as set forth below. CLEVERTECH makes no warranty or representation, either express or implied, with respect to any other manufacturer’s product or documentation, its quality, performance, merchantability, fitness for a particular purpose, or conformity to any representation or description.
+                                CLEVERTECH makes no other warranty, either express or implied, including but not limited to implied warranties of merchantability, fitness for a particular purpose, or conformity to any representation or description, with respect to this product other than as set forth below. CLEVERTECH makes no warranty or representation, either express or implied, with respect to any other manufacturer’s product or documentation, its quality, performance, merchantability, fitness for a particular purpose, or conformity to any representation or description.<br/><br/>
 
-                                Except as provided below, CLEVERTECH is not liable for any loss, cost, expense, inconvenience or damage that may result from use or inability to use the product. Under no circumstances shall CLEVERTECH be liable for any loss, cost, expense, inconvenience or damage exceeding the purchase price of the product.
+                                Except as provided below, CLEVERTECH is not liable for any loss, cost, expense, inconvenience or damage that may result from use or inability to use the product. Under no circumstances shall CLEVERTECH be liable for any loss, cost, expense, inconvenience or damage exceeding the purchase price of the product.<br/><br/>
 
-                                The warranty and remedies set forth below are exclusive and in lieu of all others, oral or written, expressed or implied. No reseller, agent or employee is authorized to make any modification, extension or addition to this warranty.
+                                The warranty and remedies set forth below are exclusive and in lieu of all others, oral or written, expressed or implied. No reseller, agent or employee is authorized to make any modification, extension or addition to this warranty.<br/><br/>
 
-                                A non-defective product may be returned to CLEVERTECH within 15 days of the invoice date for a refund of the original purchase price with the following amendments/fees:
+                                A non-defective product may be returned to CLEVERTECH within 15 days of the invoice date for a refund of the original purchase price with the following amendments/fees:<br/><br/>
 
-                                New products: 
-                                -May be returned within 15 days for a full refund or store credit, if sealed, unopened and undamaged. 
-                                -Open box products that are undamaged and still in new condition are subject to a 35% restocking fee.
+                                New products: <br/>
+                                -May be returned within 15 days for a full refund or store credit, if sealed, unopened and undamaged. <br/>
+                                -Open box products that are undamaged and still in new condition are subject to a 35% restocking fee.<br/><br/>
 
-                                Refurbished products: 
-                                -May be returned within 15 days for a store credit and/or a 25% restocking fee. We reserve the right to deny a return or credit based on the condition of the product. The return must be in the same condition as when it was sold.
+                                Refurbished products: <br/>
+                                -May be returned within 15 days for a store credit and/or a 25% restocking fee. We reserve the right to deny a return or credit based on the condition of the product. The return must be in the same condition as when it was sold.<br/><br/>
 
-                                CLEVERTECH will refund neither the original shipping cost nor the shipping and handling fees incurred from the products return. If the original purchase was made under a “Free Shipping” promotion then a charge of up to $200 (depending on the weight of the product) fee will be deducted from any return in counter to that offer.
+                                CLEVERTECH will refund neither the original shipping cost nor the shipping and handling fees incurred from the products return. If the original purchase was made under a “Free Shipping” promotion then a charge of up to $200 (depending on the weight of the product) fee will be deducted from any return in counter to that offer.<br/><br/>
 
-                                No refund will be granted for software which has been opened, used, or tampered with in any way which jeopardized CLEVERTECH’s ability to remarket or resell the product. CLEVERTECH maintains full discretion in decisions regarding a products fitness for return.
+                                No refund will be granted for software which has been opened, used, or tampered with in any way which jeopardized CLEVERTECH’s ability to remarket or resell the product. CLEVERTECH maintains full discretion in decisions regarding a products fitness for return.<br/><br/>
 
-                                Any non-defective returns are subject to a 15% restocking fee, which percentage is taken from the final purchase price less any shipping or handling charges.
+                                Any non-defective returns are subject to a 15% restocking fee, which percentage is taken from the final purchase price less any shipping or handling charges.<br/><br/>
 
-                                Quantity purchases of five products or more are not eligible for return.
+                                Quantity purchases of five products or more are not eligible for return.<br/><br/>
 
-                                To return a defective product, please contact our Customer Service Department for a Return Merchandise Authorization (RMA) number and follow the Return of Products Instructions below. The RMA is valid for 30 days from date of issuance. Returns will not be accepted without an RMA. Manufacturer restrictions do apply. Any item missing the UPC on the original packaging may not be returned.
+                                To return a defective product, please contact our Customer Service Department for a Return Merchandise Authorization (RMA) number and follow the Return of Products Instructions below. The RMA is valid for 30 days from date of issuance. Returns will not be accepted without an RMA. Manufacturer restrictions do apply. Any item missing the UPC on the original packaging may not be returned.<br/><br/>
 
-                                Procedures for Obtaining Warranty Service
+                                Procedures for Obtaining Warranty Service<br/><br/>
 
-                                RMA (Returning Merchandise Authorization) Policy:
+                                RMA (Returning Merchandise Authorization) Policy:<br/><br/>
 
-                                · If repairs are required, the customer must obtain a RMA number and provide proof of purchase. RMA and services are rendered by CLEVERTECH only. Any shipping cost (starting from the original date of purchase) on any item returned for repair is the customers’ responsibility. All returned parts must have a RMA number written clearly on the outside of the package along with a letter detailing the problems and a copy of the original proof of purchase. No COD packages will be accepted. No package will be accepted without a RMA number written on the outside of the package. RMA numbers are only valid for 30 days from the date of issue.
+                                · If repairs are required, the customer must obtain a RMA number and provide proof of purchase. RMA and services are rendered by CLEVERTECH only. Any shipping cost (starting from the original date of purchase) on any item returned for repair is the customers’ responsibility. All returned parts must have a RMA number written clearly on the outside of the package along with a letter detailing the problems and a copy of the original proof of purchase. No COD packages will be accepted. No package will be accepted without a RMA number written on the outside of the package. RMA numbers are only valid for 30 days from the date of issue.<br/><br/>
 
-                                Should you have any problems with your products, please follow these procedures to obtain the service:
+                                Should you have any problems with your products, please follow these procedures to obtain the service:<br/><br/>
 
-                                1. If you have purchased our on-site warranty, please find your warranty# (the order number from the transaction through which the warranted product was originally purchased) and contact CLEVERTECH Customer Service at PHONE NUMBER.
+                                1. If you have purchased our on-site warranty, please find your warranty# (the order number from the transaction through which the warranted product was originally purchased) and contact CLEVERTECH Customer Service at PHONE NUMBER.<br/><br/>
 
-                                2. If the system must be repaired, an RMA number (Return Merchandise Authorization Number) will be issued for shipment to our repair department. Please follow the instructions given by CLEVERTECH technical support staff to ship your computer. CLEVERTECH will not accept any shipments without a RMA number.
+                                2. If the system must be repaired, an RMA number (Return Merchandise Authorization Number) will be issued for shipment to our repair department. Please follow the instructions given by CLEVERTECH technical support staff to ship your computer. CLEVERTECH will not accept any shipments without a RMA number.<br/><br/>
 
-                                3. Pack the system in its original box or a well-protected box, as outlined in the Return Shipping Instructions. CLEVERTECH will not be responsible for shipping damage/loss of any product outside the original 30-day CLEVERTECH-paid service period. It is very important that you write the RMA number clearly on the outside of the package. Ship the system with a copy of your bill of sale or other proof of purchase, your name, address, phone number, description of the problem(s), and the RMA number you have obtained to:
+                                3. Pack the system in its original box or a well-protected box, as outlined in the Return Shipping Instructions. CLEVERTECH will not be responsible for shipping damage/loss of any product outside the original 30-day CLEVERTECH-paid service period. It is very important that you write the RMA number clearly on the outside of the package. Ship the system with a copy of your bill of sale or other proof of purchase, your name, address, phone number, description of the problem(s), and the RMA number you have obtained to:<br/><br/>
 
-                                CLEVERTECH Computer Service Center
+                                CLEVERTECH Computer Service Center<br/><br/>
 
-                                RMA#____________
+                                RMA#____________<br/><br/>
 
-                                1150 Murphy Ave Ste 205
+                                1150 Murphy Ave Ste 205<br/><br/>
 
-                                San Jose, CA 93131
+                                San Jose, CA 93131<br/><br/>
 
-                                4. Upon receiving the computer, CLEVERTECH will repair or replace your computer (at CLEVERTECH’s discretion) and will ship it back to you within 2 weeks (dependent on parts availability) via UPS, FedEx, USPS.
+                                4. Upon receiving the computer, CLEVERTECH will repair or replace your computer (at CLEVERTECH’s discretion) and will ship it back to you within 2 weeks (dependent on parts availability) via UPS, FedEx, USPS.<br/><br/>
 
-                                5. Cross-exchange (Parts only): You will need to provide a valid credit card number as a deposit guarantee when the RMA number is issued. Once approval has been obtained on your credit card, the part(s) will be shipped via UPS, FedEx, USPS. You will need to ship defective part(s) back to CLEVERTECH within 15 days to avoid charges to your credit card. If such charges are incurred, the shipped part(s) will be billed at the then current price.
+                                5. Cross-exchange (Parts only): You will need to provide a valid credit card number as a deposit guarantee when the RMA number is issued. Once approval has been obtained on your credit card, the part(s) will be shipped via UPS, FedEx, USPS. You will need to ship defective part(s) back to CLEVERTECH within 15 days to avoid charges to your credit card. If such charges are incurred, the shipped part(s) will be billed at the then current price.<br/><br/>
 
-                                6. CLEVERTECH will pay for shipping to and from the customer only within the first thirty days following the original product ship date. Following the RMA period all shipping fees both for under warranty and post warranty repairs are the sole responsibility of the customer. The customer also assumes full liability for losses or damages resulting from shipping as well as all responsibility to pursue remuneration for such issues with their selected carrier.
+                                6. CLEVERTECH will pay for shipping to and from the customer only within the first thirty days following the original product ship date. Following the RMA period all shipping fees both for under warranty and post warranty repairs are the sole responsibility of the customer. The customer also assumes full liability for losses or damages resulting from shipping as well as all responsibility to pursue remuneration for such issues with their selected carrier.<br/><br/>
 
-                                After 90-Day Warranty – Post Warranty Repair
+                                After 90-Day Warranty – Post Warranty Repair<br/><br/>
 
-                                For post warranty repair, the procedure is the same as outlined above for RMA and shipping. However, you are responsible for shipping charges both ways, current labor charges (if not under warranty), and the current price of part(s) used in repair.
+                                For post warranty repair, the procedure is the same as outlined above for RMA and shipping. However, you are responsible for shipping charges both ways, current labor charges (if not under warranty), and the current price of part(s) used in repair.<br/><br/>
 
-                                Technical Support:
+                                Technical Support:<br/><br/>
 
-                                · service@urclevertech.com
+                                · service@urclevertech.com<br/><br/>
 
-                                Contact: (408) 316-7600
+                                Contact: (408) 316-7600<br/><br/>
 
-                                Customer Service:
+                                Customer Service:<br/><br/>
 
-                                · sales@urclevertech.com
+                                · sales@urclevertech.com<br/><br/>
 
-                                Contact: (408) 316-7600
+                                Contact: (408) 316-7600<br/><br/><br/><br/>
 
 
 
-                                WARRANTY EXCLUSIONS
+                                WARRANTY EXCLUSIONS<br/><br/>
 
                                 CLEVERTECH does not offer technical support for any software including installed OS or other programs. Technical support should be pursued through channels offered by the software’s individual tech support. CLEVERTECH accepts no liability for problems caused by after-market software or hardware modifications or additions. CLEVERTECH is not responsible for giving any technical support concerning the installation or integration of any software or component the customer did not pay CLEVERTECH to install. CLEVERTECH is not responsible for loss of data or time, even with hardware failure. Customers are responsible for backing up any data for their own protection. CLEVERTECH is not responsible for any loss of work (“down time”) caused by a product requiring service. This warranty is null and void if the defect or malfunction was due to damage resulting from operation not within manufacturer specifications. It will also be null and void if there are indications of misuse and/or abuse. CLEVERTECH has the option of voiding the warranty if anyone other than a CLEVERTECH technician attempts to service the product. CLEVERTECH will not warrant any problems arising from an act of (lighting, flooding, tornado, etc.), electrical spikes or surges, or problems arising out of hardware, software, or additional devices added to complement any system/component bought at CLEVERTECH. Under no circumstances will CLEVERTECH be responsible for any refund or remuneration exceeding the original purchase price of the product less any shipping fees. CLEVERTECH will not be held responsible for typographical errors on sales receipts, repair tickets, or on our website. CLEVERTECH makes every effort to make sure all information on our website is correct.
                             </p>
@@ -1271,8 +1330,23 @@
         <!-- SECTION 1 BEGIN -->
         <div class="jumbotron" id="welcome" style="text-align: center;">
             <div id="welcome_content">
+                <!--
                 <h1>Welcome to CleverTech</h1>
                 <p id="here_to_help" style="font-size: 25px;">We're here to help</p>
+                -->
+                <div class="container">
+                    <div class="row">
+                        <h1>Welcome to CleverTech</h1>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <button id="here_to_help_btn" class="btn" style="font-size: 25px;" data-toggle="modal" data-target="#clevertech_vid">
+                                <img id="play_btn" src="images/play_button.png">
+                                <span id="here_to_help_span">We're here to help</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <!-- SECTION 1 END -->
@@ -1286,15 +1360,15 @@
                     <p style="font-size: 25px;">3 days to complete</p>
                 </div>
                 <div class="row">
-                    <!--
                     <button class="btn how_it_works_btn" data-toggle="modal" data-target="#pick_up_info_modal">Pick-Up</button>
                     <button class="btn how_it_works_btn" data-toggle="modal" data-target="#repair_info_modal">Repair</button>
                     <button class="btn how_it_works_btn" data-toggle="modal" data-target="#drop_off_info_modal">Drop-Off</button>
-                    -->
                     
+                    <!--
                     <h1 class="btn how_it_works_btn" data-toggle="modal" data-target="#pick_up_info_modal">Pick-Up</h1>
                     <h1 class="btn how_it_works_btn" data-toggle="modal" data-target="#repair_info_modal">Repair</h1>
                     <h1 class="btn how_it_works_btn" data-toggle="modal" data-target="#drop_off_info_modal">Drop-Off</h1>
+                    -->
                 </div>
                 <!--
                 <div class="row">
@@ -1353,8 +1427,24 @@
             <div class="container" id="stay_clever_content">
                 
                 
-                <div class="row" style="position: relative; top: 100px;">    
-                    
+                <div class="row" style="position: relative; top: 150px;">
+                    <!--
+                    <div class="row">
+                        <div class="col-xs-6 col-xs-offset-6" style="background-color: rgba(0,0,0,0.4);">
+                            <div class="row">
+                                <h2 class="gonz_quote">
+                                    "I want to see a paradigm shift. We're going to be so good...It wouldn't make sense to go anywhere else."<br/><br/>
+                                    Gonzalo Martinez<br/>
+                                    Founder
+                                </h2>
+                            </div>
+                            <div class="row">
+                                <div id="contact_us_btn" class="btn" data-toggle="modal" data-target="#contact_us_modal">Contact Us</div>
+                            </div>
+                        </div>
+                    </div>
+                    -->
+
                     <div class="row">
                         <h2 class="gonz_quote">
                             "I want to see a paradigm shift. We're going to be so good...It wouldn't make sense to go anywhere else."<br/><br/>
@@ -1364,61 +1454,56 @@
                     </div>
                     
                     <div class="row">
-                        <div id="contact_us_btn" class="btn" data-toggle="modal" data-target="#contact_us_modal">Contact Us</div>
+                        <div id="contact_us_btn" class="btn" data-toggle="modal" data-target="#contact_us_modal" style="background-color: rgba(0,0,0,0.4);">Contact Us</div>
                     </div>
                 </div>
-                
-                
-                <div class="row">
-                    <br/>
-                    <br/><br/><br/>
-                    <br/><br/><br/>
-                </div>
-                
                 
                 <!-- FLANKED LAYOUT BEGIN -->
-                <div class="row" style="margin-top:50px;">
-                    <div class="col-md-4">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <label>For the crazy ones:</label>
-                            </div>
-                        </div>
-                        
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <ul class="soc">
-                                    <li><a class="soc-facebook" href="#"></a></li> 
-                                    <li><a class="soc-instagram" href="#"></a></li> 
-                                    <li><a class="soc-tumblr" href="#"></a></li>
-                                    <li><a class="soc-twitter" href="#"></a></li> 
-                                    <li><a class="soc-youtube" href="#"></a></li> 
-                                    <li><a class="soc-yelp" href="#"></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    
-                    <div class="col-md-8"> 
-                        <div class="row">
-                            <div class="col-xs-6 col-md-9">
-                                <dl class="pull-right">
-                                    <dt>Phone Number:</dt> 
-                                    <dd>408.316.7600</dd><br/> 
-                                    <dt>Address:</dt> 
-                                    <dd>1150 Murphy Ave, Ste 205</dd> 
-                                    <dd>San Jose, CA 9513</dd> <br/>
-                                </dl>
+                <!--<div id="soc_media_and_store_info" style="background-color: rgba(0,0,0,0.4); border-radius: 5px; margin-top: 250px;">-->
+                <div id="soc_media_and_store_info">
+                    <div class="row" style="margin-top:150px;">
+                        <div class="col-md-4">
+                            <div class="row" style="padding-top: 20px;">
+                                <div class="col-lg-12">
+                                    <label>For the crazy ones:</label>
+                                </div>
                             </div>
 
-                            <div class="col-xs-6 col-md-3">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <ul class="soc">
+                                        <li><a class="soc-facebook" href="#"></a></li> 
+                                        <li><a class="soc-instagram" href="#"></a></li> 
+                                        <li><a class="soc-tumblr" href="#"></a></li>
+                                        <li><a class="soc-twitter" href="#"></a></li> 
+                                        <li><a class="soc-youtube" href="#"></a></li> 
+                                        <li><a class="soc-yelp" href="#"></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
 
-                                <dl class="pull-left">
-                                    <dd>Monday - Friday: <br/>9am - 7pm</dd>    
-                                    <dd>Saturday - Sunday: <br/>10am - 6pm</dd>  <br/> 
-                                    <dd>© CleverTech Corporation</dd>
-                                </dl>
+
+                        <div class="col-md-8" style="padding-top: 20px; padding-right: 40px;"> 
+                            <div class="row">
+                                <div class="col-xs-6 col-md-9">
+                                    <dl class="pull-right">
+                                        <dt>Phone Number:</dt> 
+                                        <dd>408.316.7600</dd><br/> 
+                                        <dt>Address:</dt> 
+                                        <dd>1150 Murphy Ave, Ste 205</dd> 
+                                        <dd>San Jose, CA 9513</dd> <br/>
+                                    </dl>
+                                </div>
+
+                                <div class="col-xs-6 col-md-3">
+
+                                    <dl class="pull-left">
+                                        <dd>Monday - Friday: <br/>9am - 7pm</dd>    
+                                        <dd>Saturday - Sunday: <br/>10am - 6pm</dd>  <br/> 
+                                        <dd>© CleverTech Corporation</dd>
+                                    </dl>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1426,6 +1511,7 @@
                 <!-- FLANKED LAYOUT END -->
                 
             </div>
+            
         </div>
         <!-- STAY CLEVER END -->
 
@@ -1709,8 +1795,8 @@
             
             function check_ipad_repair_prices(model, problem) {
                 switch(problem) {
-                    case "Glass Digitizer":
-                        set_ipad_repair_prices(model, "$100", "$200", "$300", "$400");
+                    case "Screen":
+                        set_ipad_repair_prices(model, "$115-$134", "$230", "$126", "$230");
                         break;
                     case "Wifi":
                         set_ipad_repair_prices(model, "$93", "$93", "$93", "$93");
@@ -1942,7 +2028,7 @@
             
             
             // ============== Client-side form validation ==============
-            $("form").submit(function(e) {
+            $("#pick_up_request_form").submit(function(e) {
                                 
                 var error = "";
                 //If you decide to highlight the sections of the form corresponding to where the user F'ed up,
@@ -2018,10 +2104,45 @@
             });
                 
             
+            $("#contact_form").submit(function(e) {
+                                
+                var error = "";
+                //If you decide to highlight the sections of the form corresponding to where the user F'ed up,
+                //in these if statements might be where to do it....
+                if ($("#contact_us_name").val() === "") {
+                    error += "- Your name is required.<br/>";
+                }
+                if ($("#contact_us_email").val() === "") {
+                    error += "- Your email address is required.<br/>";
+                }
+                if ($("#contact_us_subject").val() === "") {
+                    error += "- The subject is required.<br/>";
+                }
+                if ($("#contact_us_msg").val() === "") {
+                    error += "- A message is required.<br/>";
+                }
+                
+                //If an error message exists (i.e., isn't the empty string)
+                if (error !== "") {
+
+                    //Perhaps this is where all of the "YOU F'ED UP!" stylings should go here?
+                    //DON'T FORGET TO ACTUALLY WRITE THE div WITH THE error ID!!!
+                    $("#contact_form_error").html('<div class="alert alert-danger" role="alert"><p><strong>There were error(s) in your form:</strong></p>' + error + '</div>');
+
+                    return false;
+                } else {
+                    return true;
+                }
+                
+            });
+            
+            
             function is_numeric(n) {
                 return !isNaN(parseFloat(n)) && isFinite(n);
             }
             //^Got this from: http://stackoverflow.com/questions/18082/validate-decimal-numbers-in-javascript-isnumeric
+            
+
         </script>
     </body>
 </html>

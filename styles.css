@@ -26,6 +26,9 @@ body {
     /*padding-top: 120px;*/ /*To offset space taken by the navbar...Perhaps don't need anymore for design we're shooting for.*/
 }
 
+#test {
+    background-color: red;
+}
 
 .navbar {
     font-size: 20px;
@@ -82,7 +85,7 @@ body {
 
 
 #contact_us_btn {
-    background: rgba(0,0,0,0.4);
+    /*background: rgba(0,0,0,0.4);*/
     color: white;
     font-size: 15px;
     padding-left: 50px;
@@ -162,9 +165,34 @@ body {
 .how_it_works_btn {
     background: rgba(0,0,0,0.4);
     color: white;
-    font-size: 20px;
+    font-size: 30px;
     width: 300px;
     margin: 20px;
+}
+
+
+#here_to_help_btn {
+    width: 300px;
+    border-radius: 30px;
+    border-color: white;
+    border-width: medium;
+    background-color: transparent;
+}
+
+
+#play_btn {
+    position: relative;
+    left: -18px;
+}
+
+#here_to_help_span {
+    position: relative;
+    left: -15px;
+}
+
+#here_to_help_btn:hover {
+    text-decoration: none;
+    color: white;
 }
 
 
@@ -258,27 +286,12 @@ li.nav-item.active {
 }
 
 
-/*Isn't breakpont 768?*/
-@media (max-width: 767px) {
-    #start_repair_btn {
-        /*
-        float: none;
-        clear: both;
-        position: relative;
-        right: 0;
-        */
-        position: relative;
-        top: 35px;
-        left: 10%; 
-    }
-    
-    #move_up {
-        left: 45%;
-    }
-    
-    #move_down {
-        right: 42%;
-    }
+
+
+#soc_media_and_store_info {
+    background-color: rgba(0,0,0,0.4); 
+    border-radius: 5px; 
+    margin-top: 250px;
 }
 
 
@@ -536,4 +549,41 @@ li.nav-item.active {
 .notify_require {
     color: red;
     display: none;
+}
+
+
+
+
+/* MEDIA QUERIES AT THE END!!! */
+/* Portrait tablets and small desktops */
+@media (min-width: 768px) and (max-width: 991px) {
+    #soc_media_and_store_info {
+        margin-top: 0px;
+    }
+}
+
+@media (max-width: 767px) {
+    #start_repair_btn {
+        /*
+        float: none;
+        clear: both;
+        position: relative;
+        right: 0;
+        */
+        position: relative;
+        top: 35px;
+        left: 10%; 
+    }
+    
+    #move_up {
+        left: 45%;
+    }
+    
+    #move_down {
+        right: 42%;
+    }
+    
+    #soc_media_and_store_info {
+        margin-top: 0px;
+    }
 }
