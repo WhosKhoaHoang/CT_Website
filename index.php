@@ -1,158 +1,212 @@
 <?php
+    include("class.phpmailer.php"); 
+
     $error = ""; $successMessage = "";
+    $reqs_per_device = 3;
+
     function phpAlert($msg) {
         echo '<script type="text/javascript">alert("' . $msg . '")</script>';
+    }
+
+    function is_phone_num($phone) {
+        if(preg_match("/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/", $phone)) {
+            return true;
+        }
+    }
+
+    //Got this from: https://www.w3schools.com/php/php_form_validation.asp
+    function clean_input($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
     }
 
     //If there's anything in the $_POST array...(wouldn't it be better to use isset? No because $_POST is always
     //gonna be set with something so the inside of the if block would always be executed?
     if ($_POST) { //I.e., return true was executed in the the submit() method.
-                
+        
+        $num_devices = count($_POST["model_type"]); //Count the length of any array
+        $num_reqs = $reqs_per_device * $num_devices;
+        
+        
         if (!$_POST["first_name"] || !$_POST["last_name"]) {
             $error .= "- Your full name is required.<br/>";
         }
+        else if ($_POST["first_name"] && $_POST["last_name"] && 
+                 (!preg_match("/^[a-zA-Z -]*$/", $_POST["first_name"]." ".$_POST["last_name"]))) {
+            $error .= "- Only letters, white space, and dashes are allowed for your name.<br/>";
+        }
+        else {
+            $_POST["first_name"] = clean_input($_POST["first_name"]);   
+            $_POST["last_name"] = clean_input($_POST["last_name"]);
+        }
+        
+        
         if (!$_POST["email"]) {
             $error .= "- Your email is required.<br/>";
         }
-        if ($_POST["email"] && filter_var($_POST["email"], FILTER_VALIDATE_EMAIL === false)) {
+        else if ($_POST["email"] && filter_var($_POST["email"], FILTER_VALIDATE_EMAIL === false)) {
             $error .= "- The email address you entered is not valid.<br/>";
         }
+        else {
+            $_POST["email"] = clean_input($_POST["email"]);
+        }
+        
+        
         if (!$_POST["phone"]) {
             $error .= "- Your phone number is required.<br/>";
         }
+        else if ($_POST["phone"] && !is_phone_num($_POST["phone"])) {
+            $error .= "- Phone number must be in the form XXX-XXX-XXXX.<br/>";
+        }
+        else {
+            $_POST["phone"] = clean_input($_POST["phone"]);
+        }
+        
+        
         if (!$_POST["street_address"]) {
             $error .= "- Your street address is required<br/>";
         }
-        if (!isset($_POST["city"])) {
+        else {
+            $_POST["street_address"] = clean_input($_POST["street_address"]);
+        }
+        
+        
+        //Non-required input
+        $_POST["address_line2"] = clean_input($_POST["address_line2"]);
+        
+        
+        if ($_POST["city"] === "Select City") {
             $error .= "- Your city is required<br/>";
         }
-        
-        //. A perhaps killer tip:
-        //  - Each index in the dynamic form arrays corresponds to a device. E.g., index 0 corresponds
-        //    with the 1st device, index 1 corresponds with the 2nd device, etc.
-        //  - !!!QUESTIONABLE -->  Note that there'll never be a case where an entry in array has the empty string 
-        //    while other entries have something in them. The only time there'll ever be an empty string is if that 
-        //    entry is never filled out anywhere...this makes things super tricky because if the user doesn't fill 
-        //    in any entries for the first device but fills in entries for the second device, the info for the second
-        //    device will go to the 0th index in the arrays corresponding to what was filled out. <--QUESTIONABLE!!!
-        //  - In regards to that^...if the first and ONLY entry in an array is "", then the user completely overlook this
-        //    field for ALL devices. Think: If data for device 3 was filled out, then all data that wasn't fill out before
-        //    it will be blank.
-        //. Challenge:
-        //  - Give specific info about where missing required fields are. Perhaps doing it this way would
-        //  - do away with needing the hidden input tag with the num_devices ID because you'd depend entirely
-        //  - on the arrays that were POSTed. Perhaps you'd change the null value that model type has to ""
-        
-        $NUM_REQS = 3;
-        $num_devices = $_POST["num_devices"];
-
-        //Initialize lengths:
-        //. Instead of using these length varibles, maybe you can just delete that first and only empty string entry...
-        //. Except fot $_POST["model_type"], if the first and ONLY entry is "", then the user completely overlooked this field for ALL devices...
-
-        //Think: How to make the setting of the $_POST["model_type"] array itself look like the others when the
-        //form is submitted without any value passed to the corresponding input? Might need to do this if I want to
-        //output specific information...Jeez, having a disabled option from a select element just for a better
-        //user experience really complicates the backend code!
-        $model_type_len = !isset($_POST["model_type"]) ? 0 : count($_POST["model_type"]);
-       
-        $serial_number_len = ($_POST["serial_number"][0] === "" && count($_POST["serial_number"]) === 1) ? 0 : count($_POST["serial_number"]);
-        
-        $problem_len = ($_POST["problem"][0] === "" && count($_POST["problem"]) === 1) ? 0 : count($_POST["problem"]);
-        
-        $cust_ref_num_len = ($_POST["cust_ref_num"][0] === "" && count($_POST["cust_ref_num"]) === 1) ? 0 : count($_POST["cust_ref_num"]);
-        
-        $other_info_len = ($_POST["other_info"][0] === "" && count($_POST["other_info"]) === 1) ? 0 : count($_POST["other_info"]);
-        
-        
-        echo("model_type_array: <br/>");
-        print_r($_POST["model_type"]); echo("<br/>");
-        echo("serial_number array: <br/>");
-        print_r($_POST["serial_number"]); echo("<br/>");
-        echo("problem array: <br/>");
-        print_r($_POST["problem"]); echo("<br/>");
-        echo("cust_ref_num array: <br/>");
-        print_r($_POST["cust_ref_num"]); echo("<br/>");
-        echo("other_info array: <br/>");
-        print_r($_POST["other_info"]); echo("<br/>");
-        
-        echo("<br/>");
-        echo("model_type_len: ".$model_type_len."<br/>");
-        echo("serial_number_len: ".$serial_number_len."<br/>");
-        echo("problem_len: ".$problem_len."<br/>");
-        echo("cust_ref_len: ".$cust_ref_num_len."<br/>");
-        echo("other_info_len: ".$other_info_len."<br/>");
-        echo("Sum of Lengths: ".($model_type_len+$serial_number_len+$problem_len)."<br/>");        
-        echo("Number of devices: ".$num_devices."<br/>");
-        echo("Number of Requirements: ".$NUM_REQS."<br/><br/><br/>");
-        
-        
-        if (($model_type_len+$serial_number_len+$problem_len) < ($num_devices*$NUM_REQS)) {
-            $error .= "- You have missing entries for your devices information.<br/>";
+        else {
+            $_POST["city"] = clean_input($_POST["city"]);
         }
-        if ($serial_number_len != 0) {
-            
-            //validate serial numbers (length and numeric)
-            for ($i = 0; $i < $serial_number_len; $i++) {
-                if (!ctype_digit($_POST["serial_number"][$i])) {
-                    $error .= "- Serial number must consist of only numbers for Device ".($i+1).".<br/>";
 
-                }
-                
-                //$_POST["serial_number"][$i]= preg_replace('/\D/', '', $_POST["serial_number"][$i]);
-                //^Makes it so that no errors are thrown in the events of spaces or plusses, etc. Only digits are considered.
-                if (!preg_match('/^\d{12}$/', $_POST["serial_number"][$i])) {
-                    $error .= "- Serial number must consist of 12 digitis for Device ".($i+1).".<br/>";
-                }
+        
+        //Non-required input
+        $_POST["zip_postal"] = clean_input($_POST["zip_postal"]);
+        
+        
+        //Is this part really necessary?
+        //Process the dropdown menu items so that the default prompt is replaced with empty string
+        for ($i = 0; $i < count($_POST["model_type"]); $i++) {
+            if ($_POST["model_type"][$i] === "Select Model Type") {
+                $_POST["model_type"][$i] = "";
             }
+        }
+                
+        //Loop through required input fields and see if they've been filled out
+        for ($i = 0; $i < $num_devices; $i++) {
+            if (!$_POST["model_type"][$i]) {
+                $error .= "- Model Type is required for Device ".($i+1).".<br/>";
+            }
+            else {
+                $_POST["model_type"][$i] = clean_input($_POST["model_type"][$i]);
+            }
+            
+            
+            if (!$_POST["serial_number"][$i]) {
+                $error .= "- Serial Number is required for Device ".($i+1).".<br/>";
+            }
+            else if ($_POST["serial_number"][$i] && !ctype_digit($_POST["serial_number"][$i])) {
+                $error .= "- Serial number must consist of numbers only for Device ".($i+1).".<br/>";
+            }
+            else if ($_POST["serial_number"][$i] && !preg_match('/^\d{12}$/', $_POST["serial_number"][$i])) {
+                $error .= "- Serial number must consist of 12 digits for Device ".($i+1).".<br/>";
+            }
+            else {
+                $_POST["serial_number"][$i] = clean_input($_POST["serial_number"][$i]);
+            }
+            
+            
+            if ($_POST["problem"][$i] === "") {
+                $error .= "- Problem is required for Device ".($i+1).".<br/>";
+            }
+            else {
+                $_POST["problem"][$i] = clean_input($_POST["problem"][$i]);
+            }
+            
+            //non-required input
+            $_POST["cust_ref_num"][$i] = clean_input($_POST["cust_ref_num"][$i]);
+            
+            //non-required input
+            $_POST["other_info"][$i] = clean_input($_POST["other_info"][$i]);
+
+        }
+        
+        
+        if ($_POST["service_type"] === "") {
+            $error .= "- A service type is required.<br/>";
+        }
+        else {
+            $_POST["service_type"] = clean_input($_POST["service_type"]);
+        }
+        
+        if ($_POST["agree_to_terms"] === "") {
+            $error .= "- Please agree to the important information and limitations of liability.</br>";
+        }
+        else {
+            $_POST["agree_to_terms"] = clean_input($_POST["agree_to_terms"]);
         }
         
         
         if ($error != "") {
-            //echo("ERRORS:<br/>");
-            //echo($error);
-            //$error = '<div class="alert alert-danger" role="alert"><p>There were error(s) in your form:</p>' . $error . '</div>';
-            //echo "<script language='javascript'>alert('WRONG')</scipt>";
-            //phpAlert(   "Hello world!\\n\\nPHP has got an Alert Box"   );
+            echo("ERRORS:<br/>");
+            echo($error);
+            //echo "<script type='text/javascript'>alert('".$error."')</script>"; //FOR TESTING
+            //$error = '<div class="alert alert-danger" role="alert"><p>There were error(s) in your form:</p>'.$error.'</div>';
         }
         else {
             $device_lst = array();
-
             //Make hashmaps for individual devices that you'll then use for the email
             for ($i = 0; $i < $num_devices; $i++) {                 
                 $device = array();
                 
-                $device["model_type"] = ""; $device["serial_number"] = "";
-                $device["problem"] = ""; $device["cust_ref_num"] = ""; $device["other_info"] = "";
-                
+                //Required Info
                 $device["model_type"] = $_POST["model_type"][$i];
                 $device["serial_number"] = $_POST["serial_number"][$i];                
                 $device["problem"] = $_POST["problem"][$i];
                 
-                if ($cust_ref_num_len >= $i) {
-                    $device["cust_ref_num"] = $_POST["cust_ref_num"][$i];
-                }
-                if ($other_info_len >= $i) {
-                    $device["other_info"] = $_POST["other_info"][$i];
-                }
+                //Non-required Info
+                $device["cust_ref_num"] = $_POST["cust_ref_num"][$i];
+                $device["other_info"] = $_POST["other_info"][$i];
                 
                 $device_lst[] = $device;                
             }
             
-            
-            echo("<pre>"); //FOR TESTING
-            echo("device_lst array is: <br/>"); //FOR TESTING
+            //FOR TESTING
+            echo("<pre>");
+            echo($_POST["first_name"]."<br/>"); //FOR TESTING
+            echo($_POST["last_name"]."<br/>"); //FOR TESTING
+            echo($_POST["email"]."<br/>"); //FOR TESTING
+            echo($_POST["phone"]."<br/>"); //FOR TESTING
+            echo($_POST["street_address"]."<br/>"); //FOR TESTING
+            echo($_POST["address_line2"]."<br/>"); //FOR TESTING
+            echo($_POST["city"]."<br/>"); //FOR TESTING
+            echo($_POST["zip_postal"]."<br/>"); //FOR TESTING
+            echo($_POST["service_type"]."<br/>"); //FOR TESTING
+            echo($_POST["agree_to_terms"]."<br/>"); //FOR TESTING
             print_r($device_lst); //FOR TESTING
-               
+            
+            
+            
+            $mail = new PHPMailer;
+            $mail->From = "blah@ramen.com";
+            $mail->FromName = "Ramen";
+            $mail->addAddress("whoskhoahoang@gmail.com", "User");     
+            $mail->addReplyTo("whoskhoahoang@gmail.com", "Information");
+
+            $mail->Subject = "Here is the subject";
+            $mail->Body    = "Here is the body!";
             
             /*
-            $emailTo = "whoskhoahoang@gmail.com"; //FOR TESTING
-            $headers = "From: ".$_POST['email'];
-
-            if (mail($emailTo, "", "", $headers)) {
-                $successMessage = '<div class="alert alert-success" role="alert">Your message was sent, we\'ll get back to you ASAP!</div>';
+            if(!$mail->send()) {
+                echo 'Message could not be sent.';
+                echo 'Mailer Error: ' . $mail->ErrorInfo;
             } else {
-                $error = '<div class="alert alert-danger" role="alert"><p><strong>Your message couldn\'t be sent - please try again later</div>';
+                echo 'Message has been sent';
             }
             */
         }
@@ -249,9 +303,7 @@
                                     <button type="button" class="close" data-dismiss="modal" style="float: left;">&times;</button>
                                 </div>
                                 
-                                <form id="pick_up_request_form" method="post"> <!-- Should I have action="/validate.php" ? -->
-                                    <!--<p class="required">Name</p>-->
-
+                                <form id="pick_up_request_form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> <!-- Only need to set action like this if validating on same page...or just validate in validate_pickup.php? -->
                                     <h3 style="color: #0f6a37;">Your Info</h3>
                                     <hr/>
                                     
@@ -287,6 +339,7 @@
                                             <div class="col-xs-6">
                                                 <label class="required" for="phone">Phone Number</label>
                                                 <input class="form-control" type="tel" id="phone" name="phone">
+                                                <p>Please enter in the form XXX-XXX-XXXX</p>
                                             </div>
                                         </div>
                                     </div> 
@@ -318,8 +371,9 @@
                                             <div class="col-xs-6">
                                                 <label class="required" for="city">City</label>
                                                 <select class="form-control" id="city" name="city">
-                                                    <option selected disabled>Select City</option>
+                                                    <!--<option selected disabled>Select City</option>-->
                                                     <!--<option selected readonly>Select City</option>-->
+                                                    <option style="display:none;" selected>Select City</option>
                                                     <option>San Jose</option>
                                                     <option>Santa Clara</option>
                                                     <option>Milpitas</option>
@@ -352,7 +406,8 @@
                                                         <!-- FOR TESTING: -->
                                                         <!--<input type="hidden" name="model_type[]" value="" />-->
                                                         <select class="form-control" id="model_type" name="model_type[]" >
-                                                            <option selected disabled>Select Model Type</option>
+                                                            <!--<option selected disabled>Select Model Type</option>-->
+                                                            <option style="display:none;" selected>Select Model Type</option>
                                                             <option>iMac 27'' Model</option>
                                                             <option>iMac 21.5'' Model</option>
                                                             <option>Macbook Air</option>
@@ -407,7 +462,7 @@
                                                 <div class="row">
                                                     <div class="col-xs-12">
                                                         
-                                                        <label for="other_info">Anything else you'd like to tell us about your problem?</label>
+                                                        <label for="other_info">Other Info</label>
                                                         <textarea class="form-control" id="other_info" rows=4 name="other_info[]" style="resize: none;"></textarea>
                                                         
                                                     </div>
@@ -418,6 +473,7 @@
                                         
                                     </div> 
                                     
+                                    <!--<button id="add_device_btn" class="btn" onClick="add_device('dynamic_input');" style="margin-top: 20px; width: 200px;"> Add another device </button>-->
                                     
                                     <input type="button" id="add_device_btn" class="btn" value="Add another device" onClick="add_device('dynamic_input');" style="margin-top: 20px; width: 200px;">
                                     
@@ -429,18 +485,47 @@
                                     <hr/>
                                     
                                     <div class="form-group">
-                                        <label class="required">Service Type</label><br/>
-                                        <p><input name="service_type" type="radio"> &nbsp; Personal Hardware Service </p> 
-                                        <p><input name="service_type" type="radio"> &nbsp; Business Hardware Service </p> 
+                                        <label class="required">Service Type</label>
+                                        <input type="radio" class="service_type" name="service_type"  value="" style="display: none" checked>
+                                        <p><input type="radio" class="service_type" name="service_type"  value="personal_service"> &nbsp; Personal Hardware Service </p> 
+                                        <p><input type="radio" class="service_type" name="service_type"  value="business_service"> &nbsp; Business Hardware Service </p>
+
+                                        <!-- FOR TESTING -->
+                                        <!--
+                                        <input type="radio" name="genderS" value="0" style="display: none;" checked>
+                                        <input type="radio" name="genderS" value="1">Male
+                                        <input type="radio" name="genderS" value="2" >Female
+                                        -->
+                                    </div>
+                                    
+                                    <div id="legal_info" class="form-group" style="display: none;">
+                                        <p>*Important Information and Limitations of Liability:</p>
+                                        
+                                        <p>
+                                        CleverTech is not responsible for lost or stolen data, or damage/loss to third party protective cases, caused by any reason.</p>
+
+                                        <p>Every repair comes with a Limited 90 Day Warranty.</p>
+
+                                        <p>Physical damage nullifies warranty. Software &amp; data is not covered under any warranty.</p>
+
+                                        <p>A Pick-Up fee ($50) is charged for any repairs that are declined. If you approve the repair, the Pick-Up fee is waived.</p> 
+
+                                        <p>Submitting this request indicates that you have read and understand the TERMS &amp; CONDITIONS and agree to them; you agree to pay in full for the service provided.</p>
+
+                                        <p>Please have the machine ready for pickup when you submit this service request. Pickup could happen anytime between now and end of following business day. If the machine is not easily accessible at the front desk, during all business hours, please include instructions for the driver in the Other Info text box. If possible, please leave with front desk if you will not be available during lunch/meeting, etc. If your offices will be closed for any reason, please let us know. Any instructions/tips for the driver to access your building or parking, are greatly appreciated. Thank you for your cooperation.</p>
+                                        
+                                        <p class="required">
+                                            <input type="radio" name="agree_to_terms" value="" style="display: none;" checked>
+                                            <input type="radio" id="agree_to_terms" name="agree_to_terms" value="1">&nbsp;&nbsp;I agree to these terms
+                                        </p>
                                     </div>
                                     
                                     <div id="error" style="display: hidden"></div>
-                                    
+
                                     <div class="form-group">
                                         <button type="submit" id="submit" class="btn" style="background-color: #0f6a37; color: white;">Submit</button>
                                     </div>
                                     
-                                    <input type="hidden" id="num_devices" name="num_devices" value=1 />  
                                 </form>
                             </div>
  
@@ -468,7 +553,7 @@
                                 
                                 
                                 <div class="row" style="position: relative; top: -20px;">  
-                                    
+                                    <p style="text-align: center; margin-top: 10px;">Choose Your Model: </p>
                                     <!-- MODEL SELECTION -->
                                     <!--The value of this element gets set to a model when a model is chosen-->
                                     <input id="imac_model_chosen" type="radio" value=0 style="display: none;">
@@ -595,7 +680,7 @@
                                 </div>
                                 
                                 <div class="row" style="position: relative; top: -10px;"> 
-                                    
+                                    <p style="text-align: center;">Choose Your Model: </p>
                                     <!-- MODEL SELECTION -->
                                     <!--The value of this element gets set to a model when a model is chosen-->
                                     <input id="macbook_model_chosen" type="radio" value=0 style="display: none;">
@@ -725,7 +810,7 @@
                                 </div>
                                 
                                 <div class="row" style="position: relative; top: -20px;"> 
-                                    
+                                    <p style="text-align: center;">Choose Your Model: </p>
                                     <!-- MODEL SELECTION -->
                                     <!--The value of this element gets set to a model when a model is chosen-->
                                     <input id="iphone_model_chosen" type="radio" value=0 style="display: none;">
@@ -861,7 +946,7 @@
                                 </div>
                                 
                                 <div class="row" style="position: relative; top: -20px;"> 
-                                    
+                                    <p style="text-align: center;">Choose Your Model: </p>
                                     <!-- MODEL SELECTION -->
                                     <!--The value of this element gets set to a model when a model is chosen-->
                                     <input id="ipad_model_chosen" type="radio" value=0 style="display: none;">
@@ -1022,13 +1107,12 @@
                                     
                                     <div class="form-group">
                                         <label class="required" for="contact_us_name">Name</label>
-                                        <input class="form-control" id="contact_us_name" name="contact_us_first_name">
+                                        <input class="form-control" id="contact_us_name" name="contact_us_name">
                                     </div>
                                     
                                     <div class="form-group">
                                         <label class="required" for="contact_us_email">Email</label>
                                         <input class="form-control" type="email" id="contact_us_email" name="contact_us_email">
-                                        <!--<input id="receive_email_updates" type="checkbox"> Check here to receive email updates-->
                                     </div>
                                     
                                     <div class="form-group">
@@ -1042,7 +1126,6 @@
                                     </div>
                                     
                                     <div id="contact_form_error" style="display: hidden"></div>
-
                                     <div class="form-group">
                                         <button type="submit" id="contact_submit" class="btn" style="background-color: #0f6a37; color: white;">Submit</button>
                                     </div>
@@ -1071,7 +1154,7 @@
                         </div>
                         
                         <div class="row">
-                            <p class="how_it_works_text">CleverTech performs home &amp; business computer pick-ups the day after a pick-up request is submitted. In some case (when possible) the day of submission. After submitting a request, we will call you to veify time and location for the computer pick-up. It's easy!</p>
+                            <p class="how_it_works_text">CleverTech performs home &amp; business computer pick-ups the day after a pick-up request is submitted. In some cases (when possible) the day of submission. After submitting a request, we will call you to veify time and location for the computer pick-up. It's easy!</p>
                         </div>
                         
 
@@ -1125,7 +1208,7 @@
                             <h1>The CleverWay!</h1>
                         </div>
                         <div class="row">
-                            <p class="how_it_works_text">Every repair comes with a 90 Day Limited Warranty and up to 365 days of coverage on parts with Manufacturer Warranties. The limited warranty provides that if within 90 days from the repair date of your CleverTech repair you device fails to operate for some reasons related to the original repair, CleverTech will perform any labor related to the original repair free of charge.</p>
+                            <p class="how_it_works_text">Every repair comes with a 90 Day Limited Warranty and up to 365 days of coverage on parts with Manufacturer Warranties. The limited warranty provides that if within 90 days from the repair date of your CleverTech repair your device fails to operate for some reasons related to the original repair, CleverTech will perform any labor related to the original repair free of charge.</p>
                         </div>
                         
                         
@@ -1453,9 +1536,11 @@
                         </h2>
                     </div>
                     
+                    <!--
                     <div class="row">
                         <div id="contact_us_btn" class="btn" data-toggle="modal" data-target="#contact_us_modal" style="background-color: rgba(0,0,0,0.4);">Contact Us</div>
                     </div>
+                    -->
                 </div>
                 
                 <!-- FLANKED LAYOUT BEGIN -->
@@ -1472,14 +1557,18 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <ul class="soc">
-                                        <li><a class="soc-facebook" href="#"></a></li> 
-                                        <li><a class="soc-instagram" href="#"></a></li> 
-                                        <li><a class="soc-tumblr" href="#"></a></li>
-                                        <li><a class="soc-twitter" href="#"></a></li> 
-                                        <li><a class="soc-youtube" href="#"></a></li> 
-                                        <li><a class="soc-yelp" href="#"></a></li>
+                                        <li><a class="soc-facebook" href="https://www.facebook.com/iclevertech/"></a></li> 
+                                        <li><a class="soc-instagram" href="https://www.instagram.com/iclevertech/"></a></li> 
+                                        <li><a class="soc-tumblr" href="https://clevertech.tumblr.com/"></a></li>
+                                        <li><a class="soc-twitter" href="https://twitter.com/iclevertech"></a></li> 
+                                        <li><a class="soc-youtube" href="https://www.youtube.com/channel/UCovKD5sxU6jku8OTAo2NN7Q"></a></li> 
+                                        <li><a class="soc-yelp" href="https://www.yelp.com/biz/clevertech-san-jose-6"></a></li>
                                     </ul>
                                 </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div id="contact_us_btn" class="btn" data-toggle="modal" data-target="#contact_us_modal">Contact Us</div>
                             </div>
                         </div>
 
@@ -1706,7 +1795,7 @@
                         set_imac_repair_prices(model, "$422-$575", "$422-$575");
                         break;
                     case "LCD Replacement":
-                        set_imac_repair_prices(model, "$380-$741", "$380-$741");
+                        set_imac_repair_prices(model, "$380-$741", "$280-$446");
                         break;
                     case "Motherboard":
                         set_imac_repair_prices(model, "$285", "$285");
@@ -1960,7 +2049,7 @@
                                                 <div class='col-xs-6'>\
                                                     <label class='required' for='model_type'>Model Type</label>\
                                                     <select class='form-control' id='model_type' name='model_type[]'>\
-                                                        <option selected disabled>Select Model Type</option>\
+                                                        <option style='display:none;' selected>Select Model Type</option>\
                                                         <option>iMac 27'' Model</option>\
                                                         <option>iMac 21.5'' Model</option>\
                                                         <option>Macbook Air</option>\
@@ -1997,7 +2086,7 @@
                                         <div class='form-group'>\
                                             <div class='row'>\
                                                 <div class='col-xs-12'>\
-                                                    <label for='other_info'>Anything else you'd like to tell us about your problem?</label>\
+                                                    <label for='other_info'>Other Info</label>\
                                                     <textarea class='form-control' id='other_info' rows=4 name='other_info[]' style='resize:none;'></textarea>\
                                                 </div>\
                                             </div>\
@@ -2027,12 +2116,14 @@
             }
             
             
-            // ============== Client-side form validation ==============
+            // ============== CLIENT-SIDE PICK-UP REQUEST VALIDATION ==============
             $("#pick_up_request_form").submit(function(e) {
-                                
+                
                 var error = "";
                 //If you decide to highlight the sections of the form corresponding to where the user F'ed up,
                 //in these if statements might be where to do it....
+                
+                
                 if ($("#first_name").val() === "" || $("#last_name").val() === "") {
                     error += "- Your full name is required.<br/>";
                 }
@@ -2042,10 +2133,15 @@
                 if ($("#phone").val() === "") {
                     error += "- Your phone number is required.<br/>";
                 }
+                if ($("#phone").val() !== "") {
+                    if (!validate_phone_num($("#phone").val())) {
+                        error += "- Please enter a phone number in the form XXX-XXX-XXXX<br/>";
+                    }
+                }
                 if ($("#street_address").val() === "") {
                     error += "- Your street address is required.<br/>";
                 }
-                if ($("#city").val() === "") {
+                if ($("#city").val() === "Select City") {
                     error += "- Your city is required.<br/>";
                 }
                 
@@ -2057,7 +2153,7 @@
 
                         if ($(req_dynamic_labels[j]).html() === "Model Type") {
                             
-                            if ($(req_dynamic_labels[j]).next().val() === null) {
+                            if ($(req_dynamic_labels[j]).next().val() === "Select Model Type") {
                                 error += "- Model type is required for Device "+(i+1)+".<br/>";    
                             }
                         }
@@ -2066,7 +2162,7 @@
                             if ($(req_dynamic_labels[j]).next().val() === "") {
                                 error += "- Serial number is required for Device "+(i+1)+".<br/>";
                             } 
-                            else if ($("#serial_number").val() != "") {
+                            else {
                                 if (!is_numeric($("#serial_number").val())) {
                                     error += "- Serial number must consist of only numbers for Device "+(i+1)+".<br/>";  
                                 }
@@ -2084,10 +2180,17 @@
                     }
                 }
                 
-                $("#num_devices").val(counter); //WOULD IT BE ALRIGHT TO KEEP THIS LINE HERE?
-                return true; //INCLUDE JUST THIS AND COMMENT OUT THE BELOW FOR TESTING!!!
+                if ($("input[name='service_type']:checked").val() === "") {
+                    error += "- A service type is requried.<br/>"
+                }
                 
-                /*
+                if ($("input[name='agree_to_terms']:checked").val() === "") {
+                    error += "- Please agree to the the important information and limitations of liability.<br/>"
+                }
+                
+                
+                //return true; //INCLUDE JUST THIS AND COMMENT OUT THE BELOW FOR TESTING!!!
+                
                 //If an error message exists (i.e., isn't the empty string)
                 if (error !== "") {
 
@@ -2097,15 +2200,15 @@
 
                     return false;
                 } else {
-                    $("#num_devices").val(counter);
                     return true;
+                    //Perhaps use AJAX here?
                 }
-                */
             });
-                
             
+            
+            //============== CLIENT-SIDE CONTACT FORM VALIDATION ==============
             $("#contact_form").submit(function(e) {
-                                
+                
                 var error = "";
                 //If you decide to highlight the sections of the form corresponding to where the user F'ed up,
                 //in these if statements might be where to do it....
@@ -2122,6 +2225,9 @@
                     error += "- A message is required.<br/>";
                 }
                 
+                
+                //return true; //HAVE ONLY THIS FOR TESTING
+                
                 //If an error message exists (i.e., isn't the empty string)
                 if (error !== "") {
 
@@ -2133,6 +2239,12 @@
                 } else {
                     return true;
                 }
+            });
+            
+            
+            $(".service_type").click(function() {
+               
+                $("#legal_info").css("display", "block");
                 
             });
             
@@ -2141,8 +2253,19 @@
                 return !isNaN(parseFloat(n)) && isFinite(n);
             }
             //^Got this from: http://stackoverflow.com/questions/18082/validate-decimal-numbers-in-javascript-isnumeric
-            
 
+            function validate_phone_num(num) {
+                var phone_num_regex = /^\(?([0-9]{3})\)?-?([0-9]{3})-?([0-9]{4})$/;
+                if (num.match(phone_num_regex)) {
+                    return true;
+                }
+                else {
+                    return false;
+                    //Perhaps use AJAX here?
+                }
+            }
+            //^Got this from http://stackoverflow.com/questions/18375929/validate-phone-number-using-javascript
+            
         </script>
     </body>
 </html>

@@ -85,11 +85,13 @@ body {
 
 
 #contact_us_btn {
-    /*background: rgba(0,0,0,0.4);*/
+    background: rgba(0,0,0,0.4);
     color: white;
+    border-color: white;
     font-size: 15px;
     padding-left: 50px;
     padding-right: 50px;
+    margin-top: 5px;
 }
 
 
