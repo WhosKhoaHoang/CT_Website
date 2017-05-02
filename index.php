@@ -22,9 +22,8 @@
         return $data;
     }
 
-    //If there's anything in the $_POST array...(wouldn't it be better to use isset? No because $_POST is always
-    //gonna be set with something so the inside of the if block would always be executed?
-    if ($_POST) { //I.e., return true was executed in the the submit() method.
+
+    if ($_POST) {
         
         $num_devices = count($_POST["model_type"]); //Count the length of any array
         $num_reqs = $reqs_per_device * $num_devices;
@@ -177,6 +176,7 @@
             }
             
             //FOR TESTING
+            /*
             echo("<pre>");
             echo($_POST["first_name"]."<br/>"); //FOR TESTING
             echo($_POST["last_name"]."<br/>"); //FOR TESTING
@@ -189,30 +189,108 @@
             echo($_POST["service_type"]."<br/>"); //FOR TESTING
             echo($_POST["agree_to_terms"]."<br/>"); //FOR TESTING
             print_r($device_lst); //FOR TESTING
-            
-            
-            
-            $mail = new PHPMailer;
-            $mail->From = "blah@ramen.com";
-            $mail->FromName = "Ramen";
-            $mail->addAddress("whoskhoahoang@gmail.com", "User");     
-            $mail->addReplyTo("whoskhoahoang@gmail.com", "Information");
-
-            $mail->Subject = "Here is the subject";
-            $mail->Body    = "Here is the body!";
+            */
             
             /*
+            subject: Customer Pick-Up Request
+
+            === Customer Information ===
+            Name:
+            Email:
+            Phone Number:
+            Street Address:
+            Address Line 2:
+            City:
+            Postal Code:
+
+            === Device Information ===
+            Device 1
+            Model Type:
+            12-Digit Serial #:
+            Problem:
+            Customer Reference #:
+            Other Info:
+            */
+            
+            $body = "=== Customer Information ===<br/>
+            Name: ".$_POST["first_name"]." ".$_POST["last_name"]."<br/>
+            Email: ".$_POST["email"]."<br/>
+            Phone Number: ".$_POST["phone"]."<br/>
+            Street Address: ".$_POST["street_address"]."<br/>
+            Address Line 2: ".$_POST["address_line2"]."<br/>
+            City: ".$_POST["city"]."<br/>
+            Postal Code: ".$_POST["zip_postal"]."<br/>
+            Service Type: ".$_POST["service_type"]."<br/>
+            <br/>
+            === Device Information ===<br/>";
+            
+            //loop through devices
+            $device_info = "";
+            for ($i = 0; $i < count($device_lst); $i++) {
+                
+                $device_info .= "
+                Device ".($i+1)."<br/>
+                Model Type: ".$device_lst[$i]["model_type"]."<br/>
+                12-digit Serial #: ".$device_lst[$i]["serial_number"]."<br/>
+                Problem: ".$device_lst[$i]["problem"]."<br/>
+                Customer Reference #: ".$device_lst[$i]["cust_ref_num"]."<br/>
+                Other Info: ".$device_lst[$i]["other_info"]."<br/>
+                <br/>";
+                
+            }
+            $body .= $device_info;
+            echo($body);
+            
+            
+            $test_conf = "Hello ".$_POST["first_name"]."!,<br/>
+                Your recent pick-up request with CleverTech has been received! Below is a summary of your request:<br/><br/>".$device_info."<br/>
+                Pick-up requests submitted before 10:30 am are usually picked up same day. If submitted after 10:30 am, expect a phone call to schedule a next day pick-up. If you need to cancel or reschedule a pick-up, please call us at 408-316-7600. When we come for the pick-up, an initial diagnostic of your device will be made and an estimated service cost will be given. If you decline the repair for this device, a pick-up fee ($50) will be charged. If you approve the repair, the pick-up fee will be waived.<br/>
+                <br/><br/>
+                Thank You!
+                <br/>
+                CleverTech<br/>
+                1150 Murphy Ave, Ste 205<br/>
+                San Jose, CA 9513<br/>
+                408-316-7600<br/>
+                ";
+            
+            echo($test_conf);
+            
+            /*
+            $mail = new PHPMailer();
+            //$mail->From = "blah@ramen.com";
+            //$mail->FromName = "Ramen";
+            $mail->addAddress("whoskhoahoang@gmail.com"); //Send it to us first                 
+
+            $mail->Subject = "Pick-Up Request For ".$_POST["first_name"]." ".$_POST["last_name"];
+            $mail->Body    = $body;
+            
             if(!$mail->send()) {
-                echo 'Message could not be sent.';
-                echo 'Mailer Error: ' . $mail->ErrorInfo;
+                echo "Message could not be sent.";
+                echo "Mailer Error: " . $mail->ErrorInfo;
             } else {
-                echo 'Message has been sent';
+                echo "Pick-Up Request has been sent!";
+            
+                $mail2 = new PHPMailer();
+                $mail2->From = "noreply@ramen.com";
+                $mail2->FromName = "Ramen";
+                $mail2->Subject = "Thank you for your message!";
+                $mail2->Body    = "Hello ".$_POST["first_name"]."!,\n
+                Your recent pick-up request with CleverTech has been received! Below is a summary of your request:";
+
+                $mail2->addAddress($_POST["email"]);
+                $mail2->addReplyTo("noreply@ramen.com");
+
+                if(!$mail2->send()) {
+                    echo("Confirmation email error");
+                }
+                else {
+                    echo("Confirmation email sent");
+                }
             }
             */
-        }
-        
+        }   
     }
-
 ?>
 
 <!DOCTYPE html>
@@ -222,10 +300,10 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>CleverTech TESTING</title>
+        <title>CleverTech</title>
         
         <!-- Include this link on every HTML page of the website! -->
-        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+        <link rel="shortcut icon" type="image/x-icon" href="http://localhost/clevertech/favicon.ico" />
         <!-- import Bootstrap CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <!-- Add icon library from Perfect Icons-->
@@ -233,12 +311,6 @@
         <!-- import your own styles -->
         <link rel="stylesheet" href="http://localhost/clevertech/styles.css" /> <!--Seems like I need to use an absolute pathname for CSS?-->
         <!--<link rel="stylesheet" href="//fonts.googleapis.com/css?family=PT+Sans" /> No to this for now... -->
-        
-        <style type="text/css">
-
-            /* Apparently it matters where you put media queries if you want them to work properly */
-            
-        </style>
         
     </head>
     
@@ -259,7 +331,6 @@
                     
                     <!-- LOGO BEGIN -->
                     <a class="navbar-brand" href="#welcome">
-                        <!--If you decide to make clicking on the logo shoot to the top, add href="#welcome"-->
                         <img src="http://localhost/clevertech/images/navbar_logo.png" width="50" height="50" alt="" style="display:inline">
                     </a>
                     <!-- LOGO END -->  
@@ -325,14 +396,11 @@
                                             <div class="col-xs-6">
                                                 <label class="required" for="email">Email</label>
                                                 <input class="form-control" type="email" id="email" name="email">
-                                                <p>We'll be sending you a confirmation email to this address.</p>
+                                                <p>We will send you a confirmation email to this address.</p>
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                    <!--
-                                    <p style="padding-bottom: 10px;">A confirmation email will be sent to your email address. The email will also be used as the contact for the order.</p>
-                                    -->
+
                                     
                                     <div class="form-group">
                                         <div class="row">
@@ -343,10 +411,7 @@
                                             </div>
                                         </div>
                                     </div> 
-                                    
-                                    
-                                    <!--<p class="required">Pick-Up Address</p>-->
- 
+                                     
                                     
                                     <div class="form-group">
                                         <div class="row">
@@ -371,8 +436,6 @@
                                             <div class="col-xs-6">
                                                 <label class="required" for="city">City</label>
                                                 <select class="form-control" id="city" name="city">
-                                                    <!--<option selected disabled>Select City</option>-->
-                                                    <!--<option selected readonly>Select City</option>-->
                                                     <option style="display:none;" selected>Select City</option>
                                                     <option>San Jose</option>
                                                     <option>Santa Clara</option>
@@ -487,8 +550,8 @@
                                     <div class="form-group">
                                         <label class="required">Service Type</label>
                                         <input type="radio" class="service_type" name="service_type"  value="" style="display: none" checked>
-                                        <p><input type="radio" class="service_type" name="service_type"  value="personal_service"> &nbsp; Personal Hardware Service </p> 
-                                        <p><input type="radio" class="service_type" name="service_type"  value="business_service"> &nbsp; Business Hardware Service </p>
+                                        <p><input type="radio" class="service_type" name="service_type"  value="Personal Service"> &nbsp; Personal Hardware Service </p> 
+                                        <p><input type="radio" class="service_type" name="service_type"  value="Business Service"> &nbsp; Business Hardware Service </p>
 
                                         <!-- FOR TESTING -->
                                         <!--
@@ -508,7 +571,7 @@
 
                                         <p>Physical damage nullifies warranty. Software &amp; data is not covered under any warranty.</p>
 
-                                        <p>A Pick-Up fee ($50) is charged for any repairs that are declined. If you approve the repair, the Pick-Up fee is waived.</p> 
+                                        <p>When we come for the pick-up, an initial diagnostic of your device will be made and an estimated service cost will be given. If you decline the repair for this device, a pick-up fee ($50) will be charged. If you approve the repair, the pick-up fee will be waived.</p> 
 
                                         <p>Submitting this request indicates that you have read and understand the TERMS &amp; CONDITIONS and agree to them; you agree to pay in full for the service provided.</p>
 
@@ -547,6 +610,11 @@
                         <div class="modal-content" style="padding: 20px;">
                             
                             <div class="modal-body">
+                                
+                                <div class="form-group" style="margin-bottom: 30px;">
+                                    <button type="button" class="close" data-dismiss="modal" style="float: left;">&times;</button>
+                                </div>
+                                
                                 <div class="row" style="text-align: center; z-index: 1">
                                     <h2>iMac</h2>
                                 </div>
@@ -653,7 +721,6 @@
                                 
                                 <div class="row">
                                     <button class="btn_from_device_modal btn col-xs-4 col-xs-offset-4" style="background-color: #0f6a37; color: white; margin-top: 10px;" data-dismiss="modal" data-toggle="modal" data-target="#start_repair_modal" id="imac_service_pickup">Request Pick-Up</button>
-                                    <!-- I might actually need to use some Javascript here for the pre-fillout behavior -->
                                 </div>
                                 
                             </div>
@@ -675,6 +742,11 @@
                         <div class="modal-content">
                             
                             <div class="modal-body">
+                                
+                                <div class="form-group" style="margin-bottom: 30px;">
+                                    <button type="button" class="close" data-dismiss="modal" style="float: left;">&times;</button>
+                                </div>
+                                
                                 <div class="row" style="text-align: center; z-index: 1">
                                     <h2>Macbook</h2>
                                 </div>
@@ -805,6 +877,11 @@
                         <div class="modal-content">
                             
                             <div class="modal-body">
+
+                                <div class="form-group" style="margin-bottom: 30px;">
+                                    <button type="button" class="close" data-dismiss="modal" style="float: left;">&times;</button>
+                                </div>
+                                
                                 <div class="row" style="text-align: center; margin-bottom: 20px; z-index: 1">
                                     <h2>iPhone</h2>
                                 </div>
@@ -941,6 +1018,11 @@
                         <div class="modal-content">
                             
                             <div class="modal-body">
+                                
+                                <div class="form-group" style="margin-bottom: 30px;">
+                                    <button type="button" class="close" data-dismiss="modal" style="float: left;">&times;</button>
+                                </div>
+                                
                                 <div class="row" style="text-align: center; margin-bottom: 20px; z-index: 1">
                                     <h2>iPad</h2>
                                 </div>
@@ -1098,8 +1180,13 @@
                         <div class="modal-content">
                             
                             <div class="modal-body">
+                                
+                                <div class="form-group" style="margin-bottom: 30px;">
+                                    <button type="button" class="close" data-dismiss="modal" style="float: left;">&times;</button>
+                                </div>
+                                
                                 <!-- Put form code here-->
-                                <form id="contact_form" method="post" style="padding: 20px;" action="sendmail.php">
+                                <form id="contact_form" method="post" style="padding: 20px;" action="sendmsg.php">
                                     <!--<p class="required">Name</p>-->
                                     <div class="form-group" style="text-align: center;">
                                         <h3>Send Us A Message!</h3>
@@ -1149,6 +1236,11 @@
                 <div class="modal-content">
 
                     <div class="modal-body" style="padding-left: 50px; padding-right: 50px; text-align: center;">
+                        
+                        <div class="form-group" style="margin-bottom: 30px;">
+                            <button type="button" class="close" data-dismiss="modal" style="float: left;">&times;</button>
+                        </div>
+                        
                         <div class="row">
                             <h1>Smart Pick-Up</h1>
                         </div>
@@ -1167,7 +1259,7 @@
                             <h1>What to expect</h1>
                         </div>
                         <div class="row">
-                            <p class="how_it_works_text">Pick-up requests submitted before 10:30 am are usually picked up same day. If submitted after 10:30 am, expect a phone call to schedule a next day pick-up. If you need to cancel or reschedule a pick-up, please call us at 408-316-7600. A pick-up fee ($50) is charged for any repairs that are declined. If you approve the repair, the pick-up fee is waived.</p>
+                            <p class="how_it_works_text">Pick-up requests submitted before 10:30 am are usually picked up same day. If submitted after 10:30 am, expect a phone call to schedule a next day pick-up. If you need to cancel or reschedule a pick-up, please call us at 408-316-7600. When we come for the pick-up, an initial diagnostic of your device will be made and an estimated service cost will be given. If you decline the repair for this device, a pick-up fee ($50) will be charged. If you approve the repair, the pick-up fee will be waived.</p>
                         </div>
                         
                         
@@ -1189,6 +1281,10 @@
                 <div class="modal-content">
 
                     <div class="modal-body" style="padding-left: 50px; padding-right: 50px; text-align: center;">
+                        
+                        <div class="form-group" style="margin-bottom: 30px;">
+                            <button type="button" class="close" data-dismiss="modal" style="float: left;">&times;</button>
+                        </div>
                         
                         <div class="row">
                             <h1>CleverTech Repair</h1>
@@ -1231,6 +1327,9 @@
 
                     <!--<div class="modal-body" style="padding: 50px; text-align: center;">-->
                     <div class="modal-body" style="padding-left: 50px; padding-right: 50px; text-align: center;">
+                        <div class="form-group" style="margin-bottom: 30px;">
+                            <button type="button" class="close" data-dismiss="modal" style="float: left;">&times;</button>
+                        </div>
                         
                         <div class="row">
                             <h1>Smart Drop-Off</h1>
@@ -1269,6 +1368,10 @@
 
                     <!--<div class="modal-body" style="padding: 50px; text-align: center;">-->
                     <div id="terms_and_cond_body" class="modal-body" style="padding-left: 50px; padding-right: 50px;">
+                        
+                        <div class="form-group" style="margin-bottom: 30px;">
+                            <button type="button" class="close" data-dismiss="modal" style="float: left;">&times;</button>
+                        </div>
                         
                         <div class="row">
                             <h3>Terms &amp; Conditions</h3>
@@ -1511,23 +1614,6 @@
                 
                 
                 <div class="row" style="position: relative; top: 150px;">
-                    <!--
-                    <div class="row">
-                        <div class="col-xs-6 col-xs-offset-6" style="background-color: rgba(0,0,0,0.4);">
-                            <div class="row">
-                                <h2 class="gonz_quote">
-                                    "I want to see a paradigm shift. We're going to be so good...It wouldn't make sense to go anywhere else."<br/><br/>
-                                    Gonzalo Martinez<br/>
-                                    Founder
-                                </h2>
-                            </div>
-                            <div class="row">
-                                <div id="contact_us_btn" class="btn" data-toggle="modal" data-target="#contact_us_modal">Contact Us</div>
-                            </div>
-                        </div>
-                    </div>
-                    -->
-
                     <div class="row">
                         <h2 class="gonz_quote">
                             "I want to see a paradigm shift. We're going to be so good...It wouldn't make sense to go anywhere else."<br/><br/>
@@ -1535,16 +1621,9 @@
                             Founder
                         </h2>
                     </div>
-                    
-                    <!--
-                    <div class="row">
-                        <div id="contact_us_btn" class="btn" data-toggle="modal" data-target="#contact_us_modal" style="background-color: rgba(0,0,0,0.4);">Contact Us</div>
-                    </div>
-                    -->
                 </div>
                 
                 <!-- FLANKED LAYOUT BEGIN -->
-                <!--<div id="soc_media_and_store_info" style="background-color: rgba(0,0,0,0.4); border-radius: 5px; margin-top: 250px;">-->
                 <div id="soc_media_and_store_info">
                     <div class="row" style="margin-top:150px;">
                         <div class="col-md-4">
@@ -1557,12 +1636,12 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <ul class="soc">
-                                        <li><a class="soc-facebook" href="https://www.facebook.com/iclevertech/"></a></li> 
-                                        <li><a class="soc-instagram" href="https://www.instagram.com/iclevertech/"></a></li> 
-                                        <li><a class="soc-tumblr" href="https://clevertech.tumblr.com/"></a></li>
-                                        <li><a class="soc-twitter" href="https://twitter.com/iclevertech"></a></li> 
-                                        <li><a class="soc-youtube" href="https://www.youtube.com/channel/UCovKD5sxU6jku8OTAo2NN7Q"></a></li> 
-                                        <li><a class="soc-yelp" href="https://www.yelp.com/biz/clevertech-san-jose-6"></a></li>
+                                        <li><a target="_blank" class="soc-facebook" href="https://www.facebook.com/iclevertech/"></a></li> 
+                                        <li><a target="_blank" class="soc-instagram" href="https://www.instagram.com/iclevertech/"></a></li> 
+                                        <li><a target="_blank" class="soc-tumblr" href="https://clevertech.tumblr.com/"></a></li>
+                                        <li><a target="_blank" class="soc-twitter" href="https://twitter.com/iclevertech"></a></li> 
+                                        <li><a target="_blank" class="soc-youtube" href="https://www.youtube.com/channel/UCovKD5sxU6jku8OTAo2NN7Q"></a></li> 
+                                        <li><a target="_blank" class="soc-yelp" href="https://www.yelp.com/biz/clevertech-san-jose-6"></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -1578,7 +1657,7 @@
                                 <div class="col-xs-6 col-md-9">
                                     <dl class="pull-right">
                                         <dt>Phone Number:</dt> 
-                                        <dd>408.316.7600</dd><br/> 
+                                        <dd>408-316-7600</dd><br/> 
                                         <dt>Address:</dt> 
                                         <dd>1150 Murphy Ave, Ste 205</dd> 
                                         <dd>San Jose, CA 9513</dd> <br/>
@@ -1701,19 +1780,19 @@
             });
             
             
-            // For smooth scrollspy scrolling (thanks to nice ass from SO)
+            // For smooth scrollspy scrolling (thanks to nice a.. from SO)
             $("nav ul li a[href^='#'], nav .navbar-header a[href^='#']").on("click", function(e) {
                 //First arg is for the navbar items, second arg is for the brand logo
                 
-                // prevent default anchor click behavior
+                //prevent default anchor click behavior
                 e.preventDefault();
 
-                // store hash
+                //store hash
                 var hash = this.hash;
 
                 //console.log(hash);
                 
-                // animate
+                //animate
                 $("html, body").animate({
                     scrollTop: $(hash).offset().top
                 }, 300, function(){
@@ -1732,9 +1811,9 @@
                 //Set the model that has been chosen   
                                                 
                 if ($("#" + device_type + "_problem_chosen").val() !== "0") {
-                    console.log("I'MA SET THE PRICE FROM MODEL!")
-                    console.log("The Model Is: " + $("#" + device_type + "_model_chosen").val()); //The model
-                    console.log("The Problem Is: " + $("#" + device_type + "_problem_chosen").val()); //The problem
+                    //console.log("I'MA SET THE PRICE FROM MODEL!")
+                    //console.log("The Model Is: " + $("#" + device_type + "_model_chosen").val()); //The model
+                    //console.log("The Problem Is: " + $("#" + device_type + "_problem_chosen").val()); //The problem
 
                     var model = $(this).find("p").html();
                     var problem = $("#" + device_type + "_problem_chosen").val();
@@ -1753,9 +1832,9 @@
                 //Set the problem that has been chosen
                 
                 if ($("#" + device_type + "_model_chosen").val() !== "0") {
-                    console.log("I'MA SET THE PRICE FROM PROBLEM!")
-                    console.log("The Model Is: " + $("#" + device_type + "_model_chosen").val()); //The model
-                    console.log("The Problem Is: " + $("#" + device_type + "_problem_chosen").val()); //The problem
+                    //console.log("I'MA SET THE PRICE FROM PROBLEM!")
+                    //console.log("The Model Is: " + $("#" + device_type + "_model_chosen").val()); //The model
+                    //console.log("The Problem Is: " + $("#" + device_type + "_problem_chosen").val()); //The problem
                     
                     var model = $("#" + device_type + "_model_chosen").val();
                     var problem = $("#" + device_type + "_problem_chosen").val();
@@ -1962,7 +2041,7 @@
                     $("#ipad_repair_price").html(ipad234air_price);
                 }
                 else if (model === "iPad Air 2") {
-                    console.log("HERE");
+                    //console.log("HERE");
                     $("#ipad_repair_price").html(ipadair2_price);
                 }
                 else if (model === "iPad Mini 1/2/3") {
@@ -2029,7 +2108,6 @@
             
             var counter = 1;
             var limit = 10;
-            //Hmm, be sure you add code to DELETE a device section too...
             function add_device(div_name){
                                 
                 if (counter === 1) {
@@ -2095,15 +2173,15 @@
                     counter++;
                 }
                 
-                console.log("TESTING new_div:");
-                console.log(new_div); //FOR TESTING
+                //console.log("TESTING new_div:");
+                //console.log(new_div); //FOR TESTING
                 
                 //$("#start_a_repair_body").animate({scrollTop: ($("#add_device_btn").position().top + $(new_div).outerHeight(false))}, 300);
             }
 
             function remove_device() {
                 
-                console.log("Deleteing dynamic_device_group"+(counter-1));
+                //console.log("Deleteing dynamic_device_group"+(counter-1));
                 $("#dynamic_device_group"+(counter-1)).remove();
                 counter--;
                 
@@ -2191,6 +2269,7 @@
                 
                 //return true; //INCLUDE JUST THIS AND COMMENT OUT THE BELOW FOR TESTING!!!
                 
+
                 //If an error message exists (i.e., isn't the empty string)
                 if (error !== "") {
 
@@ -2203,6 +2282,7 @@
                     return true;
                     //Perhaps use AJAX here?
                 }
+
             });
             
             

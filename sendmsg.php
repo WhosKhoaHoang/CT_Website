@@ -10,9 +10,7 @@
         return $data;
     }
 
-    //If there's anything in the $_POST array...(wouldn't it be better to use isset? No because $_POST is always
-    //gonna be set with something so the inside of the if block would always be executed?
-    if ($_POST) { //I.e., return true was executed in the the submit() method.
+    if ($_POST) { 
                 
         if (!$_POST["contact_us_name"]) {
             $contact_us_error .= "- Your name is required.<br/>";
@@ -63,24 +61,52 @@
         echo($_POST["contact_us_msg"]."<br/>"); //FOR TESTING
 
         
+        
         //Send Email
-        $mail = new PHPMailer;
-        $mail->From = "blah@ramen.com";
-        $mail->FromName = "Ramen";
-        $mail->addAddress("whoskhoahoang@gmail.com", "User");     
-        $mail->addReplyTo("whoskhoahoang@gmail.com", "Information");
-
-        $mail->Subject = "Here is the subject";
-        $mail->Body    = "Her is the message!";
+        $mail = new PHPMailer();
+        $mail->From = $_POST["contact_us_email"]; //Sender's email
+        $mail->FromName = $_POST["contact_us_name"]; //Sender's name
+        $mail->Subject = "Contact Us Subject: ".$_POST["contact_us_subject"]; //Sender's subject
+        $mail->Body    = $_POST["contact_us_msg"]; //Sender's message
+        
+        $mail->addReplyTo($_POST["contact_us_email"]); //Add reply to sender's email
+        //$mail->addAddress("services@iclevertech.com"); //Send the email to us  
+        $mail->addAddress("whoskhoahoang@gmail.com"); //Send the email to us  
 
         /*
         if(!$mail->send()) {
             echo "Message could not be sent.";
             echo "Mailer Error: ".$mail->ErrorInfo;
         } else {
-            echo "Message has been sent";
+            echo "Message has been sent!<br/>";
+          
+            $mail2 = new PHPMailer();
+            $mail2->From = "noreply@ramen.com";
+            $mail2->FromName = "Ramen";
+            $mail2->Subject = "Thank you for your message!";
+            $mail2->Body    = "We have received your message and will get back to you shortly.\n
+                                \n
+                                Thank you!
+                                \n\n
+                                CleverTech\n
+                                1150 Murphy Ave, Ste 205\n
+                                San Jose, CA 9513\n
+                                408-316-7600\n
+                                ";
+
+            $mail2->addAddress($_POST["contact_us_email"]);
+            $mail2->addReplyTo("noreply@iclevertech.com");
+
+            if(!$mail2->send()) {
+                echo("Confirmation email error");
+            }
+            else {
+                echo("Confirmation email sent");
+            }
         }
         */
+    }
+        
     }
 
     //header("Location: index.php");
