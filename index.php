@@ -79,8 +79,10 @@
                                     <button type="button" class="close" data-dismiss="modal" style="float: left;">&times;</button>
                                 </div>
                                 
-                                <form id="pick_up_request_form" method="post" action="pick_up_request.php"> <!-- Only need to set action like this if validating on same page...or just validate in validate_pickup.php? -->
+                                <!--<form id="pick_up_request_form" method="post" action="pick_up_request.php">--> <!-- Only need to set action like this if validating on same page...or just validate in validate_pickup.php? -->
                                     <!-- removed PHP_SELF thing with the htmlspecialchars -->
+                                <form id="pick_up_request_form"> <!-- Only need to set action like this if validating on same page...or just validate in validate_pickup.php? -->
+
                                     <h3 style="color: #0f6a37;">Your Info</h3>
                                     <hr/>
                                     
@@ -181,12 +183,12 @@
                                                             <option>iMac 21.5'' Model</option>
                                                             <option>Macbook Air</option>
                                                             <option>Macbook Pro (non-Retina)</option>
-                                                            <option>Macbook 21.5'' Model (Retina)</option>
-                                                            <option>iPhone 7 Plus &amp; 7</option>
-                                                            <option>iPhone 6s Plus &amp; 6s</option>
-                                                            <option>iPhone 6 Plus &amp; 6</option>
+                                                            <option>Macbook Pro (Retina)</option>
+                                                            <option>iPhone 7 Plus / 7</option>
+                                                            <option>iPhone 6s Plus / 6s</option>
+                                                            <option>iPhone 6 Plus / 6</option>
                                                             <option>iPhone 5 SE/5s/5c/5</option>
-                                                            <option>iPad 2/3/4 &amp; Air</option>
+                                                            <option>iPad 2/3/4/Air</option>
                                                             <option>iPad Air 2</option>
                                                             <option>iPad Mini 1/2/3</option>
                                                             <option>iPad Mini 4</option>
@@ -267,7 +269,8 @@
                                         -->
                                     </div>
                                     
-                                    <div id="legal_info" class="form-group" style="display: none;">
+                                    <!--<div id="legal_info" class="form-group" style="display: none;">-->
+                                    <div id="legal_info" class="form-group">
                                         <p>*Important Information and Limitations of Liability:</p>
                                         
                                         <p>
@@ -291,13 +294,22 @@
                                     
                                     <div id="error" style="display: hidden"></div>
 
+                                    <!--
                                     <div class="form-group">
-                                        <button type="submit" id="submit" class="btn" style="background-color: #0f6a37; color: white;">Submit</button>
+                                        <button id="pick_up_req_submit_btn" class="btn" style="background-color: #0f6a37; color: white; float: left;" data-toggle="modal" data-target="#pick_up_request_result">Submit</button> 
                                     </div>
-                                    
+                                    -->
                                 </form>
+                                
+                                <!--
+                                <button id="pick_up_req_submit_btn" class="btn" style="background-color: #0f6a37; color: white; float: left;" data-toggle="modal" data-target="#pick_up_request_result">Submit</button>
+                                -->
                             </div>
  
+                            <div class="modal-footer">
+                                <button id="pick_up_req_submit_btn" class="btn" style="background-color: #0f6a37; color: white; float: left;" data-toggle="modal" data-target="#pick_up_request_result">Submit</button>
+                            </div>
+
                         </div>
                         
                     </div>
@@ -508,7 +520,7 @@
                                         <input class="device_select" type="radio" name="macbook_select_group" value="3" id="macbook_select3" />
                                         <label for="macbook_select3" data-value="macbook">
                                             <img src="images/macbook_pro_black.png" style="width: 100%; height: 100%;">
-                                            <p class="device_model">Macbook 21.5'' Model (Retina)</p>
+                                            <p class="device_model">Macbook Pro (Retina)</p>
                                         </label>
                                     </div>
                                     
@@ -627,14 +639,14 @@
                                         <input class="device_select" type="radio" name="iphone_select_group" value="1" id="iphone_select1" />
                                         <label for="iphone_select1" data-value="iphone">
                                             <img src="images/iphone_duo.png" style="width: 100%; height: 100%;">
-                                            <p class="device_model">iPhone 7 Plus &amp; 7</p>
+                                            <p class="device_model">iPhone 7 Plus / 7</p>
                                         </label>
                                     </div>                                    
                                     <div class="col-xs-3" style="text-align: center;">
                                         <input class="device_select" type="radio" name="iphone_select_group" value="2" id="iphone_select2" />
                                         <label for="iphone_select2" data-value="iphone">
                                             <img src="images/iphone_duo.png" style="width: 100%; height: 100%;">
-                                            <p class="device_model">iPhone 6s Plus &amp; 6s</p>
+                                            <p class="device_model">iPhone 6s Plus / 6s</p>
                                         </label>
                                     </div>
                                     
@@ -642,7 +654,7 @@
                                         <input class="device_select" type="radio" name="iphone_select_group" value="3" id="iphone_select3" />
                                         <label for="iphone_select3" data-value="iphone">
                                             <img src="images/iphone_duo.png" style="width: 100%; height: 100%;">
-                                            <p class="device_model">iPhone 6 Plus &amp; 6</p>
+                                            <p class="device_model">iPhone 6 Plus / 6</p>
                                         </label>
                                     </div>
                                     
@@ -768,7 +780,7 @@
                                         <input class="device_select" type="radio" name="ipad_select_group" value="1" id="ipad_select1" />
                                         <label for="ipad_select1" data-value="ipad">
                                             <img src="images/ipad_air.png" style="width: 100%; height: 100%;">
-                                            <p class="device_model">iPad 2/3/4 &amp; Air</p>
+                                            <p class="device_model">iPad 2/3/4/Air</p>
                                         </label>
                                     </div>                                    
                                     <div class="col-xs-3" style="text-align: center;">
@@ -960,7 +972,6 @@
                             <div class="modal-footer">
                                 <button id="contact_submit_btn" class="btn" style="background-color: #0f6a37; color: white;" data-toggle="modal" data-target="#contact_us_result">Submit</button>
                             </div>
-                            
                         </div>
                     </div>
                 </div>
@@ -1463,6 +1474,9 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/FitText.js/1.2.0/jquery.fittext.min.js"></script>
         <script language="JavaScript" type="text/javascript">
             
+            var counter = 1; //device counter
+            var limit = 10; //device limit
+            
             $("body").scrollspy({ target: "#my_navbar" });
 
             //Fit Text Code!!
@@ -1616,14 +1630,14 @@
                     check_imac_repair_prices(model, problem);
                 }
                 else if (model === "Macbook Air" || model === "Macbook Pro (non-Retina)" ||
-                        model === "Macbook 21.5'' Model (Retina)") {
+                        model === "Macbook Pro (Retina)") {
                     check_macbook_repair_prices(model, problem);
                 }
-                else if (model === "iPhone 7 Plus &amp; 7" || model === "iPhone 6s Plus &amp; 6s" || 
-                        model === "iPhone 6 Plus &amp; 6" || model === "iPhone 5 SE/5s/5c/5") {
+                else if (model === "iPhone 7 Plus / 7" || model === "iPhone 6s Plus / 6s" || 
+                        model === "iPhone 6 Plus / 6" || model === "iPhone 5 SE/5s/5c/5") {
                     check_iphone_repair_prices(model, problem);
                 }
-                else if (model === "iPad 2/3/4 &amp; Air" || model === "iPad Air 2" || 
+                else if (model === "iPad 2/3/4/Air" || model === "iPad Air 2" || 
                         model === "iPad Mini 1/2/3" || model === "iPad Mini 4") {
                     check_ipad_repair_prices(model, problem);
                 }
@@ -1777,7 +1791,7 @@
                 else if (model === "Macbook Pro (non-Retina)") {
                     $("#macbook_repair_price").html(mbpro_non_retina_price);
                 }
-                else if (model === "Macbook 21.5'' Model (Retina)") {
+                else if (model === "Macbook Pro (Retina)") {
                     $("#macbook_repair_price").html(mbpro215_retina_price);
                 }
             }
@@ -1785,13 +1799,13 @@
             
             function set_iphone_repair_prices(model, iphone7p7_price, iphone6sp6s_price, 
                                                 iphone6p6_price, iphone5se5s5c5_price) {
-                if (model === "iPhone 7 Plus &amp; 7") {
+                if (model === "iPhone 7 Plus / 7") {
                     $("#iphone_repair_price").html(iphone7p7_price);
                 }
-                else if (model === "iPhone 6s Plus &amp; 6s") {
+                else if (model === "iPhone 6s Plus / 6s") {
                     $("#iphone_repair_price").html(iphone6sp6s_price);
                 }
-                else if (model === "iPhone 6 Plus &amp; 6") {
+                else if (model === "iPhone 6 Plus / 6") {
                     $("#iphone_repair_price").html(iphone6p6_price);
                 }
                 else if (model === "iPhone 5 SE/5s/5c/5") {
@@ -1802,7 +1816,7 @@
             
             function set_ipad_repair_prices(model, ipad234air_price, ipadair2_price, 
                                             ipadmini123_price, ipadmini4_price) {
-                if (model === "iPad 2/3/4 &amp; Air") {
+                if (model === "iPad 2/3/4/Air") {
                     $("#ipad_repair_price").html(ipad234air_price);
                 }
                 else if (model === "iPad Air 2") {
@@ -1871,8 +1885,7 @@
             }
             
             
-            var counter = 1;
-            var limit = 10;
+
             function add_device(div_name){
                                 
                 if (counter === 1) {
@@ -1897,12 +1910,12 @@
                                                         <option>iMac 21.5'' Model</option>\
                                                         <option>Macbook Air</option>\
                                                         <option>Macbook Pro (non-Retina)</option>\
-                                                        <option>Macbook 21.5'' Model (Retina)</option>\
-                                                        <option>iPhone 7 Plus &amp; 7</option>\
-                                                        <option>iPhone 6s Plus &amp; 6s</option>\
-                                                        <option>iPhone 6 Plus &amp; 6</option>\
+                                                        <option>Macbook Pro (Retina)</option>\
+                                                        <option>iPhone 7 Plus / 7</option>\
+                                                        <option>iPhone 6s Plus / 6s</option>\
+                                                        <option>iPhone 6 Plus / 6</option>\
                                                         <option>iPhone 5 SE/5s/5c/5</option>\
-                                                        <option>iPad 2/3/4 &amp; Air</option>\
+                                                        <option>iPad 2/3/4/Air</option>\
                                                         <option>iPad Air 2</option>\
                                                         <option>iPad Mini 1/2/3</option>\
                                                         <option>iPad Mini 4</option>\
@@ -1942,6 +1955,15 @@
                 //console.log(new_div); //FOR TESTING
                 
                 //$("#start_a_repair_body").animate({scrollTop: ($("#add_device_btn").position().top + $(new_div).outerHeight(false))}, 300);
+                
+                /*
+                var device_lst = $("#dynamic_input").children();
+                for (var i = 0; i < device_lst.length; i++) {
+                    if ($(device_lst[i]).attr("id").substr(-1) !== "0") {
+                        console.log(device_lst[i]);
+                    }
+                }
+                */
             }
 
             function remove_device() {
@@ -1960,6 +1982,58 @@
             
             
             // ============== CLIENT-SIDE PICK-UP REQUEST VALIDATION ==============
+            $("#pick_up_req_submit_btn").click(function() {
+                //console.log("WOOOOO!");
+                $.ajax({
+                        type: "POST",
+                        url: "pick_up_request.php",
+                        data: $('form#pick_up_request_form').serialize(),
+                        success: function(msg){ //msg contains the echo value?
+                            //$("#thanks").show(); //Not if we make submit bring up the modal...
+                            //Note that #thanks, in the original code example, was merely a div...
+                            
+                            //Fill out the text in the modal...
+                            $("#pick_up_request_result_msg").html(msg);
+
+                            if (!msg.includes("ERROR")) {
+                                //I should also clear the text fields in addition to hiding...
+                                $("#pick_up_request_modal").modal("hide"); 
+                                $("#first_name").val("");
+                                $("#last_name").val("");
+                                $("#email").val("");
+                                $("#phone").val("");
+                                $("#street_address").val("");
+                                $("#city").val("Select City");
+                                $("#address_line2").val("");
+                                $("#zip_postal").val("");
+                                $("#model_type").val("Select Model Type");
+                                $("#serial_number").val("");
+                                $("#problem").val("");
+                                $("#cust_ref_num").val("");
+                                $("#other_info").val("");
+                                
+                                //Delete dynamically generated devices
+                                var device_lst = $("#dynamic_input").children();
+                                //console.log(device_lst);
+                                for (var i = 0; i < device_lst.length; i++) {
+                                    if ($(device_lst[i]).attr("id").substr(-1) !== "0") {
+                                        $(device_lst[i]).remove();
+                                        counter--;
+                                    }
+                                }
+                                
+                                $("input[name='service_type']:checked").prop("checked", false);
+                                $("input[name='agree_to_terms']:checked").prop("checked", false);
+
+                            }
+                        },
+                        error: function(){
+                            alert("failure");
+                        }
+               });
+            });
+            
+            /*
             $("#pick_up_request_form").submit(function(e) {
                 
                 var error = "";
@@ -2048,7 +2122,7 @@
                 }
 
             });
-            
+            */
             
             //============== CLIENT-SIDE CONTACT FORM VALIDATION ==============
             $("#contact_submit_btn").click(function() {
@@ -2078,49 +2152,15 @@
                         }
                });
             });
+
             
             /*
-            $("#contact_submit").submit(function(e) { //think: submit is for pressing "enter"?
-                console.log("HEY IN SUBMIT!");
-                var error = "";
-                //If you decide to highlight the sections of the form corresponding to where the user F'ed up,
-                //in these if statements might be where to do it....
-                if ($("#contact_us_name").val() === "") {
-                    error += "- Your name is required.<br/>";
-                }
-                if ($("#contact_us_email").val() === "") {
-                    error += "- Your email address is required.<br/>";
-                }
-                if ($("#contact_us_subject").val() === "") {
-                    error += "- The subject is required.<br/>";
-                }
-                if ($("#contact_us_msg").val() === "") {
-                    error += "- A message is required.<br/>";
-                }
-                
-                
-                //return true; //HAVE ONLY THIS FOR TESTING
-                
-                //If an error message exists (i.e., isn't the empty string)
-                if (error !== "") {
-
-                    //Perhaps this is where all of the "YOU F'ED UP!" stylings should go here?
-                    //DON'T FORGET TO ACTUALLY WRITE THE div WITH THE error ID!!!
-                    $("#contact_form_error").html('<div class="alert alert-danger" role="alert"><p><strong>There were error(s) in your form:</strong></p>' + error + '</div>');
-
-                    return false;
-                } else {
-                    return true;
-                }
-            });
-            */
-            
             $(".service_type").click(function() {
                
                 $("#legal_info").css("display", "block");
                 
             });
-            
+            */
             
             function is_numeric(n) {
                 return !isNaN(parseFloat(n)) && isFinite(n);

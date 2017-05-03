@@ -1,18 +1,17 @@
 <?php
     include("class.phpmailer.php"); 
 
+
     $error = ""; $successMessage = "";
     $reqs_per_device = 3;
 
-    function phpAlert($msg) {
-        echo '<script type="text/javascript">alert("' . $msg . '")</script>';
-    }
 
     function is_phone_num($phone) {
         if(preg_match("/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/", $phone)) {
             return true;
         }
     }
+
 
     //Got this from: https://www.w3schools.com/php/php_form_validation.asp
     function clean_input($data) {
@@ -152,12 +151,13 @@
         
         
         if ($error != "") {
-            echo("ERRORS:<br/>");
+            echo("ERROR:<br/>");
             echo($error);
-            //echo "<script type='text/javascript'>alert('".$error."')</script>"; //FOR TESTING
-            //$error = '<div class="alert alert-danger" role="alert"><p>There were error(s) in your form:</p>'.$error.'</div>';
         }
         else {
+            
+            echo("Pick-up request has been sent lol PSYCH!<br/>"); //FOR TESTING
+            
             $device_lst = array();
             //Make hashmaps for individual devices that you'll then use for the email
             for ($i = 0; $i < $num_devices; $i++) {                 
@@ -172,7 +172,7 @@
                 $device["cust_ref_num"] = $_POST["cust_ref_num"][$i];
                 $device["other_info"] = $_POST["other_info"][$i];
                 
-                $device_lst[] = $device;                
+                $device_lst[] = $device;
             }
             
             //FOR TESTING
@@ -191,102 +191,49 @@
             print_r($device_lst); //FOR TESTING
             */
             
-            /*
-            subject: Customer Pick-Up Request
-
-            === Customer Information ===
-            Name:
-            Email:
-            Phone Number:
-            Street Address:
-            Address Line 2:
-            City:
-            Postal Code:
-
-            === Device Information ===
-            Device 1
-            Model Type:
-            12-Digit Serial #:
-            Problem:
-            Customer Reference #:
-            Other Info:
-            */
-            
-            $body = "=== Customer Information ===<br/>
-            Name: ".$_POST["first_name"]." ".$_POST["last_name"]."<br/>
-            Email: ".$_POST["email"]."<br/>
-            Phone Number: ".$_POST["phone"]."<br/>
-            Street Address: ".$_POST["street_address"]."<br/>
-            Address Line 2: ".$_POST["address_line2"]."<br/>
-            City: ".$_POST["city"]."<br/>
-            Postal Code: ".$_POST["zip_postal"]."<br/>
-            Service Type: ".$_POST["service_type"]."<br/>
-            <br/>
-            === Device Information ===<br/>";
+            $body = "=== Customer Information ===\nName: ".$_POST["first_name"]." ".$_POST["last_name"]."\nEmail: ".$_POST["email"]."\nPhone Number: ".$_POST["phone"]."\nStreet Address: ".$_POST["street_address"]."\nAddress Line 2: ".$_POST["address_line2"]."\nCity: ".$_POST["city"]."\nPostal Code: ".$_POST["zip_postal"]."\nService Type: ".$_POST["service_type"]."\n\n\n=== Device Information ===\n";
             
             //loop through devices
             $device_info = "";
             for ($i = 0; $i < count($device_lst); $i++) {
                 
-                $device_info .= "
-                Device ".($i+1)."<br/>
-                Model Type: ".$device_lst[$i]["model_type"]."<br/>
-                12-digit Serial #: ".$device_lst[$i]["serial_number"]."<br/>
-                Problem: ".$device_lst[$i]["problem"]."<br/>
-                Customer Reference #: ".$device_lst[$i]["cust_ref_num"]."<br/>
-                Other Info: ".$device_lst[$i]["other_info"]."<br/>
-                <br/>";
+                $device_info .= "Device ".($i+1)."\nModel Type: ".$device_lst[$i]["model_type"]."\n12-digit Serial #: ".$device_lst[$i]["serial_number"]."\nProblem: ".$device_lst[$i]["problem"]."\nCustomer Reference #: ".$device_lst[$i]["cust_ref_num"]."\nOther Info: ".$device_lst[$i]["other_info"]."\n\n";
                 
             }
-            $body .= $device_info;
-            echo($body);
+            $body .= $device_info;            
             
+            $conf_msg = "Hello ".$_POST["first_name"]."!,\nYour recent pick-up request with CleverTech has been received! Below is a summary of your request:\n\n".$device_info."\nPick-up requests submitted before 10:30 am are usually picked up same day. If submitted after 10:30 am, expect a phone call to schedule a next day pick-up. If you need to cancel or reschedule a pick-up, please call us at 408-316-7600. When we come for the pick-up, an initial diagnostic of your device will be made and an estimated service cost will be given. If you decline the repair for this device, a pick-up fee ($50) will be charged. If you approve the repair, the pick-up fee will be waived.\n\n\nThank You!\n\nCleverTech\n1150 Murphy Ave, Ste 205\nSan Jose, CA 9513\n408-316-7600\n";
             
-            $test_conf = "Hello ".$_POST["first_name"]."!,<br/>
-                Your recent pick-up request with CleverTech has been received! Below is a summary of your request:<br/><br/>".$device_info."<br/>
-                Pick-up requests submitted before 10:30 am are usually picked up same day. If submitted after 10:30 am, expect a phone call to schedule a next day pick-up. If you need to cancel or reschedule a pick-up, please call us at 408-316-7600. When we come for the pick-up, an initial diagnostic of your device will be made and an estimated service cost will be given. If you decline the repair for this device, a pick-up fee ($50) will be charged. If you approve the repair, the pick-up fee will be waived.<br/>
-                <br/><br/>
-                Thank You!
-                <br/>
-                CleverTech<br/>
-                1150 Murphy Ave, Ste 205<br/>
-                San Jose, CA 9513<br/>
-                408-316-7600<br/>
-                ";
-            
-            echo($test_conf);
-            
-            /*
             $mail = new PHPMailer();
-            //$mail->From = "blah@ramen.com";
-            //$mail->FromName = "Ramen";
-            $mail->addAddress("whoskhoahoang@gmail.com"); //Send it to us first                 
+            $mail->From = $_POST["email"];
+            $mail->FromName = $_POST["first_name"]." ".$_POST["last_name"];            
 
             $mail->Subject = "Pick-Up Request For ".$_POST["first_name"]." ".$_POST["last_name"];
             $mail->Body    = $body;
             
+            $mail->addReplyTo($_POST["email"]); //Add reply to sender's email
+            //$mail->addAddress("services@iclevertech.com"); //Send the email to us first
+            $mail->addAddress("whoskhoahoang@gmail.com"); //Send the email to us first
+            
+            /*
             if(!$mail->send()) {
-                echo "Message could not be sent.";
-                echo "Mailer Error: " . $mail->ErrorInfo;
+                echo "Message could not be sent. Please try again later.";
             } else {
-                echo "Pick-Up Request has been sent!";
+                echo "Pick-Up Request has been sent!<br/>";
             
                 $mail2 = new PHPMailer();
-                $mail2->From = "noreply@ramen.com";
-                $mail2->FromName = "Ramen";
-                $mail2->Subject = "Thank you for your message!";
-                $mail2->Body    = "Hello ".$_POST["first_name"]."!,\n
-                Your recent pick-up request with CleverTech has been received! Below is a summary of your request:";
+                $mail2->From = "noreply@iclevertech.com";
+                $mail2->FromName = "CleverTech";
+                $mail2->Subject = "Your Pick-Up Request has been received!";
+                $mail2->Body    = $conf_msg;
 
                 $mail2->addAddress($_POST["email"]);
-                $mail2->addReplyTo("noreply@ramen.com");
-
-                if(!$mail2->send()) {
-                    echo("Confirmation email error");
-                }
-                else {
-                    echo("Confirmation email sent");
-                }
+                $mail2->addReplyTo("noreply@iclevertech.com");
+                
+                $mail2->send();
+                
+                //if(!$mail2->send()) {echo("But we were not able to send a confirmation email.<br/>");}
+                //else {echo("We've also sent you a confirmation email.<br/>");}
             }
             */
         }   
