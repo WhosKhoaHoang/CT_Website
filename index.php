@@ -257,7 +257,7 @@
                                     
                                     <div class="form-group">
                                         <label class="required">Service Type</label>
-                                        <input type="radio" class="service_type" name="service_type"  value="" style="display: none" checked>
+                                        <input type="radio" id="hidden_service_type" class="service_type" name="service_type"  value="" style="display: none" checked>
                                         <p><input type="radio" class="service_type" name="service_type"  value="Personal Service"> &nbsp; Personal Hardware Service </p> 
                                         <p><input type="radio" class="service_type" name="service_type"  value="Business Service"> &nbsp; Business Hardware Service </p>
 
@@ -287,8 +287,8 @@
                                         <p>Please have the machine ready for pickup when you submit this service request. Pickup could happen anytime between now and end of following business day. If the machine is not easily accessible at the front desk, during all business hours, please include instructions for the driver in the Other Info text box. If possible, please leave with front desk if you will not be available during lunch/meeting, etc. If your offices will be closed for any reason, please let us know. Any instructions/tips for the driver to access your building or parking, are greatly appreciated. Thank you for your cooperation.</p>
                                         
                                         <p class="required">
-                                            <input type="radio" name="agree_to_terms" value="" style="display: none;" checked>
-                                            <input type="radio" id="agree_to_terms" name="agree_to_terms" value="1">&nbsp;&nbsp;I agree to these terms
+                                            <input type="radio" id="hidden_agree_to_terms" class="agree_to_terms" name="agree_to_terms" value="" style="display: none;" checked>
+                                            <input type="radio" class="agree_to_terms" name="agree_to_terms" value="1">&nbsp;&nbsp;I agree to these terms
                                         </p>
                                     </div>
                                     
@@ -1983,7 +1983,14 @@
             
             // ============== CLIENT-SIDE PICK-UP REQUEST VALIDATION ==============
             $("#pick_up_req_submit_btn").click(function() {
-                //console.log("WOOOOO!");
+                
+                //console.log("Service Type Value: "+$(".service_type").val()+"\n"); //TEST
+                //console.log("Agree To Terms Value: "+$(".agree_to_terms").val()+"\n"); //TEST
+                //console.log( $("input[name='service_type']:checked").val());
+                
+
+
+                
                 $.ajax({
                         type: "POST",
                         url: "pick_up_request.php",
@@ -2022,9 +2029,9 @@
                                     }
                                 }
                                 
-                                $("input[name='service_type']:checked").prop("checked", false);
-                                $("input[name='agree_to_terms']:checked").prop("checked", false);
-
+                                //ringo
+                                $("#hidden_service_type").prop("checked", "check");                              
+                                $("#hidden_agree_to_terms").prop("checked", "check");                             
                             }
                         },
                         error: function(){
