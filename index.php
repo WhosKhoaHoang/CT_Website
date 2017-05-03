@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -55,7 +53,7 @@
                     <!--Setting this div with class navbar-form aligns everything properly.-->
                     <!--navbar-right will push this button to the far right.-->
                     <div class="navbar-right" style="padding-top: 10px; padding: 10px; display:block;">
-                        <a href="#" id="start_repair_btn" class="btn" data-toggle="modal" data-target="#start_repair_modal">Request Pick-Up</a>
+                        <a href="#" id="start_repair_btn" class="btn" data-toggle="modal" data-target="#pick_up_request_modal">Request Pick-Up</a>
                     </div>
                     <!-- START REPAIR BUTTON END -->
                 </div>
@@ -67,8 +65,8 @@
         
         <!-- MODALS BEGIN -->
         <!--Thanks to Ren De Nobel from SO: http://stackoverflow.com/questions/18053408/vertically-centering-bootstrap-modal-window-->
-        <!-- START REPAIR MODAL BEGIN -->
-        <div id="start_repair_modal" class="modal fade" role="dialog">
+        <!-- PICK-UP REQUEST MODAL BEGIN -->
+        <div id="pick_up_request_modal" class="modal fade" role="dialog">
             <div class="vertical-alignment-helper">
                 <div class="modal-dialog vertical-align-center">
                     <div id="start_a_repair_dialog" class="modal-dialog">
@@ -306,7 +304,32 @@
                 </div>
             </div>
         </div>
-        <!-- START REPAIR MODAL END -->
+        <!-- PICK-UP REQUEST MODAL END -->
+    
+        
+        <!-- PICK-UP REQUEST RESULT BEGIN -->
+        <div class="modal fade in" id="pick_up_request_result" >
+            <div class="vertical-alignment-helper">
+                <div class="modal-dialog vertical-align-center">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            </div>
+
+                            <div class="modal-body">
+
+                                <p id="pick_up_request_result_msg"></p>
+
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- PICK-UP REQUEST RESULT END -->
+        
         
         <!-- SELECT IMAC MODEL MODAL BEGIN -->
         <!-- Note that you mainly used data-value so you can get the device name and make them part of variable names -->
@@ -428,7 +451,7 @@
                                 </div>
                                 
                                 <div class="row">
-                                    <button class="btn_from_device_modal btn col-xs-4 col-xs-offset-4" style="background-color: #0f6a37; color: white; margin-top: 10px;" data-dismiss="modal" data-toggle="modal" data-target="#start_repair_modal" id="imac_service_pickup">Request Pick-Up</button>
+                                    <button class="btn_from_device_modal btn col-xs-4 col-xs-offset-4" style="background-color: #0f6a37; color: white; margin-top: 10px;" data-dismiss="modal" data-toggle="modal" data-target="#pick_up_request_modal" id="imac_service_pickup">Request Pick-Up</button>
                                 </div>
                                 
                             </div>
@@ -563,7 +586,7 @@
                                 </div>
                                 
                                 <div class="row"> 
-                                    <button class="btn_from_device_modal btn col-xs-4 col-xs-offset-4" style="background-color: #0f6a37; color: white; margin-top: 10px;" data-dismiss="modal" data-toggle="modal" data-target="#start_repair_modal" id="macbook_service_pickup">Request Pick-Up</button>
+                                    <button class="btn_from_device_modal btn col-xs-4 col-xs-offset-4" style="background-color: #0f6a37; color: white; margin-top: 10px;" data-dismiss="modal" data-toggle="modal" data-target="#pick_up_request_modal" id="macbook_service_pickup">Request Pick-Up</button>
                                 </div>
                                 
                             </div>
@@ -704,7 +727,7 @@
                                 </div>
                                 
                                 <div class="row"> 
-                                    <button class="btn_from_device_modal btn col-xs-4 col-xs-offset-4" style="background-color: #0f6a37; color: white; margin-top: 10px;" data-dismiss="modal" data-toggle="modal" data-target="#start_repair_modal" id="iphone_service_pickup">Request Pick-Up</button>
+                                    <button class="btn_from_device_modal btn col-xs-4 col-xs-offset-4" style="background-color: #0f6a37; color: white; margin-top: 10px;" data-dismiss="modal" data-toggle="modal" data-target="#pick_up_request_modal" id="iphone_service_pickup">Request Pick-Up</button>
                                 </div>
                                 
                             </div>
@@ -846,7 +869,7 @@
                                 </div>
                                 
                                 <div class="row"> 
-                                    <button class="btn_from_device_modal btn col-xs-4 col-xs-offset-4" style="background-color: #0f6a37; color: white; margin-top: 10px;" data-dismiss="modal" data-toggle="modal" data-target="#start_repair_modal" id="ipad_service_pickup">Request Pick-Up</button>
+                                    <button class="btn_from_device_modal btn col-xs-4 col-xs-offset-4" style="background-color: #0f6a37; color: white; margin-top: 10px;" data-dismiss="modal" data-toggle="modal" data-target="#pick_up_request_modal" id="ipad_service_pickup">Request Pick-Up</button>
                                 </div>
                                 
                             </div>
@@ -894,7 +917,9 @@
                                 </div>
                                 
                                 <!-- Put form code here-->
-                                <form id="contact_form" method="post" style="padding: 20px;" action="sendmsg.php">
+                                <!--<form id="contact_form" method="post" style="padding: 20px;" action="sendmsg.php">-->
+                                <form id="contact_form" style="padding: 20px;">
+
                                     <!--<p class="required">Name</p>-->
                                     <div class="form-group" style="text-align: center;">
                                         <h3>Send Us A Message!</h3>
@@ -921,11 +946,19 @@
                                     </div>
                                     
                                     <div id="contact_form_error" style="display: hidden"></div>
+                                    
+                                    <!-- removed type="submit" for button-->
+                                    <!--
                                     <div class="form-group">
-                                        <button type="submit" id="contact_submit" class="btn" style="background-color: #0f6a37; color: white;">Submit</button>
+                                        <button id="contact_submit_btn" class="btn" style="background-color: #0f6a37; color: white;" data-toggle="modal" data-target="#contact_us_modal">Submit</button> 
                                     </div>
+                                    -->
                                 </form>
                                 
+                            </div>
+                            
+                            <div class="modal-footer">
+                                <button id="contact_submit_btn" class="btn" style="background-color: #0f6a37; color: white;" data-toggle="modal" data-target="#contact_us_result">Submit</button>
                             </div>
                             
                         </div>
@@ -935,6 +968,30 @@
         </div>
         <!-- CONTACT US MODAL END -->
 
+        
+        <!-- CONTACT US RESULT BEGIN -->
+        <div class="modal fade in" id="contact_us_result" >
+            <div class="vertical-alignment-helper">
+                <div class="modal-dialog vertical-align-center">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            </div>
+
+                            <div class="modal-body">
+
+                                <p id="contact_us_result_msg"></p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- CONTACT US RESULT END -->
+
+        
         
         <!-- Say tabindex=-1 so users can access keyboard shortcuts on modals -->
         <!-- Note how you didn't center this modal. It was causing weird stuff to happen during resizing. -->
@@ -959,7 +1016,7 @@
                         
 
                         <div class="row" style="margin-top: 20px;">
-                            <a class="how_it_works_text" style="cursor: pointer; color: green;" data-dismiss="modal" data-toggle="modal" data-target="#start_repair_modal">Start your pick-up request here ></a>
+                            <a class="how_it_works_text" style="cursor: pointer; color: green;" data-dismiss="modal" data-toggle="modal" data-target="#pick_up_request_modal">Start your pick-up request here ></a>
                         </div>
                         
 
@@ -1004,7 +1061,7 @@
                         
 
                         <div class="row" style="margin-top: 20px;">
-                            <a class="how_it_works_text" style="cursor: pointer; color: green;" data-dismiss="modal" data-toggle="modal" data-target="#start_repair_modal">Start your pick-up request here ></a>
+                            <a class="how_it_works_text" style="cursor: pointer; color: green;" data-dismiss="modal" data-toggle="modal" data-target="#pick_up_request_modal">Start your pick-up request here ></a>
                         </div>
                         
 
@@ -1977,7 +2034,6 @@
                 
                 //return true; //INCLUDE JUST THIS AND COMMENT OUT THE BELOW FOR TESTING!!!
                 
-
                 //If an error message exists (i.e., isn't the empty string)
                 if (error !== "") {
 
@@ -1995,8 +2051,37 @@
             
             
             //============== CLIENT-SIDE CONTACT FORM VALIDATION ==============
-            $("#contact_form").submit(function(e) {
-                
+            $("#contact_submit_btn").click(function() {
+                //console.log("HEY IN CLICK!!");
+                $.ajax({
+                        type: "POST",
+                        url: "send_msg.php",
+                        data: $('form#contact_form').serialize(),
+                        success: function(msg){ //msg contains the echo value?
+                            //$("#thanks").show(); //Not if we make submit bring up the modal...
+                            //Note that #thanks, in the original code example, was merely a div...
+                            
+                            //Fill out the text in the modal...
+                            $("#contact_us_result_msg").html(msg);
+
+                            if (!msg.includes("ERROR")) {
+                                //I should also clear the text fields in addition to hiding...
+                                $("#contact_us_modal").modal("hide"); 
+                                $("#contact_us_name").val("");
+                                $("#contact_us_email").val("");
+                                $("#contact_us_subject").val("");
+                                $("#contact_us_msg").val("");
+                            }
+                        },
+                        error: function(){
+                            alert("failure");
+                        }
+               });
+            });
+            
+            /*
+            $("#contact_submit").submit(function(e) { //think: submit is for pressing "enter"?
+                console.log("HEY IN SUBMIT!");
                 var error = "";
                 //If you decide to highlight the sections of the form corresponding to where the user F'ed up,
                 //in these if statements might be where to do it....
@@ -2028,7 +2113,7 @@
                     return true;
                 }
             });
-            
+            */
             
             $(".service_type").click(function() {
                

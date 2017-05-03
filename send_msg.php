@@ -1,6 +1,6 @@
 <?php
     include("class.phpmailer.php");     
-    $contact_us_error = ""; $successMessage = "";
+    $contact_us_error = ""; $success_msg = "";
 
     //Got this from: https://www.w3schools.com/php/php_form_validation.asp
     function clean_input($data) {
@@ -25,7 +25,7 @@
         if (!$_POST["contact_us_email"]) {
             $contact_us_error .= "- Your email is required.<br/>";
         }
-        else if ($_POST["contact_us_email"] && filter_var($_POST["contact_us_email"], FILTER_VALIDATE_EMAIL === false)) {
+        else if ($_POST["contact_us_email"] && filter_var($_POST["contact_us_email"], FILTER_VALIDATE_EMAIL) === false) {
             $contact_us_error .= "- The email address you entered is not valid.<br/>";
         }
         else {
@@ -55,6 +55,7 @@
 
         //FOR TESTING
         echo("<pre>");
+        echo("GOOD JOB!<br/>");
         echo($_POST["contact_us_name"]."<br/>"); //FOR TESTING
         echo($_POST["contact_us_email"]."<br/>"); //FOR TESTING
         echo($_POST["contact_us_subject"]."<br/>"); //FOR TESTING

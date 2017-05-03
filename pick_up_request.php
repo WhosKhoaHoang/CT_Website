@@ -45,7 +45,7 @@
         if (!$_POST["email"]) {
             $error .= "- Your email is required.<br/>";
         }
-        else if ($_POST["email"] && filter_var($_POST["email"], FILTER_VALIDATE_EMAIL === false)) {
+        else if ($_POST["email"] && filter_var($_POST["email"], FILTER_VALIDATE_EMAIL) === false) {
             $error .= "- The email address you entered is not valid.<br/>";
         }
         else {
