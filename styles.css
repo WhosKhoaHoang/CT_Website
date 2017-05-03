@@ -543,6 +543,11 @@ li.nav-item.active {
 }
 
 
+#contact_us_result_msg, #pick_up_request_result_msg {
+    font-size: 15px;
+}
+
+
 /* MEDIA QUERIES AT THE END!!! */
 /* Portrait tablets and small desktops */
 @media (min-width: 768px) and (max-width: 991px) {

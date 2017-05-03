@@ -48,12 +48,12 @@
         
         
         if ($contact_us_error != "") {
-            echo("ERRORS:<br/>");
+            echo("<p style='text-align: center; font-weight: bold; font-size: 20px;'>Oops. Don't forget:</p>");
             echo($contact_us_error);
         }
         else {
 
-            echo("Your message is on its way lol PSYCH!</br>"); //FOR TESTING
+            //echo("<div style='text-align: center;'><img src='images/ct_icon.png'></div><p style='text-align: center; font-size: 20px; margin-top: 10px;'>Your message is on its way lol PSYCH!</br></p>"); //FOR TESTING
             
             //FOR TESTING
             /*
@@ -64,7 +64,8 @@
             echo($_POST["contact_us_msg"]."<br/>"); //FOR TESTING
             */
 
-            //Send Email
+            
+            //Send the email to us first...
             $mail = new PHPMailer();
             $mail->From = $_POST["contact_us_email"]; //Sender's email
             $mail->FromName = $_POST["contact_us_name"]; //Sender's name
@@ -73,14 +74,14 @@
 
             $mail->addReplyTo($_POST["contact_us_email"]); //Add reply to sender's email
             //$mail->addAddress("services@iclevertech.com"); //Send the email to us  
-            $mail->addAddress("whoskhoahoang@gmail.com"); //Send the email to us  
+            $mail->addAddress("whoskhoahoang@gmail.com"); //FOR TESTING 
 
-            /*
+
             if(!$mail->send()) {
                 echo "Message could not be sent. Please try again later.";
                 //echo "Mailer Error: ".$mail->ErrorInfo;
             } else {
-                echo "Your message is on its way!<br/>";
+                echo "<div style='text-align: center;'><img src='images/ct_icon.png'></div><p style='text-align: center; font-size: 20px; margin-top: 10px;'>Your message is on its way!</br></p>";
 
                 $mail2 = new PHPMailer();
                 $mail2->From = "noreply@iclevertech.com";
@@ -96,7 +97,7 @@
                 //if(!$mail2->send()) { echo("Confirmation email error"); }
                 //else { echo("A confirmation email has been sent to your address."); }
             }
-            */
+
         }
     }
 

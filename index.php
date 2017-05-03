@@ -14,14 +14,13 @@
         <!-- Add icon library from Perfect Icons-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <!-- import your own styles -->
-        <link rel="stylesheet" href="http://localhost/clevertech/styles.css" /> <!--Seems like I need to use an absolute pathname for CSS?-->
+        <link rel="stylesheet" href="http://localhost/clevertech/styles.css" />
         <!--<link rel="stylesheet" href="//fonts.googleapis.com/css?family=PT+Sans" /> No to this for now... -->
-        
     </head>
     
-    <body data-spy="scroll" data-target="#my_navbar"> <!--data-spy and data-target are for jumping to particular sections of the page through links-->
+    <body data-spy="scroll" data-target="#my_navbar">
         
-        <!-- THE NAVBAR BEGIN -->
+        <!-- ==================================== THE NAVBAR BEGIN ==================================== -->
         <nav class="navbar navbar-fixed-top" id="my_navbar">
             <div class="container">
                 <div class="navbar-header">
@@ -51,7 +50,6 @@
                     
                     <!-- START REPAIR BUTTON BEGIN -->
                     <!--Setting this div with class navbar-form aligns everything properly.-->
-                    <!--navbar-right will push this button to the far right.-->
                     <div class="navbar-right" style="padding-top: 10px; padding: 10px; display:block;">
                         <a href="#" id="start_repair_btn" class="btn" data-toggle="modal" data-target="#pick_up_request_modal">Request Pick-Up</a>
                     </div>
@@ -60,10 +58,11 @@
 
             </div>
         </nav>
-        <!-- THE NAVBAR END-->
+        <!-- ==================================== THE NAVBAR END ==================================== -->
         
         
-        <!-- MODALS BEGIN -->
+        
+        <!-- =================================== THE MODALS BEGIN =================================== -->
         <!--Thanks to Ren De Nobel from SO: http://stackoverflow.com/questions/18053408/vertically-centering-bootstrap-modal-window-->
         <!-- PICK-UP REQUEST MODAL BEGIN -->
         <div id="pick_up_request_modal" class="modal fade" role="dialog">
@@ -79,9 +78,8 @@
                                     <button type="button" class="close" data-dismiss="modal" style="float: left;">&times;</button>
                                 </div>
                                 
-                                <!--<form id="pick_up_request_form" method="post" action="pick_up_request.php">--> <!-- Only need to set action like this if validating on same page...or just validate in validate_pickup.php? -->
-                                    <!-- removed PHP_SELF thing with the htmlspecialchars -->
-                                <form id="pick_up_request_form"> <!-- Only need to set action like this if validating on same page...or just validate in validate_pickup.php? -->
+
+                                <form id="pick_up_request_form">
 
                                     <h3 style="color: #0f6a37;">Your Info</h3>
                                     <hr/>
@@ -244,8 +242,6 @@
                                         
                                     </div> 
                                     
-                                    <!--<button id="add_device_btn" class="btn" onClick="add_device('dynamic_input');" style="margin-top: 20px; width: 200px;"> Add another device </button>-->
-                                    
                                     <input type="button" id="add_device_btn" class="btn" value="Add another device" onClick="add_device('dynamic_input');" style="margin-top: 20px; width: 200px;">
                                     
                                     <input type="button" id="remove_device_btn" class="btn" value="Remove a device" onClick="remove_device();" style="margin-top: 20px; margin-left: 10px; width: 200px; display: none;">  
@@ -260,13 +256,6 @@
                                         <input type="radio" id="hidden_service_type" class="service_type" name="service_type"  value="" style="display: none" checked>
                                         <p><input type="radio" class="service_type" name="service_type"  value="Personal Service"> &nbsp; Personal Hardware Service </p> 
                                         <p><input type="radio" class="service_type" name="service_type"  value="Business Service"> &nbsp; Business Hardware Service </p>
-
-                                        <!-- FOR TESTING -->
-                                        <!--
-                                        <input type="radio" name="genderS" value="0" style="display: none;" checked>
-                                        <input type="radio" name="genderS" value="1">Male
-                                        <input type="radio" name="genderS" value="2" >Female
-                                        -->
                                     </div>
                                     
                                     <!--<div id="legal_info" class="form-group" style="display: none;">-->
@@ -331,7 +320,7 @@
 
                             <div class="modal-body">
 
-                                <p id="pick_up_request_result_msg"></p>
+                                <div id="pick_up_request_result_msg"></div>
 
                             </div>
                             
@@ -455,11 +444,7 @@
                                             <label id="imac_repair_price" class="price_value">&nbsp;</label>
                                         </div>
                                     </div>
-                                    <!--
-                                    <div class="col-xs-2">
-                                        <label id="imac_repair_price" class="price_value" style="float: left;"></label> 
-                                    </div>
-                                    -->
+
                                 </div>
                                 
                                 <div class="row">
@@ -587,14 +572,6 @@
                                             <label id="macbook_repair_price" class="price_value">&nbsp;</label>
                                         </div>
                                     </div>
-                                    <!--
-                                    <div class="col-xs-3 col-xs-offset-4" style="float: left; padding: 0px;">
-                                        <label>Service Price: </label>
-                                    </div>
-                                    <div class="col-xs-2">
-                                        <label id="macbook_repair_price" class="price_value" style="float: left;"></label> 
-                                    </div> 
-                                    -->
                                 </div>
                                 
                                 <div class="row"> 
@@ -728,14 +705,7 @@
                                             <label id="iphone_repair_price" class="price_value">&nbsp;</label>
                                         </div>
                                     </div>
-                                    <!--
-                                    <div class="col-xs-3 col-xs-offset-4" style="float: left; padding: 0px;">
-                                        <label>Service Price: </label>
-                                    </div>
-                                    <div class="col-xs-2">
-                                        <label id="iphone_repair_price" class="price_value" style="float: left;"></label> 
-                                    </div>
-                                    -->
+
                                 </div>
                                 
                                 <div class="row"> 
@@ -870,14 +840,6 @@
                                         </div>
                                     </div>
                                     
-                                    <!--
-                                    <div class="col-xs-3 col-xs-offset-4" style="float: left; padding: 0px;">
-                                        <label>Service Price: </label>
-                                    </div>
-                                    <div class="col-xs-2">
-                                        <label id="ipad_repair_price" class="price_value" style="float: left;"></label> 
-                                    </div>
-                                    -->
                                 </div>
                                 
                                 <div class="row"> 
@@ -929,10 +891,8 @@
                                 </div>
                                 
                                 <!-- Put form code here-->
-                                <!--<form id="contact_form" method="post" style="padding: 20px;" action="sendmsg.php">-->
                                 <form id="contact_form" style="padding: 20px;">
 
-                                    <!--<p class="required">Name</p>-->
                                     <div class="form-group" style="text-align: center;">
                                         <h3>Send Us A Message!</h3>
                                     </div>
@@ -992,7 +952,7 @@
 
                             <div class="modal-body">
 
-                                <p id="contact_us_result_msg"></p>
+                                <div id="contact_us_result_msg"></div>
 
                             </div>
                         </div>
@@ -1004,7 +964,6 @@
 
         
         
-        <!-- Say tabindex=-1 so users can access keyboard shortcuts on modals -->
         <!-- Note how you didn't center this modal. It was causing weird stuff to happen during resizing. -->
         <div class="modal fade in" id="pick_up_info_modal" tabindex="-1" role="dialog" aria-hidden="true">
 
@@ -1283,19 +1242,15 @@
         </div>
 
         
-        <!-- MODALS END -->
+        <!-- =================================== THE MODALS END =================================== -->
         
         
         
-        <!-- THE CONTENT BEGIN-->
+        <!-- ============================== THE CONTENT BEGIN ==================================== -->
         
         <!-- SECTION 1 BEGIN -->
         <div class="jumbotron" id="welcome" style="text-align: center;">
             <div id="welcome_content">
-                <!--
-                <h1>Welcome to CleverTech</h1>
-                <p id="here_to_help" style="font-size: 25px;">We're here to help</p>
-                -->
                 <div class="container">
                     <div class="row">
                         <h1>Welcome to CleverTech</h1>
@@ -1317,6 +1272,7 @@
         <!-- SECTION 2 BEGIN -->
         <div class="jumbotron" id="how_it_works" style="text-align: center;">
             <div class="container" id="how_it_works_content">
+                
                 <div class="row">
                     <h1>Start to Finish</h1>
                     <p style="font-size: 25px;">3 days to complete</p>
@@ -1326,17 +1282,8 @@
                     <button class="btn how_it_works_btn" data-toggle="modal" data-target="#repair_info_modal">Repair</button>
                     <button class="btn how_it_works_btn" data-toggle="modal" data-target="#drop_off_info_modal">Drop-Off</button>
                     
-                    <!--
-                    <h1 class="btn how_it_works_btn" data-toggle="modal" data-target="#pick_up_info_modal">Pick-Up</h1>
-                    <h1 class="btn how_it_works_btn" data-toggle="modal" data-target="#repair_info_modal">Repair</h1>
-                    <h1 class="btn how_it_works_btn" data-toggle="modal" data-target="#drop_off_info_modal">Drop-Off</h1>
-                    -->
                 </div>
-                <!--
-                <div class="row">
-                    <p>3 days to complete</p>
-                </div>
-                -->
+
             </div>
         </div>
         <!-- SECTION 2 END -->
@@ -1348,7 +1295,6 @@
             <div class="container" id="services_content">  
                 
                 <div class="row">
-                    <!--<h1 style="position: relative; top: -50px;">Got Problems?<br/>Tell us your model</h1>-->
                     <h1>Got Problems?</h1>
                     <p style="font-size: 25px;">Tell us your model</p>
                 </div>
@@ -1381,7 +1327,6 @@
         
         </div>
         <!-- SECTION 3 END -->
-        
         
         
         <!-- STAY CLEVER BEGIN -->
@@ -1459,7 +1404,9 @@
         </div>
         <!-- STAY CLEVER END -->
 
-        <!-- THE CONTENT END -->
+        <!-- ============================== THE CONTENT END ============================== -->
+        
+        
         
         <!-- Arrow Button Code -->
         <a id="move_up" href="#"></a>
@@ -1950,20 +1897,6 @@
                     document.getElementById(div_name).appendChild(new_div); //think: div_name stands in for "this"?
                     counter++;
                 }
-                
-                //console.log("TESTING new_div:");
-                //console.log(new_div); //FOR TESTING
-                
-                //$("#start_a_repair_body").animate({scrollTop: ($("#add_device_btn").position().top + $(new_div).outerHeight(false))}, 300);
-                
-                /*
-                var device_lst = $("#dynamic_input").children();
-                for (var i = 0; i < device_lst.length; i++) {
-                    if ($(device_lst[i]).attr("id").substr(-1) !== "0") {
-                        console.log(device_lst[i]);
-                    }
-                }
-                */
             }
 
             function remove_device() {
@@ -1981,15 +1914,8 @@
             }
             
             
-            // ============== CLIENT-SIDE PICK-UP REQUEST VALIDATION ==============
+            // ============== PICK-UP REQUEST SUBMISSION ==============
             $("#pick_up_req_submit_btn").click(function() {
-                
-                //console.log("Service Type Value: "+$(".service_type").val()+"\n"); //TEST
-                //console.log("Agree To Terms Value: "+$(".agree_to_terms").val()+"\n"); //TEST
-                //console.log( $("input[name='service_type']:checked").val());
-                
-
-
                 
                 $.ajax({
                         type: "POST",
@@ -2002,7 +1928,7 @@
                             //Fill out the text in the modal...
                             $("#pick_up_request_result_msg").html(msg);
 
-                            if (!msg.includes("ERROR")) {
+                            if (!msg.includes("Oops")) {
                                 //I should also clear the text fields in addition to hiding...
                                 $("#pick_up_request_modal").modal("hide"); 
                                 $("#first_name").val("");
@@ -2029,7 +1955,6 @@
                                     }
                                 }
                                 
-                                //ringo
                                 $("#hidden_service_type").prop("checked", "check");                              
                                 $("#hidden_agree_to_terms").prop("checked", "check");                             
                             }
@@ -2040,98 +1965,8 @@
                });
             });
             
-            /*
-            $("#pick_up_request_form").submit(function(e) {
-                
-                var error = "";
-                //If you decide to highlight the sections of the form corresponding to where the user F'ed up,
-                //in these if statements might be where to do it....
-                
-                
-                if ($("#first_name").val() === "" || $("#last_name").val() === "") {
-                    error += "- Your full name is required.<br/>";
-                }
-                if ($("#email").val() === "") {
-                    error += "- Your email address is required.<br/>";
-                }
-                if ($("#phone").val() === "") {
-                    error += "- Your phone number is required.<br/>";
-                }
-                if ($("#phone").val() !== "") {
-                    if (!validate_phone_num($("#phone").val())) {
-                        error += "- Please enter a phone number in the form XXX-XXX-XXXX<br/>";
-                    }
-                }
-                if ($("#street_address").val() === "") {
-                    error += "- Your street address is required.<br/>";
-                }
-                if ($("#city").val() === "Select City") {
-                    error += "- Your city is required.<br/>";
-                }
-                
-                var device_lst = $("#dynamic_input").children();
-                for (var i = 0; i < device_lst.length; i++) {
-                    
-                    var req_dynamic_labels = $(device_lst[i]).find(".required");
-                    for (var j = 0; j < req_dynamic_labels.length; j++) {
-
-                        if ($(req_dynamic_labels[j]).html() === "Model Type") {
-                            
-                            if ($(req_dynamic_labels[j]).next().val() === "Select Model Type") {
-                                error += "- Model type is required for Device "+(i+1)+".<br/>";    
-                            }
-                        }
-                        if ($(req_dynamic_labels[j]).html() === "12-Digit Serial #") {
-                            
-                            if ($(req_dynamic_labels[j]).next().val() === "") {
-                                error += "- Serial number is required for Device "+(i+1)+".<br/>";
-                            } 
-                            else {
-                                if (!is_numeric($("#serial_number").val())) {
-                                    error += "- Serial number must consist of only numbers for Device "+(i+1)+".<br/>";  
-                                }
-                                if ($("#serial_number").val().length != 12) {
-                                    error += "- Serial number must consist of 12 digits for Device "+(i+1)+".<br/>";  
-                                }
-                            }
-                        }
-                        if ($(req_dynamic_labels[j]).html() === "Problem") {
-                            
-                            if ($(req_dynamic_labels[j]).next().val() === "") {
-                                error += "- Problem is required for Device "+(i+1)+".<br/>";    
-                            }
-                        }
-                    }
-                }
-                
-                if ($("input[name='service_type']:checked").val() === "") {
-                    error += "- A service type is requried.<br/>"
-                }
-                
-                if ($("input[name='agree_to_terms']:checked").val() === "") {
-                    error += "- Please agree to the the important information and limitations of liability.<br/>"
-                }
-                
-                
-                //return true; //INCLUDE JUST THIS AND COMMENT OUT THE BELOW FOR TESTING!!!
-                
-                //If an error message exists (i.e., isn't the empty string)
-                if (error !== "") {
-
-                    //Perhaps this is where all of the "YOU F'ED UP!" stylings should go here?
-                    //DON'T FORGET TO ACTUALLY WRITE THE div WITH THE error ID!!!
-                    $("#error").html('<div class="alert alert-danger" role="alert"><p><strong>There were error(s) in your form:</strong></p>' + error + '</div>');
-
-                    return false;
-                } else {
-                    return true;
-                    //Perhaps use AJAX here?
-                }
-
-            });
-            */
             
-            //============== CLIENT-SIDE CONTACT FORM VALIDATION ==============
+            //============== CONTACT FORM SUBMISSION ==============
             $("#contact_submit_btn").click(function() {
                 //console.log("HEY IN CLICK!!");
                 $.ajax({
@@ -2145,7 +1980,7 @@
                             //Fill out the text in the modal...
                             $("#contact_us_result_msg").html(msg);
 
-                            if (!msg.includes("ERROR")) {
+                            if (!msg.includes("Oops")) {
                                 //I should also clear the text fields in addition to hiding...
                                 $("#contact_us_modal").modal("hide"); 
                                 $("#contact_us_name").val("");
@@ -2160,14 +1995,6 @@
                });
             });
 
-            
-            /*
-            $(".service_type").click(function() {
-               
-                $("#legal_info").css("display", "block");
-                
-            });
-            */
             
             function is_numeric(n) {
                 return !isNaN(parseFloat(n)) && isFinite(n);

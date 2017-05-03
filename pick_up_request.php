@@ -151,12 +151,12 @@
         
         
         if ($error != "") {
-            echo("ERROR:<br/>");
+            echo("<p style='text-align: center; font-weight: bold; font-size: 20px;'>Oops. Don't forget:</p>");
             echo($error);
         }
         else {
             
-            echo("Pick-up request has been sent lol PSYCH!<br/>"); //FOR TESTING
+            //echo("<div style='text-align: center;'><img src='images/ct_icon.png'></div><p style='text-align: center; font-size: 20px; margin-top: 10px;'>Pick-up request has been sent lol PSYCH!</br></p>"); //FOR TESTING
             
             $device_lst = array();
             //Make hashmaps for individual devices that you'll then use for the email
@@ -197,29 +197,30 @@
             $device_info = "";
             for ($i = 0; $i < count($device_lst); $i++) {
                 
-                $device_info .= "Device ".($i+1)."\nModel Type: ".$device_lst[$i]["model_type"]."\n12-digit Serial #: ".$device_lst[$i]["serial_number"]."\nProblem: ".$device_lst[$i]["problem"]."\nCustomer Reference #: ".$device_lst[$i]["cust_ref_num"]."\nOther Info: ".$device_lst[$i]["other_info"]."\n\n";
+                $device_info .= "Device ".($i+1)."\nModel Type: ".$device_lst[$i]["model_type"]."\n12-digit Serial #: ".$device_lst[$i]["serial_number"]."\nProblem: ".$device_lst[$i]["problem"]."\nCustomer Reference #: ".$device_lst[$i]["cust_ref_num"]."\nOther Info: ".$device_lst[$i]["other_info"]."\n";
                 
             }
             $body .= $device_info;            
             
             $conf_msg = "Hello ".$_POST["first_name"]."!,\nYour recent pick-up request with CleverTech has been received! Below is a summary of your request:\n\n".$device_info."\nPick-up requests submitted before 10:30 am are usually picked up same day. If submitted after 10:30 am, expect a phone call to schedule a next day pick-up. If you need to cancel or reschedule a pick-up, please call us at 408-316-7600. When we come for the pick-up, an initial diagnostic of your device will be made and an estimated service cost will be given. If you decline the repair for this device, a pick-up fee ($50) will be charged. If you approve the repair, the pick-up fee will be waived.\n\n\nThank You!\n\nCleverTech\n1150 Murphy Ave, Ste 205\nSan Jose, CA 9513\n408-316-7600\n";
+          
             
+            //Send the mail to us first...
             $mail = new PHPMailer();
             $mail->From = $_POST["email"];
             $mail->FromName = $_POST["first_name"]." ".$_POST["last_name"];            
-
             $mail->Subject = "Pick-Up Request For ".$_POST["first_name"]." ".$_POST["last_name"];
             $mail->Body    = $body;
             
             $mail->addReplyTo($_POST["email"]); //Add reply to sender's email
             //$mail->addAddress("services@iclevertech.com"); //Send the email to us first
-            $mail->addAddress("whoskhoahoang@gmail.com"); //Send the email to us first
+            $mail->addAddress("whoskhoahoang@gmail.com"); //FOR TESTING
             
-            /*
+
             if(!$mail->send()) {
                 echo "Message could not be sent. Please try again later.";
             } else {
-                echo "Pick-Up Request has been sent!<br/>";
+                echo "<div style='text-align: center;'><img src='images/ct_icon.png'></div><p style='text-align: center; font-size: 20px; margin-top: 10px;'>Pick-up request has been sent!</br></p>";
             
                 $mail2 = new PHPMailer();
                 $mail2->From = "noreply@iclevertech.com";
@@ -235,7 +236,6 @@
                 //if(!$mail2->send()) {echo("But we were not able to send a confirmation email.<br/>");}
                 //else {echo("We've also sent you a confirmation email.<br/>");}
             }
-            */
         }   
     }
 ?>
