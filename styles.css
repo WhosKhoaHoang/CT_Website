@@ -479,9 +479,11 @@ li.nav-item.active {
 }
 
 
-#start_a_repair_body {
+#pick_up_request_body {
     height: 700px; /* Fix height so scrollbar will appear */
     overflow-y: auto;
+    font-size: 15px; 
+    padding: 35px;
 }
 
 
