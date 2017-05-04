@@ -87,7 +87,7 @@
                 $mail2->From = "noreply@iclevertech.com";
                 $mail2->FromName = "CleverTech";
                 $mail2->Subject = "Thank you for your message!";
-                $mail2->Body    = "We have received your message and will get back to you shortly.\n\nThank you!\n\nCleverTech\n1150 Murphy Ave, Ste 205\nSan Jose, CA 9513\n408-316-7600\n";
+                $mail2->Body    = "We have received your message and will get back to you shortly.\n\nThank you!\n\nCleverTech Team\n1150 Murphy Ave, Ste 205\nSan Jose, CA 9513\n408-316-7600\n";
 
                 $mail2->addAddress($_POST["contact_us_email"]);
                 $mail2->addReplyTo("noreply@iclevertech.com");
