@@ -71,6 +71,26 @@ body {
 }
 
 
+.pick_up_request_btn {
+    background: rgba(0,0,0,0.4);
+    color: white;
+    font-size: 20px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+
+.pick_up_request_btn:hover {
+    color: white;
+}
+
+
+.pick_up_request_btn:focus {
+    color: white;
+}
+
+
+/* Keep here for testing*/
 #start_repair_btn {
     background: rgba(0,0,0,0.4);
     color: white;
@@ -567,25 +587,49 @@ li.nav-item.active {
 }
 
 
+
 /* MEDIA QUERIES AT THE END!!! */
+
+/* Large desktops and laptops */
+@media (min-width: 1200px) {
+    li > .pick_up_request_btn {
+        display: none;
+    }
+}
+
+
+/* Landscape tablets and medium desktops */
+@media (min-width: 992px) and (max-width: 1199px) {
+    li > .pick_up_request_btn {
+        display: none;
+    }
+}
+
+
 /* Portrait tablets and small desktops */
 @media (min-width: 768px) and (max-width: 991px) {
     #soc_media_and_store_info {
         margin-top: 0px;
     }
+    
+    li > .pick_up_request_btn {
+        display: none;
+    }
 }
 
+
+/* Landscape phones and portrait tablets */
 @media (max-width: 767px) {
-    #start_repair_btn {
-        /*
-        float: none;
-        clear: both;
-        position: relative;
-        right: 0;
-        */
-        position: relative;
-        top: 35px;
-        left: 10%; 
+    .navbar-brand {
+        margin-bottom: 5px;
+    }
+    
+    li > .pick_up_request_btn {
+        display: inline-block;
+    }
+    
+    div > .pick_up_request_btn {
+        display: none;
     }
     
     #move_up {
@@ -599,4 +643,10 @@ li.nav-item.active {
     #soc_media_and_store_info {
         margin-top: 0px;
     }
+}
+
+
+/* Portrait phones and smaller */
+@media (max-width: 480px) {
+
 }

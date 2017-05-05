@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <!-- import your own styles -->
         <link rel="stylesheet" href="http://localhost/clevertech/styles.css" />
-        <!--<link rel="stylesheet" href="//fonts.googleapis.com/css?family=PT+Sans" /> No to this for now... -->
+        <!--<link rel="stylesheet" href="//fonts.googleapis.com/css?family=PT+Sans" /> No to this for now... -->        
     </head>
     
     <body data-spy="scroll" data-target="#my_navbar">
@@ -26,9 +26,9 @@
                 <div class="navbar-header">
                     
                     <!--This "hamburger" button shows up and contains the navbar links once the viewport has been adequately shrinked -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsed_menu" aria-expanded="false">
                         <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span> <!-- Each icon-bar is a line for the hamburger -->
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
@@ -40,19 +40,27 @@
                     <!-- LOGO END -->  
                 </div>
 
-                <!-- Collect the nav links, forms, and other content for toggling when user collapses window -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav" style="float: left;">
+                <!-- Collect the navbar links into the "hamburger" for toggling when user collapses window -->
+                <div class="collapse navbar-collapse" id="collapsed_menu">
+                    <!--<ul class="nav navbar-nav" style="float: left;">-->
+                    <ul class="nav navbar-nav" style="text-align: center;">
                         <li class="nav-item"><a href="#how_it_works" class="nav-link">How It Works</a></li>
                         <li class="nav-item"><a href="#services" class="nav-link">Services</a></li>
-                        <li class="nav-item"><a href="#stay_clever" class="nav-link">Stay Clever</a></li>  
+                        <li class="nav-item"><a href="#stay_clever" class="nav-link">Stay Clever</a></li>
+                        <li><button class="btn pick_up_request_btn" data-toggle="modal" data-target="#pick_up_request_modal">Request Pick-Up</button></li>
                     </ul>
                     
                     <!-- START REPAIR BUTTON BEGIN -->
-                    <!--Setting this div with class navbar-form aligns everything properly.-->
+                    <div class="navbar-right" style="padding: 10px;">
+                        <button class="btn pick_up_request_btn" data-toggle="modal" data-target="#pick_up_request_modal">Request Pick-Up</button>
+                    </div>
+                    
+                    <!-- Keep this here for testing start_repair_btn. Weird how no hover behavior occurs when you set start_repair_btn as the id...-->
+                    <!--
                     <div class="navbar-right" style="padding-top: 10px; padding: 10px; display:block;">
                         <a href="#" id="start_repair_btn" class="btn" data-toggle="modal" data-target="#pick_up_request_modal">Request Pick-Up</a>
                     </div>
+                    -->
                     <!-- START REPAIR BUTTON END -->
                 </div>
 
@@ -2004,7 +2012,26 @@
                 }
             }
             //^Got this from http://stackoverflow.com/questions/18375929/validate-phone-number-using-javascript
+
             
+            $(".nav a, li > .pick_up_request_btn").click(function(e) {
+                //console.log("LOL!");
+                $("#collapsed_menu").collapse("hide");
+            });
+            
+            
+            //Code for closing an open collapsed navbar when clicking outside of it. Got this from:
+            //http://stackoverflow.com/questions/23764863/how-to-close-an-open-collapsed-navbar-when-clicking-outside-of-the-navbar-elemen
+            $(document).ready(function () {
+                $(document).click(function (event) {
+                    var clickover = $(event.target);
+                    var _opened = $(".navbar-collapse").hasClass("navbar-collapse collapse in");
+                    if (_opened === true && !clickover.hasClass("navbar-toggle")) {
+                        $("button.navbar-toggle").click();
+                    }
+                });
+            });
+
         </script>
     </body>
 </html>
