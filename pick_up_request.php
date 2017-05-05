@@ -61,7 +61,7 @@
         
         
         if (!$_POST["street_address"]) {
-            $error .= "- Your street address is required<br/>";
+            $error .= "- Your street address is required.<br/>";
         }
         else {
             $_POST["street_address"] = clean_input($_POST["street_address"]);
@@ -73,7 +73,7 @@
         
         
         if ($_POST["city"] === "Select City") {
-            $error .= "- Your city is required<br/>";
+            $error .= "- Your city is required.<br/>";
         }
         else {
             $_POST["city"] = clean_input($_POST["city"]);

@@ -91,22 +91,36 @@ body {
 }
 
 
+/* Might remove this... */
 .jumbotron {
     margin: 0px;
-    background-position: center;
-    background-repeat: no-repeat;
+    text-align: center;
+    background-position: center; /* Should I just put this for each of the sections? */
     background-size: cover;
-    
+    /*background-repeat: no-repeat;*/ /* don't need this because background-size: cover makes repeating not possible. */
+    /* These are already accomplished with section styling...nah, keep them here instead. */
     height: 100vh;
     width: 100vw;
 }
 
 
+/*
+section {
+    height: 100vh;
+    width: 100vw;
+    padding: 1px; <-- Gets rid of annoying top gap...hmm, I actually don't need it in this case...
+}
+*/
+
+
 #welcome {
     background-image: url(images/welcome.jpg);
+    /* Why were these here? Must haved mistakened welcome for welcome_content */
+    /*
     position: relative; 
     top: 50%;
     color: white;
+    */
 }
 
 
@@ -114,6 +128,19 @@ body {
     position: relative; 
     top: 45%;
     color: white;
+}
+
+
+#how_it_works {
+    background-image: url(images/how_it_works.jpg);
+    /*background-attachment: fixed;*/ /* kicker for parallax effect */
+}
+
+
+#how_it_works_content {
+    position: relative; 
+    top: 20%;
+    color: white;   
 }
 
 
@@ -130,20 +157,10 @@ body {
 }
 
 
-#how_it_works {
-    background-image: url(images/how_it_works.jpg);
-}
-
-
-#how_it_works_content {
-    position: relative; 
-    top: 20%;
-    color: white;   
-}
-
 
 #stay_clever {
     background-image: url(images/stay_clever.jpg);
+    /*background-attachment: fixed;*/ /* kicker for parallax effect */
 }
 
 

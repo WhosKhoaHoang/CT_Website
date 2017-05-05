@@ -1243,7 +1243,8 @@
         <!-- ============================== THE CONTENT BEGIN ==================================== -->
         
         <!-- SECTION 1 BEGIN -->
-        <div class="jumbotron" id="welcome" style="text-align: center;">
+        <!-- keep id="welcome" and not id="section1" for the sake of aesthetics in the addess bar -->
+        <section class="jumbotron" id="welcome">
             <div id="welcome_content">
                 <div class="container">
                     <div class="row">
@@ -1259,12 +1260,12 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
         <!-- SECTION 1 END -->
 
 
         <!-- SECTION 2 BEGIN -->
-        <div class="jumbotron" id="how_it_works" style="text-align: center;">
+        <section class="jumbotron" id="how_it_works">
             <div class="container" id="how_it_works_content">
                 
                 <div class="row">
@@ -1279,12 +1280,12 @@
                 </div>
 
             </div>
-        </div>
+        </section>
         <!-- SECTION 2 END -->
 
         
         <!-- SECTION 3 BEGIN -->
-        <div class="jumbotron" id="services" style="text-align: center;">
+        <section class="jumbotron" id="services">
             
             <div class="container" id="services_content">  
                 
@@ -1318,15 +1319,13 @@
                 
             </div>
         
-        
-        </div>
+        </section>
         <!-- SECTION 3 END -->
         
         
-        <!-- STAY CLEVER BEGIN -->
-        <div class="jumbotron" id="stay_clever" style="text-align: center;">
+        <!-- SECTION 4 BEGIN -->
+        <section class="jumbotron" id="stay_clever">
             <div class="container" id="stay_clever_content">
-                
                 
                 <div class="row" style="position: relative; top: 150px;">
                     <div class="row">
@@ -1395,8 +1394,8 @@
                 
             </div>
             
-        </div>
-        <!-- STAY CLEVER END -->
+        </section>
+        <!-- SECTION 4 END -->
 
         <!-- ============================== THE CONTENT END ============================== -->
         
@@ -1565,7 +1564,6 @@
             });
             
             
-            //TODO: CHANGE THESE TO SWITCH STATEMENTS!!
             function check_and_set_repair_prices(model, problem) {
                 if (model === "iMac 27'' Model" || model === "iMac 21.5'' Model") {
                     check_imac_repair_prices(model, problem);

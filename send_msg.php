@@ -33,14 +33,14 @@
         }
              
         if (!$_POST["contact_us_subject"]) {
-            $contact_us_error .= "- A subject is required<br/>";
+            $contact_us_error .= "- A subject is required.<br/>";
         }
         else {
             $_POST["contact_us_subject"] = clean_input($_POST["contact_us_subject"]);
         }
                  
         if (!$_POST["contact_us_msg"]) {
-            $contact_us_error .= "- Your message is required<br/>";
+            $contact_us_error .= "- Your message is required.<br/>";
         }
         else {
             $_POST["contact_us_msg"] = clean_input($_POST["contact_us_msg"]);
