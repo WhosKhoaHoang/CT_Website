@@ -20,6 +20,7 @@
 
 body {
     font-family: "San Francisco", "PT Sans", sans-serif;
+    background-color: black;
 }
 
 #test {
@@ -119,6 +120,7 @@ body {
     background-size: cover;
     /*background-repeat: no-repeat;*/ /* don't need this because background-size: cover makes repeating not possible. */
     /* These are already accomplished with section styling...nah, keep them here instead. */
+    /*height: 800px;*/ /* Need to say something like this to prevent resizing on vertical viewport resize? */
     height: 100vh;
     width: 100vw;
 }
@@ -153,7 +155,7 @@ section {
 
 #how_it_works {
     background-image: url(images/how_it_works.jpg);
-    /*background-attachment: fixed;*/ /* kicker for parallax effect */
+    background-attachment: fixed; /* kicker for parallax effect */
 }
 
 
@@ -180,7 +182,7 @@ section {
 
 #stay_clever {
     background-image: url(images/stay_clever.jpg);
-    /*background-attachment: fixed;*/ /* kicker for parallax effect */
+    background-attachment: fixed; /* kicker for parallax effect */
 }
 
 
@@ -587,13 +589,41 @@ li.nav-item.active {
 }
 
 
+.vbottom {
+    position: relative;
+    top: 100%;
+    transform: translateY(-100%);
+}
 
-/* MEDIA QUERIES AT THE END!!! */
 
-/* Large desktops and laptops */
+/* ==================================== MEDIA QUERIES AT THE END!!! ==================================== */
+
+/* Large desktops and laptops */  /* I wonder what the heights are on these sizes? */
 @media (min-width: 1200px) {
     li > .pick_up_request_btn {
         display: none;
+    }
+    
+    /* Note how jumbotrons, by default, start at 100% of whatever the width/height is */
+    .jumbotron {
+        /* To prevent shrinkage on vertical resizes: */
+        max-height: 870px;
+        /* Here you're saying the height can't go any greater than than 870 px */
+        min-height: 800px; 
+        /* Here you're sayign the height can't go any smaller than 800 px */
+    }
+    
+    
+    #gonz_quote {
+        margin-top: 20%;
+    }
+    
+    #gonz_quote > p{
+        font-size: 20px;
+    }
+    
+    #soc_media_and_store_info {
+        margin-top: 5%;
     }
 }
 
@@ -603,50 +633,168 @@ li.nav-item.active {
     li > .pick_up_request_btn {
         display: none;
     }
+    
+    /* Note how jumbotrons, by default, start at 100% of whatever the width/height is */
+    .jumbotron {
+        /* To prevent shrinkage on vertical resizes: */
+        max-height: 870px;
+        min-height: 800px; 
+    }
+    
+    
+    #how_it_works {
+        background-attachment: scroll; /* Begin stopping parallax effect */
+    }
+    
+    #stay_clever {
+        background-attachment: scroll; /* Begin stopping parallax effect */
+    }
+    
+    
+    #gonz_quote {
+        margin-top: 25%;
+    }
+    
+    #gonz_quote > p{
+        font-size: 20px;
+    }
+    
+    #soc_media_and_store_info {
+        margin-top: 5%;
+    }
 }
 
 
 /* Portrait tablets and small desktops */
 @media (min-width: 768px) and (max-width: 991px) {
-    #soc_media_and_store_info {
-        margin-top: 0px;
-    }
-    
     li > .pick_up_request_btn {
         display: none;
+    }
+    
+    
+    .jumbotron {
+        /* To prevent shrinkage on vertical resizes: */
+        max-height: 870px;
+        min-height: 800px; 
+    }
+    
+    
+    #move_up {
+        /*left: 45%;*/
+        left: 100%; /* Begin to hide arrow */
+    }
+    
+    
+    #move_down {
+        /*right: 42%;*/
+        right: 100% /* Begin to hide arrow */
+    }
+
+    #how_it_works {
+        background-attachment: scroll; /* Stop parallax effect */
+    }
+    
+    #stay_clever {
+        background-attachment: scroll; /* Stop parallax effect */
+    }
+    
+    
+    #gonz_quote {
+        margin-top: 20%;
+    }
+    
+    
+    #gonz_quote > p{
+        font-size: 20px;
+    }
+    
+    #soc_media_and_store_info {
+        margin-top: 1%;
     }
 }
 
 
-/* Landscape phones and portrait tablets */
+/* Landscape phones and portrait tablets */ /* This is when the hamburger appears */
 @media (max-width: 767px) {
     .navbar-brand {
         margin-bottom: 5px;
     }
     
+    
     li > .pick_up_request_btn {
         display: inline-block;
     }
     
+    
     div > .pick_up_request_btn {
         display: none;
     }
+
     
-    #move_up {
-        left: 45%;
+    .how_it_works_btn {
+        font-size: 120%;
     }
     
+    
+    #gonz_quote {
+        font-size: 15px;
+    }
+    
+    
+    #move_up {
+        /*left: 45%;*/
+        left: 100%; /* Hide arrow */
+    }
+    
+    
     #move_down {
-        right: 42%;
+        /*right: 42%;*/
+        right: 100% /* Hide arrow */
+    }
+    
+    
+    .jumbotron {
+        height: 500px; /* Fix the height */
+    }
+    
+
+    
+    #how_it_works {
+        background-attachment: scroll; /* Stop parallax effect */
+    }
+    
+    
+    #stay_clever {
+        background-attachment: scroll; /* Stop parallax effect */
+    }
+    
+    #gonz_quote {
+        margin-top: 0%;
+    }
+    
+    
+    #gonz_quote > p{
+        font-size: 13px;
     }
     
     #soc_media_and_store_info {
-        margin-top: 0px;
+        font-size: 13px;
+        margin-top: -1%;
+    }
+    
+    #contact_us_btn {
+        font-size: 11px;
     }
 }
 
 
 /* Portrait phones and smaller */
 @media (max-width: 480px) {
-
+    #gonz_quote {
+        margin-top: -5%;
+    }
+    
+    #soc_media_and_store_info {
+        margin-top: -5%;
+    }
 }
