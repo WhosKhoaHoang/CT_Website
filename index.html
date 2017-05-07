@@ -27,16 +27,16 @@
                 <div class="navbar-header">
                     
                     <!--This "hamburger" button shows up and contains the navbar links once the viewport has been adequately shrinked -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsed_menu" aria-expanded="false">
+                    <button type="button" class="navbar-toggle collapsed pull-left" data-toggle="collapse" data-target="#collapsed_menu" aria-expanded="false">
                         <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span> <!-- Each icon-bar is a line for the hamburger -->
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
+                        <span class="icon-bar top-bar"></span> <!-- Each icon-bar is a line for the hamburger -->
+                        <span class="icon-bar middle-bar"></span>
+                        <span class="icon-bar bottom-bar"></span>
                     </button>
                     
                     <!-- LOGO BEGIN -->
                     <a class="navbar-brand" href="#welcome">
-                        <img src="http://localhost/clevertech/images/navbar_logo.png" width="50" height="50" alt="" style="display:inline">
+                        <img id="brand_logo" src="http://localhost/clevertech/images/navbar_logo2.png" alt="">
                     </a>
                     <!-- LOGO END -->  
                 </div>
@@ -51,18 +51,18 @@
                         <li><button class="btn pick_up_request_btn" data-toggle="modal" data-target="#pick_up_request_modal">Request Pick-Up</button></li>
                     </ul>
                     
-                    <!-- START REPAIR BUTTON BEGIN -->
+                    <!-- PICK-UP REQUEST BUTTON BEGIN -->
                     <div class="navbar-right" style="padding: 10px;">
                         <button class="btn pick_up_request_btn" data-toggle="modal" data-target="#pick_up_request_modal">Request Pick-Up</button>
                     </div>
-                    
+
                     <!-- Keep this here for testing start_repair_btn. Weird how no hover behavior occurs when you set start_repair_btn as the id...-->
                     <!--
                     <div class="navbar-right" style="padding-top: 10px; padding: 10px; display:block;">
                         <a href="#" id="start_repair_btn" class="btn" data-toggle="modal" data-target="#pick_up_request_modal">Request Pick-Up</a>
                     </div>
                     -->
-                    <!-- START REPAIR BUTTON END -->
+                    <!-- PICK-UP REQUEST BUTTON BUTTON END -->
                 </div>
 
             </div>

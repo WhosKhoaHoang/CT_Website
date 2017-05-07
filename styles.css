@@ -30,7 +30,8 @@ body {
 .navbar {
     font-size: 20px;
     padding-top: 10px;
-    background-color: rgba(0,0,0,0.4);;
+    /*background-color: rgba(0,0,0,0.4);*/
+    background-color: rgba(0,0,0,0.7); /* YO! THIS IS A PRETTY DOPE CHANGE! */
 }
 
 
@@ -54,6 +55,13 @@ body {
     cursor: pointer;
     font-size: 20px;
     padding: 0px;
+}
+
+
+#brand_logo {
+    display: inline;
+    width: 50px;
+    height: 50px;
 }
 
 
@@ -89,6 +97,63 @@ body {
 .pick_up_request_btn:focus {
     color: white;
 }
+
+
+/* For hamburger to X animation BEGIN */
+/* Thanks to https://julienmelissas.com/animated-x-icon-for-the-bootstrap-navbar-toggle/*/
+/* Don’t forget to add the -ms-transform, -ms-transform-origin, -webkit-transform, and 
+-webkit-transform-origin properties to your CSS to get this to work on iDevices and others!!! */
+.navbar-toggle {
+    border: none;
+    background: transparent !important;
+}
+
+.navbar-toggle:hover {
+    background: transparent !important;
+}
+
+.navbar-toggle .icon-bar {
+    width: 22px;
+    transition: all 0.2s;
+}
+
+.navbar-toggle .top-bar {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform-origin: 10% 10%;
+    -webkit-transform-origin: 10% 10%;
+    -ms-transform-origin: 10% 10%;
+}
+
+.navbar-toggle .middle-bar {
+    opacity: 0;
+}
+
+.navbar-toggle .bottom-bar {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform-origin: 10% 90%;
+    -webkit-transform-origin: 10% 90%;
+    -ms-transform-origin: 10% 90%;
+}
+
+.navbar-toggle.collapsed .top-bar {
+    transform: rotate(0);
+    -webkit-transform: rotate(0);
+    -ms-transform: rotate(0);
+}
+.navbar-toggle.collapsed .middle-bar {
+    opacity: 1;
+}
+.navbar-toggle.collapsed .bottom-bar {
+    transform: rotate(0);
+    -webkit-transform: rotate(0);
+    -ms-transform: rotate(0);
+}
+/* For hamburger to X animation END */
+
 
 
 /* Keep here for testing*/
@@ -335,7 +400,9 @@ li.nav-item.active {
 @media screen and (-webkit-min-device-pixel-ratio:0) {
     @font-face {
         font-family:si;
-        src: url(socicon-v1.5/socicon.svg) format(svg);
+        /*src: url(socicon-v1.5/socicon.svg) format(svg);*/ 
+        /* ^Perhaps this was causing the social media buttons to mess up for firefox on the live server? */
+        src: url(soc_media_icons/socicon.svg) format(svg);
     }
 }
 
@@ -716,8 +783,24 @@ li.nav-item.active {
 
 /* Landscape phones and portrait tablets */ /* This is when the hamburger appears */
 @media (max-width: 767px) {
+    .navbar {
+        /*background-color: #2a2a2a;*/
+        background-color: rgba(0,0,0,0.9); /* YO! THIS IS A PRETTY DOPE CHANGE! */
+        padding: 0px;
+    }
+    
+    
+    /* Inspired by: http://stackoverflow.com/questions/23400234/centering-brand-logo-in-bootstrap-3-navbar */
     .navbar-brand {
-        margin-bottom: 5px;
+        position: absolute;
+        left: 46%;
+    }
+    
+    
+    #brand_logo {
+        width: 36px;
+        height: 36px;
+        margin-top: 20%;
     }
     
     
