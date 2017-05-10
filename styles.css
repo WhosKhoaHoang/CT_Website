@@ -374,6 +374,73 @@ li.nav-item.active {
 }
 
 
+#msg_info_icon {
+    /*background: url("images/down.png");*/
+    margin: 0;
+    position: fixed; /* Makes it so the arrow stays where it is. */
+    bottom: 10px;
+    right: 10px;
+    width: 55px;
+    height: 55px;
+    z-index: 100;
+    display: none;
+    text-decoration: none;
+    color: #ffffff; /* Affects color of the envelope */
+    /*background-color: #9ED254;*/
+    /*background-color: black;*/
+    background-color: rgba(0,0,0,0.7);
+    border-radius: 50%;
+}
+
+
+#msg_info_icon span {
+    position: relative; 
+    left: 23%; 
+    top: 23%; 
+    font-size: 30px;
+}
+
+
+#speech_bubble {
+    position: relative; 
+    left: 23%; 
+    top: 23%; 
+}
+
+
+#msg_info_modal .modal-dialog {
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    margin: 0px;  
+    
+}
+
+
+#msg_info_modal_dialog {
+    /*height: 200px;*/
+    height: 150px;
+    /*width: 250px;*/
+    width: 200px;
+}
+
+
+#msg_info_modal_body p {
+    margin:0px; 
+    text-align: center;
+    font-weight: bold;
+}
+
+
+#envelope:hover {
+    cursor: pointer;
+}
+
+
+.modal-color-none .modal-backdrop {
+    opacity: 0;
+}
+
 
 
 #soc_media_and_store_info {
@@ -580,13 +647,14 @@ li.nav-item.active {
 }
 
 
-#start_a_repair_dialog, #terms_and_cond_dialog {
+#pick_up_request_dialog, #terms_and_cond_dialog {
     overflow-y: initial !important;
 }
 
 
 #pick_up_request_body {
-    height: 700px; /* Fix height so scrollbar will appear */
+    /*height: 700px;*/ /* Fix height so scrollbar will appear */
+    height: 600px; /* Fix height so scrollbar will appear */
     overflow-y: auto;
     font-size: 15px; 
     padding: 35px;
@@ -656,11 +724,11 @@ li.nav-item.active {
 }
 
 
-.vbottom {
-    position: relative;
-    top: 100%;
-    transform: translateY(-100%);
+/*
+#contact_us_modal_dialog {
+    height: 42vw;
 }
+*/
 
 
 /* ==================================== MEDIA QUERIES AT THE END!!! ==================================== */
@@ -668,6 +736,10 @@ li.nav-item.active {
 /* Large desktops and laptops */  /* I wonder what the heights are on these sizes? */
 @media (min-width: 1200px) {
     li > .pick_up_request_btn {
+        display: none;
+    }
+    
+    #pick_up_request_inner_submit {
         display: none;
     }
     
@@ -698,6 +770,10 @@ li.nav-item.active {
 /* Landscape tablets and medium desktops */
 @media (min-width: 992px) and (max-width: 1199px) {
     li > .pick_up_request_btn {
+        display: none;
+    }
+    
+    #pick_up_request_inner_submit {
         display: none;
     }
     
@@ -738,6 +814,9 @@ li.nav-item.active {
         display: none;
     }
     
+    #pick_up_request_inner_submit {
+        display: none;
+    }
     
     .jumbotron {
         /* To prevent shrinkage on vertical resizes: */
@@ -797,11 +876,41 @@ li.nav-item.active {
     }
     
     
+    /* Divider between nav-items */
+    .divider {
+        height: 1px;
+        width: 70%;
+        /*margin: 9px 0;*/
+        margin: 0 auto;
+        overflow: hidden;
+        background-color: #3f3f3f;
+    }
+
+    
+    /* Adjust space at top and bottom of collapsed menu */
+    .navbar-nav {
+        margin-top: 10px;
+        margin-bottom: 15px;
+    }
+    
+    
+    #pick_up_request_body {
+        height: 450px;
+        /*height: 100vh;*/
+    }
+    
+    
+    #request_pick_up_divider {
+        background-color: gray;
+    }
+    
+    
     #brand_logo {
         width: 36px;
         height: 36px;
         margin-top: 20%;
     }
+    
     
     
     li > .pick_up_request_btn {
@@ -813,6 +922,21 @@ li.nav-item.active {
         display: none;
     }
 
+    
+    #pick_up_request_inner_submit {
+        display: inline-block;
+    }
+    
+    
+    #pick_up_request_footer {
+        display: none;
+    }
+    
+    
+    #msg_info_icon {
+        background-color: rgba(0,0,0,0.9);
+    }
+    
     
     .how_it_works_btn {
         font-size: 120%;
