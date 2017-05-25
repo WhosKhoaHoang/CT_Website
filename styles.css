@@ -450,37 +450,15 @@ li.nav-item.active {
 }
 
 
-/*Code from Perfect Icons BEGIN*/
-
-@font-face {
-    font-family: 'si';
-    /* icon files weren't being accessed when they were in the socicon-v1.5 folder... */
-    src: url('soc_media_icons/socicon.eot');
-    src: url('soc_media_icons/socicon.eot?#iefix') format('embedded-opentype'),
-         url('soc_media_icons/socicon.woff') format('woff'),
-         url('soc_media_icons/socicon.ttf') format('truetype'),
-         url('soc_media_icons/socicon.svg#icomoonregular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-
-
-@media screen and (-webkit-min-device-pixel-ratio:0) {
-    @font-face {
-        font-family:si;
-        /*src: url(socicon-v1.5/socicon.svg) format(svg);*/ 
-        /* ^Perhaps this was causing the social media buttons to mess up for firefox on the live server? */
-        src: url('soc_media_icons/socicon.svg') format(svg);
-    }
-}
+/* Got rid of Perfect Icons code... */
 
 
 .soc {
     overflow:hidden;
-    margin:0; padding:0;
+    margin:0; 
+    padding:0;
     list-style:none;
 }
-
 
 .soc li {
     display:inline-block;
@@ -488,114 +466,63 @@ li.nav-item.active {
     zoom:1;
 }
 
+/*
+.fa {
+    padding: 6px;
+    font-size: 14px;
+    width: 15px;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px 2px;
+    border-radius: 50%
+}
+*/
 
 
-.soc li a {
-    font-family:si!important;
-    font-style:normal;
-    font-weight:400;
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
-    -webkit-box-sizing:border-box;
-    -moz-box-sizing:border-box;
-    -ms-box-sizing:border-box;
-    -o-box-sizing:border-box;
-    box-sizing:border-box;
-
-    -o-transition:.1s;
-    -ms-transition:.1s;
-    -moz-transition:.1s;
-    -webkit-transition:.1s;
-    transition:.1s;
-    -webkit-transition-property: transform;
-    transition-property: transform;
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-
-    overflow:hidden;
-    text-decoration:none;
-    text-align:center;
-    display:block;
-    position: relative;
-    z-index: 1;
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
+.fa {
+    padding: 6px;
     font-size: 15px;
-    -webkit-border-radius: 82px;
-    -moz-border-radius: 82px;
-    border-radius: 82px;
-    margin-right: 10px;
-    color: #ffffff;
-    background-color: none;
+    width: 30px;
+    text-align: center;
+    margin: 5px 2px;
+    border-radius: 50%
 }
 
-
-.soc-icon-last{
-    margin:0 !important;
+.fa:hover {
+    opacity: 0.7;
+    text-decoration: none;
+    color: white;
 }
 
-
-.soc-facebook {
-    background-color: #3e5b98;
-}
-.soc-facebook:before {
-    content:'\e041';
-}
-.soc-instagram {
-    background-color: #405de6;
-}
-.soc-instagram:before {
-    content:'\e057';
-}
-.soc-tumblr {
-    background-color: #45556c;
-}
-.soc-tumblr:before {
-    content:'\e059';
-}
-.soc-twitter {
-    background-color: #4da7de;
-}
-.soc-twitter:before {
-    content:'\e040';
-}
-.soc-youtube {
-    background-color: #e02a20;
-}
-.soc-youtube:before {
-    content:'\e051';
-}
-.soc-yelp {
-    background-color: #c83218;
-}
-.soc-yelp:before {
-    content:'\e047';
+.fa-facebook {
+  background: #3B5998;
+  color: white;
 }
 
-.soc-facebook:hover {
-    background-color: #526fac;
-}
-.soc-instagram:hover {
-    background-color: #5471fa;
-}
-.soc-tumblr:hover {
-    background-color: #596980;
-}
-.soc-twitter:hover {
-    background-color: #61bbf2;
-}
-.soc-youtube:hover {
-    background-color: #f43e34;
-}
-.soc-yelp:hover {
-    background-color: #dc462c;
+.fa-instagram {
+  background: #125688;
+  color: white;
 }
 
+.fa-tumblr {
+  background: #2c4762;
+  color: white;
+}
 
-/*Code from Perfect Icons END*/
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+}
 
+.fa-youtube {
+  background: #bb0000;
+  color: white;
+}
 
+.fa-yelp {
+  background: #D32323;
+  color: white;
+}
 
 
 /* CSS FOR CENTERING MODALS BEGIN */
