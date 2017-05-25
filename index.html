@@ -1468,6 +1468,9 @@
 
                             <div class="row">
                                 <div class="col-lg-12">
+                                    
+                                    <!-- 5/25 EDIT HERE!!! -->
+                                    
                                     <ul class="soc">
                                         <li><a target="_blank" class="soc-facebook" href="https://www.facebook.com/iclevertech/"></a></li> 
                                         <li><a target="_blank" class="soc-instagram" href="https://www.instagram.com/iclevertech/"></a></li> 
@@ -1476,6 +1479,8 @@
                                         <li><a target="_blank" class="soc-youtube" href="https://www.youtube.com/channel/UCovKD5sxU6jku8OTAo2NN7Q"></a></li> 
                                         <li><a target="_blank" class="soc-yelp" href="https://www.yelp.com/biz/clevertech-san-jose-6"></a></li>
                                     </ul>
+
+                                    <!-- 5/24 EDIT HERE!!! -->
                                 </div>
                             </div>
                             
@@ -1708,6 +1713,7 @@
             }
             
             
+            // ================ SET PRICE BEGIN ================
             function check_imac_repair_prices(model, problem) {
                 switch(problem) {
                     case "Graphics Card":
@@ -1834,7 +1840,7 @@
                         set_ipad_repair_prices(model, "$91", "$91", "$91", "$91");  
                 }
             }
-            
+            // ================ SET PRICES END ================
             
             function set_imac_repair_prices(model, imac27_price, imac215_price) {
                 if (model === "iMac 27'' Model") {
