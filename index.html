@@ -3,19 +3,20 @@
     <head>
         <!-- Required meta tags always come first -->
         <meta charset="utf-8">
+
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <!--[if lt IE 9]> <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script> <![endif]-->
         <title>CleverTech</title>
         
         <!-- Include this link on every HTML page of the website! -->
-        <link rel="shortcut icon" type="image/x-icon" href="http://localhost/clevertech/favicon.ico" />
+        <link rel="shortcut icon" type="image/x-icon" href="http://www.iclevertech.com/favicon.ico" />
         <!-- import Bootstrap CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <!-- Add icon library from Font Awesome -->
+        <!-- Add icon library from Perfect Icons-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <!-- import your own styles -->
-        <link rel="stylesheet" href="http://localhost/clevertech/styles.css" />
+        <link rel="stylesheet" href="http://www.iclevertech.com/styles.css" />
         <!--<link rel="stylesheet" href="//fonts.googleapis.com/css?family=PT+Sans" /> No to this for now... -->        
     </head>
     
@@ -162,6 +163,10 @@
                                                     <option>San Jose</option>
                                                     <option>Santa Clara</option>
                                                     <option>Milpitas</option>
+                                                    <option>Sunnyvale</option>
+                                                    <option>Mountain View</option>
+                                                    <option>Palo Alto</option>
+                                                    <option>Menlo Park</option>
                                                 </select>
                                             </div>           
                                             <div class="col-xs-6">
@@ -193,19 +198,19 @@
                                                         <select class="form-control" id="model_type" name="model_type[]" >
                                                             <!--<option selected disabled>Select Model Type</option>-->
                                                             <option style="display:none;" selected>Select Model Type</option>
-                                                            <option>iMac 27'' Model</option>
-                                                            <option>iMac 21.5'' Model</option>
+                                                            <option>27''</option>
+                                                            <option>21.5''</option>
                                                             <option>Macbook Air</option>
                                                             <option>Macbook Pro (non-Retina)</option>
                                                             <option>Macbook Pro (Retina)</option>
-                                                            <option>iPhone 7 Plus / 7</option>
-                                                            <option>iPhone 6s Plus / 6s</option>
-                                                            <option>iPhone 6 Plus / 6</option>
-                                                            <option>iPhone 5 SE/5s/5c/5</option>
-                                                            <option>iPad 2/3/4/Air</option>
-                                                            <option>iPad Air 2</option>
-                                                            <option>iPad Mini 1/2/3</option>
-                                                            <option>iPad Mini 4</option>
+                                                            <option>7 Plus / 7</option>
+                                                            <option>6s Plus / 6s</option>
+                                                            <option>6 Plus / 6</option>
+                                                            <option>5 SE/5s/5c/5</option>
+                                                            <option>2/3/4/Air</option>
+                                                            <option>Air 2</option>
+                                                            <option>Mini 1/2/3</option>
+                                                            <option>Mini 4</option>
                                                         </select>
                                                         
                                                     </div>
@@ -289,7 +294,7 @@
 
                                         <p>Submitting this request indicates that you have read and understand the TERMS &amp; CONDITIONS and agree to them; you agree to pay in full for the service provided.</p>
 
-                                        <p>Please have the machine ready for pickup when you submit this service request. Pickup could happen anytime between now and end of following business day. If the machine is not easily accessible at the front desk, during all business hours, please include instructions for the driver in the Other Info text box. If possible, please leave with front desk if you will not be available during lunch/meeting, etc. If your offices will be closed for any reason, please let us know. Any instructions/tips for the driver to access your building or parking, are greatly appreciated. Thank you for your cooperation.</p>
+                                        <p>Please have the machine ready for pickup when you submit this service request. Pick-up requests submitted before 10:30 am are usually picked up same day. If submitted after 10:30 am, expect a phone call to schedule a next day pick-up. If the machine is not easily accessible at the front desk, during all business hours, please include instructions for the driver in the "Other Info" text box. Any instructions/tips for the driver to access your building or parking, are greatly appreciated. Thank you for your cooperation.</p>
                                         
                                         <p class="required">
                                             <input type="radio" id="hidden_agree_to_terms" class="agree_to_terms" name="agree_to_terms" value="" style="display: none;" checked>
@@ -378,7 +383,7 @@
                                         <input class="device_select" type="radio" name="imac_select_group" value="1" id="imac_select1" />
                                         <label for="imac_select1" data-value="imac">
                                             <img src="images/imac_black_sharp.png" style="width: 100%; height: 100%;">
-                                            <p class="device_model">iMac 27'' Model</p>
+                                            <p class="device_model">27''</p>
                                         </label>
                                     </div>
                                     
@@ -386,7 +391,7 @@
                                         <input class="device_select" type="radio" name="imac_select_group" value="2" id="imac_select2" />
                                         <label for="imac_select2" data-value="imac">
                                             <img src="images/imac_black21-5_sharp.png" style="width: 100%; height: 100%;">
-                                            <p class="device_model">iMac 21.5'' Model</p>
+                                            <p class="device_model">21.5''</p>
                                         </label>
                                     </div>
                                     
@@ -404,15 +409,15 @@
                                     <div class="row">
                                         <div class="col-xs-4">
                                             <input class="problem_select" type="radio" name="imac_problem_select_group" id="imac_problem_select1" />
-                                            <label for="imac_problem_select1" class="problem_item btn btn-block" data-value="imac">Graphics Card</label>
+                                            <label for="imac_problem_select1" class="problem_item btn btn-block" data-value="imac">Video Card</label>
                                         </div>
                                         <div class="col-xs-4">
                                             <input class="problem_select" type="radio" name="imac_problem_select_group" id="imac_problem_select2" />
-                                            <label for="imac_problem_select2" class="problem_item btn btn-block" data-value="imac">SSD Upgrade</label>
+                                            <label for="imac_problem_select2" class="problem_item btn btn-block" data-value="imac">SSD</label>
                                         </div>
                                         <div class="col-xs-4">
                                             <input class="problem_select" type="radio" name="imac_problem_select_group" id="imac_problem_select3" />
-                                            <label for="imac_problem_select3" class="problem_item btn btn-block" data-value="imac">LCD Replacement</label>
+                                            <label for="imac_problem_select3" class="problem_item btn btn-block" data-value="imac">LCD</label>
                                         </div>
                                     </div>
  
@@ -424,7 +429,7 @@
                                         </div>
                                         <div class="col-xs-4">
                                             <input class="problem_select" type="radio" name="imac_problem_select_group" id="imac_problem_select5" />
-                                            <label for="imac_problem_select5" class="problem_item btn btn-block" data-value="imac">Optical Drive</label>
+                                            <label for="imac_problem_select5" class="problem_item btn btn-block" data-value="imac">DVD Drive</label>
                                         </div>
                                         <div class="col-xs-4">
                                             <input class="problem_select" type="radio" name="imac_problem_select_group" id="imac_problem_select6" />
@@ -443,7 +448,7 @@
                                         </div>
                                         <div class="col-xs-4">
                                             <input class="problem_select" type="radio" name="imac_problem_select_group" id="imac_problem_select9" />
-                                            <label for="imac_problem_select9" class="problem_item btn btn-block" data-value="imac">Virus Removal</label>
+                                            <label for="imac_problem_select9" class="problem_item btn btn-block" data-value="imac">Virus</label>
                                         </div>
                                     </div>
                                     
@@ -534,15 +539,15 @@
                                     <div class="row">
                                         <div class="col-xs-4">
                                             <input class="problem_select" type="radio" name="macbook_problem_select_group" id="macbook_problem_select1" />
-                                            <label for="macbook_problem_select1" class="problem_item btn btn-block" data-value="macbook">Graphics Card</label>
+                                            <label for="macbook_problem_select1" class="problem_item btn btn-block" data-value="macbook">Video Card</label>
                                         </div>
                                         <div class="col-xs-4">
                                             <input class="problem_select" type="radio" name="macbook_problem_select_group" id="macbook_problem_select2" />
-                                            <label for="macbook_problem_select2" class="problem_item btn btn-block" data-value="macbook">SSD Upgrade</label>
+                                            <label for="macbook_problem_select2" class="problem_item btn btn-block" data-value="macbook">SSD</label>
                                         </div>
                                         <div class="col-xs-4">
                                             <input class="problem_select" type="radio" name="macbook_problem_select_group" id="macbook_problem_select3" />
-                                            <label for="macbook_problem_select3" class="problem_item btn btn-block" data-value="macbook">LCD Replacement</label>
+                                            <label for="macbook_problem_select3" class="problem_item btn btn-block" data-value="macbook">LCD</label>
                                         </div>
                                     </div>
 
@@ -572,7 +577,7 @@
                                         </div>
                                         <div class="col-xs-4">
                                             <input class="problem_select" type="radio" name="macbook_problem_select_group" id="macbook_problem_select9" />
-                                            <label for="macbook_problem_select9" class="problem_item btn btn-block" data-value="macbook">Virus Removal</label>
+                                            <label for="macbook_problem_select9" class="problem_item btn btn-block" data-value="macbook">Virus</label>
                                         </div>
                                     </div>
                                 </div>
@@ -630,14 +635,14 @@
                                         <input class="device_select" type="radio" name="iphone_select_group" value="1" id="iphone_select1" />
                                         <label for="iphone_select1" data-value="iphone">
                                             <img src="images/iphone_duo.png" style="width: 100%; height: 100%;">
-                                            <p class="device_model">iPhone 7 Plus / 7</p>
+                                            <p class="device_model">7 Plus / 7</p>
                                         </label>
                                     </div>                                    
                                     <div class="col-xs-3" style="text-align: center;">
                                         <input class="device_select" type="radio" name="iphone_select_group" value="2" id="iphone_select2" />
                                         <label for="iphone_select2" data-value="iphone">
                                             <img src="images/iphone_duo.png" style="width: 100%; height: 100%;">
-                                            <p class="device_model">iPhone 6s Plus / 6s</p>
+                                            <p class="device_model">6s Plus / 6s</p>
                                         </label>
                                     </div>
                                     
@@ -645,7 +650,7 @@
                                         <input class="device_select" type="radio" name="iphone_select_group" value="3" id="iphone_select3" />
                                         <label for="iphone_select3" data-value="iphone">
                                             <img src="images/iphone_duo.png" style="width: 100%; height: 100%;">
-                                            <p class="device_model">iPhone 6 Plus / 6</p>
+                                            <p class="device_model">6 Plus / 6</p>
                                         </label>
                                     </div>
                                     
@@ -653,7 +658,7 @@
                                         <input class="device_select" type="radio" name="iphone_select_group" value="4" id="iphone_select4" />
                                         <label for="iphone_select4" data-value="iphone">
                                             <img src="images/iphone_alone.png" style="width: 100%; height: 100%;">
-                                            <p class="device_model">iPhone 5 SE/5s/5c/5</p>
+                                            <p class="device_model">5 SE/5s/5c/5</p>
                                         </label>
                                     </div>                                
                                 </div>
@@ -686,7 +691,7 @@
                                         </div>
                                         <div class="col-xs-4">
                                             <input class="problem_select" type="radio" name="iphone_problem_select_group" id="iphone_problem_select5" />
-                                            <label for="iphone_problem_select5" class="problem_item btn btn-block" data-value="iphone">Headphone Jack</label>
+                                            <label for="iphone_problem_select5" class="problem_item btn btn-block" data-value="iphone">Headphone</label>
                                         </div>
                                         <div class="col-xs-4">
                                             <input class="problem_select" type="radio" name="iphone_problem_select_group" id="iphone_problem_select6" />
@@ -701,7 +706,7 @@
                                         </div>
                                         <div class="col-xs-4">
                                             <input class="problem_select" type="radio" name="iphone_problem_select_group" id="iphone_problem_select8" />
-                                            <label for="iphone_problem_select8" class="problem_item btn btn-block" data-value="iphone">Charging Port</label>
+                                            <label for="iphone_problem_select8" class="problem_item btn btn-block" data-value="iphone">Charge Port</label>
                                         </div>
                                         <div class="col-xs-4">
                                             <input class="problem_select" type="radio" name="iphone_problem_select_group" id="iphone_problem_select9" />
@@ -764,14 +769,14 @@
                                         <input class="device_select" type="radio" name="ipad_select_group" value="1" id="ipad_select1" />
                                         <label for="ipad_select1" data-value="ipad">
                                             <img src="images/ipad_air.png" style="width: 100%; height: 100%;">
-                                            <p class="device_model">iPad 2/3/4/Air</p>
+                                            <p class="device_model">2/3/4/Air</p>
                                         </label>
                                     </div>                                    
                                     <div class="col-xs-3" style="text-align: center;">
                                         <input class="device_select" type="radio" name="ipad_select_group" value="2" id="ipad_select2" />
                                         <label for="ipad_select2" data-value="ipad">
                                             <img src="images/ipad_air.png" style="width: 100%; height: 100%;">
-                                            <p class="device_model">iPad Air 2</p>
+                                            <p class="device_model">Air 2</p>
                                         </label>
                                     </div>
                                     
@@ -779,7 +784,7 @@
                                         <input class="device_select" type="radio" name="ipad_select_group" value="3" id="ipad_select3" />
                                         <label for="ipad_select3" data-value="ipad">
                                             <img src="images/ipad_mini.png" style="width: 100%; height: 100%;">
-                                            <p class="device_model">iPad Mini 1/2/3</p>
+                                            <p class="device_model">Mini 1/2/3</p>
                                         </label>
                                     </div>
                                     
@@ -787,7 +792,7 @@
                                         <input class="device_select" type="radio" name="ipad_select_group" value="4" id="ipad_select4" />
                                         <label for="ipad_select4" data-value="ipad">
                                             <img src="images/ipad_mini.png" style="width: 100%; height: 100%;">
-                                            <p class="device_model">iPad Mini 4</p>
+                                            <p class="device_model">Mini 4</p>
                                         </label>
                                     </div>                                
                                 </div>
@@ -820,7 +825,7 @@
                                         </div>
                                         <div class="col-xs-4">
                                             <input class="problem_select" type="radio" name="ipad_problem_select_group" id="ipad_problem_select5" />
-                                            <label for="ipad_problem_select5" class="problem_item btn btn-block" data-value="ipad">Headphone Jack</label>
+                                            <label for="ipad_problem_select5" class="problem_item btn btn-block" data-value="ipad">Headphone</label>
                                         </div>
                                         <div class="col-xs-4">
                                             <input class="problem_select" type="radio" name="ipad_problem_select_group" id="ipad_problem_select6" />
@@ -831,11 +836,11 @@
                                     <div class="row">
                                         <div class="col-xs-4">
                                             <input class="problem_select" type="radio" name="ipad_problem_select_group" id="ipad_problem_select7" />
-                                            <label for="ipad_problem_select7" class="problem_item btn btn-block" data-value="ipad">LCD Replacement</label>
+                                            <label for="ipad_problem_select7" class="problem_item btn btn-block" data-value="ipad">LCD</label>
                                         </div>
                                         <div class="col-xs-4">
                                             <input class="problem_select" type="radio" name="ipad_problem_select_group" id="ipad_problem_select8" />
-                                            <label for="ipad_problem_select8" class="problem_item btn btn-block" data-value="ipad">Charging Port</label>
+                                            <label for="ipad_problem_select8" class="problem_item btn btn-block" data-value="ipad">Charge Port</label>
                                         </div>
                                         <div class="col-xs-4">
                                             <input class="problem_select" type="radio" name="ipad_problem_select_group" id="ipad_problem_select9" />
@@ -898,41 +903,6 @@
                     <div class="modal-dialog" id="contact_us_modal_dialog">
                         <div class="modal-content">
                             
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                
-                                <form id="contact_form" style="padding: 20px;">
-
-                                    <div class="form-group" style="text-align: center;">
-                                        <h3>Send Us A Message!</h3>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label class="required" for="contact_us_name">Name</label>
-                                        <input class="form-control" id="contact_us_name" name="contact_us_name">
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label class="required" for="contact_us_email">Email</label>
-                                        <input class="form-control" type="email" id="contact_us_email" name="contact_us_email">
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label class="required" for="contact_us_subject">Subject</label>
-                                        <input class="form-control" id="contact_us_subject" name="contact_us_subject">
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label class="required" for="contact_us_msg">Message</label>
-                                        <textarea class="form-control" rows=4 id="contact_us_msg" name="contact_us_msg" style="resize: none;"></textarea>               
-                                    </div>
-                                    
-                                    <div id="contact_form_error" style="display: hidden"></div>
-                                    
-                                </form>
-                            </div>
-                            
-                            <!--
                             <div class="modal-body">
                                 
                                 <div class="form-group" style="margin-bottom: 30px;">
@@ -970,8 +940,8 @@
                                 </form>
                                 
                             </div>
-                            -->
-                            
+
+
                             <div class="modal-footer">
                                 <button id="contact_submit_btn" class="btn" style="background-color: #0f6a37; color: white;" data-toggle="modal" data-target="#contact_us_result">Submit</button>
                             </div>
@@ -1151,7 +1121,7 @@
                             <h1>The CleverWay!</h1>
                         </div>
                         <div class="row">
-                            <p class="how_it_works_text">Every repair comes with a 90 Day Limited Warranty and up to 365 days of coverage on parts with Manufacturer Warranties. The limited warranty provides that if within 90 days from the repair date of your CleverTech repair your device fails to operate for some reasons related to the original repair, CleverTech will perform any labor related to the original repair free of charge.</p>
+                            <p class="how_it_works_text">Every repair comes with a 90 Day Limited Warranty and up to 365 days of coverage on parts with Manufacturer Warranties. The limited warranty provides that if within 90 days from the repair date of your CleverTech repair your device fails to operate for reasons related to the original repair, CleverTech will perform any labor related to the original repair free of charge.</p>
                         </div>
                         
                         
@@ -1335,7 +1305,7 @@
 
                                 Customer Service:<br/><br/>
 
-                                · sales@urclevertech.com<br/><br/>
+                                · service@iclevertech.com<br/><br/>
 
                                 Contact: (408) 316-7600<br/><br/><br/><br/>
 
@@ -1446,7 +1416,7 @@
                 
                 <div class="row" id="gonz_quote"> <!-- testing -->
                     <p>
-                        "I want to see a paradigm shift. We're going to be so good...It wouldn't make sense to go anywhere else."<br/><br/>
+                        "At CleverTech we believe in a better way. For everyone else making this world a better place we want to give back the best way we know how. CleverTech, your Apple Computer Specialist."<br/><br/>
                         Gonzalo Martinez<br/>
                         Founder
                     </p>
@@ -1468,7 +1438,8 @@
 
                             <div class="row">
                                 <div class="col-lg-12">
-                                    
+
+
                                     <ul class="soc">
                                         <li><a target="_blank" href="https://www.facebook.com/iclevertech/" class="fa fa-facebook"></a></li>
                                         <li><a target="_blank" href="https://www.instagram.com/iclevertech/" class="fa fa-instagram"></a></li>
@@ -1476,8 +1447,11 @@
                                         <li><a target="_blank" href="https://twitter.com/iclevertech" class="fa fa-twitter"></a></li>
                                         <li><a target="_blank" href="https://www.youtube.com/channel/UCovKD5sxU6jku8OTAo2NN7Q" class="fa fa-youtube"></a></li>
                                         <li><a target="_blank" href="https://www.yelp.com/biz/clevertech-san-jose-6" class="fa fa-yelp"></a></li>
-                                    </ul>                                    
-                                    
+                                    </ul>
+
+
+
+
                                 </div>
                             </div>
                             
@@ -1692,40 +1666,40 @@
             
             
             function check_and_set_repair_prices(model, problem) {
-                if (model === "iMac 27'' Model" || model === "iMac 21.5'' Model") {
+                if (model === "27''" || model === "21.5''") {
                     check_imac_repair_prices(model, problem);
                 }
                 else if (model === "Macbook Air" || model === "Macbook Pro (non-Retina)" ||
                         model === "Macbook Pro (Retina)") {
                     check_macbook_repair_prices(model, problem);
                 }
-                else if (model === "iPhone 7 Plus / 7" || model === "iPhone 6s Plus / 6s" || 
-                        model === "iPhone 6 Plus / 6" || model === "iPhone 5 SE/5s/5c/5") {
+                else if (model === "7 Plus / 7" || model === "6s Plus / 6s" || 
+                        model === "6 Plus / 6" || model === "5 SE/5s/5c/5") {
                     check_iphone_repair_prices(model, problem);
                 }
-                else if (model === "iPad 2/3/4/Air" || model === "iPad Air 2" || 
-                        model === "iPad Mini 1/2/3" || model === "iPad Mini 4") {
+                else if (model === "2/3/4/Air" || model === "Air 2" || 
+                        model === "Mini 1/2/3" || model === "Mini 4") {
                     check_ipad_repair_prices(model, problem);
                 }
             }
             
             
-            // ================ SET PRICE BEGIN ================
+            // ================ PRICE CHANGES BEGIN ================
             function check_imac_repair_prices(model, problem) {
                 switch(problem) {
-                    case "Graphics Card":
+                    case "Video Card":
                         set_imac_repair_prices(model, "$285", "$285");
                         break;
-                    case "SSD Upgrade":
+                    case "SSD":
                         set_imac_repair_prices(model, "$422-$575", "$422-$575");
                         break;
-                    case "LCD Replacement":
+                    case "LCD":
                         set_imac_repair_prices(model, "$380-$741", "$280-$446");
                         break;
                     case "Motherboard":
                         set_imac_repair_prices(model, "$285", "$285");
                         break;
-                    case "Optical Drive":
+                    case "DVD Drive":
                         set_imac_repair_prices(model, "$217", "$217");
                         break;
                     case "RAM":
@@ -1737,7 +1711,7 @@
                     case "Data Recovery":
                         set_imac_repair_prices(model, "$190-$???", "$190-$???");
                         break;
-                    case "Virus Removal":
+                    case "Virus":
                         set_imac_repair_prices(model, "$79", "$79");
                 }
             }
@@ -1745,13 +1719,13 @@
             
             function check_macbook_repair_prices(model, problem) {
                 switch(problem) {
-                    case "Graphics Card":
+                    case "Video Card":
                         set_macbook_repair_prices(model, "$285", "$285", "$285");
                         break;
-                    case "SSD Upgrade":
+                    case "SSD":
                         set_macbook_repair_prices(model, "$570-$873", "$327-$480", "$570-$873");
                         break;
-                    case "LCD Replacement":
+                    case "LCD":
                         set_macbook_repair_prices(model, "$256-$355", "$158-$390", "$338-$546");
                         break;
                     case "Motherboard":
@@ -1769,7 +1743,7 @@
                     case "Data Recovery":
                         set_macbook_repair_prices(model, "$190-$???", "$190-$???", "$190-$???");
                         break;
-                    case "Virus Removal":
+                    case "Virus":
                         set_macbook_repair_prices(model, "$79", "$79", "$79");
                 }
             }
@@ -1778,7 +1752,7 @@
             function check_iphone_repair_prices(model, problem) {
                 switch(problem) {
                     case "Screen":
-                        set_iphone_repair_prices(model, "$162-$183", "$145-$104.99", "$134-$102", "$80-$85");
+                        set_iphone_repair_prices(model, "$183/$162", "$135/$112", "$96/$85", "$85/$80");
                         break;
                     case "Wifi":
                         set_iphone_repair_prices(model, "$56-$120", "$56-$120", "$56-$120", "$56-$120");  
@@ -1789,7 +1763,7 @@
                     case "Battery":
                         set_iphone_repair_prices(model, "$66", "$66", "$66", "$66");
                         break;
-                    case "Headphone Jack":
+                    case "Headphone":
                         set_iphone_repair_prices(model, "$70", "$70", "$70", "$70");
                         break;
                     case "Home Button":
@@ -1798,7 +1772,7 @@
                     case "Water Damage":
                         set_iphone_repair_prices(model, "$120-$285", "$120-$285", "$120-$285", "$120-$285");
                         break;
-                    case "Charging Port":
+                    case "Charge Port":
                         set_iphone_repair_prices(model, "$70", "$70", "$70", "$70");
                         break;
                     case "Camera":
@@ -1821,29 +1795,30 @@
                     case "Battery":
                         set_ipad_repair_prices(model, "$105", "$105", "$105", "$105");
                         break;
-                    case "Headphone Jack":
+                    case "Headphone":
                         set_ipad_repair_prices(model, "$92", "$92", "$92", "$92");
                         break;
                     case "Home Button":
                         set_ipad_repair_prices(model, "$98", "$98", "$98", "$98");
                         break;
-                    case "LCD Replacement":
+                    case "LCD":
                         set_ipad_repair_prices(model, "$118-$140", "$230", "$142", "$230");  
                         break;
-                    case "Charging Port":
+                    case "Charge Port":
                         set_ipad_repair_prices(model, "$97", "$97", "$97", "$97");  
                         break;
                     case "Camera":
                         set_ipad_repair_prices(model, "$91", "$91", "$91", "$91");  
                 }
             }
-            // ================ SET PRICES END ================
+            // ================ PRICE CHANGES END ================
             
+
             function set_imac_repair_prices(model, imac27_price, imac215_price) {
-                if (model === "iMac 27'' Model") {
+                if (model === "27''") {
                     $("#imac_repair_price").html(imac27_price);
                 }
-                else if (model === "iMac 21.5'' Model") {
+                else if (model === "21.5''") {
                     $("#imac_repair_price").html(imac215_price);
                 }
             }
@@ -1866,16 +1841,16 @@
             
             function set_iphone_repair_prices(model, iphone7p7_price, iphone6sp6s_price, 
                                                 iphone6p6_price, iphone5se5s5c5_price) {
-                if (model === "iPhone 7 Plus / 7") {
+                if (model === "7 Plus / 7") {
                     $("#iphone_repair_price").html(iphone7p7_price);
                 }
-                else if (model === "iPhone 6s Plus / 6s") {
+                else if (model === "6s Plus / 6s") {
                     $("#iphone_repair_price").html(iphone6sp6s_price);
                 }
-                else if (model === "iPhone 6 Plus / 6") {
+                else if (model === "6 Plus / 6") {
                     $("#iphone_repair_price").html(iphone6p6_price);
                 }
-                else if (model === "iPhone 5 SE/5s/5c/5") {
+                else if (model === "5 SE/5s/5c/5") {
                     $("#iphone_repair_price").html(iphone5se5s5c5_price);
                 }
             }
@@ -1883,17 +1858,17 @@
             
             function set_ipad_repair_prices(model, ipad234air_price, ipadair2_price, 
                                             ipadmini123_price, ipadmini4_price) {
-                if (model === "iPad 2/3/4/Air") {
+                if (model === "2/3/4/Air") {
                     $("#ipad_repair_price").html(ipad234air_price);
                 }
-                else if (model === "iPad Air 2") {
+                else if (model === "Air 2") {
                     //console.log("HERE");
                     $("#ipad_repair_price").html(ipadair2_price);
                 }
-                else if (model === "iPad Mini 1/2/3") {
+                else if (model === "Mini 1/2/3") {
                     $("#ipad_repair_price").html(ipadmini123_price);
                 }
-                else if (model === "iPad Mini 4") {
+                else if (model === "Mini 4") {
                     $("#ipad_repair_price").html(ipadmini4_price);
                 } 
             }
@@ -1973,19 +1948,19 @@
                                                     <label class='required' for='model_type'>Model Type</label>\
                                                     <select class='form-control' id='model_type' name='model_type[]'>\
                                                         <option style='display:none;' selected>Select Model Type</option>\
-                                                        <option>iMac 27'' Model</option>\
-                                                        <option>iMac 21.5'' Model</option>\
+                                                        <option>27''</option>\
+                                                        <option>21.5''</option>\
                                                         <option>Macbook Air</option>\
                                                         <option>Macbook Pro (non-Retina)</option>\
                                                         <option>Macbook Pro (Retina)</option>\
-                                                        <option>iPhone 7 Plus / 7</option>\
-                                                        <option>iPhone 6s Plus / 6s</option>\
-                                                        <option>iPhone 6 Plus / 6</option>\
-                                                        <option>iPhone 5 SE/5s/5c/5</option>\
-                                                        <option>iPad 2/3/4/Air</option>\
-                                                        <option>iPad Air 2</option>\
-                                                        <option>iPad Mini 1/2/3</option>\
-                                                        <option>iPad Mini 4</option>\
+                                                        <option>7 Plus / 7</option>\
+                                                        <option>6s Plus / 6s</option>\
+                                                        <option>6 Plus / 6</option>\
+                                                        <option>5 SE/5s/5c/5</option>\
+                                                        <option>2/3/4/Air</option>\
+                                                        <option>Air 2</option>\
+                                                        <option>Mini 1/2/3</option>\
+                                                        <option>Mini 4</option>\
                                                     </select>\
                                                 </div>\
                                                 <div class='col-xs-6'>\
