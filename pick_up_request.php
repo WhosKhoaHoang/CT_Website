@@ -60,6 +60,12 @@
         }
         
         
+        // ============================== NEW STUFF (company) ==============================
+        //Non-required input
+        $_POST["company"] = clean_input($_POST["company"]);
+        // ============================== NEW STUFF (company) ==============================
+        
+        
         if (!$_POST["street_address"]) {
             $error .= "- Your street address is required.<br/>";
         }
@@ -82,7 +88,8 @@
         
         //Non-required input
         $_POST["zip_postal"] = clean_input($_POST["zip_postal"]);
-        
+
+
         
         //Is this part really necessary?
         //Process the dropdown menu items so that the default prompt is replaced with empty string
@@ -191,7 +198,15 @@
             print_r($device_lst); //FOR TESTING
             */
             
+            /*
             $body = "=== Customer Information ===\nName: ".$_POST["first_name"]." ".$_POST["last_name"]."\nEmail: ".$_POST["email"]."\nPhone Number: ".$_POST["phone"]."\nStreet Address: ".$_POST["street_address"]."\nAddress Line 2: ".$_POST["address_line2"]."\nCity: ".$_POST["city"]."\nPostal Code: ".$_POST["zip_postal"]."\nService Type: ".$_POST["service_type"]."\n\n\n=== Device Information ===\n";
+            */
+            
+            
+            // ============================== BODY THAT INCLUDES NEW STUFF (Company) ==============================
+            $body = "=== Customer Information ===\nName: ".$_POST["first_name"]." ".$_POST["last_name"]."\nEmail: ".$_POST["email"]."\nPhone Number: ".$_POST["phone"]."\nCompany: ".$_POST["company"]."\nStreet Address: ".$_POST["street_address"]."\nAddress Line 2: ".$_POST["address_line2"]."\nCity: ".$_POST["city"]."\nPostal Code: ".$_POST["zip_postal"]."\nService Type: ".$_POST["service_type"]."\n\n\n=== Device Information ===\n";
+            // ============================== BODY THAT INCLUDES NEW STUFF (Company) ==============================
+            
             
             //loop through devices
             $device_info = "";

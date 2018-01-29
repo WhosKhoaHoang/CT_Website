@@ -19,7 +19,8 @@
 
 
 body {
-    font-family: "San Francisco", "PT Sans", sans-serif;
+    /*font-family: "San Francisco", "PT Sans", sans-serif;*/
+    font-family: "San Francisco", sans-serif;
     background-color: black;
 }
 
@@ -353,7 +354,7 @@ li.nav-item.active {
     height: 70px;
     z-index: 100;
     display: none;
-    background: url("images/up.png");
+    background: url("images/up_white.png");
 }
 
 
@@ -370,7 +371,7 @@ li.nav-item.active {
     z-index: 100;
     /*display: none;*/
     text-decoration: none;
-    background: url("images/down.png");
+    background: url("images/down_white.png");
 }
 
 
@@ -646,6 +647,7 @@ li.nav-item.active {
     font-size: 20px;
 }
 
+
 .notify_require {
     color: red;
     display: none;
@@ -664,18 +666,37 @@ li.nav-item.active {
 */
 
 
-/* ==================================== MEDIA QUERIES AT THE END!!! ==================================== */
+.trans_btn {
+    background-color: Transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+}
+
+
+.sec1_label, .sec2_label {
+    cursor: pointer;
+}
+
+
+
+
+/* ==================================== MEDIA QUERIES BEGIN ==================================== */
 
 /* Large desktops and laptops */  /* I wonder what the heights are on these sizes? */
 @media (min-width: 1200px) {
     li > .pick_up_request_btn {
         display: none;
     }
-    
+
+
     #pick_up_request_inner_submit {
         display: none;
     }
-    
+
+
     /* Note how jumbotrons, by default, start at 100% of whatever the width/height is */
     .jumbotron {
         /* To prevent shrinkage on vertical resizes: */
@@ -684,20 +705,33 @@ li.nav-item.active {
         min-height: 800px; 
         /* Here you're sayign the height can't go any smaller than 800 px */
     }
-    
-    
+
+
+    .sec1_label, .sec2_label {
+        font-size: 150%
+    }
+
+
     #gonz_quote {
         margin-top: 20%;
     }
-    
+
+
     #gonz_quote > p{
         font-size: 20px;
     }
-    
+
+
+    .trans_btn > p {
+        font-size: 25px;
+    }
+
+
     #soc_media_and_store_info {
         margin-top: 5%;
     }
 }
+
 
 
 /* Landscape tablets and medium desktops */
@@ -705,36 +739,63 @@ li.nav-item.active {
     li > .pick_up_request_btn {
         display: none;
     }
-    
+
+
     #pick_up_request_inner_submit {
         display: none;
     }
-    
+
+
     /* Note how jumbotrons, by default, start at 100% of whatever the width/height is */
     .jumbotron {
         /* To prevent shrinkage on vertical resizes: */
         max-height: 870px;
         min-height: 800px; 
     }
-    
-    
+
+
     #how_it_works {
         background-attachment: scroll; /* Begin stopping parallax effect */
     }
-    
+
+
     #stay_clever {
         background-attachment: scroll; /* Begin stopping parallax effect */
     }
+
+
+    /*
+    #book_label, #call_label, #dir_label {
+        font-size: 150%
+    }
+    */
+
+
+    .sec1_label {
+        font-size: 150%
+    }
+
     
-    
+    .sec2_label {
+        font-size: 150%
+    }
+
+
     #gonz_quote {
         margin-top: 25%;
     }
-    
+
+
     #gonz_quote > p{
         font-size: 20px;
     }
-    
+
+
+    .trans_btn > p {
+        font-size: 20px;
+    }
+
+
     #soc_media_and_store_info {
         margin-top: 5%;
     }
@@ -746,11 +807,13 @@ li.nav-item.active {
     li > .pick_up_request_btn {
         display: none;
     }
-    
+
+
     #pick_up_request_inner_submit {
         display: none;
     }
-    
+
+
     .jumbotron {
         /* To prevent shrinkage on vertical resizes: */
         max-height: 870px;
@@ -769,15 +832,34 @@ li.nav-item.active {
         right: 100% /* Begin to hide arrow */
     }
 
+
     #how_it_works {
         background-attachment: scroll; /* Stop parallax effect */
     }
     
+
     #stay_clever {
         background-attachment: scroll; /* Stop parallax effect */
     }
     
     
+    /*
+    #book_label, #call_label, #dir_label {
+        font-size: 150%
+    }
+    */
+
+
+    .sec1_label {
+        font-size: 150%
+    }
+
+
+    .sec2_label {
+        font-size: 150%
+    }
+
+
     #gonz_quote {
         margin-top: 20%;
     }
@@ -786,6 +868,7 @@ li.nav-item.active {
     #gonz_quote > p{
         font-size: 20px;
     }
+
     
     #soc_media_and_store_info {
         margin-top: 1%;
@@ -870,6 +953,10 @@ li.nav-item.active {
         background-color: rgba(0,0,0,0.9);
     }
     
+
+    #sec1_subtitle {
+        font-size: 120%;
+    }
     
     .how_it_works_btn {
         font-size: 120%;
@@ -879,8 +966,13 @@ li.nav-item.active {
     #gonz_quote {
         font-size: 15px;
     }
-    
-    
+
+
+    .trans_btn > p {
+        font-size: 18px;
+    }
+
+
     #move_up {
         /*left: 45%;*/
         left: 100%; /* Hide arrow */
@@ -907,21 +999,34 @@ li.nav-item.active {
     #stay_clever {
         background-attachment: scroll; /* Stop parallax effect */
     }
-    
+
+
     #gonz_quote {
         margin-top: 0%;
     }
     
-    
+
     #gonz_quote > p{
         font-size: 13px;
     }
-    
+
+
+    .sec1_label {
+        font-size: 80%
+    }
+
+
+    .sec2_label {
+        font-size: 85%
+    }
+
+
     #soc_media_and_store_info {
         font-size: 13px;
         margin-top: -1%;
     }
-    
+
+
     #contact_us_btn {
         font-size: 11px;
     }
@@ -938,3 +1043,5 @@ li.nav-item.active {
         margin-top: -5%;
     }
 }
+
+/* ==================================== MEDIA QUERIES END ==================================== */
