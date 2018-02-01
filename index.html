@@ -333,8 +333,8 @@
             </div>
         </div>
         <!-- PICK-UP REQUEST RESULT END -->
-        
-        
+
+
         <!-- SELECT IMAC MODEL MODAL BEGIN -->
         <!-- Note that you mainly used data-value so you can get the device name and make them part of variable names -->
         <div id="imac_device_select" class="modal fade" role="dialog">
@@ -343,26 +343,25 @@
                     <div class="modal-dialog">
                         <!-- Modal content-->
                         <div class="modal-content" style="padding: 20px;">
-                            
+
                             <div class="modal-body">
-                                
+
                                 <div class="form-group" style="margin-bottom: 30px;">
                                     <button type="button" class="close" data-dismiss="modal" style="float: left;">&times;</button>
                                 </div>
-                                
+
                                 <div class="row" style="text-align: center; z-index: 1">
                                     <h2>iMac</h2>
                                 </div>
-                                
-                                
+
                                 <div class="row" style="position: relative; top: -20px;">  
                                     <p style="text-align: center; margin-top: 10px;">Choose Your Model: </p>
                                     <!-- MODEL SELECTION -->
                                     <!--The value of this element gets set to a model when a model is chosen-->
                                     <input id="imac_model_chosen" type="radio" value=0 style="display: none;">
-                                    
+
                                     <div class="col-xs-1"></div>
-                                    
+
                                     <div class="col-xs-5" style="text-align: center;">
                                         <input class="device_select" type="radio" name="imac_select_group" value="1" id="imac_select1" />
                                         <label for="imac_select1" data-value="imac">
@@ -370,7 +369,7 @@
                                             <p class="device_model">27''</p>
                                         </label>
                                     </div>
-                                    
+
                                     <div class="col-xs-5" style="text-align: center;">
                                         <input class="device_select" type="radio" name="imac_select_group" value="2" id="imac_select2" />
                                         <label for="imac_select2" data-value="imac">
@@ -378,18 +377,15 @@
                                             <p class="device_model">21.5''</p>
                                         </label>
                                     </div>
-                                    
+
                                     <div class="col-xs-1"></div>
                                 </div>
-                                
-                                
-                                
+
                                 <div clas="row" style="text-align: center;">
-                                    
                                     <!-- PROBLEM SELECTION -->
                                     <!--The value of this element gets set to the problem when a problem is chosen-->
                                     <input id="imac_problem_chosen" type="radio" value=0 style="display: none;">
-                                    
+
                                     <div class="row">
                                         <div class="col-xs-4">
                                             <input class="problem_select" type="radio" name="imac_problem_select_group" id="imac_problem_select1" />
@@ -405,7 +401,6 @@
                                         </div>
                                     </div>
  
-
                                     <div class="row">
                                         <div class="col-xs-4">
                                             <input class="problem_select" type="radio" name="imac_problem_select_group" id="imac_problem_select4" />
@@ -441,7 +436,7 @@
                                 <div class="row" style="font-size: 15px; text-align: center;"> 
                                     <div class="col-xs-12">
                                         <div class="row">
-                                            <label style="display: block;">Service Price: </label>
+                                            <label class="price_label" style="display: block;">Service Price: </label>
                                         </div>
                                         <div class="row">
                                             <label id="imac_repair_price" class="price_value">&nbsp;</label>
@@ -449,7 +444,7 @@
                                     </div>
 
                                 </div>
-                                
+
                                 <div class="row">
                                     <button class="btn_from_device_modal btn col-xs-4 col-xs-offset-4" style="background-color: #0f6a37; color: white; margin-top: 10px;" data-dismiss="modal" data-toggle="modal" data-target="#pick_up_request_modal" id="imac_service_pickup">Request Pick-Up</button>
                                 </div>
@@ -515,11 +510,10 @@
                                 </div>
                                 
                                 <div clas="row" style="text-align: center;">
-                                    
                                     <!-- PROBLEM SELECTION -->
                                     <!--The value of this element gets set to the problem when a problem is chosen-->
                                     <input id="macbook_problem_chosen" type="radio" value=0 style="display: none;">
-                                    
+
                                     <div class="row">
                                         <div class="col-xs-4">
                                             <input class="problem_select" type="radio" name="macbook_problem_select_group" id="macbook_problem_select1" />
@@ -565,24 +559,24 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="row" style="font-size: 15px; text-align: center;"> 
                                     <div class="col-xs-12">
                                         <div class="row">
-                                            <label style="display: block;">Service Price: </label>
+                                            <label class="price_label" style="display: block;">Service Price: </label>
                                         </div>
                                         <div class="row">
                                             <label id="macbook_repair_price" class="price_value">&nbsp;</label>
                                         </div>
                                     </div>
                                 </div>
-                                
-                                <div class="row"> 
+
+                                <div class="row">
                                     <button class="btn_from_device_modal btn col-xs-4 col-xs-offset-4" style="background-color: #0f6a37; color: white; margin-top: 10px;" data-dismiss="modal" data-toggle="modal" data-target="#pick_up_request_modal" id="macbook_service_pickup">Request Pick-Up</button>
                                 </div>
-                                
+
                             </div>
-                                                     
+
                         </div>
                     </div>
                 </div>
@@ -648,7 +642,6 @@
                                 </div>
                                 
                                 <div clas="row" style="text-align: center;">
-                                    
                                     <!-- PROBLEM SELECTION -->
                                     <!--The value of this element gets set to 1 when a problem is chosen-->
                                     <input id="iphone_problem_chosen" type="radio" value=0 style="display: none;">
@@ -702,7 +695,7 @@
                                 <div class="row" style="font-size: 15px; text-align: center;"> 
                                     <div class="col-xs-12">
                                         <div class="row">
-                                            <label style="display: block;">Service Price: </label>
+                                            <label class="price_label" style="display: block;">Service Price: </label>
                                         </div>
                                         <div class="row">
                                             <label id="iphone_repair_price" class="price_value">&nbsp;</label>
@@ -714,9 +707,9 @@
                                 <div class="row"> 
                                     <button class="btn_from_device_modal btn col-xs-4 col-xs-offset-4" style="background-color: #0f6a37; color: white; margin-top: 10px;" data-dismiss="modal" data-toggle="modal" data-target="#pick_up_request_modal" id="iphone_service_pickup">Request Pick-Up</button>
                                 </div>
-                                
+
                             </div>
-                                                     
+                     
                         </div>
                     </div>
                 </div>
@@ -836,7 +829,7 @@
                                 <div class="row" style="font-size: 15px; text-align: center;">
                                     <div class="col-xs-12">
                                         <div class="row">
-                                            <label style="display: block;">Service Price: </label>
+                                            <label class="price_label" style="display: block;">Service Price: </label>
                                         </div>
                                         <div class="row">
                                             <label id="ipad_repair_price" class="price_value">&nbsp;</label>
@@ -1354,34 +1347,31 @@
 
             <div class="container" id="services_content" style="margin-top: -5%">  
                 <div class="row">
-                    <h1>Services</h1>
+                    <h1 id="services_header">Services</h1>
                 </div>
 
                 <div class="row">
                     <!-- Add solid color to this div to see how nicely the color consumes the whole menu item -->
-                    <div class="col-xs-3"></div>
-                    <div class="col-xs-3 problem_device" data-toggle="modal" data-target="#imac_device_select" style="background-color: rgba(0,0,0,0.4); border-top-left-radius: 10px;">
-                        <img src="images/imac_white2.png" style="width: 70%; height: 70%;">
+                    <div class="col-md-offset-3 col-md-3 col-xs-offset-2 col-xs-4 problem_device" data-toggle="modal" 
+                         data-target="#imac_device_select" style="background-color: rgba(0,0,0,0.4); border-top-left-radius: 10px;">
+                        <img class="services_icon" src="images/imac_white2.png">
                         <p class="services_device_type">iMac</p>
                     </div>                       
-                    <div class="col-xs-3 problem_device" style="background-color: rgba(0,0,0,0.4); border-top-right-radius: 10px;" data-toggle="modal" data-target="#macbook_device_select">
-                        <img src="images/macbook_white2.png" style="width: 70%; height: 70%;">
+                    <div class="col-md-3 col-xs-4 problem_device" style="background-color: rgba(0,0,0,0.4); border-top-right-radius: 10px;" data-toggle="modal" data-target="#macbook_device_select">
+                        <img class="services_icon" src="images/macbook_white2.png">
                         <p class="services_device_type">Mac</p>
                     </div>
-                    <div class="col-xs-3"></div>
                 </div>
 
                 <div class="row">
-                    <div class="col-xs-3"></div>
-                    <div class="col-xs-3 problem_device" style="background-color: rgba(0,0,0,0.4); border-bottom-left-radius: 10px;" data-toggle="modal" data-target="#iphone_device_select">
-                        <img src="images/iphone_white2.png" style="width: 70%; height: 70%;">
+                    <div class="col-md-offset-3 col-md-3 col-xs-offset-2 col-xs-4 problem_device" style="background-color: rgba(0,0,0,0.4); border-bottom-left-radius: 10px;" data-toggle="modal" data-target="#iphone_device_select">
+                        <img class="services_icon" src="images/iphone_white2.png">
                         <p class="services_device_type">iPhone</p>
                     </div>   
-                    <div class="col-xs-3 problem_device" data-toggle="modal" data-target="#ipad_device_select" style="background-color: rgba(0,0,0,0.4); border-bottom-right-radius: 10px;">
-                        <img src="images/ipad_white2.png" style="width: 70%; height: 70%;">
+                    <div class="col-md-3 col-xs-4 problem_device" data-toggle="modal" data-target="#ipad_device_select" style="background-color: rgba(0,0,0,0.4); border-bottom-right-radius: 10px;">
+                        <img class="services_icon" src="images/ipad_white2.png">
                         <p class="services_device_type">iPad</p>
                     </div>
-                    <div class="col-xs-3"></div>
                 </div>
             </div>
 
@@ -1466,21 +1456,15 @@
 
         <!-- ============================== THE CONTENT END ============================== -->
 
-
-
         <!-- Arrow Button Code -->
         <a id="move_up" href="#"></a>
         <a id="move_down" style="display: inline;" href="#"></a>
-
-
 
         <!-- For the message icon -->
         <a id="msg_info_icon" style="display: inline;" href="#" data-toggle="modal" data-target="#msg_info_modal">
             <!--<span class="glyphicon glyphicon-info-sign"></span>-->
             <img id="speech_bubble" src="images/speech_bubble_light_green.png">
         </a>
-
-
         
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

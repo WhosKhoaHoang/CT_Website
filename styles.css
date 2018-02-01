@@ -681,6 +681,10 @@ li.nav-item.active {
 }
 
 
+.services_icon {
+    width: 70%;
+    height: 70%;
+}
 
 
 /* ==================================== MEDIA QUERIES BEGIN ==================================== */
@@ -1030,6 +1034,42 @@ li.nav-item.active {
     #contact_us_btn {
         font-size: 11px;
     }
+
+
+    .problem_item {
+        font-size: 80%;
+    }
+
+
+    #imac_device_select .problem_item {
+        font-size: 70%;
+    }
+
+
+    .btn_from_device_modal {
+        font-size: 80%;
+    }
+
+
+    input.device_select + label p {
+        font-size: 90%
+    }
+
+
+    .price_label, .price_value {
+        font-size: 90%;
+    }
+
+
+    p.services_device_type {
+        font-size: 120%
+    }
+
+
+    #services_header {
+        margin-top: -5%
+    }
+
 }
 
 
