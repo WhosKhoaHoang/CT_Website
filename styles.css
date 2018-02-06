@@ -681,12 +681,17 @@ li.nav-item.active {
 }
 
 
-
 .services_icon {
     width: 70%;
     height: 70%;
 }
 
+
+/* The following styling prevents blue outlines from
+   appearing for clicked button elements */
+button:focus {
+    outline: none !important;
+}
 
 /* ==================================== MEDIA QUERIES BEGIN ==================================== */
 
