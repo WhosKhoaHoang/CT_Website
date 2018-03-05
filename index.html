@@ -7,20 +7,16 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <!--[if lt IE 9]> <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script> <![endif]-->
         <title>CleverTech</title>
-
         <!-- Include this link on every HTML page of the website! -->
         <!--<link rel="shortcut icon" type="image/x-icon" href="http://www.iclevertech.com/favicon.ico" />-->
         <link rel="shortcut icon" type="image/x-icon" href="http://localhost/clevertech/favicon.ico" />
-        <!--<link rel="shortcut icon" type="image/x-icon" href="../clevertech/favicon.ico" />-->
         <!-- import Bootstrap CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <!-- Add icon library from Perfect Icons-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <!-- import your own styles -->
         <!--<link rel="stylesheet" href="http://www.iclevertech.com/styles.css" />-->
-        <link rel="stylesheet" href="http://localhost/clevertech/styles.css" />
-        <!--<link rel="stylesheet" href="../clevertech/styles.css" />-->
-        <!--<link rel="stylesheet" href="//fonts.googleapis.com/css?family=PT+Sans" /> No to this for now... -->        
+        <link rel="stylesheet" href="http://localhost/clevertech/styles.css" />    
     </head>
 
     <body data-spy="scroll" data-target="#my_navbar">
@@ -29,7 +25,6 @@
         <nav class="navbar navbar-fixed-top" id="my_navbar">
             <div class="container">
                 <div class="navbar-header">
-                    
                     <!--This "hamburger" button shows up and contains the navbar links once the viewport has been adequately shrinked -->
                     <button type="button" class="navbar-toggle collapsed pull-left" data-toggle="collapse" data-target="#collapsed_menu" aria-expanded="false">
                         <span class="sr-only">Toggle navigation</span>
@@ -37,7 +32,6 @@
                         <span class="icon-bar middle-bar"></span>
                         <span class="icon-bar bottom-bar"></span>
                     </button>
-                    
                     <!-- LOGO BEGIN -->
                     <a class="navbar-brand" href="#welcome">
                         <img id="brand_logo" src="images/navbar_logo2.png" alt="">
@@ -1014,7 +1008,7 @@
                         </div>
                         
                         <div class="row">
-                            <p class="how_it_works_text">CleverTech performs home &amp; business computer pick-ups the day after a pick-up request is submitted. In some cases (when possible) the day of submission. After submitting a request, we will call you to veify time and location for the computer pick-up. It's easy!</p>
+                            <p class="how_it_works_text">CleverTech performs home &amp; business computer pick-ups the day after a pick-up request is submitted. In some cases (when possible) the day of submission. After submitting a request, we will call you to verify time and location for the computer pick-up. It's easy!</p>
                         </div>
                         
 
@@ -1305,16 +1299,12 @@
                                          src="images/white_phone.png" style="margin: 0 auto;">
                                 </div>
                             </a>
-                            
-                            <!-- ==================== FOCUS HERE ==================== -->
-                            <!-- Make clicking on this div take you to a Google Maps page with 
-                                 directions from the user's current location to CleverTech!!! -->
+
                             <div class="trans_btn col-xs-3" onclick="get_location()" data-toggle="modal" data-target="#fetching_directions">
                                 <label class="sec1_label" for="directions_pic">Directions</label>
                                 <img class="img-responsive" id="directions_pic" 
                                      src="images/directions.png" style="margin: 0 auto;">
                             </div>
-                            <!-- ==================== FOCUS HERE ==================== -->
                         </div>
                     </div>
 
@@ -1361,37 +1351,37 @@
 
         <!------------------ SECTION 3 BEGIN ------------------>
         <section class="jumbotron" id="services">
-
             <div class="container" id="services_content" style="margin-top: -5%">  
                 <div class="row">
                     <h1 id="services_header">Services</h1>
                 </div>
-
-                <div class="row" id="services_icon_grid">
-                    <!-- Add solid color to this div to see how nicely the color consumes the whole menu item -->
-                    <div class="col-md-offset-3 col-md-3 col-xs-offset-2 col-xs-4 problem_device" data-toggle="modal" 
-                         data-target="#imac_device_select" style="background-color: rgba(0,0,0,0.4); border-top-left-radius: 10px;">
-                        <img class="services_icon" src="images/imac_white2.png">
-                        <p class="services_device_type">iMac</p>
-                    </div>                       
-                    <div class="col-md-3 col-xs-4 problem_device" style="background-color: rgba(0,0,0,0.4); border-top-right-radius: 10px;" data-toggle="modal" data-target="#macbook_device_select">
-                        <img class="services_icon" src="images/macbook_white2.png">
-                        <p class="services_device_type">Mac</p>
+                <!-- ================== FOCUS HERE ================== -->
+                <div id="services_icon_grid">
+                    <div class="row">
+                        <!-- Add solid color to this div to see how nicely the color consumes the whole menu item -->
+                        <div class="col-md-offset-3 col-md-3 col-xs-offset-2 col-xs-4 problem_device" style="background-color: rgba(0,0,0,0.4); border-top-left-radius: 10px;" data-toggle="modal" 
+                             data-target="#imac_device_select">
+                            <img class="services_icon" src="images/imac_white2.png">
+                            <p class="services_device_type">iMac</p>
+                        </div>                       
+                        <div class="col-md-3 col-xs-4 problem_device" style="background-color: rgba(0,0,0,0.4); border-top-right-radius: 10px;" data-toggle="modal" data-target="#macbook_device_select">
+                            <img class="services_icon" src="images/macbook_white2.png">
+                            <p class="services_device_type">Mac</p>
+                        </div>
                     </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-md-offset-3 col-md-3 col-xs-offset-2 col-xs-4 problem_device" style="background-color: rgba(0,0,0,0.4); border-bottom-left-radius: 10px;" data-toggle="modal" data-target="#iphone_device_select">
-                        <img class="services_icon" src="images/iphone_white2.png">
-                        <p class="services_device_type">iPhone</p>
-                    </div>   
-                    <div class="col-md-3 col-xs-4 problem_device" data-toggle="modal" data-target="#ipad_device_select" style="background-color: rgba(0,0,0,0.4); border-bottom-right-radius: 10px;">
-                        <img class="services_icon" src="images/ipad_white2.png">
-                        <p class="services_device_type">iPad</p>
+                    <div class="row">
+                        <div class="col-md-offset-3 col-md-3 col-xs-offset-2 col-xs-4 problem_device" style="background-color: rgba(0,0,0,0.4); border-bottom-left-radius: 10px;" data-toggle="modal" data-target="#iphone_device_select">
+                            <img class="services_icon" src="images/iphone_white2.png">
+                            <p class="services_device_type">iPhone</p>
+                        </div>   
+                        <div class="col-md-3 col-xs-4 problem_device" style="background-color: rgba(0,0,0,0.4); border-bottom-right-radius: 10px;" data-toggle="modal" data-target="#ipad_device_select">
+                            <img class="services_icon" src="images/ipad_white2.png">
+                            <p class="services_device_type">iPad</p>
+                        </div>
                     </div>
                 </div>
             </div>
-
         </section>
         <!------------------ SECTION 3 END ------------------>
         
@@ -1409,14 +1399,12 @@
                 </div>
 
                 <!-- FLANKED LAYOUT BEGIN -->
-                <!--<div id="soc_media_and_store_info">--> <!-- stable ground -->
-                <div class="row" id="soc_media_and_store_info" style="margin: 0px;"> <!-- testing -->
+                <div class="row" id="soc_media_and_store_info">
 
-                    <!--<div class="row" style="margin-top:150px;">--> <!-- stable ground -->
                     <div class="row">
 
-                        <div class="col-md-4">
-                            <div class="row" style="padding-top: 15px;">
+                        <div id="soc_media" class="col-md-4">
+                            <div class="row">
                                 <div class="col-lg-12">
                                     <label>For the crazy ones:</label>
                                 </div>
@@ -1437,11 +1425,12 @@
                             
                             <div class="row">
                                 <div id="contact_us_btn" class="btn" data-toggle="modal" data-target="#contact_us_modal">Contact Us</div>
+                                <p>service@iclevertech.com</p>
                             </div>
                         </div>
 
 
-                        <div class="col-md-8" style="padding-top: 20px; padding-right: 40px;"> 
+                        <div id="store_info" class="col-md-8"> 
                             <div class="row">
                                 <div class="col-xs-6 col-md-9">
                                     <dl class="pull-right">
@@ -1665,7 +1654,7 @@
             function check_imac_repair_prices(model, problem) {
                 switch(problem) {
                     case "Video Card":
-                        set_imac_repair_prices(model, "$285", "$285");
+                        set_imac_repair_prices(model, "$290-$380", "$290-$380");
                         break;
                     case "SSD":
                         set_imac_repair_prices(model, "$422-$575", "$422-$575");
@@ -1697,25 +1686,25 @@
             function check_macbook_repair_prices(model, problem) {
                 switch(problem) {
                     case "Video Card":
-                        set_macbook_repair_prices(model, "$285", "$285", "$285");
+                        set_macbook_repair_prices(model, "$285", "$285", "$325");
                         break;
                     case "SSD":
                         set_macbook_repair_prices(model, "$570-$873", "$327-$480", "$570-$873");
                         break;
                     case "LCD":
-                        set_macbook_repair_prices(model, "$256-$355", "$158-$390", "$338-$546");
+                        set_macbook_repair_prices(model, "$256-$355", "$158-$390", "$350-$505");
                         break;
                     case "Motherboard":
-                        set_macbook_repair_prices(model, "$285", "$285", "$285");
+                        set_macbook_repair_prices(model, "$285", "$285", "$325");
                         break;
                     case "Keyboard":
-                        set_macbook_repair_prices(model, "$228", "$228", "$228");
+                        set_macbook_repair_prices(model, "$220", "$220", "$220");
                         break;
                     case "RAM":
                         set_macbook_repair_prices(model, "(No Service)", "$128-$218", "(No Service)");
                         break;
                     case "Battery":
-                        set_macbook_repair_prices(model, "$153", "$153", "$166");
+                        set_macbook_repair_prices(model, "$99", "$99", "$155");
                         break;
                     case "Data Recovery":
                         set_macbook_repair_prices(model, "$190-$???", "$190-$???", "$190-$???");
@@ -1729,7 +1718,7 @@
             function check_iphone_repair_prices(model, problem) {
                 switch(problem) {
                     case "Screen":
-                        set_iphone_repair_prices(model, "$183/$162", "$135/$112", "$96/$85", "$85/$80");
+                        set_iphone_repair_prices(model, "$135/$125", "$125/$99", "$89/$79", "$69");
                         break;
                     case "Wifi":
                         set_iphone_repair_prices(model, "$56-$120", "$56-$120", "$56-$120", "$56-$120");  
@@ -1761,7 +1750,7 @@
             function check_ipad_repair_prices(model, problem) {
                 switch(problem) {
                     case "Screen":
-                        set_ipad_repair_prices(model, "$115-$134", "$230", "$126", "$230");
+                        set_ipad_repair_prices(model, "$89", "$329", "$99", "$199");
                         break;
                     case "Wifi":
                         set_ipad_repair_prices(model, "$93", "$93", "$93", "$93");
