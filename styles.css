@@ -210,15 +210,6 @@ body {
 }
 
 
-/*
-section {
-    height: 100vh;
-    width: 100vw;
-    padding: 1px; <-- Gets rid of annoying top gap...hmm, I actually don't need it in this case...
-}
-*/
-
-
 #welcome {
     background-image: url(images/welcome.jpg);
     /* Why were these here? Must haved mistakened welcome for welcome_content */
@@ -232,7 +223,7 @@ section {
 
 #welcome_content {
     position: relative; 
-    top: 45%;
+    top: 35%;
     color: white;
 }
 
@@ -255,11 +246,19 @@ section {
 }
 
 
+/*
 #services_content {
     position: relative; 
     top: 20%;
     color: white;
     vertical-align: bottom;
+}
+*/
+
+#services_content {
+    position: relative; 
+    top: 10%;
+    color: white;
 }
 
 
@@ -272,7 +271,7 @@ section {
 
 #stay_clever_content {
     position: relative; 
-    top: 20%;
+    top: 18%;
     color: white;   
 }
 
@@ -722,10 +721,18 @@ button:focus {
     /* Note how jumbotrons, by default, start at 100% of whatever the width/height is */
     .jumbotron {
         /* To prevent shrinkage on vertical resizes: */
-        max-height: 870px;
+        /*max-height: 870px;*/
         /* Here you're saying the height can't go any greater than than 870 px */
+        /*max-height: 100vw;*/
+        max-height: 100vh;
         min-height: 800px; 
         /* Here you're sayign the height can't go any smaller than 800 px */
+        
+        /* FOR LANDSCAPE MODE: ...no, this messes things up...? */
+        /*
+        max-width: 100vw;
+        min-width: 800px;
+        */
     }
 
 
@@ -766,8 +773,15 @@ button:focus {
     /* Note how jumbotrons, by default, start at 100% of whatever the width/height is */
     .jumbotron {
         /* To prevent shrinkage on vertical resizes: */
-        max-height: 870px;
-        min-height: 800px; 
+        /*max-height: 870px;*/
+        max-height: 100vw;
+        min-height: 800px;
+        
+        /* FOR LANDSCAPE MODE: ...no, this messes things up...? */
+        /*
+        max-width: 100vw;
+        min-width: 800px;
+        */
     }
 
 
@@ -828,8 +842,16 @@ button:focus {
 
     .jumbotron {
         /* To prevent shrinkage on vertical resizes: */
-        max-height: 870px;
-        min-height: 800px; 
+        /*max-height: 870px;*/
+        /*max-height: 100vw;*/
+        max-height: 100vh;
+        min-height: 800px;
+        
+        /* FOR LANDSCAPE MODE: ...no, this messes things up...? */
+        /*
+        max-width: 100vw;
+        min-width: 800px;
+        */
     }
     
     
@@ -894,8 +916,23 @@ button:focus {
         background-color: rgba(0,0,0,0.9);
         padding: 0px;
     }
-    
-    
+
+
+    .jumbotron {
+        /* To prevent shrinkage on vertical resizes: */
+        /*max-height: 870px;*/
+        /*max-height: 100vw;*/
+        max-height: 100vh;
+        min-height: 800px;
+        
+        /* FOR LANDSCAPE MODE: ...no, this messes things up...? */
+        /*
+        max-width: 100vw;
+        min-width: 800px;
+        */
+    }
+
+
     /* Inspired by: http://stackoverflow.com/questions/23400234/centering-brand-logo-in-bootstrap-3-navbar */
     .navbar-brand {
         position: absolute;
@@ -996,10 +1033,12 @@ button:focus {
     }
     
     
+    /* Fix the height...WAIT. Don't do this. What's the point of all the 100vw then? */
+    /*
     .jumbotron {
-        height: 500px; /* Fix the height */
+        height: 500px;
     }
-    
+    */
 
     
     #how_it_works {
@@ -1038,8 +1077,15 @@ button:focus {
     }
 
     
+    /*
     #soc_media_and_store_info {
         font-size: 13px;
+    }
+    */
+
+
+    #stay_clever_content {
+        top: 40%;
     }
 
 
@@ -1077,11 +1123,11 @@ button:focus {
         font-size: 120%;
     }
 
-
+    /*
     #services_header {
         margin-top: -10%;
     }
-
+    */
 
     #services_icon_grid {
         margin-top: -3%;
@@ -1103,13 +1149,19 @@ button:focus {
 
     .services_icon {
         width: 100%;
-        /*height: 100%;*/
+        height: 120px;
     }
+
 }
 
 
 /* Portrait phones and smaller */
 @media (max-width: 480px) {
+    .jumbotron {
+        max-height: 800px;
+        min-height: 800px;
+    }
+
     #gonz_quote {
         margin-top: -5%;
     }
