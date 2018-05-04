@@ -636,11 +636,24 @@ $(window).keydown(function(event){
 });
 
 
-function get_location() {                
+function get_location() {
+    //navigator.permissions.query({"name": "geolocation"}).
+    //then(permission => console.log(permission.state))
+    navigator.permissions.query({"name": "geolocation"}).then(
+        function(permission) {
+            if (permission.state === "prompt") {
+                $("#dir_msg").text("Please allow location access" +
+                " in your browser to receive your directions!")
+            }
+            else if (permission.state === "granted") {
+                $("#dir_msg").text("Sit tight! We'll have your directions in a moment...")
+            }
+        }
+    );
+
     if (navigator.geolocation) {
-        //Perhaps you can have a modal appear telling the user that
-        //directions are being fetched... 
-        navigator.geolocation.getCurrentPosition(get_google_directions);
+        navigator.geolocation.getCurrentPosition
+        (get_google_directions, show_error);
     } else { 
         var alert_msg = "Geolocation is not supported by this browser."
         alert(alert_msg)
@@ -651,10 +664,26 @@ function get_location() {
 function get_google_directions(position) {
     var lat = position.coords.latitude
     var lon = position.coords.longitude
-    //console.log("Latitude: " + lat)    //FOR TESTING
-    //console.log("Longitude: " + lon)   //FOR TESTING
 
     var url = "https://www.google.com/maps/dir/"+lat+
               ","+lon+"/1150+Murphy+Ave+%23205,+San+Jose,+CA+95131/"
     window.location.href = url
+}
+
+
+function show_error(error) {
+    switch(error.code) {
+        case error.PERMISSION_DENIED:
+            $("#dir_msg").text("You have denied location access.")
+            break;
+        case error.POSITION_UNAVAILABLE:
+            $("#dir_msg").text("Location information is unavailable.")
+            break;
+        case error.TIMEOUT:
+            $("#dir_msg").text("The request to obtain location timed out.")
+            break;
+        case error.UNKNOWN_ERROR:
+            $("#dir_msg").text("An unknown error occurred.")
+            break;
+    }
 }
