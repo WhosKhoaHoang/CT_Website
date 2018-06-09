@@ -218,21 +218,38 @@
             $body .= $device_info;            
             
             $conf_msg = "Hello ".$_POST["first_name"]."!,\nYour recent pick-up request with CleverTech has been received! Below is a summary of your request:\n\n".$device_info."\nPick-up requests submitted before 10:30 am are usually picked up same day. If submitted after 10:30 am, expect a phone call to schedule a next day pick-up. If you need to cancel or reschedule a pick-up, please call us at 408-316-7600. When we come for the pick-up, an initial diagnostic of your device will be made and an estimated service cost will be given. If you decline the repair for this device, a pick-up fee ($50) will be charged. If you approve the repair, the pick-up fee will be waived.\n\n\nThank You!\n\nCleverTech Team\n1150 Murphy Ave, Ste 205\nSan Jose, CA 9513\n408-316-7600\n";
-          
-            
+
+
             //Send the mail to us first...
             $mail = new PHPMailer();
             $mail->From = $_POST["email"];
             $mail->FromName = $_POST["first_name"]." ".$_POST["last_name"];            
             $mail->Subject = "Pick-Up Request For ".$_POST["first_name"]." ".$_POST["last_name"];
             $mail->Body    = $body;
-            
-            $mail->addReplyTo($_POST["email"]); //Add reply to sender's email
-            //$mail->addAddress("services@iclevertech.com"); //Send the email to us first
-            $mail->addAddress("whoskhoahoang@gmail.com"); //FOR TESTING
-            
 
-            if(!$mail->send()) {
+            $mail->addReplyTo($_POST["email"]); //Add reply to sender's email
+            
+            //===== OLD MAILING CODE =====
+            //$mail->addAddress("services@iclevertech.com"); //Send the email to us first
+            //$mail->addAddress("whoskhoahoang@gmail.com"); //FOR TESTING
+
+            //===== NEW MAILING CODE =====
+            $sj_requests = array("San Jose", "Santa Clara", "Campbell", "Milpitas", "Cuptertino");
+            $pa_requests = array("Sunnyvale", "Mountain View", "Palo Alto", "Menlo Park", "Burlingame");
+            if (in_array($_POST["city"], $sj_requests)) {
+                $mail->addAddress("sanjose@iclevertech.com"); //Send the email to us first
+                //$mail->addAddress("whoskhoahoang@gmail.com"); //FOR TESTING
+            }
+            else if (in_array($_POST["city"], $pa_requests)) {
+                $mail->addAddress("paloalto@iclevertech.com"); //Send the email to us first
+                //$mail->addAddress("whoskhoahoang@gmail.com"); //FOR TESTING
+            }
+            else {
+                $mail->addAddress("services@iclevertech.com"); //Send the email to us first
+                //$mail->addAddress("whoskhoahoang@gmail.com"); //FOR TESTING
+            }
+
+            if (!$mail->send()) {
                 echo "Pick-up request could not be sent. Please try again later.";
             } else {
                 echo "<div style='text-align: center;'><img src='images/ct_icon.png'></div><p style='text-align: center; font-size: 20px; margin-top: 10px;'>Pick-up request has been sent!</br></p>";
