@@ -235,7 +235,7 @@
 
             //===== NEW MAILING CODE =====
             $sj_requests = array("San Jose", "Santa Clara", "Campbell", "Milpitas", "Cupertino");
-            $pa_requests = array("Sunnyvale", "Mountain View", "Palo Alto", "Menlo Park", "Burlingame");
+            $pa_requests = array("Sunnyvale", "Mountain View", "Palo Alto", "Menlo Park", "Burlingame", "Atherton", "Los Altos", "Portola Valley", "Woodside", "Redwood City", "San Carlos", "Foster City", "San Mateo", "Concord", "Berkeley");
             if (in_array($_POST["city"], $sj_requests)) {
                 $mail->addAddress("sanjose@iclevertech.com"); //Send the email to us first
                 //$mail->addAddress("whoskhoahoang@gmail.com"); //FOR TESTING
