@@ -181,7 +181,7 @@ function check_imac_repair_prices(model, problem) {
             set_imac_repair_prices(model, "$380-$741", "$280-$446");
             break;
         case "Motherboard":
-            set_imac_repair_prices(model, "$285", "$285");
+            set_imac_repair_prices(model, "$399-499", "$399-499");
             break;
         case "DVD Drive":
             set_imac_repair_prices(model, "$217", "$217");
@@ -213,7 +213,7 @@ function check_macbook_repair_prices(model, problem) {
             set_macbook_repair_prices(model, "$256-$355", "$158-$390", "$350-$505");
             break;
         case "Motherboard":
-            set_macbook_repair_prices(model, "$285", "$285", "$325");
+            set_macbook_repair_prices(model, "$399", "$399", "$499");
             break;
         case "Keyboard":
             set_macbook_repair_prices(model, "$220", "$220", "$220");
