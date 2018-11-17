@@ -155,6 +155,7 @@
         $_POST["company"] = clean_input($_POST["company"]);
         $_POST["address_line2"] = clean_input($_POST["address_line2"]);
         $_POST["zip_postal"] = clean_input($_POST["zip_postal"]);
+
         //Is this part really necessary?
         //Process the dropdown menu items so that the default prompt is replaced with empty string
         for ($i = 0; $i < count($_POST["model_type"]); $i++) {
@@ -169,7 +170,7 @@
         }
         else {
             $device_lst = array();
-            //Make hashmaps for individual devices that you'll then use for the email
+            //Make hashmaps for individual devices that you'll then use to construct the email
             for ($i = 0; $i < $num_devices; $i++) {                 
                 $device = array();
 
@@ -187,12 +188,41 @@
 
             // ========== CONSTRUCT BODY FOR THE EMAIL THAT'S SENT TO US ========== //
             $body = "=== Customer Information ===\nName: ".$_POST["first_name"]." ".$_POST["last_name"]."\nEmail: ".$_POST["email"]."\nPhone Number: ".$_POST["phone"]."\nCompany: ".$_POST["company"]."\nStreet Address: ".$_POST["street_address"]."\nAddress Line 2: ".$_POST["address_line2"]."\nCity: ".$_POST["city"]."\nPostal Code: ".$_POST["zip_postal"]."\nService Type: ".$_POST["service_type"]."\n\n\n=== Device Information ===\n";
-            //loop through devices to append to body string:
+            //. The "Device Information" section will potentially contain information
+            //  on multiple devices (depending on how many devices the user provided).
+            //. Loop through devices to append to body string:
             $device_info = "";
             for ($i = 0; $i < count($device_lst); $i++) {
-                $device_info .= "Device ".($i+1)."\nModel Type: ".$device_lst[$i]["model_type"]."\n12-digit Serial #: ".$device_lst[$i]["serial_number"]."\nProblem: ".$device_lst[$i]["problem"]."\nCustomer Reference #: ".$device_lst[$i]["cust_ref_num"]."\nOther Info: ".$device_lst[$i]["other_info"]."\n";
+                $device_info .= "Device ".($i+1)."\nModel Type: ".$device_lst[$i]["model_type"]."\n12-Character Serial #: ".$device_lst[$i]["serial_number"]."\nProblem: ".$device_lst[$i]["problem"]."\nCustomer Reference #: ".$device_lst[$i]["cust_ref_num"]."\nOther Info: ".$device_lst[$i]["other_info"]."\n";
+
+                // ======================= FOCUS HERE ======================= //
+                //THINK: Put information retrieved from API in this^ string?
+                // - What you already have here in this string are values passed
+                //   by the user from the frontend's form.
+                // - I don't think Rowe's expected output example should be
+                //   the ONLY thing in the email. You obviously need to have
+                //   customer informaion in it. Rowe's example probably corre-
+                //   sponds to how the device info should look like...
+                // - Fields list: Model, Model Name, Serial Number, EMC,
+                //                Year, Missing Screws, Scratches, Dent,
+                //                Known Liquid Damage, Device's Current Issue,
+                //                Customer Approvals, Estimated Turnaround Time,
+                //                Missing SSD/HDD, Tech Notes, Technician
+                // - "Model" == "Model Type" or "Model" == "modelNumber"?
+                //   Probably the latter...
+                // - Have "Model Name" just be whatever user entered for model_type?
+                // - Fields to get from API:
+                //      * modelNumber --> Model,
+                //      * emcNumber --> EMC,
+                //      * introductionDate --> Year
+                //   NOTE: introductionDate is in the form "MONTH DAY, YEAR", you'll
+                //         need to do some string processing to convert it to
+                //         "EARLY/MID/LATE YEAR")
+                //TODO: Consider how to retrieve those^ API fields when the API NO
+                //      LONGER works due to going over the API query limit!
+
             }
-            $body .= $device_info;            
+            $body .= $device_info;
 
             // ========== CONSTRUCT BODY FOR THE EMAIL THAT'S SENT TO CUSTOMER ========== //
             $conf_msg = "Hello ".$_POST["first_name"]."!,\nYour recent pick-up request with CleverTech has been received! Below is a summary of your request:\n\n".$device_info."\nPick-up requests submitted before 10:30 am are usually picked up same day. If submitted after 10:30 am, expect a phone call to schedule a next day pick-up. If you need to cancel or reschedule a pick-up, please call us at 408-316-7600. When we come for the pick-up, an initial diagnostic of your device will be made and an estimated service cost will be given. If you decline the repair for this device, a pick-up fee ($50) will be charged. If you approve the repair, the pick-up fee will be waived.\n\n\nThank You!\n\nCleverTech Team\n1150 Murphy Ave, Ste 205\nSan Jose, CA 9513\n408-316-7600\n";
