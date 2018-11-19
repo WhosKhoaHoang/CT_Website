@@ -493,7 +493,6 @@ function remove_device() {
 }
 
 
-//bingo
 // ============== PICK-UP REQUEST SUBMISSION ==============
 $("#pick_up_req_submit_btn, #pick_up_request_inner_submit").click(function() {
 
@@ -506,6 +505,7 @@ $("#pick_up_req_submit_btn, #pick_up_request_inner_submit").click(function() {
                 //Note that #thanks, in the original code example, was merely a div...
 
                 //Fill out the text in the modal...
+                $("#processing_msg").hide();
                 $("#pick_up_request_result_msg").html(msg);
 
                 if (!msg.includes("Oops")) {
@@ -545,6 +545,14 @@ $("#pick_up_req_submit_btn, #pick_up_request_inner_submit").click(function() {
             }
    });
 });
+
+
+$("#pick_up_request_result").on("hidden.bs.modal", function (e) {
+    //Make visible the #processing_msg element:
+    $("#processing_msg").show();
+    //Hide text of #pick_up_request_result_msg element:
+    $("#pick_up_request_result_msg").empty();
+})
 
 
 //============== CONTACT FORM SUBMISSION ==============

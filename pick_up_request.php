@@ -5,6 +5,21 @@
 
 
     // ===================== DEFINE HELPER FUNCTIONS ===================== //
+    /*
+    Queries and retrieves data from the EveryMac API
+    return: The data returned by the EveryMac API
+    rtype: Object
+    */
+    function get_api_data($serial_number="") {
+        //Append serial_number^ to API request URL
+        $headers = array("Accept" => "application/json");
+        $request = Requests::get("{CENSORED}", $headers);
+        //NOTE: When pushing code to online repos, be sure that you DO NOT put
+        //      the API key in the code when you start using the real API!!!!!
+        //THINK: Tell Gonz to buy the Enterprise API and have him tell you the key?
+        return json_decode($request->body);
+    }
+
     //Got this regex from http://stackoverflow.com/questions/123559/a-comprehensive-regex-for-phone-number-validation
     function is_phone_num($phone) {
         return (preg_match("/^(?:(?:(\s*\(?([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\)?\s*(?:[.-]\s*)?)([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})$/", $phone));
@@ -21,8 +36,7 @@
     /*
     Takes a string representing a date in the
     form MONTH_NAME DAY_NUM, YEAR and converts
-    it to a year period in the form
-        Early/Mid/Late YEAR.
+    it to a year period in the form Early/Mid/Late YEAR.
     $date      : A date in the form:
                    MONTH_NAME DAY_NUM, YEAR
                  to convert to a year period.
@@ -48,47 +62,6 @@
         
         return $period." ".$nyear;
     }
-
-
-    // ===== FOCUS HERE ===== //
-    // ===================== MAKE API CALL ===================== //
-    //. Make API calls and establish variables retrieved from API calls
-    //. GAMEPLAN:
-    //   - Use the user's Serial # as part of the EveryMac API request
-    //   - Extract the relevant information from the returned JSON object
-    //     to fill out the appropriate fields for the E-mail message.
-    //. TODO: Handle case where API call limit has been reached!
-    //. THINK: What does the JSON look like when you reach the API call limit?
-    //. THINK: Tell Gonz to buy the Enterprise API and have him tell you the key?
-    //. NOTE: When pushing code to online repos, be sure that you DO NOT put
-    //        the API key in the code when you start using the real API!!!!!
-    //. Since the customer will potentially specify multiple devices, you'll
-    //  get multiple serial numbers and therefore need to make multiple API calls.
-    //  You'll probably need to put year, model, and emc values into an array...
-    $headers = array("Accept" => "application/json");
-    $request = Requests::get("{CENSORED}", $headers);
-    $data   = json_decode($request->body);
-    $year = ""; $model = ""; $emc = "";
-    if ($data->{"token"} == null) {
-
-    } //Is this^ how JSON indicates reached API call limit?
-    else {
-        $result = $data->{"results"}[0]; //Change index to examine different results
-        $year   = determine_year_per($result->{"introductionDate"});
-        $model  = $result->{"modelNumber"};
-        $emc    = $result->{"emcNumber"};
-    }
-
-    echo("<br/>");
-    var_dump($request->status_code);
-    echo("<br/>");
-    var_dump($request->headers["content-type"]);
-    echo("<br/>");
-    echo($year);
-    echo("<br/>");
-    echo($model);
-    echo("<br/>");
-    echo($emc);
 
 
     // ===================== DO FORM VALIDATION ===================== //
@@ -219,8 +192,9 @@
             echo($errrorMessage);
         }
         else {
+            //Make hashmaps for individual devices that
+            //you'll then use to construct the email:
             $device_lst = array();
-            //Make hashmaps for individual devices that you'll then use to construct the email
             for ($i = 0; $i < $num_devices; $i++) {                 
                 $device = array();
 
@@ -230,10 +204,29 @@
                 $device["problem"] = $_POST["problem"][$i];
 
                 // ===== FOCUS HERE ===== //
-                //THINK: Make API calls here instead to get the model, emc,
-                //       and year for the current device? You can leave the
-                //       the call to retrieve the API data near the top, but
-                //       write code to extract information from that data here...
+                //Makes more sense to make API call here
+                //once all the validation checks out!
+                $device["year"]  = "**MANUAL FILL**";
+                $device["model"] = "**MANUAL FILL**";
+                $device["emc"]   = "**MANUAL FILL**";
+                $apiData = get_api_data($_POST["serial_number"][$i]);
+                if ($apiData->{"token"} != null) {
+                    //CONSIDER: Is this^ how JSON indicates reached API call limit?
+                    //TODO: Properly handle case where API call limit has been reached!
+                    $product = $apiData->{"results"}[0];
+                    //FOR TESTING: Change index to examine different results
+                    $device["year"]  = determine_year_per($product->{"introductionDate"});
+                    $device["model"] = $product->{"modelNumber"};
+                    $device["emc"]   = $product->{"emcNumber"};
+
+                    //FOR TESTING:
+                    echo("<br/>");
+                    echo($device["year"]);
+                    echo("<br/>");
+                    echo($device["model"]);
+                    echo("<br/>");
+                    echo($device["emc"]);
+                }
 
                 //Non-required Info
                 $device["cust_ref_num"] = $_POST["cust_ref_num"][$i];
@@ -249,7 +242,7 @@
             //. Loop through devices to append to body string:
             $device_info = "";
             for ($i = 0; $i < count($device_lst); $i++) {
-                $device_info .= "Device ".($i+1)."\nModel: ".$model."\nModel Name: ".$device_lst[$i]["model_type"]."\nSerial Number: ".$device_lst[$i]["serial_number"]."\nEMC: ".$emc."\nYear: ".$year."\nPasscode: "."\nMissing Screws: "."\nScratches: "."\nDent: "."Known Liquid Damage: "."\nDevice's Current Issue: ".$device_lst[$i]["problem"]."Customer's Approvals: "."\nCustomer Reference #: ".$device_lst[$i]["cust_ref_num"]."Estimated Turnaround Time: 3-5 Days"."Missing SSD/HDD: "."Tech Notes: "."\nTechnician: "."\nOther Info: ".$device_lst[$i]["other_info"]."\n";
+                $device_info .= "Device ".($i+1)."\nModel: ".$device_lst[$i]["model"]."\nModel Name: ".$device_lst[$i]["model_type"]."\nSerial Number: ".$device_lst[$i]["serial_number"]."\nEMC: ".$device_lst[$i]["emc"]."\nYear: ".$device_lst[$i]["year"]."\nPasscode: "."\nMissing Screws: "."\nScratches: "."\nDent: "."Known Liquid Damage: "."\nDevice's Current Issue: ".$device_lst[$i]["problem"]."Customer's Approvals: "."\nCustomer Reference #: ".$device_lst[$i]["cust_ref_num"]."Estimated Turnaround Time: 3-5 Days"."Missing SSD/HDD: "."Tech Notes: "."\nTechnician: "."\nOther Info: ".$device_lst[$i]["other_info"]."\n";
             }
             $body .= $device_info;
 
