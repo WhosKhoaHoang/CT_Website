@@ -73,8 +73,6 @@
         $num_reqs = $reqs_per_device * $num_devices; //Is this needed anymore?
 
         // ------------- REQUIRED INPUT ------------- //
-        //COMMENT OUT FOR TESTING!
-        /*
         if (!$_POST["first_name"] || !$_POST["last_name"]) {
             $errrorMessage .= "- Your full name is required.<br/>";
         }
@@ -170,7 +168,6 @@
         else {
             $_POST["agree_to_terms"] = clean_input($_POST["agree_to_terms"]);
         }
-        */
 
         // ------------- NON-REQUIRED INPUT ------------- //
         $_POST["company"] = clean_input($_POST["company"]);
@@ -203,6 +200,7 @@
                 $device["serial_number"] = $_POST["serial_number"][$i];                
                 $device["problem"] = $_POST["problem"][$i];
 
+                /*
                 // ===== FOCUS HERE ===== //
                 //Makes more sense to make API call here
                 //once all the validation checks out!
@@ -227,7 +225,7 @@
                     echo("<br/>");
                     echo($device["emc"]);
                 }
-
+                */
                 //Non-required Info
                 $device["cust_ref_num"] = $_POST["cust_ref_num"][$i];
                 $device["other_info"] = $_POST["other_info"][$i];
@@ -257,8 +255,6 @@
             $mail->Body    = $body;
             $mail->addReplyTo($_POST["email"]); //Add reply to sender's email
 
-            //COMMENT OUT FOR TESTING!
-            /*
             //===== NEW MAILING CODE =====
             $sj_requests = array("San Jose", "Santa Clara", "Campbell", "Milpitas", "Cupertino");
             $pa_requests = array("Sunnyvale", "Mountain View", "Palo Alto", "Menlo Park", "Burlingame", "Atherton", "Los Altos", "Portola Valley", "Woodside", "Redwood City", "San Carlos", "Foster City", "San Mateo", "Concord", "Berkeley");
@@ -295,7 +291,6 @@
                 //if(!$mail2->send()) {echo("But we were not able to send a confirmation email.<br/>");}
                 //else {echo("We've also sent you a confirmation email.<br/>");}
             }
-            */
         }   
     }
 ?>
