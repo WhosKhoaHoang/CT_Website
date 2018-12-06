@@ -115,7 +115,6 @@ $(".device_select ~ label").click(function() {
     //Set the model that has been chosen   
 
     if ($("#" + device_type + "_problem_chosen").val() !== "0") {
-        //console.log("I'MA SET THE PRICE FROM MODEL!")
         //console.log("The Model Is: " + $("#" + device_type + "_model_chosen").val()); //The model
         //console.log("The Problem Is: " + $("#" + device_type + "_problem_chosen").val()); //The problem
 
@@ -155,7 +154,7 @@ function check_and_set_repair_prices(model, problem) {
     }
     else if (model === "Macbook Air" || model === "Macbook Pro (non-Retina)" ||
             model === "Macbook Pro (Retina)") {
-        check_macbook_repair_prices(model, problem);
+        check_mac_repair_prices(model, problem);
     }
     else if (model === "7 Plus / 7" || model === "6s Plus / 6s" || 
             model === "6 Plus / 6" || model === "5 SE/5s/5c/5") {
@@ -168,7 +167,6 @@ function check_and_set_repair_prices(model, problem) {
 }
 
 
-// ================ PRICE CHANGES BEGIN ================
 function check_imac_repair_prices(model, problem) {
     switch(problem) {
         case "Video Card":
@@ -201,34 +199,34 @@ function check_imac_repair_prices(model, problem) {
 }
 
 
-function check_macbook_repair_prices(model, problem) {
+function check_mac_repair_prices(model, problem) {
     switch(problem) {
         case "Video Card":
-            set_macbook_repair_prices(model, "$285", "$285", "$325");
+            set_mac_repair_prices(model, "$285", "$285", "$325");
             break;
         case "SSD":
-            set_macbook_repair_prices(model, "$570-$873", "$327-$480", "$570-$873");
+            set_mac_repair_prices(model, "$570-$873", "$327-$480", "$570-$873");
             break;
         case "LCD":
-            set_macbook_repair_prices(model, "$256-$355", "$158-$390", "$350-$505");
+            set_mac_repair_prices(model, "$256-$355", "$158-$390", "$350-$505");
             break;
         case "Motherboard":
-            set_macbook_repair_prices(model, "$399", "$399", "$499");
+            set_mac_repair_prices(model, "$399", "$399", "$499");
             break;
         case "Keyboard":
-            set_macbook_repair_prices(model, "$220", "$220", "$220");
+            set_mac_repair_prices(model, "$220", "$220", "$220");
             break;
         case "RAM":
-            set_macbook_repair_prices(model, "(No Service)", "$128-$218", "(No Service)");
+            set_mac_repair_prices(model, "(No Service)", "$128-$218", "(No Service)");
             break;
         case "Battery":
-            set_macbook_repair_prices(model, "$99", "$99", "$155");
+            set_mac_repair_prices(model, "$99", "$99", "$155");
             break;
         case "Data Recovery":
-            set_macbook_repair_prices(model, "$190-$???", "$190-$???", "$190-$???");
+            set_mac_repair_prices(model, "$190-$???", "$190-$???", "$190-$???");
             break;
         case "Virus":
-            set_macbook_repair_prices(model, "$79", "$79", "$79");
+            set_mac_repair_prices(model, "$79", "$79", "$79");
     }
 }
 
@@ -308,17 +306,17 @@ function set_imac_repair_prices(model, imac27_price, imac215_price) {
 }
 
 
-function set_macbook_repair_prices(model, mbair_price, 
-                                    mbpro_non_retina_price, 
-                                    mbpro215_retina_price) {
+function set_mac_repair_prices(model, mbair_price, 
+                               mbpro_non_retina_price, 
+                               mbpro215_retina_price) {
     if (model === "Macbook Air") {
-        $("#macbook_repair_price").html(mbair_price);
+        $("#mac_repair_price").html(mbair_price);
     }
     else if (model === "Macbook Pro (non-Retina)") {
-        $("#macbook_repair_price").html(mbpro_non_retina_price);
+        $("#mac_repair_price").html(mbpro_non_retina_price);
     }
     else if (model === "Macbook Pro (Retina)") {
-        $("#macbook_repair_price").html(mbpro215_retina_price);
+        $("#mac_repair_price").html(mbpro215_retina_price);
     }
 }
 
@@ -367,13 +365,13 @@ $("#imac_service_pickup").click(function() {
 });
 
 
-$("#macbook_service_pickup").click(function() {
+$("#mac_service_pickup").click(function() {
     //Take model type and pre-fill #model_type
     //Take problem and pre-fill #symptoms/needs
 
-    var decoded = decode_entities($("#macbook_model_chosen").val());
+    var decoded = decode_entities($("#mac_model_chosen").val());
     $("#model_type").val(decoded);
-    $("#problem").val($("#macbook_problem_chosen").val());
+    $("#problem").val($("#mac_problem_chosen").val());
 
 });
 
@@ -493,7 +491,6 @@ function remove_device() {
 }
 
 
-//bingo
 // ============== PICK-UP REQUEST SUBMISSION ==============
 $("#pick_up_req_submit_btn, #pick_up_request_inner_submit").click(function() {
 
@@ -506,6 +503,7 @@ $("#pick_up_req_submit_btn, #pick_up_request_inner_submit").click(function() {
                 //Note that #thanks, in the original code example, was merely a div...
 
                 //Fill out the text in the modal...
+                $("#processing_msg").hide();
                 $("#pick_up_request_result_msg").html(msg);
 
                 if (!msg.includes("Oops")) {
@@ -545,6 +543,14 @@ $("#pick_up_req_submit_btn, #pick_up_request_inner_submit").click(function() {
             }
    });
 });
+
+
+$("#pick_up_request_result").on("hidden.bs.modal", function (e) {
+    //Make visible the #processing_msg element:
+    $("#processing_msg").show();
+    //Hide text of #pick_up_request_result_msg element:
+    $("#pick_up_request_result_msg").empty();
+})
 
 
 //============== CONTACT FORM SUBMISSION ==============

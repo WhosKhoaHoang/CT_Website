@@ -1,3 +1,62 @@
+<?php
+    $my_arr = array(
+        array("device"          => "iMac",
+              "device_models"   => array(array("name"=>"27''",
+                                               "image_path"=>"images/imac_black_sharp.png"),
+                                         array("name"=>"21.5''",
+                                               "image_path"=>"images/imac_black21-5_sharp.png")
+                                       ),
+              "device_problems" => array("Video Card", "SSD", "LCD",
+                                         "Motherboard", "DVD Drive", "RAM",
+                                         "Power Supply", "Data Recovery", "Virus"
+                                        ),
+        ),
+        array("device"          => "Mac",
+              "device_models"   => array(array("name"=>"Macbook Air",
+                                               "image_path"=>"images/macbook_air_black.png"),
+                                         array("name"=>"Macbook Pro (non-Retina)",
+                                               "image_path"=>"images/macbook_pro_black.png"),
+                                         array("name"=>"Macbook Pro (Retina)",
+                                               "image_path"=>"images/macbook_pro_black.png"),
+                                       ),
+              "device_problems" => array("Video Card", "SSD", "LCD",
+                                         "Motherboard", "Keyboard", "RAM",
+                                         "Battery", "Data Recovery", "Virus"
+                                        ),
+        ),
+        array("device"          => "iPhone",
+              "device_models"   => array(array("name"=>"7 Plus / 7",
+                                               "image_path"=>"images/iphone_duo.png"),
+                                         array("name"=>"6s Plus / 6s",
+                                               "image_path"=>"images/iphone_duo.png"),
+                                         array("name"=>"6 Plus / 6",
+                                               "image_path"=>"images/iphone_duo.png"),
+                                         array("name"=>"5 SE/5s/5c/5",
+                                               "image_path"=>"images/iphone_alone.png"),
+                                       ),
+              "device_problems" => array("Screen", "Wifi", "Speakers",
+                                         "Battery", "Headphone", "Home Button",
+                                         "Water Damage", "Charge Port", "Camera"
+                                        ),
+        ),
+        array("device"          => "iPad",
+              "device_models"   => array(array("name"=>"2/3/4/Air",
+                                               "image_path"=>"images/ipad_air.png"),
+                                         array("name"=>"Air 2",
+                                               "image_path"=>"images/ipad_air.png"),
+                                         array("name"=>"Mini 1/2/3",
+                                               "image_path"=>"images/ipad_mini.png"),
+                                         array("name"=>"Mini 4",
+                                               "image_path"=>"images/ipad_mini.png"),
+                                       ),
+              "device_problems" => array("Screen", "Wifi", "Speakers",
+                                         "Battery", "Headphone", "Home Button",
+                                         "LCD", "Charge Port", "Camera"
+                                        ),
+        ),
+    )
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -327,6 +386,7 @@
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                             </div>
                             <div class="modal-body">
+                                <h3 id="processing_msg">Processing your request...</h3>
                                 <div id="pick_up_request_result_msg"></div>
                             </div>
                         </div>
@@ -336,16 +396,14 @@
         </div>
         <!-- PICK-UP REQUEST RESULT END -->
 
-
-        <!-- SELECT IMAC MODEL MODAL BEGIN -->
-        <!-- Note that you mainly used data-value so you can get the device name and make them part of variable names -->
-        <div id="imac_device_select" class="modal fade" role="dialog">
+        
+        <!-- SELECT SERVICE BEGIN -->
+        <?php for ($i = 0; $i < count($my_arr); $i++){ ?>
+        <div id="<?php echo strtolower($my_arr[$i]["device"]) ?>_device_select" class="modal fade" role="dialog">
             <div class="vertical-alignment-helper">
                 <div class="modal-dialog vertical-align-center">
                     <div class="modal-dialog">
-                        <!-- Modal content-->
-                        <div class="modal-content" style="padding: 20px;">
-
+                        <div class="modal-content">
                             <div class="modal-body">
 
                                 <div class="form-group" style="margin-bottom: 30px;">
@@ -353,213 +411,65 @@
                                 </div>
 
                                 <div class="row" style="text-align: center; z-index: 1">
-                                    <h2>iMac</h2>
+                                    <h2><?php echo $my_arr[$i]["device"] ?></h2>
                                 </div>
 
-                                <div class="row" style="position: relative; top: -20px;">  
+                                <div class="row" style="position: relative; top: -20px;">
+                                    <!-- ============== MODEL SELECTION BEGIN ============== -->
                                     <p style="text-align: center; margin-top: 10px;">Choose Your Model: </p>
-                                    <!-- MODEL SELECTION -->
                                     <!--The value of this element gets set to a model when a model is chosen-->
-                                    <input id="imac_model_chosen" type="radio" value=0 style="display: none;">
+                                    <input id="<?php echo strtolower($my_arr[$i]["device"]) ?>_model_chosen" type="radio" value=0 style="display: none;">
+                                    <?php
+                                        $col_xs_int = null;
+                                        switch (count($my_arr[$i]["device_models"])) {
+                                            case 2:
+                                                $col_xs_int = 5;
+                                                break;
+                                            case 3:
+                                                $col_xs_int = 4;
+                                                break;
+                                            case 4:
+                                                $col_xs_int = 3;
+                                                break;
+                                        }
 
-                                    <div class="col-xs-1"></div>
-
-                                    <div class="col-xs-5" style="text-align: center;">
-                                        <input class="device_select" type="radio" name="imac_select_group" value="1" id="imac_select1" />
-                                        <label for="imac_select1" data-value="imac">
-                                            <img src="images/imac_black_sharp.png" style="width: 100%; height: 100%;">
-                                            <p class="device_model">27''</p>
+                                        $col_offset_class = "";
+                                        if (count($my_arr[$i]["device_models"]) < 3) {
+                                            $col_offset_class = " col-xs-offset-1"; //leading space is intentional!
+                                        }
+                                    ?>
+                                    <?php for ($j = 0; $j < count($my_arr[$i]["device_models"]); $j++){ ?>
+                                    <div class="col-xs-<?php echo $col_xs_int ?><?php echo $j == 0 ? $col_offset_class : '' ?>" style="text-align: center;">
+                                        <input class="device_select" type="radio" name="<?php echo strtolower($my_arr[$i]["device"]) ?>_select_group" value="<?php echo $j+1 ?>" id="<?php echo strtolower($my_arr[$i]["device"]) ?>_select<?php echo $j+1 ?>" />
+                                        <label for="<?php echo strtolower($my_arr[$i]["device"]) ?>_select<?php echo $j+1 ?>" data-value="<?php echo strtolower($my_arr[$i]["device"]) ?>">
+                                            <img src="<?php echo $my_arr[$i]["device_models"][$j]["image_path"] ?>" style="width: 100%; height: 100%;">
+                                            <p class="device_model"><?php echo $my_arr[$i]["device_models"][$j]["name"] ?></p>
                                         </label>
                                     </div>
-
-                                    <div class="col-xs-5" style="text-align: center;">
-                                        <input class="device_select" type="radio" name="imac_select_group" value="2" id="imac_select2" />
-                                        <label for="imac_select2" data-value="imac">
-                                            <img src="images/imac_black21-5_sharp.png" style="width: 100%; height: 100%;">
-                                            <p class="device_model">21.5''</p>
-                                        </label>
-                                    </div>
-
-                                    <div class="col-xs-1"></div>
+                                    <?php } ?>
+                                    <!-- ============== MODEL SELECTION END ============== -->
                                 </div>
 
                                 <div clas="row" style="text-align: center;">
-                                    <!-- PROBLEM SELECTION -->
-                                    <!--The value of this element gets set to the problem when a problem is chosen-->
-                                    <input id="imac_problem_chosen" type="radio" value=0 style="display: none;">
-
+                                    <!-- ============== PROBLEM SELECTION BEGIN ============== -->
+                                    <!-- The value attribute of this input element gets set
+                                         to the problem when a problem is chosen -->
+                                    <input id="<?php echo strtolower($my_arr[$i]["device"]) ?>_problem_chosen" type="radio" value=0 style="display: none;">
+                                    <?php
+                                        $num_problem_rows = (int)(count($my_arr[$i]["device_problems"]) / 3);
+                                        $so_far = 0;
+                                    ?>
+                                    <?php for ($j = 0; $j < $num_problem_rows; $j++){ ?>
                                     <div class="row">
+                                        <?php for ($k = 0; $k < 3; $k++) { ?>
                                         <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="imac_problem_select_group" id="imac_problem_select1" />
-                                            <label for="imac_problem_select1" class="problem_item btn btn-block" data-value="imac">Video Card</label>
+                                            <input class="problem_select" type="radio" name="<?php echo strtolower($my_arr[$i]["device"]) ?>_problem_select_group" id="<?php echo strtolower($my_arr[$i]["device"]) ?>_problem_select<?php echo $k+$so_far+1 ?>" />
+                                            <label for="<?php echo strtolower($my_arr[$i]["device"]) ?>_problem_select<?php echo $k+$so_far+1 ?>" class="problem_item btn btn-block" data-value="<?php echo strtolower($my_arr[$i]["device"]) ?>"><?php echo $my_arr[$i]["device_problems"][$k+$so_far] ?></label>
                                         </div>
-                                        <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="imac_problem_select_group" id="imac_problem_select2" />
-                                            <label for="imac_problem_select2" class="problem_item btn btn-block" data-value="imac">SSD</label>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="imac_problem_select_group" id="imac_problem_select3" />
-                                            <label for="imac_problem_select3" class="problem_item btn btn-block" data-value="imac">LCD</label>
-                                        </div>
+                                        <?php } $so_far += $k ?>
                                     </div>
- 
-                                    <div class="row">
-                                        <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="imac_problem_select_group" id="imac_problem_select4" />
-                                            <label for="imac_problem_select4" class="problem_item btn btn-block" data-value="imac">Motherboard</label>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="imac_problem_select_group" id="imac_problem_select5" />
-                                            <label for="imac_problem_select5" class="problem_item btn btn-block" data-value="imac">DVD Drive</label>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="imac_problem_select_group" id="imac_problem_select6" />
-                                            <label for="imac_problem_select6" class="problem_item btn btn-block" data-value="imac">RAM</label>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="imac_problem_select_group" id="imac_problem_select7" />
-                                            <label for="imac_problem_select7" class="problem_item btn btn-block" data-value="imac">Power Supply</label>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="imac_problem_select_group" id="imac_problem_select8" />
-                                            <label for="imac_problem_select8" class="problem_item btn btn-block" data-value="imac">Data Recovery</label>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="imac_problem_select_group" id="imac_problem_select9" />
-                                            <label for="imac_problem_select9" class="problem_item btn btn-block" data-value="imac">Virus</label>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                                
-                                <div class="row" style="font-size: 15px; text-align: center;"> 
-                                    <div class="col-xs-12">
-                                        <div class="row">
-                                            <label class="price_label" style="display: block;">Service Price: </label>
-                                        </div>
-                                        <div class="row">
-                                            <label id="imac_repair_price" class="price_value">&nbsp;</label>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <div class="row">
-                                    <button class="btn_from_device_modal btn col-xs-4 col-xs-offset-4" style="background-color: #0f6a37; color: white; margin-top: 10px;" data-dismiss="modal" data-toggle="modal" data-target="#pick_up_request_modal" id="imac_service_pickup">Request Pick-Up</button>
-                                </div>
-                                
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- SELECT IMAC MODEL MODAL END -->
-        
-        
-        <!-- SELECT MACBOOK MODEL MODAL BEGIN -->
-        <div id="macbook_device_select" class="modal fade" role="dialog">
-            <div class="vertical-alignment-helper">
-                <div class="modal-dialog vertical-align-center">
-                    <div class="modal-dialog">
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            
-                            <div class="modal-body">
-                                
-                                <div class="form-group" style="margin-bottom: 30px;">
-                                    <button type="button" class="close" data-dismiss="modal" style="float: left;">&times;</button>
-                                </div>
-                                
-                                <div class="row" style="text-align: center; z-index: 1">
-                                    <h2>Macbook</h2>
-                                </div>
-                                
-                                <div class="row" style="position: relative; top: -10px;"> 
-                                    <p style="text-align: center;">Choose Your Model: </p>
-                                    <!-- MODEL SELECTION -->
-                                    <!--The value of this element gets set to a model when a model is chosen-->
-                                    <input id="macbook_model_chosen" type="radio" value=0 style="display: none;">
-                                    
-                                    <div class="col-xs-4" style="text-align: center;">
-                                        <input class="device_select" type="radio" name="macbook_select_group" value="1" id="macbook_select1" />
-                                        <label for="macbook_select1" data-value="macbook">
-                                            <img src="images/macbook_air_black.png" style="width: 100%; height: 100%;">
-                                            <p class="device_model">Macbook Air</p>
-                                        </label>
-                                    </div>
-                                    
-                                    <div class="col-xs-4" style="text-align: center;">
-                                        <input class="device_select" type="radio" name="macbook_select_group" value="2" id="macbook_select2" />
-                                        <label for="macbook_select2" data-value="macbook">
-                                            <img src="images/macbook_pro_black.png" style="width: 100%; height: 100%;">
-                                            <p class="device_model">Macbook Pro (non-Retina)</p>
-                                        </label>
-                                    </div>
-                                    
-                                    <div class="col-xs-4" style="text-align: center;">
-                                        <input class="device_select" type="radio" name="macbook_select_group" value="3" id="macbook_select3" />
-                                        <label for="macbook_select3" data-value="macbook">
-                                            <img src="images/macbook_pro_black.png" style="width: 100%; height: 100%;">
-                                            <p class="device_model">Macbook Pro (Retina)</p>
-                                        </label>
-                                    </div>
-                                    
-                                </div>
-                                
-                                <div clas="row" style="text-align: center;">
-                                    <!-- PROBLEM SELECTION -->
-                                    <!--The value of this element gets set to the problem when a problem is chosen-->
-                                    <input id="macbook_problem_chosen" type="radio" value=0 style="display: none;">
-
-                                    <div class="row">
-                                        <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="macbook_problem_select_group" id="macbook_problem_select1" />
-                                            <label for="macbook_problem_select1" class="problem_item btn btn-block" data-value="macbook">Video Card</label>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="macbook_problem_select_group" id="macbook_problem_select2" />
-                                            <label for="macbook_problem_select2" class="problem_item btn btn-block" data-value="macbook">SSD</label>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="macbook_problem_select_group" id="macbook_problem_select3" />
-                                            <label for="macbook_problem_select3" class="problem_item btn btn-block" data-value="macbook">LCD</label>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="macbook_problem_select_group" id="macbook_problem_select4" />
-                                            <label for="macbook_problem_select4" class="problem_item btn btn-block" data-value="macbook">Motherboard</label>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="macbook_problem_select_group" id="macbook_problem_select5" />
-                                            <label for="macbook_problem_select5" class="problem_item btn btn-block" data-value="macbook">Keyboard</label>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="macbook_problem_select_group" id="macbook_problem_select6" />
-                                            <label for="macbook_problem_select6" class="problem_item btn btn-block" data-value="macbook">RAM</label>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="macbook_problem_select_group" id="macbook_problem_select7" />
-                                            <label for="macbook_problem_select7" class="problem_item btn btn-block" data-value="macbook">Battery</label>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="macbook_problem_select_group" id="macbook_problem_select8" />
-                                            <label for="macbook_problem_select8" class="problem_item btn btn-block" data-value="macbook">Data Recovery</label>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="macbook_problem_select_group" id="macbook_problem_select9" />
-                                            <label for="macbook_problem_select9" class="problem_item btn btn-block" data-value="macbook">Virus</label>
-                                        </div>
-                                    </div>
+                                    <?php } ?>
+                                    <!-- ============== PROBLEM SELECTION END ============== -->
                                 </div>
 
                                 <div class="row" style="font-size: 15px; text-align: center;"> 
@@ -568,292 +478,25 @@
                                             <label class="price_label" style="display: block;">Service Price: </label>
                                         </div>
                                         <div class="row">
-                                            <label id="macbook_repair_price" class="price_value">&nbsp;</label>
+                                            <label id="<?php echo strtolower($my_arr[$i]["device"]) ?>_repair_price" class="price_value">&nbsp;</label>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="row">
-                                    <button class="btn_from_device_modal btn col-xs-4 col-xs-offset-4" style="background-color: #0f6a37; color: white; margin-top: 10px;" data-dismiss="modal" data-toggle="modal" data-target="#pick_up_request_modal" id="macbook_service_pickup">Request Pick-Up</button>
+                                    <button class="btn_from_device_modal btn col-xs-4 col-xs-offset-4" style="background-color: #0f6a37; color: white; margin-top: 10px;" data-dismiss="modal" data-toggle="modal" data-target="#pick_up_request_modal" id="<?php echo strtolower($my_arr[$i]["device"]) ?>_service_pickup">Request Pick-Up</button>
                                 </div>
 
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- SELECT MACBOOK MODEL MODAL END -->
-        
-        
-        <!-- SELECT IPHONE MODEL MODAL BEGIN -->
-        <div id="iphone_device_select" class="modal fade" role="dialog">
-            <div class="vertical-alignment-helper">
-                <div class="modal-dialog vertical-align-center">
-                    <div class="modal-dialog">
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            
-                            <div class="modal-body">
+        <?php } ?>
+        <!-- SELECT SERVICE END -->
 
-                                <div class="form-group" style="margin-bottom: 30px;">
-                                    <button type="button" class="close" data-dismiss="modal" style="float: left;">&times;</button>
-                                </div>
-                                
-                                <div class="row" style="text-align: center; margin-bottom: 20px; z-index: 1">
-                                    <h2>iPhone</h2>
-                                </div>
-                                
-                                <div class="row" style="position: relative; top: -20px;"> 
-                                    <p style="text-align: center;">Choose Your Model: </p>
-                                    <!-- MODEL SELECTION -->
-                                    <!--The value of this element gets set to a model when a model is chosen-->
-                                    <input id="iphone_model_chosen" type="radio" value=0 style="display: none;">
-                                    
-                                    <div class="col-xs-3" style="text-align: center;">
-                                        <input class="device_select" type="radio" name="iphone_select_group" value="1" id="iphone_select1" />
-                                        <label for="iphone_select1" data-value="iphone">
-                                            <img src="images/iphone_duo.png" style="width: 100%; height: 100%;">
-                                            <p class="device_model">7 Plus / 7</p>
-                                        </label>
-                                    </div>                                    
-                                    <div class="col-xs-3" style="text-align: center;">
-                                        <input class="device_select" type="radio" name="iphone_select_group" value="2" id="iphone_select2" />
-                                        <label for="iphone_select2" data-value="iphone">
-                                            <img src="images/iphone_duo.png" style="width: 100%; height: 100%;">
-                                            <p class="device_model">6s Plus / 6s</p>
-                                        </label>
-                                    </div>
-                                    
-                                    <div class="col-xs-3" style="text-align: center;">
-                                        <input class="device_select" type="radio" name="iphone_select_group" value="3" id="iphone_select3" />
-                                        <label for="iphone_select3" data-value="iphone">
-                                            <img src="images/iphone_duo.png" style="width: 100%; height: 100%;">
-                                            <p class="device_model">6 Plus / 6</p>
-                                        </label>
-                                    </div>
-                                    
-                                    <div class="col-xs-3" style="text-align: center;">
-                                        <input class="device_select" type="radio" name="iphone_select_group" value="4" id="iphone_select4" />
-                                        <label for="iphone_select4" data-value="iphone">
-                                            <img src="images/iphone_alone.png" style="width: 100%; height: 100%;">
-                                            <p class="device_model">5 SE/5s/5c/5</p>
-                                        </label>
-                                    </div>                                
-                                </div>
-                                
-                                <div clas="row" style="text-align: center;">
-                                    <!-- PROBLEM SELECTION -->
-                                    <!--The value of this element gets set to 1 when a problem is chosen-->
-                                    <input id="iphone_problem_chosen" type="radio" value=0 style="display: none;">
-                                    
-                                    <div class="row">
-                                        <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="iphone_problem_select_group" id="iphone_problem_select1" />
-                                            <label for="iphone_problem_select1" class="problem_item btn btn-block" data-value="iphone">Screen</label>                                            
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="iphone_problem_select_group" id="iphone_problem_select2" />
-                                            <label for="iphone_problem_select2" class="problem_item btn btn-block" data-value="iphone">Wifi</label>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="iphone_problem_select_group" id="iphone_problem_select3" />
-                                            <label for="iphone_problem_select3" class="problem_item btn btn-block" data-value="iphone">Speakers</label>
-                                        </div>
-                                    </div>
 
-                                    <div class="row">
-                                        <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="iphone_problem_select_group" id="iphone_problem_select4" />
-                                            <label for="iphone_problem_select4" class="problem_item btn btn-block" data-value="iphone">Battery</label>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="iphone_problem_select_group" id="iphone_problem_select5" />
-                                            <label for="iphone_problem_select5" class="problem_item btn btn-block" data-value="iphone">Headphone</label>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="iphone_problem_select_group" id="iphone_problem_select6" />
-                                            <label for="iphone_problem_select6" class="problem_item btn btn-block" data-value="iphone">Home Button</label>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="iphone_problem_select_group" id="iphone_problem_select7" />
-                                            <label for="iphone_problem_select7" class="problem_item btn btn-block" data-value="iphone">Water Damage</label>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="iphone_problem_select_group" id="iphone_problem_select8" />
-                                            <label for="iphone_problem_select8" class="problem_item btn btn-block" data-value="iphone">Charge Port</label>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="iphone_problem_select_group" id="iphone_problem_select9" />
-                                            <label for="iphone_problem_select9" class="problem_item btn btn-block" data-value="iphone">Camera</label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row" style="font-size: 15px; text-align: center;"> 
-                                    <div class="col-xs-12">
-                                        <div class="row">
-                                            <label class="price_label" style="display: block;">Service Price: </label>
-                                        </div>
-                                        <div class="row">
-                                            <label id="iphone_repair_price" class="price_value">&nbsp;</label>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                
-                                <div class="row"> 
-                                    <button class="btn_from_device_modal btn col-xs-4 col-xs-offset-4" style="background-color: #0f6a37; color: white; margin-top: 10px;" data-dismiss="modal" data-toggle="modal" data-target="#pick_up_request_modal" id="iphone_service_pickup">Request Pick-Up</button>
-                                </div>
-
-                            </div>
-                     
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- SELECT IPHONE MODEL MODAL END -->
-        
-        
-        <!-- SELECT IPAD MODEL MODAL BEGIN -->
-        <div id="ipad_device_select" class="modal fade" role="dialog">
-            <div class="vertical-alignment-helper">
-                <div class="modal-dialog vertical-align-center">
-                    <div class="modal-dialog">
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            
-                            <div class="modal-body">
-                                
-                                <div class="form-group" style="margin-bottom: 30px;">
-                                    <button type="button" class="close" data-dismiss="modal" style="float: left;">&times;</button>
-                                </div>
-                                
-                                <div class="row" style="text-align: center; margin-bottom: 20px; z-index: 1">
-                                    <h2>iPad</h2>
-                                </div>
-                                
-                                <div class="row" style="position: relative; top: -20px;"> 
-                                    <p style="text-align: center;">Choose Your Model: </p>
-                                    <!-- MODEL SELECTION -->
-                                    <!--The value of this element gets set to a model when a model is chosen-->
-                                    <input id="ipad_model_chosen" type="radio" value=0 style="display: none;">
-                                    
-                                    <div class="col-xs-3" style="text-align: center;">
-                                        <input class="device_select" type="radio" name="ipad_select_group" value="1" id="ipad_select1" />
-                                        <label for="ipad_select1" data-value="ipad">
-                                            <img src="images/ipad_air.png" style="width: 100%; height: 100%;">
-                                            <p class="device_model">2/3/4/Air</p>
-                                        </label>
-                                    </div>                                    
-                                    <div class="col-xs-3" style="text-align: center;">
-                                        <input class="device_select" type="radio" name="ipad_select_group" value="2" id="ipad_select2" />
-                                        <label for="ipad_select2" data-value="ipad">
-                                            <img src="images/ipad_air.png" style="width: 100%; height: 100%;">
-                                            <p class="device_model">Air 2</p>
-                                        </label>
-                                    </div>
-                                    
-                                    <div class="col-xs-3" style="text-align: center;">
-                                        <input class="device_select" type="radio" name="ipad_select_group" value="3" id="ipad_select3" />
-                                        <label for="ipad_select3" data-value="ipad">
-                                            <img src="images/ipad_mini.png" style="width: 100%; height: 100%;">
-                                            <p class="device_model">Mini 1/2/3</p>
-                                        </label>
-                                    </div>
-                                    
-                                    <div class="col-xs-3" style="text-align: center;">
-                                        <input class="device_select" type="radio" name="ipad_select_group" value="4" id="ipad_select4" />
-                                        <label for="ipad_select4" data-value="ipad">
-                                            <img src="images/ipad_mini.png" style="width: 100%; height: 100%;">
-                                            <p class="device_model">Mini 4</p>
-                                        </label>
-                                    </div>                                
-                                </div>
-                                
-                                <div clas="row" style="text-align: center;">
-                                    
-                                    <!-- PROBLEM SELECTION -->
-                                    <!--The value of this element gets set to 1 when a problem is chosen-->
-                                    <input id="ipad_problem_chosen" type="radio" value=0 style="display: none;">
-                                    
-                                    <div class="row">
-                                        <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="ipad_problem_select_group" id="ipad_problem_select1" />
-                                            <label for="ipad_problem_select1" class="problem_item btn btn-block" data-value="ipad">Screen</label>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="ipad_problem_select_group" id="ipad_problem_select2" />
-                                            <label for="ipad_problem_select2" class="problem_item btn btn-block" data-value="ipad">Wifi</label>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="ipad_problem_select_group" id="ipad_problem_select3" />
-                                            <label for="ipad_problem_select3" class="problem_item btn btn-block" data-value="ipad">Speakers</label>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="ipad_problem_select_group" id="ipad_problem_select4" />
-                                            <label for="ipad_problem_select4" class="problem_item btn btn-block" data-value="ipad">Battery</label>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="ipad_problem_select_group" id="ipad_problem_select5" />
-                                            <label for="ipad_problem_select5" class="problem_item btn btn-block" data-value="ipad">Headphone</label>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="ipad_problem_select_group" id="ipad_problem_select6" />
-                                            <label for="ipad_problem_select6" class="problem_item btn btn-block" data-value="ipad">Home Button</label>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="ipad_problem_select_group" id="ipad_problem_select7" />
-                                            <label for="ipad_problem_select7" class="problem_item btn btn-block" data-value="ipad">LCD</label>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="ipad_problem_select_group" id="ipad_problem_select8" />
-                                            <label for="ipad_problem_select8" class="problem_item btn btn-block" data-value="ipad">Charge Port</label>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <input class="problem_select" type="radio" name="ipad_problem_select_group" id="ipad_problem_select9" />
-                                            <label for="ipad_problem_select9" class="problem_item btn btn-block" data-value="ipad">Camera</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="row" style="font-size: 15px; text-align: center;">
-                                    <div class="col-xs-12">
-                                        <div class="row">
-                                            <label class="price_label" style="display: block;">Service Price: </label>
-                                        </div>
-                                        <div class="row">
-                                            <label id="ipad_repair_price" class="price_value">&nbsp;</label>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                                
-                                <div class="row"> 
-                                    <button class="btn_from_device_modal btn col-xs-4 col-xs-offset-4" style="background-color: #0f6a37; color: white; margin-top: 10px;" data-dismiss="modal" data-toggle="modal" data-target="#pick_up_request_modal" id="ipad_service_pickup">Request Pick-Up</button>
-                                </div>
-                                
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- SELECT IPAD MODEL MODAL END -->
-        
-        
         <!-- CLEVERTECH VIDEO MODAL BEGIN -->
         <div id="clevertech_vid" class="modal fade" role="dialog">
             <div class="vertical-alignment-helper">
@@ -1371,7 +1014,7 @@
                             <img class="services_icon" src="images/imac_white2.png">
                             <p class="services_device_type">iMac</p>
                         </div>                       
-                        <div class="col-md-3 col-xs-4 problem_device" style="background-color: rgba(0,0,0,0.4); border-top-right-radius: 10px;" data-toggle="modal" data-target="#macbook_device_select">
+                        <div class="col-md-3 col-xs-4 problem_device" style="background-color: rgba(0,0,0,0.4); border-top-right-radius: 10px;" data-toggle="modal" data-target="#mac_device_select">
                             <img class="services_icon" src="images/macbook_white2.png">
                             <p class="services_device_type">Mac</p>
                         </div>

@@ -1,5 +1,5 @@
 <?php
-    include("class.phpmailer.php");     
+    require_once("php_libs/class.phpmailer.php");     
     $contact_us_error = ""; $success_msg = "";
 
     //Got this from: https://www.w3schools.com/php/php_form_validation.asp
