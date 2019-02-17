@@ -282,9 +282,8 @@
                                                             <option>PC</option>
                                                         </select>  
                                                     </div>
-                                                    <!-- CHECK THAT THE LENGTH OF THIS VALUE IS 12!!!-->
                                                     <div class="col-xs-6">
-                                                        <label class="required" for="serial_number">12-Character Serial #</label>
+                                                        <label class="required" for="serial_number">10-12 Character Serial #</label>
                                                         <input class="form-control" id="serial_number" name="serial_number[]">
                                                     </div>
                                                 </div>
@@ -931,7 +930,7 @@
 
                     <div class="row" style="margin-top: -10%">
                         <h1 id="sec1_header">CleverTech</h1>
-                        <p id="sec1_subtitle">Trusted Mac Technicians</p>
+                        <p id="sec1_subtitle">Apple Specialist</p>
                     </div>
 
                     <div class="row">

@@ -445,7 +445,7 @@ function add_device(div_name){
                                         </select>\
                                     </div>\
                                     <div class='col-xs-6'>\
-                                        <label class='required' for='serial_number'>12-Character Serial #</label>\
+                                        <label class='required' for='serial_number'>10-12 Character Serial #</label>\
                                         <input class='form-control' id='serial_number' name='serial_number[]'>\
                                     </div>\
                                 </div>\

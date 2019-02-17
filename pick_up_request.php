@@ -128,12 +128,13 @@
                 $_POST["model_type"][$i] = clean_input($_POST["model_type"][$i]);
             }
 
-
             if (!$_POST["serial_number"][$i]) {
-                $errrorMessage .= "- Serial Number is required for Device ".($i+1).".<br/>";
+                $errrorMessage .= "- Serial # is required for Device ".($i+1).".<br/>";
             }
             //else if ($_POST["serial_number"][$i] && !preg_match('/^\d{12}$/', $_POST["serial_number"][$i])) {
-            else if ($_POST["serial_number"][$i] && strlen($_POST["serial_number"][$i]) !== 12) {
+            else if ($_POST["serial_number"][$i]                &&
+                     (strlen($_POST["serial_number"][$i]) < 10  || 
+                      strlen($_POST["serial_number"][$i]) > 12)) {
                 $errrorMessage .= "- Serial number must consist of 12 characters for Device ".($i+1).".<br/>";
             }
             else {
